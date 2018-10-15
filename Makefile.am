@@ -10,12 +10,17 @@ install_sh_PROGRAM = $(install_sh)    -c
 INSTALL_SCRIPT = ${INSTALL}           -c
 install_sh_SCRIPT = $(install_sh)     -c
 INSTALL_STRIP_PROGRAM = $(install_sh) -c $(STRIP_OPT)
+all: uint32.h uint64.h haswaitp.h hasflock.h hassgact.h hassgprm.h \
+	select.h
 
 libqmail_LTLIBRARIES = libqmail.la
 libqmail_la_SOURCES = $(COMMONSOURCES)
 libqmail_la_LDFLAGS = -version-info @LIBVER@:0:0
 libqmail_la_CFLAGS = -fPIC
 libqmaildir=@libdir@
+
+MOSTLYCLEANFILES = uint32.h uint64.h haswaitp.h hasflock.h hassgact.h hassgprm.h \
+	select.h
 
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libqmail.pc
@@ -37,7 +42,6 @@ include_HEADERS = alloc.h base64.h byte.h caldate.h caltime.h case.h \
 	timeoutread.h timeoutwrite.h uint32.h uint64.h wait.h
 
 includedir=@prefix@/include/qmail
-
 COMMONSOURCES = alloc.c alloc_re.c byte_chr.c byte_copy.c byte_cr.c byte_cspn.c \
 	byte_diff.c byte_rchr.c byte_rcspn.c byte_zero.c caldate_fmjd.c caldate_fmt.c \
 	caldate_mjd.c caldate_scan.c caltime_fmt.c caltime_tai.c caltime_utc.c \
@@ -197,7 +201,7 @@ caldate_mjd.lo: caldate.h
 caldate_fmt.lo: caldate.h
 caldate_scan.lo: caldate.h
 caltime_utc.lo: tai.h leapsecs.h caldate.h caltime.h uint64.h
-caltime_fmt.lo: caldate.h caltime.h
+caltime_fmt.lo: caldate.h caltime.h uint64.h
 caltime_tai.lo: tai.h leapsecs.h caldate.h caltime.h uint64.h
 wait_pid.lo: error.h haswaitp.h
 wait_nohang.lo: wait.h
