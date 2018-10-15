@@ -1,0 +1,5 @@
+addFilter("W: shlib-policy-name-error .*")
+addFilter("W: shlib-policy-nonversioned-dir .*")
+addFilter("W: no-version-dependency-on .*")
+addFilter("W: shared-lib-calls-exit .*")
+setBadness('shlib-policy-name-error', 0)

@@ -1,0 +1,14 @@
+libqmail is a library of general purpose APIs extracted from Dan
+Bernstein's software, reimplemented and covered by the GNU General
+Public License Version 3.
+
+Many of the functions implemented here have since been placed in the
+public domain, so there are other sources to get this code (except for
+my extensions obviously).
+
+I also provide man pages for many functions, mostly extracted from Dan's
+web documentation or documentation found in earlier versions of his
+software. For some reason, he abandoned man pages in favor of HTML
+recently.
+
+The author can be reached under manvendra@indimail.org

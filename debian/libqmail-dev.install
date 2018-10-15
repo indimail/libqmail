@@ -1,0 +1,4 @@
+usr/include/qmail /usr/include
+usr/lib/libqmail.a /usr/lib
+usr/lib/*.so /usr/lib
+usr/share/man/man3 /usr/share/man

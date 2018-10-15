@@ -1,0 +1,178 @@
+%undefine _missing_build_ids_terminate_build
+%global _unpackaged_files_terminate_build 1
+%global debug_package %{nil}
+
+%if %{defined _project}
+# define if building on openSUSE build service
+%global build_on_obs       1
+%global reconfigure_mode   0
+%else
+%define _project           local
+%global build_on_obs       0
+%global reconfigure_mode   0
+%global _hardened_build    1
+%endif
+
+Name:	libqmail
+Version: 0.1
+Release: 1%{?dist}
+Summary: Reimplementation of djb functions
+%if %{undefined suse_version} && %{undefined sles_version}
+Group: System Environment/Libraries
+%else
+Group: System/Libraries
+%endif
+%if %build_on_obs == 1
+License: GPL-3.0+
+%else
+License: GPLv3
+%endif
+URL: http://www.indimail.org
+Source0: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+%global see_base For a description of IndiMail visit http://www.indimail.org
+%global mandir %{_prefix}/share/man
+%global _pkg_config_path   /usr/%{_lib}/pkgconfig
+BuildRequires: rpm gcc gcc-c++ make binutils coreutils grep
+BuildRequires: glibc glibc-devel sed
+BuildRequires: gzip autoconf automake libtool pkgconfig
+BuildRequires: xz
+%if %{defined fedora_version}
+BuildRequires: redhat-lsb-core
+%endif
+%if %{defined centos_version} || %{defined rhel_version}
+BuildRequires: redhat-lsb
+%endif
+%if %{defined suse_version}
+%if 0%{?suse_version} > 1110 || 0%{?suse_version} == 1310 || 0%{?suse_version} == 1230 || 0%{?suse_version} == 1220 || 0%{?suse_version} == 1210 || 0%{?suse_version} == 1140
+BuildRequires: lsb-release
+%endif
+%endif
+%if %build_on_obs == 1
+%if 0%{?suse_version}
+BuildRequires: -post-build-checks  
+#!BuildIgnore: post-build-checks  
+%endif
+%endif
+
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+
+%description
+libqmail provides qmail libraries
+Included APIs:
+* wrappers around memory allocation, stralloc (dynamic strings)
+* substdio buffered I/O
+* byte - contains formatting, scanning and other string routines
+* tai - contains an abstraction for 64-bit system time
+* timeout - contains versions of several socket routines with user specified
+  timeout
+* unix - contains wrappers for socket functions, mkfifo, opendir, wait and an
+  abstraction around errno.
+* sig - contains wrappers for Unix signal functions
+
+%{see_base}
+
+%package -n libqmail-devel
+Summary: Development header files and libraries for qmail
+%if %{undefined suse_version} && %{undefined sles_version}
+Group: System Environment/Libraries
+%else
+Group: Development/Tools/Other
+%endif
+Requires: libqmail
+
+%description -n libqmail-devel
+This package contains the development header files and libraries
+necessary to develop qmail applications
+
+%{see_base}
+
+%prep
+%setup -q
+
+%build
+%configure --prefix=/usr
+make %{?_smp_mflags}
+
+%install
+%make_install
+%{__rm} -f %{buildroot}%{_libdir}/libqmail.la
+
+%clean
+[ "%{buildroot}" = "/" ] || rm -rf "%{buildroot}"
+
+%files
+%defattr(-, root, root, 0755)
+%{_libdir}/libqmail.so.1
+%{_libdir}/libqmail.so.1.0.0
+
+%doc ChangeLog COPYING README
+
+%files devel
+%defattr(-, root, root, 0755)
+%dir %attr(755,root,root)               %{_prefix}/include/qmail
+%doc %attr(644,root,root)               %{mandir}/man3/*
+
+%attr(644,root,root)                    %{_prefix}/include/qmail/alloc.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/base64.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/byte.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/caldate.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/caltime.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/case.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/cdb.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/cdbmake.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/coe.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/constmap.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/datetime.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/env.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/error.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/exit.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/fd.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/fmt.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/gen_allocdefs.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/gen_alloc.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/getln.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/leapsecs.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/lock.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/ndelay.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/now.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/open.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/scan.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/seek.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/select.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/sgetopt.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/sig.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/stralloc.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/strerr.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/str.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/subfd.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/subgetopt.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/substdio.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/taia.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/tai.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/timeoutread.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/timeoutwrite.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/uint32.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/uint64.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/wait.h
+%{_libdir}/libqmail.so
+%{_libdir}/libqmail.a
+%{_pkg_config_path}/libqmail.pc
+
+%post
+argv1=$1
+if [ $argv1 -eq 2 ] ; then # upgrade
+  # we are doing upgrade
+  echo "doing post upgrade activities"
+  if [ "%{_libdir}" != "/usr/lib64" -a "%{_libdir}" != "/usr/lib" ] ; then
+    /sbin/ldconfig
+  fi
+fi
+
+%postun
+if [ "%{_libdir}" != "/usr/lib64" -a "%{_libdir}" != "/usr/lib" ] ; then
+  /sbin/ldconfig
+fi
+
+%changelog
+* Thu Sep 13 2018 21:52:27 +0530 mbhangui@gmail.com 0.1-1.1%{?dist}
+1.  First release

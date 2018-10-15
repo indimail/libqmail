@@ -1,0 +1,35 @@
+Source: libqmail
+Section: libs
+Priority: optional
+Maintainer: Manvendra Bhangui <manvendra@indimail.org>
+Standards-Version: 3.9.5
+Build-Depends: debhelper (>= 9), pkg-config, lsb-release
+Homepage: http://indimail.sourceforge.net
+
+Package: libqmail
+Section: libs
+Architecture: any
+Depends: ${misc:Depends}
+Description: Reimplementation of qmail functions in a shared library
+ This library is a reimplementation of qmail functions which means that it provides
+ Daniel Bernstein's interfaces (with some extensions).
+ .
+ It contains wrappers around memory allocation, buffered I/O, routines for
+ formatting and scanning and an abstraction around errno. It also includes
+ wrappers for Unix signal functions.
+ .
+ This package contains the shared library linked against glibc.
+
+Package: libqmail-dev
+Section: libdevel
+Architecture: any
+Description: Reimplementation of qmail functions, development files
+ This library is a reimplementation of qmail functions, which means that it provides
+ Daniel Bernstein's interfaces (with some extensions).
+ .
+ It contains wrappers around memory allocation, buffered I/O, routines for
+ formatting and scanning and an abstraction around errno. It also includes
+ wrappers for Unix signal functions. 
+ .
+ This package contains libqmail linked with glibc, and man pages.
+
