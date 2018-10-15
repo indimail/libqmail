@@ -7,3 +7,14 @@ config.status
 libqmail.pc
 libtool
 stamp-h1
+.libs
+hasflock.h
+hassgact.h
+hassgprm.h
+haswaitp.h
+select.h
+uint32.h
+uint64.h
+libqmail.la
+*.lo
+*.o
