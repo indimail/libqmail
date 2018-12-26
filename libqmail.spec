@@ -160,7 +160,10 @@ make %{?_smp_mflags}
 
 %post
 argv1=$1
-if [ $argv1 -eq 2 ] ; then # upgrade
+if [ -z "$argv1" ] ; then
+  argv1=0
+fi
+if [ "$argv1" -eq 2 ] ; then # upgrade
   # we are doing upgrade
   echo "doing post upgrade activities"
   if [ "%{_libdir}" != "/usr/lib64" -a "%{_libdir}" != "/usr/lib" ] ; then
