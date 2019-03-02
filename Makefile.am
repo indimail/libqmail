@@ -49,17 +49,18 @@ COMMONSOURCES = alloc.c alloc_re.c byte_chr.c byte_copy.c byte_cr.c byte_cspn.c 
 	cdb_hash.c cdbmake_add.c cdbmake_hash.c cdbmake_pack.c cdb_seek.c cdb_unpack.c \
 	datetime.c datetime_un.c env.c envread.c error.c error_str.c error_temp.c \
 	fmt_double.c fmt_hexbytes.c fmt_str.c fmt_strn.c fmt_uint0.c fmt_uint.c \
-	fmt_ulong.c fmt_ushort.c fmt_xlong.c getln2.c getln.c leapsecs_add.c leapsecs_init.c \
-	leapsecs_read.c leapsecs_sub.c now.c scan_8long.c scan_uint.c scan_ulong.c scan_xlong.c \
-	scan_ushort.c sgetopt.c stralloc_arts.c stralloc_catb.c stralloc_cat.c stralloc_cats.c \
-	stralloc_copy.c stralloc_eady.c stralloc_num.c stralloc_opyb.c stralloc_opys.c \
-	stralloc_pend.c str_chr.c str_chrn.c str_cpyb.c str_cpy.c str_cspn.c str_diff.c \
-	str_diffn.c str_end.c strerr_die.c strerr_sys.c str_len.c str_rchr.c str_start.c \
-	subfderr.c subfdin.c subfdins.c subfdout.c subfdouts.c subgetopt.c substdi.c \
-	substdio.c substdio_copy.c substdo.c tai_now.c tai_pack.c tai_unpack.c wait_nohang.c \
-	wait_pid.c fd_copy.c fd_move.c taia_now.c taia_pack.c o taia_fmtfrac.c taia_tai.c \
-	lock_ex.c lock_exnb.c lock_un.c ndelay.c ndelay_off.c open_append.c open_excl.c \
-	open_read.c open_write.c open_trunc.c seek_cur.c seek_end.c seek_set.c seek_trunc.c \
+	fmt_ulong.c fmt_ulonglong.c fmt_ushort.c fmt_xlong.c getln2.c getln.c \
+	leapsecs_add.c leapsecs_init.c leapsecs_read.c leapsecs_sub.c now.c scan_8long.c \
+	scan_uint.c scan_ulong.c scan_xlong.c scan_ushort.c sgetopt.c stralloc_arts.c \
+	stralloc_catb.c stralloc_cat.c stralloc_cats.c stralloc_copy.c stralloc_eady.c \
+	stralloc_num.c stralloc_opyb.c stralloc_opys.c stralloc_pend.c str_chr.c str_chrn.c \
+	str_cpyb.c str_cpy.c str_cspn.c str_diff.c str_diffn.c str_end.c strerr_die.c \
+	strerr_sys.c str_len.c str_rchr.c str_start.c subfderr.c subfdin.c subfdins.c \
+	subfdout.c subfdouts.c subgetopt.c substdi.c substdio.c substdio_copy.c substdo.c \
+	tai_now.c tai_pack.c tai_unpack.c wait_nohang.c wait_pid.c fd_copy.c fd_move.c \
+	taia_now.c taia_pack.c o taia_fmtfrac.c taia_tai.c lock_ex.c lock_exnb.c lock_un.c \
+	ndelay.c ndelay_off.c open_append.c open_excl.c open_read.c open_readwrite.c \
+	open_write.c open_trunc.c seek_cur.c seek_end.c seek_set.c seek_trunc.c \
 	sig_alarm.c sig_block.c sig_catch.c sig_pause.c sig_pipe.c sig_child.c sig_hup.c \
 	sig_term.c sig_int.c sig_bug.c sig_misc.c timeoutread.c timeoutwrite.c base64sub.c \
 	constmap.c coe.c uint32_pack.c uint32_unpack.c cdb.c
