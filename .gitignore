@@ -18,3 +18,14 @@ uint64.h
 libqmail.la
 *.lo
 *.o
+*.BAK
+RCS
+aclocal.m4
+compile
+config.guess
+config.sub
+configure
+depcomp
+install-sh
+ltmain.sh
+missing
