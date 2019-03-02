@@ -15,4 +15,5 @@ int             open_excl(char *);
 int             open_append(char *);
 int             open_trunc(char *);
 int             open_write(char *);
+int             open_readwrite(char *);
 #endif
