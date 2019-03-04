@@ -32,6 +32,7 @@ unsigned int    str_rchr(char *, int);
 int             str_start(char *, char *);
 int             str_end(char *, char *);
 char           *str_chrn(char *, int, int);
+char           *str_str(char *, char *);
 #include <sys/types.h>
 size_t          str_cspn(const char *, register const char *);
 
