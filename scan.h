@@ -17,6 +17,7 @@ unsigned int    scan_ushort(char *, unsigned short *);
 unsigned int    scan_xshort(char *, unsigned short *);
 unsigned int    scan_nbbshort(char *, unsigned int, unsigned int, unsigned int, unsigned short *);
 unsigned int    scan_ulong(char *, unsigned long *);
+unsigned int    scan_ulonglong(char *, unsigned long long *);
 unsigned int    scan_xlong(char *, unsigned long *);
 unsigned int    scan_nbblong(char *, unsigned int, unsigned int, unsigned int, unsigned long *);
 unsigned int    scan_plusminus(char *, int *);
