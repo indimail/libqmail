@@ -16,7 +16,7 @@
 #include "strerr.h"
 
 void
-strerr_warn(x1, x2, x3, x4, x5, x6, x7, x8, se)
+strerr_warn(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, se)
 	char           *x1;
 	char           *x2;
 	char           *x3;
@@ -25,6 +25,13 @@ strerr_warn(x1, x2, x3, x4, x5, x6, x7, x8, se)
 	char           *x6;
 	char           *x7;
 	char           *x8;
+	char           *x9;
+	char           *x10;
+	char           *x11;
+	char           *x12;
+	char           *x13;
+	char           *x14;
+	char           *x15;
 	struct strerr  *se;
 {
 	strerr_sysinit();
@@ -45,8 +52,21 @@ strerr_warn(x1, x2, x3, x4, x5, x6, x7, x8, se)
 		substdio_puts(subfderr, x7);
 	if (x8)
 		substdio_puts(subfderr, x8);
-	while (se)
-	{
+	if (x9)
+		substdio_puts(subfderr, x9);
+	if (x10)
+		substdio_puts(subfderr, x10);
+	if (x11)
+		substdio_puts(subfderr, x11);
+	if (x12)
+		substdio_puts(subfderr, x12);
+	if (x13)
+		substdio_puts(subfderr, x13);
+	if (x14)
+		substdio_puts(subfderr, x14);
+	if (x15)
+		substdio_puts(subfderr, x15);
+	while (se) {
 		if (se->x)
 			substdio_puts(subfderr, se->x);
 		if (se->y)
@@ -60,7 +80,7 @@ strerr_warn(x1, x2, x3, x4, x5, x6, x7, x8, se)
 }
 
 void
-strerr_die(e, x1, x2, x3, x4, x5, x6, x7, x8, se)
+strerr_die(e, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, se)
 	int             e;
 	char           *x1;
 	char           *x2;
@@ -70,9 +90,16 @@ strerr_die(e, x1, x2, x3, x4, x5, x6, x7, x8, se)
 	char           *x6;
 	char           *x7;
 	char           *x8;
+	char           *x9;
+	char           *x10;
+	char           *x11;
+	char           *x12;
+	char           *x13;
+	char           *x14;
+	char           *x15;
 	struct strerr  *se;
 {
-	strerr_warn(x1, x2, x3, x4, x5, x6, x7, x8, se);
+	strerr_warn(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, se);
 	_exit(e);
 }
 
