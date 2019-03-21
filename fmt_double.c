@@ -11,7 +11,7 @@
 #include "uint64.h"
 
 unsigned int
-fmt_double(register char *s, double d, unsigned long precision)
+fmt_double(register char *s, double d, unsigned int precision)
 {
 	unsigned int    len;
 	double          p;
