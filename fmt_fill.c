@@ -9,7 +9,7 @@
 unsigned int
 fmt_fill(char *dest, unsigned int srclen, unsigned int padlen, unsigned int maxlen)
 {
-	long            todo;
+	unsigned int    todo;
 	char           *olddest = dest;
 	char           *max = dest + maxlen;
 
@@ -18,7 +18,7 @@ fmt_fill(char *dest, unsigned int srclen, unsigned int padlen, unsigned int maxl
 	if (srclen > maxlen)
 		return maxlen;
 	if (dest == 0) {
-		unsigned long   sum = srclen > padlen ? srclen : padlen;
+		unsigned int    sum = srclen > padlen ? srclen : padlen;
 		return sum > maxlen ? maxlen : sum;
 	}
 	dest += srclen;
