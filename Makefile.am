@@ -19,18 +19,21 @@ libqmail_la_LDFLAGS = -version-info @LIBVER@:0:0
 libqmail_la_CFLAGS = -fPIC
 libqmaildir=@libdir@
 
-MOSTLYCLEANFILES = uint32.h uint64.h haswaitp.h hasflock.h hassgact.h hassgprm.h \
-	select.h
+MOSTLYCLEANFILES = uint32.h uint64.h haswaitp.h hasflock.h hassgact.h \
+	hassgprm.h select.h
 
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libqmail.pc
 
 man_MANS = alloc.3 byte.3 caldate.3 caldate_mjd.3 caltime.3 \
 	caltime_tai.3 case.3 cdb.3 coe.3 datetime.3 env.3 error_str.3 \
-	error_temp.3 fd_copy.3 fd_move.3 fmt_ulonglong.3 getln2.3 getln.3 \
-	leapsecs.3 now.3 qerror.3 scan_ulonglong.3 sgetopt.3 stralloc.3 \
-	subgetopt.3 substdio.3 substdio_copy.3 substdio_in.3 substdio_out.3 \
-	tai.3 tai_now.3 tai_pack.3 wait.3
+	error_temp.3 fd_copy.3 fd_move.3 fmt_8long.3 fmt_double.3 \
+	fmt_fill.3 fmt_minus.3 fmt_pad.3 fmt_plusminus.3 fmt_ulonglong.3 \
+	getln2.3 getln.3 leapsecs.3 now.3 qerror.3 scan_double.3 \
+	scan_int.3 scan_long.3 scan_plusminus.3 scan_ulonglong.3 \
+	sgetopt.3 stralloc.3 subgetopt.3 substdio.3 substdio_copy.3 \
+	substdio_in.3 substdio_out.3 tai.3 tai_now.3 tai_pack.3 \
+	wait.3
 
 docs = README ChangeLog COPYING AUTHORS
 docdir=@docdir@
@@ -50,22 +53,27 @@ COMMONSOURCES = alloc.c alloc_re.c byte_chr.c byte_copy.c byte_cr.c byte_cspn.c 
 	cdb_hash.c cdbmake_add.c cdbmake_hash.c cdbmake_pack.c cdb_seek.c cdb_unpack.c \
 	datetime.c datetime_un.c env.c envread.c error.c error_str.c error_temp.c \
 	fmt_double.c fmt_hexbytes.c fmt_str.c fmt_strn.c fmt_uint0.c fmt_uint.c \
+	fmt_pad.c fmt_fill.c fmt_minus.c fmt_plusminus.c fmt_8long.c \
 	fmt_ulong.c fmt_ulonglong.c fmt_ushort.c fmt_xlong.c getln2.c getln.c \
 	leapsecs_add.c leapsecs_init.c leapsecs_read.c leapsecs_sub.c now.c scan_8long.c \
 	scan_uint.c scan_ulong.c scan_ulonglong.c scan_xlong.c scan_ushort.c \
 	sgetopt.c stralloc_arts.c stralloc_catb.c stralloc_cat.c stralloc_cats.c \
 	stralloc_copy.c stralloc_eady.c stralloc_num.c stralloc_opyb.c stralloc_opys.c \
 	stralloc_pend.c str_chr.c str_str.c str_chrn.c str_cpyb.c str_cpy.c str_cspn.c \
-	str_diff.c str_diffn.c str_end.c strerr_die.c strerr_sys.c str_len.c str_rchr.c \
-	str_start.c subfderr.c subfdin.c subfdins.c subfdout.c subfdouts.c subgetopt.c \
-	substdi.c substdio.c substdio_copy.c substdo.c tai_now.c tai_pack.c tai_unpack.c \
-	wait_nohang.c wait_pid.c fd_copy.c fd_move.c taia_now.c taia_pack.c o \
-	taia_fmtfrac.c taia_tai.c lock_ex.c lock_exnb.c lock_un.c ndelay.c ndelay_off.c \
-	open_append.c open_excl.c open_read.c open_readwrite.c open_write.c \
-	open_trunc.c seek_cur.c seek_end.c seek_set.c seek_trunc.c sig_alarm.c \
-	sig_block.c sig_catch.c sig_pause.c sig_pipe.c sig_child.c sig_hup.c \
-	sig_term.c sig_int.c sig_bug.c sig_misc.c timeoutread.c timeoutwrite.c \
-	base64sub.c constmap.c coe.c uint32_pack.c uint32_unpack.c cdb.c
+	str_diff.c str_diffn.c str_end.c strerr_die.c strerr_sys.c \
+	str_len.c str_rchr.c str_start.c subfderr.c subfdin.c subfdins.c subfdout.c \
+	subfdouts.c subgetopt.c substdi.c substdio.c substdio_copy.c substdo.c \
+	tai_now.c tai_pack.c tai_unpack.c wait_nohang.c wait_pid.c fd_copy.c \
+	fd_move.c taia_now.c taia_pack.c o taia_fmtfrac.c taia_tai.c lock_ex.c \
+	lock_exnb.c lock_un.c ndelay.c ndelay_off.c open_append.c open_excl.c \
+	open_read.c open_readwrite.c open_write.c open_trunc.c seek_cur.c \
+	seek_end.c seek_set.c seek_trunc.c sig_alarm.c sig_block.c sig_catch.c \
+	sig_pause.c sig_pipe.c sig_child.c sig_hup.c sig_term.c sig_int.c \
+	sig_bug.c sig_misc.c timeoutread.c timeoutwrite.c base64sub.c \
+	constmap.c coe.c uint32_pack.c uint32_unpack.c cdb.c \
+	scan_plusminus.c scan_double.c scan_int.c scan_long.c fmt_padleft.c \
+	fmt_padright.c
+
 
 uint32.h: tryulong32.c uint32.h1 uint32.h2
 	(( $(COMPILE) -c tryulong32.c && $(CC) -o tryulong32 tryulong32.o && \
