@@ -71,8 +71,8 @@ COMMONSOURCES = alloc.c alloc_re.c byte_chr.c byte_copy.c byte_cr.c byte_cspn.c 
 	sig_pause.c sig_pipe.c sig_child.c sig_hup.c sig_term.c sig_int.c \
 	sig_bug.c sig_misc.c timeoutread.c timeoutwrite.c base64sub.c \
 	constmap.c coe.c uint32_pack.c uint32_unpack.c cdb.c \
-	scan_plusminus.c scan_double.c scan_int.c scan_long.c fmt_padleft.c \
-	fmt_padright.c
+	scan_plusminus.c scan_double.c scan_int.c scan_long.c \
+	qprintf.c
 
 
 uint32.h: tryulong32.c uint32.h1 uint32.h2
