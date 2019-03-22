@@ -62,6 +62,5 @@ unsigned int    fmt_pad(char *, const char *, unsigned int, unsigned int, unsign
  */
 unsigned int    fmt_fill(char *, unsigned int, unsigned int, unsigned int);
 
-unsigned int    fmt_padleft(char *, char *, unsigned int, unsigned int);
-unsigned int    fmt_padright(char *, char *, unsigned int, unsigned int);
+int             qprintf(char *, char *);
 #endif
