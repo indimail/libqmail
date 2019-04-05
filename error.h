@@ -44,6 +44,7 @@ extern int      error_hostdown;
 extern int      error_netunreach;
 extern int      error_hostunreach;
 extern int      error_srch;
+extern int      error_restart;
 
 char           *error_str(int);
 char           *estack(int, const char *);
