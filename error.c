@@ -178,6 +178,13 @@ ESRCH;
 -1;
 #endif
 
+int error_restart =
+#ifdef ERESTART
+ERESTART;
+#else
+-1;
+#endif
+
 void
 getversion_error_c()
 {
