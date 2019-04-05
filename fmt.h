@@ -24,10 +24,12 @@
 #define FMT_LEN ((char *) 0)	/*- convenient abbreviation */
 
 unsigned int    fmt_uint(char *, unsigned int);
+unsigned int    fmt_int(char *, signed int);
 unsigned int    fmt_uint0(char *, unsigned int, unsigned int);
 unsigned int    fmt_ushort(char *, unsigned short);
 unsigned int    fmt_ulong(char *, unsigned long);
 unsigned int    fmt_ulonglong(char *, unsigned long long);
+unsigned int    fmt_long(char *, signed long);
 unsigned int    fmt_xlong(char *, unsigned long);
 unsigned int    fmt_8long(char *, unsigned long);
 unsigned int    fmt_hexbyte(char *, unsigned char);
@@ -61,6 +63,4 @@ unsigned int    fmt_pad(char *, const char *, unsigned int, unsigned int, unsign
  * characters written.
  */
 unsigned int    fmt_fill(char *, unsigned int, unsigned int, unsigned int);
-
-int             qprintf(char *, char *);
 #endif
