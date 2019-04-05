@@ -33,7 +33,7 @@ man_MANS = alloc.3 byte.3 caldate.3 caldate_mjd.3 caltime.3 \
 	scan_int.3 scan_long.3 scan_plusminus.3 scan_ulonglong.3 \
 	sgetopt.3 stralloc.3 subgetopt.3 substdio.3 substdio_copy.3 \
 	substdio_in.3 substdio_out.3 tai.3 tai_now.3 tai_pack.3 \
-	wait.3
+	wait.3 fmt_long.3 fmt_int.3
 
 docs = README ChangeLog COPYING AUTHORS
 docdir=@docdir@
@@ -43,7 +43,7 @@ include_HEADERS = alloc.h base64.h byte.h caldate.h caltime.h case.h \
 	fd.h fmt.h gen_allocdefs.h gen_alloc.h getln.h leapsecs.h lock.h \
 	ndelay.h now.h open.h scan.h seek.h select.h sgetopt.h sig.h stralloc.h \
 	strerr.h str.h subfd.h subgetopt.h substdio.h taia.h tai.h \
-	timeoutread.h timeoutwrite.h uint32.h uint64.h wait.h
+	timeoutread.h timeoutwrite.h uint32.h uint64.h wait.h qprintf.h
 
 includedir=@prefix@/include/qmail
 COMMONSOURCES = alloc.c alloc_re.c byte_chr.c byte_copy.c byte_cr.c byte_cspn.c \
@@ -72,7 +72,7 @@ COMMONSOURCES = alloc.c alloc_re.c byte_chr.c byte_copy.c byte_cr.c byte_cspn.c 
 	sig_bug.c sig_misc.c timeoutread.c timeoutwrite.c base64sub.c \
 	constmap.c coe.c uint32_pack.c uint32_unpack.c cdb.c \
 	scan_plusminus.c scan_double.c scan_int.c scan_long.c \
-	qprintf.c
+	qprintf.c fmt_long.c fmt_int.c
 
 
 uint32.h: tryulong32.c uint32.h1 uint32.h2
