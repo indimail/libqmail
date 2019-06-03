@@ -136,6 +136,7 @@ make %{?_smp_mflags}
 %attr(644,root,root)                    %{_prefix}/include/qmail/ndelay.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/now.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/open.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/qprintf.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/scan.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/seek.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/select.h
@@ -143,6 +144,7 @@ make %{?_smp_mflags}
 %attr(644,root,root)                    %{_prefix}/include/qmail/sig.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/stralloc.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/strerr.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/strmsg.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/str.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/subfd.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/subgetopt.h
