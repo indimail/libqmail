@@ -43,7 +43,8 @@ include_HEADERS = alloc.h base64.h byte.h caldate.h caltime.h case.h \
 	fd.h fmt.h gen_allocdefs.h gen_alloc.h getln.h leapsecs.h lock.h \
 	ndelay.h now.h open.h scan.h seek.h select.h sgetopt.h sig.h stralloc.h \
 	strerr.h str.h subfd.h subgetopt.h substdio.h taia.h tai.h \
-	timeoutread.h timeoutwrite.h uint32.h uint64.h wait.h qprintf.h
+	timeoutread.h timeoutwrite.h uint32.h uint64.h wait.h qprintf.h \
+	strmsg.h
 
 includedir=@prefix@/include/qmail
 COMMONSOURCES = alloc.c alloc_re.c byte_chr.c byte_copy.c byte_cr.c byte_cspn.c \
@@ -60,7 +61,7 @@ COMMONSOURCES = alloc.c alloc_re.c byte_chr.c byte_copy.c byte_cr.c byte_cspn.c 
 	sgetopt.c stralloc_arts.c stralloc_catb.c stralloc_cat.c stralloc_cats.c \
 	stralloc_copy.c stralloc_eady.c stralloc_num.c stralloc_opyb.c stralloc_opys.c \
 	stralloc_pend.c str_chr.c str_str.c str_chrn.c str_cpyb.c str_cpy.c str_cspn.c \
-	str_diff.c str_diffn.c str_end.c strerr_die.c strerr_sys.c \
+	str_diff.c str_diffn.c str_end.c str_tok.c strerr_die.c strerr_sys.c \
 	str_len.c str_rchr.c str_start.c subfderr.c subfdin.c subfdins.c subfdout.c \
 	subfdouts.c subgetopt.c substdi.c substdio.c substdio_copy.c substdo.c \
 	tai_now.c tai_pack.c tai_unpack.c wait_nohang.c wait_pid.c fd_copy.c \
@@ -72,7 +73,7 @@ COMMONSOURCES = alloc.c alloc_re.c byte_chr.c byte_copy.c byte_cr.c byte_cspn.c 
 	sig_bug.c sig_misc.c timeoutread.c timeoutwrite.c base64sub.c \
 	constmap.c coe.c uint32_pack.c uint32_unpack.c cdb.c \
 	scan_plusminus.c scan_double.c scan_int.c scan_long.c \
-	qprintf.c fmt_long.c fmt_int.c
+	qprintf.c fmt_long.c fmt_int.c strmsg_out.c
 
 
 uint32.h: tryulong32.c uint32.h1 uint32.h2
