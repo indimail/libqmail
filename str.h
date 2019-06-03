@@ -35,6 +35,7 @@ char           *str_chrn(char *, int, int);
 char           *str_str(char *, char *);
 #include <sys/types.h>
 size_t          str_cspn(const char *, register const char *);
+char           *str_tok(char *, const char *);
 
 #define str_equal(s,t) (!str_diff((s),(t)))
 
