@@ -22,12 +22,12 @@
 
 #define SUBGETOPTDONE -1
 
-char           *subgetoptarg;
-int             subgetoptind;
-int             subgetoptpos;
-int             subgetoptproblem;
-int             subgetoptdone;
-char           *subgetoptprogname;
+extern char    *subgetoptarg;
+extern int      subgetoptind;
+extern int      subgetoptpos;
+extern int      subgetoptproblem;
+extern int      subgetoptdone;
+extern char    *subgetoptprogname;
 int             subgetopt(int, char **, char *);
 
 #endif
