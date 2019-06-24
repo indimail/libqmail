@@ -1,4 +1,14 @@
+/*
+ * $Log: fmt_8long.c,v $
+ * Revision 1.1  2019-06-24 21:32:58+05:30  Cprogrammer
+ * Initial revision
+ *
+ */
 #include "fmt.h"
+
+#ifndef lint
+static char     rcsid[] = "$Id: fmt_8long.c,v 1.1 2019-06-24 21:32:58+05:30 Cprogrammer Exp mbhangui $";
+#endif
 
 unsigned int
 fmt_8long(char *dest, unsigned long i)

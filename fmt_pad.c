@@ -1,4 +1,14 @@
+/*
+ * $Log: fmt_pad.c,v $
+ * Revision 1.1  2019-06-24 21:41:04+05:30  Cprogrammer
+ * Initial revision
+ *
+ */
 #include "fmt.h"
+
+#ifndef lint
+static char     rcsid[] = "$Id: fmt_pad.c,v 1.1 2019-06-24 21:41:04+05:30 Cprogrammer Exp mbhangui $";
+#endif
 
 /*
  * write padlen-srclen spaces, if that is >= 0.  Then copy srclen

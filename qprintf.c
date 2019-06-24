@@ -1,10 +1,17 @@
 /*
- * $Log: $
+ * $Log: qprintf.c,v $
+ * Revision 1.1  2019-06-24 21:42:18+05:30  Cprogrammer
+ * Initial revision
+ *
  */
 #include "substdio.h"
 #include "scan.h"
 #include "str.h"
 #include "strerr.h"
+
+#ifndef lint
+static char     rcsid[] = "$Id: qprintf.c,v 1.1 2019-06-24 21:42:18+05:30 Cprogrammer Exp mbhangui $";
+#endif
 
 int
 qprintf_flush(substdio *ss)

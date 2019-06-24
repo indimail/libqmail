@@ -1,4 +1,14 @@
+/*
+ * $Log: scan_double.c,v $
+ * Revision 1.1  2019-06-24 21:42:27+05:30  Cprogrammer
+ * Initial revision
+ *
+ */
 #include "scan.h"
+
+#ifndef lint
+static char     rcsid[] = "$Id: scan_double.c,v 1.1 2019-06-24 21:42:27+05:30 Cprogrammer Exp mbhangui $";
+#endif
 
 #ifdef __GNUC__
 static inline int isdigit(int c) { return (c>='0' && c<='9'); }

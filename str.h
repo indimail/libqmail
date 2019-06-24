@@ -1,5 +1,8 @@
 /*
  * $Log: str.h,v $
+ * Revision 1.8  2019-06-24 21:29:40+05:30  Cprogrammer
+ * added str_str(), str_tok() functions
+ *
  * Revision 1.7  2016-02-08 18:26:41+05:30  Cprogrammer
  * added str_end() function
  *

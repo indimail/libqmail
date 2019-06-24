@@ -1,4 +1,9 @@
 /* 
+ * $Log: str_tok.c,v $
+ * Revision 1.1  2019-06-24 21:42:47+05:30  Cprogrammer
+ * Initial revision
+ *
+ *
  * str_tok.c --
  *
  *	Source code for the "str_tok" library routine.
@@ -14,6 +19,10 @@
  */
 
 #include "str.h"
+
+#ifndef lint
+static char     rcsid[] = "$Id: str_tok.c,v 1.1 2019-06-24 21:42:47+05:30 Cprogrammer Exp mbhangui $";
+#endif
 
 static char *
 local_strchr (register const char *s, int c)
