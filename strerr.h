@@ -1,5 +1,8 @@
 /*
  * $Log: strerr.h,v $
+ * Revision 1.5  2019-06-24 21:28:40+05:30  Cprogrammer
+ * added more sterr_warnx, strerr_diex macros
+ *
  * Revision 1.4  2004-10-21 21:50:27+05:30  Cprogrammer
  * added strerr_warn8,strerr_warn7,strerr_die8,strerr_die7,strerr_die8sys,strerr_die7sys,
  * strerr_die8x,strerr_die7x

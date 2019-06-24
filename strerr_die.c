@@ -1,5 +1,8 @@
 /*
  * $Log: strerr_die.c,v $
+ * Revision 1.5  2019-06-24 21:28:02+05:30  Cprogrammer
+ * added 8 more arguments to strerr_warn(), strerr_die() functions
+ *
  * Revision 1.4  2004-10-22 20:30:58+05:30  Cprogrammer
  * added RCS id
  *
@@ -108,7 +111,7 @@ strerr_die(e, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, 
 void
 getversion_strerr_die_c()
 {
-	static char    *x = "$Id: strerr_die.c,v 1.4 2004-10-22 20:30:58+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: strerr_die.c,v 1.5 2019-06-24 21:28:02+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
