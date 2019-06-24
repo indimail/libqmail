@@ -1,5 +1,8 @@
 /*
  * $Log: scan_ulong.c,v $
+ * Revision 1.6  2019-06-24 21:27:20+05:30  Cprogrammer
+ * removed scan_int() to scan_int.c
+ *
  * Revision 1.5  2004-10-24 21:39:31+05:30  Cprogrammer
  * *** empty log message ***
  *
@@ -35,7 +38,7 @@ scan_ulong(s, u)
 void
 getversion_scan_ulong_c()
 {
-	static char    *x = "$Id: scan_ulong.c,v 1.5 2004-10-24 21:39:31+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: scan_ulong.c,v 1.6 2019-06-24 21:27:20+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
