@@ -1,5 +1,8 @@
 /*
  * $Log: fmt_double.c,v $
+ * Revision 1.3  2019-06-24 21:19:01+05:30  Cprogrammer
+ * changed datatype of precision to unsigned int
+ *
  * Revision 1.2  2013-09-04 13:57:37+05:30  Cprogrammer
  * changed unsigned long to uint64
  *
@@ -61,7 +64,7 @@ fmt_double(register char *s, double d, unsigned int precision)
 void
 getversion_fmt_double_c()
 {
-	static char    *x = "$Id: fmt_double.c,v 1.2 2013-09-04 13:57:37+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: fmt_double.c,v 1.3 2019-06-24 21:19:01+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
