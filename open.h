@@ -1,5 +1,8 @@
 /*
  * $Log: open.h,v $
+ * Revision 1.7  2019-06-24 21:23:48+05:30  Cprogrammer
+ * added open_readwrite prototype
+ *
  * Revision 1.6  2004-10-11 13:57:02+05:30  Cprogrammer
  * added function prototypes
  *
