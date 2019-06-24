@@ -1,5 +1,8 @@
 /*
  * $Log: error.h,v $
+ * Revision 1.9  2019-06-24 21:18:50+05:30  Cprogrammer
+ * added error_restart
+ *
  * Revision 1.8  2017-04-18 08:36:29+05:30  Cprogrammer
  * added error_srch for errno ESRCH
  *

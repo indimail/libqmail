@@ -1,5 +1,8 @@
 /*
  * $Log: error.c,v $
+ * Revision 1.8  2019-06-24 21:13:50+05:30  Cprogrammer
+ * added ERESTART
+ *
  * Revision 1.7  2017-04-18 08:35:54+05:30  Cprogrammer
  * added error_srch for errno ESRCH
  *
@@ -188,7 +191,7 @@ ERESTART;
 void
 getversion_error_c()
 {
-	static char    *x = "$Id: error.c,v 1.7 2017-04-18 08:35:54+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: error.c,v 1.8 2019-06-24 21:13:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
