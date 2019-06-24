@@ -1,5 +1,8 @@
 /*
  * $Log: scan.h,v $
+ * Revision 1.6  2019-06-24 21:26:25+05:30  Cprogrammer
+ * added scan_ulonglong, scan_plusminus prototypes
+ *
  * Revision 1.5  2004-10-11 14:01:40+05:30  Cprogrammer
  * added function prototypes
  *
