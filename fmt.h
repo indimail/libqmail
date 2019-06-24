@@ -1,5 +1,8 @@
 /*
  * $Log: fmt.h,v $
+ * Revision 1.6  2019-06-24 21:22:06+05:30  Cprogrammer
+ * added prototypes for fmt_int, fmt_ulonglong, fmt_long, fmt_8long, fmt_pad, fmt_fill
+ *
  * Revision 1.5  2015-08-24 19:14:27+05:30  Cprogrammer
  * added fmt_hexbyte() function
  *
