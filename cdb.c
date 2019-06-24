@@ -1,7 +1,8 @@
 /*
  * $Log: cdb.c,v $
- * Revision 1.1  2008-09-15 22:10:22+05:30  Cprogrammer
+ * Revision 1.1  2019-06-24 21:17:45+05:30  Cprogrammer
  * Initial revision
+ *
  *
  * Public domain. 
  */
@@ -162,7 +163,7 @@ cdb_find(struct cdb *c, char *key, unsigned int len)
 void
 getversion_cdb_c()
 {
-	static char    *x = "$Id: cdb.c,v 1.1 2008-09-15 22:10:22+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: cdb.c,v 1.1 2019-06-24 21:17:45+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
