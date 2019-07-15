@@ -167,7 +167,6 @@ if [ -z "$argv1" ] ; then
 fi
 if [ "$argv1" -eq 2 ] ; then # upgrade
   # we are doing upgrade
-  echo "doing post upgrade activities"
   if [ "%{_libdir}" != "/usr/lib64" -a "%{_libdir}" != "/usr/lib" ] ; then
     /sbin/ldconfig
   fi
