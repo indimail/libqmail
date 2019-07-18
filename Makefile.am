@@ -11,7 +11,7 @@ INSTALL_SCRIPT = ${INSTALL}           -c
 install_sh_SCRIPT = $(install_sh)     -c
 INSTALL_STRIP_PROGRAM = $(install_sh) -c $(STRIP_OPT)
 all: uint32.h uint64.h haswaitp.h hasflock.h hassgact.h hassgprm.h \
-	select.h
+	select.h hasmkffo.h
 
 libqmail_LTLIBRARIES = libqmail.la
 libqmail_la_SOURCES = $(COMMONSOURCES)
@@ -20,61 +20,64 @@ libqmail_la_CFLAGS = -fPIC
 libqmaildir=@libdir@
 
 MOSTLYCLEANFILES = uint32.h uint64.h haswaitp.h hasflock.h hassgact.h \
-	hassgprm.h select.h
+	hassgprm.h select.h hasmkffo.h
 
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libqmail.pc
 
 man_MANS = alloc.3 byte.3 caldate.3 caldate_mjd.3 caltime.3 \
 	caltime_tai.3 case.3 cdb.3 coe.3 datetime.3 env.3 error_str.3 \
-	error_temp.3 fd_copy.3 fd_move.3 fmt_8long.3 fmt_double.3 \
-	fmt_fill.3 fmt_minus.3 fmt_pad.3 fmt_plusminus.3 fmt_ulonglong.3 \
-	getln2.3 getln.3 leapsecs.3 now.3 qerror.3 scan_double.3 \
-	scan_int.3 scan_long.3 scan_plusminus.3 scan_ulonglong.3 \
-	sgetopt.3 stralloc.3 subgetopt.3 substdio.3 substdio_copy.3 \
-	substdio_in.3 substdio_out.3 tai.3 tai_now.3 tai_pack.3 \
-	wait.3 fmt_long.3 fmt_int.3
+	error_temp.3 fd_copy.3 fd_move.3 fifo_make.3 fmt_8long.3 \
+	fmt_double.3 fmt_fill.3 fmt_minus.3 fmt_pad.3 fmt_plusminus.3 \
+	fmt_ulonglong.3 getln2.3 getln.3 leapsecs.3 now.3 qerror.3 \
+	scan_double.3 scan_int.3 scan_long.3 scan_plusminus.3 \
+	scan_ulonglong.3 sgetopt.3 stralloc.3 subgetopt.3 substdio.3 \
+	substdio_copy.3 substdio_in.3 substdio_out.3 tai.3 tai_now.3 \
+	tai_pack.3 tai_unpack.3 tai_sub.3 tai_less.3 tai_approx.3 \
+	tai_add.3 taia_unpack.3 taia_addsec.3 wait.3 fmt_long.3 fmt_int.3
 
 docs = README ChangeLog COPYING AUTHORS
 docdir=@docdir@
 
 include_HEADERS = alloc.h base64.h byte.h caldate.h caltime.h case.h \
-	cdb.h cdbmake.h coe.h constmap.h datetime.h env.h error.h exit.h \
-	fd.h fmt.h gen_allocdefs.h gen_alloc.h getln.h leapsecs.h lock.h \
-	ndelay.h now.h open.h scan.h seek.h select.h sgetopt.h sig.h stralloc.h \
-	strerr.h str.h subfd.h subgetopt.h substdio.h taia.h tai.h \
-	timeoutread.h timeoutwrite.h uint32.h uint64.h wait.h qprintf.h \
+	cdb.h cdbmake.h cdb_make.h coe.h constmap.h datetime.h env.h error.h \
+	exit.h fd.h fifo.h fmt.h gen_allocdefs.h gen_alloc.h getln.h leapsecs.h \
+	lock.h ndelay.h now.h open.h scan.h seek.h select.h sgetopt.h sig.h \
+	stralloc.h strerr.h str.h subfd.h subgetopt.h substdio.h taia.h tai.h \
+	tai2.h timeoutread.h timeoutwrite.h uint32.h uint64.h wait.h qprintf.h \
 	strmsg.h
 
 includedir=@prefix@/include/qmail
-COMMONSOURCES = alloc.c alloc_re.c byte_chr.c byte_copy.c byte_cr.c byte_cspn.c \
-	byte_diff.c byte_rchr.c byte_rcspn.c byte_zero.c caldate_fmjd.c caldate_fmt.c \
-	caldate_mjd.c caldate_scan.c caltime_fmt.c caltime_tai.c caltime_utc.c \
-	case_diffb.c case_diffs.c case_lowerb.c case_lowers.c case_startb.c case_starts.c \
-	cdb_hash.c cdbmake_add.c cdbmake_hash.c cdbmake_pack.c cdb_seek.c cdb_unpack.c \
-	datetime.c datetime_un.c env.c envread.c error.c error_str.c error_temp.c \
-	fmt_double.c fmt_hexbytes.c fmt_str.c fmt_strn.c fmt_uint0.c fmt_uint.c \
-	fmt_pad.c fmt_fill.c fmt_minus.c fmt_plusminus.c fmt_8long.c \
-	fmt_ulong.c fmt_ulonglong.c fmt_ushort.c fmt_xlong.c getln2.c getln.c \
-	leapsecs_add.c leapsecs_init.c leapsecs_read.c leapsecs_sub.c now.c scan_8long.c \
-	scan_uint.c scan_ulong.c scan_ulonglong.c scan_xlong.c scan_ushort.c \
-	sgetopt.c stralloc_arts.c stralloc_catb.c stralloc_cat.c stralloc_cats.c \
-	stralloc_copy.c stralloc_eady.c stralloc_num.c stralloc_opyb.c stralloc_opys.c \
-	stralloc_pend.c str_chr.c str_str.c str_chrn.c str_cpyb.c str_cpy.c str_cspn.c \
-	str_diff.c str_diffn.c str_end.c str_tok.c strerr_die.c strerr_sys.c \
-	str_len.c str_rchr.c str_start.c subfderr.c subfdin.c subfdins.c subfdout.c \
-	subfdouts.c subgetopt.c substdi.c substdio.c substdio_copy.c substdo.c \
-	tai_now.c tai_pack.c tai_unpack.c wait_nohang.c wait_pid.c fd_copy.c \
-	fd_move.c taia_now.c taia_pack.c o taia_fmtfrac.c taia_tai.c lock_ex.c \
-	lock_exnb.c lock_un.c ndelay.c ndelay_off.c open_append.c open_excl.c \
-	open_read.c open_readwrite.c open_write.c open_trunc.c seek_cur.c \
-	seek_end.c seek_set.c seek_trunc.c sig_alarm.c sig_block.c sig_catch.c \
-	sig_pause.c sig_pipe.c sig_child.c sig_hup.c sig_term.c sig_int.c \
-	sig_bug.c sig_misc.c timeoutread.c timeoutwrite.c base64sub.c \
-	constmap.c coe.c uint32_pack.c uint32_unpack.c cdb.c \
-	scan_plusminus.c scan_double.c scan_int.c scan_long.c \
-	qprintf.c fmt_long.c fmt_int.c strmsg_out.c
-
+COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c byte_copy.c \
+	byte_cr.c byte_cspn.c byte_diff.c byte_rchr.c byte_rcspn.c byte_zero.c \
+	caldate_fmjd.c caldate_fmt.c caldate_mjd.c caldate_scan.c caltime_fmt.c \
+	caltime_tai.c caltime_utc.c case_diffb.c case_diffs.c case_lowerb.c \
+	case_lowers.c case_startb.c case_starts.c cdb.c cdb_hash.c cdb_make.c \
+	cdbmake_add.c cdbmake_hash.c cdbmake_pack.c cdb_seek.c cdb_unpack.c coe.c \
+	constmap.c datetime.c datetime_un.c env.c envread.c error.c error_str.c \
+	error_temp.c fd_copy.c fd_move.c fifo.c fmt_8long.c fmt_double.c fmt_fill.c \
+	fmt_hexbytes.c fmt_int.c fmt_long.c fmt_minus.c fmt_pad.c fmt_plusminus.c \
+	fmt_str.c fmt_strn.c fmt_uint0.c fmt_uint.c fmt_ulong.c fmt_ulonglong.c \
+	fmt_ushort.c fmt_xlong.c getln2.c getln.c leapsecs_add.c leapsecs_init.c \
+	leapsecs_read.c leapsecs_sub.c lock_ex.c lock_exnb.c lock_un.c ndelay.c \
+	ndelay_off.c now.c open_append.c open_excl.c open_read.c open_readwrite.c \
+	open_trunc.c open_write.c qprintf.c scan_8long.c scan_double.c scan_int.c \
+	scan_long.c scan_plusminus.c scan_uint.c scan_ulong.c scan_ulonglong.c \
+	scan_ushort.c scan_xlong.c seek_cur.c seek_end.c seek_set.c seek_trunc.c \
+	sgetopt.c sig_alarm.c sig_block.c sig_bug.c sig_catch.c sig_child.c \
+	sig_hup.c sig_int.c sig_misc.c sig_pause.c sig_pipe.c sig_term.c \
+	stralloc_arts.c stralloc_catb.c stralloc_cat.c stralloc_cats.c \
+	stralloc_copy.c stralloc_eady.c stralloc_num.c stralloc_opyb.c \
+	stralloc_opys.c stralloc_pend.c str_chr.c str_chrn.c str_cpyb.c \
+	str_cpy.c str_cspn.c str_diff.c str_diffn.c str_end.c strerr_die.c \
+	strerr_sys.c str_len.c strmsg_out.c str_rchr.c str_start.c str_str.c \
+	str_tok.c subfderr.c subfdin.c subfdins.c subfdout.c subfdouts.c \
+	subgetopt.c substdi.c substdio.c substdio_copy.c substdo.c \
+	taia_add.c taia_addsec.c taia_approx.c taia_half.c taia_fmtfrac.c \
+	taia_frac.c taia_less.c taia_now.c taia_pack.c taia_sub.c taia_tai.c \
+	taia_uint.c taia_unpack.c tai64n_decode.c tai64n_encode.c tai_decode.c \
+	tai_encode.c tai_now.c tai_pack.c tai_sub.c tai_unpack.c timeoutread.c \
+	timeoutwrite.c uint32_pack.c uint32_unpack.c wait_nohang.c wait_pid.c
 
 uint32.h: tryulong32.c uint32.h1 uint32.h2
 	(( $(COMPILE) -c tryulong32.c && $(CC) -o tryulong32 tryulong32.o && \
@@ -98,6 +101,12 @@ hasflock.h: tryflock.c
 	2>&1 \
 	&& echo \#define HASFLOCK 1 || exit 0 ) > hasflock.h
 	rm -f tryflock.o tryflock
+
+hasmkffo.h: trymkffo.c
+	( ( $(COMPILE) trymkffo.c && $(CC) trymkffo ) >/dev/null \
+	2>&1 \
+	&& echo \#define HASMKFIFO 1 || exit 0 ) > hasmkffo.h
+	rm -f trymkffo.o trymkffo
 
 hassgact.h: trysgact.c
 	( ( $(COMPILE) -c trysgact.c && $(CC) -o trysgact trysgact.o ) >/dev/null \
@@ -184,9 +193,11 @@ cdb.lo: error.h seek.h byte.h cdb.h
 cdb_hash.lo: cdb.h uint32.h
 cdb_unpack.lo: cdb.h uint32.h
 cdb_seek.lo: cdb.h uint32.h
+cdb_make.lo: cdb.h cdbmake.h uint32.h
 cdbmake_pack.lo: cdbmake.h uint32.h
 cdbmake_hash.lo: cdbmake.h uint32.h
 cdbmake_add.lo: cdbmake.h alloc.h uint32.h
+fifo.lo: hasmkffo.h fifo.h
 fmt_str.lo: fmt.h
 fmt_strn.lo: fmt.h
 fmt_uint.lo: fmt.h
@@ -201,9 +212,14 @@ scan_xlong.lo: scan.h
 scan_8long.lo: scan.h
 scan_ushort.lo: scan.h
 scan_uint.lo: scan.h
+tai_sub.lo: tai.h uint64.h
 tai_now.lo: tai.h uint64.h
 tai_unpack.lo: tai.h uint64.h
 tai_pack.lo: tai.h uint64.h
+tai_encode.lo: tai2.h 
+tai_decode.lo: tai2.h stralloc.h
+tai64n_encode.lo: tai2.h uint64.h
+tai64n_decode.lo: tai2.h uint64.h
 leapsecs_read.lo: tai.h leapsecs.h uint64.h
 leapsecs_init.lo: leapsecs.h
 leapsecs_sub.lo: tai.h leapsecs.h uint64.h
@@ -219,10 +235,19 @@ wait_pid.lo: error.h haswaitp.h
 wait_nohang.lo: wait.h
 fd_copy.lo: fd.h
 fd_move.lo: fd.h
+taia_add.lo: taia.h
+taia_less.lo: taia.h
+taia_sub.lo: taia.h
+taia_approx.lo: taia.h
+taia_uint.lo: taia.h
+taia_frac.lo: taia.h
 taia_now.lo: taia.h
 taia_pack.lo: taia.h
 taia_fmtfrac.lo: taia.h
 taia_tai.lo: taia.h
+taia_unpack.lo: taia.h uint32.h
+taia_half.lo: taia.h uint32.h
+taia_addsec.lo: taia.h
 lock_ex.lo: lock.h hasflock.h
 lock_exnb.lo: lock.h
 lock_un.lo: lock.h
