@@ -119,6 +119,7 @@ make %{?_smp_mflags}
 %attr(644,root,root)                    %{_prefix}/include/qmail/caltime.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/case.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/cdb.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/cdb_make.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/cdbmake.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/coe.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/constmap.h
@@ -127,6 +128,7 @@ make %{?_smp_mflags}
 %attr(644,root,root)                    %{_prefix}/include/qmail/error.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/exit.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/fd.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/fifo.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/fmt.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/gen_allocdefs.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/gen_alloc.h
@@ -151,6 +153,7 @@ make %{?_smp_mflags}
 %attr(644,root,root)                    %{_prefix}/include/qmail/substdio.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/taia.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/tai.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/tai2.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/timeoutread.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/timeoutwrite.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/uint32.h
