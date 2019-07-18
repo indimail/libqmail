@@ -12,3 +12,24 @@ software. For some reason, he abandoned man pages in favor of HTML
 recently.
 
 The author can be reached under manvendra@indimail.org
+
+# Compilation
+
+$ cd /usr/local/src
+download / clone git@github.com:mbhangui/libqmail-0.1.git
+
+$ cd /usr/local/src/libqmail/libqmail-0.1
+
+$ ./default.configure
+
+$ make
+
+$ sudo make install
+
+# Binary Distributions
+
+Repository Location
+http://download.opensuse.org/repositories/home:/indimail/
+
+Binary RPM/DEB Install Instructions at https://software.opensuse.org/download.html?project=home%3Ambhangui&package=libqmail
+
