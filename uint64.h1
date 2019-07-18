@@ -8,5 +8,6 @@
 #define UINT64_H
 
 typedef unsigned long uint64;
+typedef long          int64;
 
 #endif
