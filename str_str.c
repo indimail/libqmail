@@ -1,5 +1,8 @@
 /*
  * $Log: str_str.c,v $
+ * Revision 1.3  2019-07-18 10:09:22+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.2  2019-07-18 09:55:56+05:30  Cprogrammer
  * added dummy function to fix compiler warning
  *
@@ -16,10 +19,6 @@
  *
  * For license terms, see the file COPYING in this directory.
  */
-
-#ifndef lint
-static char     rcsid[] = "$Id: str_str.c,v 1.2 2019-07-18 09:55:56+05:30 Cprogrammer Exp mbhangui $";
-#endif
 
 char           *
 str_str(register char *buf, register char *sub)
@@ -48,7 +47,7 @@ str_str(register char *buf, register char *sub)
 void
 getversion_str_str_c()
 {
-	static char    *x = "$Id: str_str.c,v 1.2 2019-07-18 09:55:56+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: str_str.c,v 1.3 2019-07-18 10:09:22+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

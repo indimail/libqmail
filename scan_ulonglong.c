@@ -1,5 +1,8 @@
 /*
  * $Log: scan_ulonglong.c,v $
+ * Revision 1.3  2019-07-18 10:09:14+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.2  2019-07-18 09:55:48+05:30  Cprogrammer
  * added dummy function to fix compiler warning
  *
@@ -8,10 +11,6 @@
  *
  */
 #include "scan.h"
-
-#ifndef lint
-static char     rcsid[] = "$Id: scan_ulonglong.c,v 1.2 2019-07-18 09:55:48+05:30 Cprogrammer Exp mbhangui $";
-#endif
 
 unsigned int
 scan_ulonglong(char *src, unsigned long long *dest)
@@ -43,7 +42,7 @@ scan_ulonglong(char *src, unsigned long long *dest)
 void
 getversion_scan_ulonglong_c()
 {
-	static char    *x = "$Id: scan_ulonglong.c,v 1.2 2019-07-18 09:55:48+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: scan_ulonglong.c,v 1.3 2019-07-18 10:09:14+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

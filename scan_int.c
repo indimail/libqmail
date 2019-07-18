@@ -1,5 +1,8 @@
 /*
  * $Log: scan_int.c,v $
+ * Revision 1.3  2019-07-18 10:08:58+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.2  2019-07-18 09:55:36+05:30  Cprogrammer
  * added dummy function to fix compiler warning
  *
@@ -8,10 +11,6 @@
  *
  */
 #include "scan.h"
-
-#ifndef lint
-static char     rcsid[] = "$Id: scan_int.c,v 1.2 2019-07-18 09:55:36+05:30 Cprogrammer Exp mbhangui $";
-#endif
 
 unsigned int
 scan_int(s, i)
@@ -56,7 +55,7 @@ scan_int(s, i)
 void
 getversion_scan_int_c()
 {
-	static char    *x = "$Id: scan_int.c,v 1.2 2019-07-18 09:55:36+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: scan_int.c,v 1.3 2019-07-18 10:08:58+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

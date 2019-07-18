@@ -1,5 +1,8 @@
 /*
  * $Log: qprintf.c,v $
+ * Revision 1.3  2019-07-18 10:08:45+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.2  2019-07-18 09:55:29+05:30  Cprogrammer
  * added dummy function to fix compiler warning
  *
@@ -11,10 +14,6 @@
 #include "scan.h"
 #include "str.h"
 #include "strerr.h"
-
-#ifndef lint
-static char     rcsid[] = "$Id: qprintf.c,v 1.2 2019-07-18 09:55:29+05:30 Cprogrammer Exp mbhangui $";
-#endif
 
 int
 qprintf_flush(substdio *ss)
@@ -75,7 +74,7 @@ qprintf(substdio *ss, char *src, char *format_spec)
 void
 getversion_qprintf_c()
 {
-	static char    *x = "$Id: qprintf.c,v 1.2 2019-07-18 09:55:29+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: qprintf.c,v 1.3 2019-07-18 10:08:45+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,14 +1,13 @@
 /*
  * $Log: fmt_fill.c,v $
+ * Revision 1.2  2019-07-18 10:06:24+05:30  Cprogrammer
+ * *** empty log message ***
+ *
  * Revision 1.1  2019-06-24 21:33:35+05:30  Cprogrammer
  * Initial revision
  *
  */
 #include "fmt.h"
-
-#ifndef lint
-static char     rcsid[] = "$Id: fmt_fill.c,v 1.1 2019-06-24 21:33:35+05:30 Cprogrammer Exp mbhangui $";
-#endif
 
 /*
  * "foo" -> "foo  "
@@ -39,4 +38,12 @@ fmt_fill(char *dest, unsigned int srclen, unsigned int padlen, unsigned int maxl
 		++dest;
 	}
 	return (dest - olddest);
+}
+
+void
+getversion_fmt_fill_c()
+{
+	static char    *x = "$Id: fmt_fill.c,v 1.2 2019-07-18 10:06:24+05:30 Cprogrammer Exp mbhangui $";
+
+	x++;
 }
