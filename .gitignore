@@ -12,6 +12,7 @@ hasflock.h
 hassgact.h
 hassgprm.h
 haswaitp.h
+hasmkffo.h
 select.h
 uint32.h
 uint64.h
