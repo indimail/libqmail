@@ -1,5 +1,6 @@
 libqmail (0.1-5) unstable; urgency=medium
 
   * First version
+  * added tai, taia functions for indimail-mta
 
- -- Manvendra Bhangui <manvendra@indimail.org>  Thu, 12 Sep 2018 11:15:40 +0200
+ -- Manvendra Bhangui <manvendra@indimail.org>  Thu, 18 Jul 2019 10:17:19 +0200
