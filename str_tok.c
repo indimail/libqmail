@@ -1,5 +1,8 @@
 /* 
  * $Log: str_tok.c,v $
+ * Revision 1.2  2019-07-18 09:55:59+05:30  Cprogrammer
+ * added dummy function to fix compiler warning
+ *
  * Revision 1.1  2019-06-24 21:42:47+05:30  Cprogrammer
  * Initial revision
  *
@@ -21,7 +24,7 @@
 #include "str.h"
 
 #ifndef lint
-static char     rcsid[] = "$Id: str_tok.c,v 1.1 2019-06-24 21:42:47+05:30 Cprogrammer Exp mbhangui $";
+static char     rcsid[] = "$Id: str_tok.c,v 1.2 2019-07-18 09:55:59+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 static char *
@@ -75,4 +78,12 @@ str_tok(s, delim)
     if (*lasts != 0)
 	*lasts++ = 0;
     return s;
+}
+
+void
+getversion_str_tok_c()
+{
+	static char    *x = "$Id: str_tok.c,v 1.2 2019-07-18 09:55:59+05:30 Cprogrammer Exp mbhangui $";
+
+	x++;
 }

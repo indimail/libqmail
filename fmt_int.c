@@ -1,5 +1,8 @@
 /*
  * $Log: fmt_int.c,v $
+ * Revision 1.2  2019-07-18 09:54:51+05:30  Cprogrammer
+ * added dummy function to fix compiler warning
+ *
  * Revision 1.1  2019-06-24 21:34:09+05:30  Cprogrammer
  * Initial revision
  *
@@ -7,7 +10,7 @@
 #include "fmt.h"
 
 #ifndef lint
-static char     rcsid[] = "$Id: fmt_int.c,v 1.1 2019-06-24 21:34:09+05:30 Cprogrammer Exp mbhangui $";
+static char     rcsid[] = "$Id: fmt_int.c,v 1.2 2019-07-18 09:54:51+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 unsigned int fmt_int(char *dest, int i)
@@ -18,4 +21,12 @@ unsigned int fmt_int(char *dest, int i)
 		return (fmt_uint(dest, (unsigned int) -i) + 1);
 	} else
 	return (fmt_uint(dest, (unsigned int) i));
+}
+
+void
+getversion_fmt_int_c()
+{
+	static char    *x = "$Id: fmt_int.c,v 1.2 2019-07-18 09:54:51+05:30 Cprogrammer Exp mbhangui $";
+
+	x++;
 }

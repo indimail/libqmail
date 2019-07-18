@@ -1,5 +1,8 @@
 /*
  * $Log: strmsg_out.c,v $
+ * Revision 1.2  2019-07-18 09:55:53+05:30  Cprogrammer
+ * added dummy function to fix compiler warning
+ *
  * Revision 1.1  2019-06-24 21:42:42+05:30  Cprogrammer
  * Initial revision
  *
@@ -9,7 +12,7 @@
 #include "exit.h"
 
 #ifndef lint
-static char     rcsid[] = "$Id: strmsg_out.c,v 1.1 2019-06-24 21:42:42+05:30 Cprogrammer Exp mbhangui $";
+static char     rcsid[] = "$Id: strmsg_out.c,v 1.2 2019-07-18 09:55:53+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 void
@@ -62,4 +65,12 @@ strmsg_out(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16
 	if (x15)
 		substdio_puts(subfdout, x15);
 	substdio_flush(subfdout);
+}
+
+void
+getversion_strmsg_out_c()
+{
+	static char    *x = "$Id: strmsg_out.c,v 1.2 2019-07-18 09:55:53+05:30 Cprogrammer Exp mbhangui $";
+
+	x++;
 }
