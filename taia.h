@@ -1,5 +1,8 @@
 /*
  * $Log: taia.h,v $
+ * Revision 1.2  2019-07-18 10:09:35+05:30  Cprogrammer
+ * fixed data type of seconds to long
+ *
  * Revision 1.1  2004-09-19 18:53:56+05:30  Cprogrammer
  * Initial revision
  *
@@ -27,7 +30,7 @@ extern double   taia_approx(const struct taia *);
 extern double   taia_frac(const struct taia *);
 
 extern void     taia_add(struct taia *, const struct taia *, const struct taia *);
-extern void     taia_addsec(struct taia *, const struct taia *, int);
+extern void     taia_addsec(struct taia *, const struct taia *, long);
 extern void     taia_sub(struct taia *, const struct taia *, const struct taia *);
 extern void     taia_half(struct taia *, const struct taia *);
 extern int      taia_less(const struct taia *, const struct taia *);
