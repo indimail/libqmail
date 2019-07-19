@@ -1,5 +1,8 @@
 /*
  * $Log: stralloc_catb.c,v $
+ * Revision 1.5  2019-07-19 14:08:10+05:30  Cprogrammer
+ * fixed data type of length argument of stralloc_catb()
+ *
  * Revision 1.4  2004-10-22 20:30:46+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,9 +13,7 @@
  * added RCS log
  *
  */
-#define _STRALLOC_EADY
 #include "stralloc.h"
-#undef _STRALLOC_EADY
 #include "byte.h"
 
 int
@@ -34,7 +35,7 @@ stralloc_catb(sa, s, n)
 void
 getversion_stralloc_catb_c()
 {
-	static char    *x = "$Id: stralloc_catb.c,v 1.4 2004-10-22 20:30:46+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: stralloc_catb.c,v 1.5 2019-07-19 14:08:10+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

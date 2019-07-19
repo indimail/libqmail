@@ -1,5 +1,8 @@
 /*
  * $Log: stralloc_opyb.c,v $
+ * Revision 1.5  2019-07-19 14:08:46+05:30  Cprogrammer
+ * fixed data type of length argument of stralloc_copyb()
+ *
  * Revision 1.4  2004-10-22 20:30:51+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,9 +13,7 @@
  * added RCS log
  *
  */
-#define _STRALLOC_EADY
 #include "stralloc.h"
-#undef _STRALLOC_EADY
 #include "byte.h"
 
 int
@@ -32,7 +33,7 @@ stralloc_copyb(sa, s, n)
 void
 getversion_stralloc_opyb_c()
 {
-	static char    *x = "$Id: stralloc_opyb.c,v 1.4 2004-10-22 20:30:51+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: stralloc_opyb.c,v 1.5 2019-07-19 14:08:46+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

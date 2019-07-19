@@ -1,5 +1,8 @@
 /*
  * $Log: stralloc_eady.c,v $
+ * Revision 1.6  2019-07-19 14:08:25+05:30  Cprogrammer
+ * fixed data type of length argument of stralloc_readyplus()
+ *
  * Revision 1.5  2004-10-22 20:30:49+05:30  Cprogrammer
  * added RCS id
  *
@@ -16,9 +19,7 @@
 #define _ALLOC_
 #include "alloc.h"
 #undef _ALLOC_
-#define _STRALLOC_EADY
 #include "stralloc.h"
-#undef _STRALLOC_EADY
 #include "gen_allocdefs.h"
 
 GEN_ALLOC_ready(stralloc, char, s, len, a, i, n, x, 30, stralloc_ready)
@@ -27,7 +28,7 @@ GEN_ALLOC_readyplus(stralloc, char, s, len, a, i, n, x, 30, stralloc_readyplus)
 void
 getversion_stralloc_eady_c()
 {
-	static char    *x = "$Id: stralloc_eady.c,v 1.5 2004-10-22 20:30:49+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: stralloc_eady.c,v 1.6 2019-07-19 14:08:25+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
