@@ -103,7 +103,7 @@ hasflock.h: tryflock.c
 	rm -f tryflock.o tryflock
 
 hasmkffo.h: trymkffo.c
-	( ( $(COMPILE) trymkffo.c && $(CC) trymkffo ) >/dev/null \
+	( ( $(COMPILE) -c trymkffo.c && $(CC) -o trymkffo trymkffo.o ) >/dev/null \
 	2>&1 \
 	&& echo \#define HASMKFIFO 1 || exit 0 ) > hasmkffo.h
 	rm -f trymkffo.o trymkffo
