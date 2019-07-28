@@ -181,5 +181,12 @@ if [ "%{_libdir}" != "/usr/lib64" -a "%{_libdir}" != "/usr/lib" ] ; then
 fi
 
 %changelog
-* Thu Sep 13 2018 21:52:27 +0530 mbhangui@gmail.com 0.1-1.1%{?dist}
-1.  First release
+* Thu Jul 18 2019 10:17:19 +9530 mbhangui@gmail.com 0.9-1.6%{?dist}
+Release 0.1 Start 12/09/2018
+13/09/2018
+1.  First version
+19/07/2019
+2.  added tai, taia functions for indimail-mta
+3.  fixed data type of length argument of stralloc_readyplus(),
+    stralloc_copyb(), stralloc_catb()
+4.  fixed generation of hasmkffo.h
