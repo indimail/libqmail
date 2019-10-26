@@ -1,4 +1,4 @@
-* Thu Jul 18 2019 10:17:19 +9530 mbhangui@gmail.com 0.9-1.5%{?dist}
+* Sat Oct 26 2019 19:55:21 +9530 mbhangui@gmail.com 0.9-1.6%{?dist}
 Release 0.1 Start 12/09/2018
 13/09/2018
 1.  First version
@@ -7,3 +7,7 @@ Release 0.1 Start 12/09/2018
 3.  fixed data type of length argument of stralloc_readyplus(),
     stralloc_copyb(), stralloc_catb()
 4.  fixed generation of hasmkffo.h
+26/10/2019
+5.  fixed incorrect definitions of signals in sig.h
+6.  define env_isinit as extern in env.h as it is already
+    defined in env.c

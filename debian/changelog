@@ -2,5 +2,9 @@ libqmail (0.1-6) unstable; urgency=medium
 
   * First version
   * added tai, taia functions for indimail-mta
+  * fixed data type of length argument of stralloc_readyplus(), stralloc_copyb(), stralloc_catb()
+  * fixed generation of hasmkffo.h
+  * fixed incorrect definitions of signals in sig.h
+  * define env_isinit as extern in env.h as it is already defined in env.c
 
- -- Manvendra Bhangui <manvendra@indimail.org>  Thu, 18 Jul 2019 10:17:19 +0200
+ -- Manvendra Bhangui <manvendra@indimail.org>  Sat, 26 Oct 2019 19:55:21 +0200
