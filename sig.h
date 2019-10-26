@@ -63,16 +63,16 @@ void            sig_hangupunblock(void);
 void            sig_hangupcatch(void (*)());
 void            sig_hangupdefault(void);
 
-int             sig_alarm;
-int             sig_child;
-int             sig_cont;
-int             sig_hangup;
-int             sig_int;
-int             sig_pipe;
-int             sig_term;
+extern int      sig_alarm;
+extern int      sig_child;
+extern int      sig_cont;
+extern int      sig_hangup;
+extern int      sig_int;
+extern int      sig_pipe;
+extern int      sig_term;
 
-void            (*sig_defaulthandler) ();
-void            (*sig_ignorehandler) ();
+extern void     (*sig_defaulthandler) ();
+extern void     (*sig_ignorehandler) ();
 #define sig_ignore(s) (sig_catch((s),sig_ignorehandler))
 #define sig_uncatch(s) (sig_catch((s),sig_defaulthandler))
 
