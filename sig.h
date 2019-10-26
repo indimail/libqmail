@@ -1,5 +1,8 @@
 /*
  * $Log: sig.h,v $
+ * Revision 1.7  2019-10-26 21:04:33+05:30  Cprogrammer
+ * fixed definitions of signals
+ *
  * Revision 1.6  2016-03-31 17:03:30+05:30  Cprogrammer
  * added functions to handle SIGINT
  *
