@@ -64,7 +64,7 @@ COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c byte_copy.c \
 	open_trunc.c open_write.c qprintf.c scan_8long.c scan_double.c scan_int.c \
 	scan_long.c scan_plusminus.c scan_uint.c scan_ulong.c scan_ulonglong.c \
 	scan_ushort.c scan_xlong.c seek_cur.c seek_end.c seek_set.c seek_trunc.c \
-	sgetopt.c sig_alarm.c sig_block.c sig_bug.c sig_catch.c sig_child.c \
+	sgetopt.c sig.c sig_alarm.c sig_block.c sig_bug.c sig_catch.c sig_child.c \
 	sig_hup.c sig_int.c sig_misc.c sig_pause.c sig_pipe.c sig_term.c \
 	stralloc_arts.c stralloc_catb.c stralloc_cat.c stralloc_cats.c \
 	stralloc_copy.c stralloc_eady.c stralloc_num.c stralloc_opyb.c \
@@ -262,6 +262,7 @@ seek_cur.lo: seek.h
 seek_end.lo: seek.h
 seek_set.lo: seek.h
 seek_trunc.lo: seek.h
+sig.lo: sig.h
 sig_alarm.lo: sig.h
 sig_block.lo: sig.h hassgprm.h
 sig_catch.lo: sig.h hassgact.h
