@@ -1,5 +1,8 @@
 /*
  * $Log: env.h,v $
+ * Revision 1.6  2019-10-26 21:06:27+05:30  Cprogrammer
+ * define env_isinit as extern
+ *
  * Revision 1.5  2009-05-03 22:46:20+05:30  Cprogrammer
  * restore_env() now returns void
  *
