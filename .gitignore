@@ -31,3 +31,6 @@ install-sh
 ltmain.sh
 missing
 RCS
+debian.tar.gz
+ChangeLog
+debian/changelog
