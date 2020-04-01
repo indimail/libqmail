@@ -6,5 +6,8 @@ libqmail (0.1-6) unstable; urgency=medium
   * fixed generation of hasmkffo.h
   * fixed incorrect definitions of signals in sig.h
   * define env_isinit as extern in env.h as it is already defined in env.c
+  * added authentication crytographic routines digest_md5, hmac_md5, hmac_ripemd, hmac_sha1, hmac_sha256, hmac_sha512, md5
+  * added md5_crypt, sha256_crypt, sha512_crypt
+  * added mkpasswd function to generate password
 
- -- Manvendra Bhangui <manvendra@indimail.org>  Sat, 26 Oct 2019 19:55:21 +0200
+ -- Manvendra Bhangui <manvendra@indimail.org>  Wed, 01 Apr 2020 17:56:50 +0200
