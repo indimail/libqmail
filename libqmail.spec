@@ -33,7 +33,7 @@ Source0: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 %global mandir %{_prefix}/share/man
 %global _pkg_config_path   /usr/%{_lib}/pkgconfig
 BuildRequires: rpm gcc gcc-c++ make binutils coreutils grep
-BuildRequires: glibc glibc-devel sed
+BuildRequires: glibc glibc-devel openssl-devel sed
 BuildRequires: gzip autoconf automake libtool pkgconfig
 BuildRequires: xz
 %if %{defined fedora_version}
@@ -193,7 +193,7 @@ if [ "%{_libdir}" != "/usr/lib64" -a "%{_libdir}" != "/usr/lib" ] ; then
 fi
 
 %changelog
-* Thu Jul 18 2019 10:17:19 +9530 mbhangui@gmail.com 0.9-1.6%{?dist}
+* Wed Apr 01 2020 17:56:50 +9530 mbhangui@gmail.com 0.9-1.7%{?dist}
 Release 0.1 Start 12/09/2018
 13/09/2018
 1.  First version
@@ -202,3 +202,10 @@ Release 0.1 Start 12/09/2018
 3.  fixed data type of length argument of stralloc_readyplus(),
     stralloc_copyb(), stralloc_catb()
 4.  fixed generation of hasmkffo.h
+5.  fixed incorrect definitions of signals in sig.h
+6.  define env_isinit as extern in env.h as it is already
+    defined in env.c
+7.  added authentication crytographic routines digest_md5, hmac_md5,
+    hmac_ripemd, hmac_sha1, hmac_sha256, hmac_sha512, md5
+8.  added md5_crypt, sha256_crypt, sha512_crypt
+9.  added mkpasswd function to generate password
