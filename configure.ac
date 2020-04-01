@@ -34,12 +34,15 @@ PKG_INSTALLDIR
 dnl Checks for header files.
 AC_ISC_POSIX
 dnl AC_HEADER_STDC
-AC_CHECK_HEADERS(ctype.h errno.h stdarg.h unistd.h fcntl.h signal.h sys/types.h sys/wait.h sys/file.h)
+AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h fcntl.h signal.h sys/types.h sys/wait.h sys/file.h)
 
 AC_CHECK_FUNC(flock)
 if test "$ac_cv_func_flock" = yes ; then
 	AC_DEFINE([HAVE_FLOCK], [1], [flock function])
 fi
+
+AC_CHECK_LIB(ssl, SSL_CTX_new, [AC_SUBST([LIB_SSL], ["-lssl -lcrypto"]) AC_DEFINE([HAVE_SSL], [1],[OpenSSL Library])],,-lssl -lcrypto)
+AC_CHECK_LIB(crypt, crypt, [AC_SUBST([LIB_CRYPT], ["-lcrypt"]) AC_DEFINE([HAVE_CRYPT], [1],[crypt Library])],,)
 
 dnl Does not work on RHEL 5, CentOS 5 64 bit systems
 RPATH_LIB="$acl_libdirstem"
@@ -59,4 +62,95 @@ then
 	ac_configure_args="$ac_configure_args -prefix=$prefix"
 fi
 
+AC_ARG_ENABLE(ENABLE_MD5_CRYPT,    [  --enable-md5-crypt            if your system crypt does not support md5],
+	[with_md5crypt=$enableval],
+	[with_md5crypt=no])
+test "$with_md5crypt" = "no" && AC_DEFINE(ENABLE_MD5_CRYPT,1,Define if you want md5 crypt support compiled in)
+AM_CONDITIONAL(ENABLE_MD5_CRYPT, test "$with_md5crypt" = yes)
+
+AC_ARG_ENABLE(ENABLE_SHA256_CRYPT, [  --enable-sha256-crypt         if your system does not support sha256],
+	[with_sha256crypt=$enableval],
+	[with_sha256crypt=no])
+test "$with_sha256crypt" = "no" && AC_DEFINE(ENABLE_SHA256_CRYPT,1,Define if you want sha256 crypt support compiled in)
+AM_CONDITIONAL(ENABLE_SHA256_CRYPT, test "$with_sha256crypt" = yes)
+
+AC_ARG_ENABLE(ENABLE_SHA512_CRYPT, [  --enable-sha512-crypt         if your system does not support sha512],
+	[with_sha512crypt=$enableval],
+	[with_sha512crypt=no])
+test "$with_sha512crypt" = "no" && AC_DEFINE(ENABLE_SHA512_CRYPT,1,Define if you want sha512 crypt support compiled in)
+AM_CONDITIONAL(ENABLE_SHA512_CRYPT, test "$with_sha512crypt" = yes)
+
+pwdhash=system
+AC_ARG_ENABLE(pwdhash,
+	[--enable-passwd-hash=des|md5|sha256|sha512|system Passwd Hash (des - DES, md5 - MD5, sha256 - SHA256, sha512 - SHA512, system)],
+	pwdhash=$enableval,
+	[
+	AC_DEFINE_UNQUOTED(DES_HASH,0,Enable DES Encryption)
+	AC_DEFINE_UNQUOTED(MD5_HASH,1,Enable MD5 Encryption)
+	AC_DEFINE_UNQUOTED(SHA256_HASH,2,Enable SHA256 Encryption)
+	AC_DEFINE_UNQUOTED(SHA512_HASH,3,Enable SHA512 Encryption)
+	])
+case $pwdhash in
+	des)
+	AC_DEFINE_UNQUOTED(PASSWORD_HASH,0,Enable DES Encryption)
+	;;
+	md5)
+	AC_DEFINE_UNQUOTED(PASSWORD_HASH,1,Enable MD5 Encryption)
+	;;
+	sha256)
+	AC_DEFINE_UNQUOTED(PASSWORD_HASH,2,Enable SHA256 Encryption)
+	;;
+	sha512)
+	AC_DEFINE_UNQUOTED(PASSWORD_HASH,3,Enable SHA512 Encryption)
+	;;
+	system)
+	AC_DEFINE_UNQUOTED(PASSWORD_HASH,-1,Use System Crypt Encryption)
+	;;
+esac
+
 AC_OUTPUT(Makefile)
+
+case $pwdhash in
+	des)
+echo "     Password Hash = DES --enable-password-hash=des"
+	;;
+	md5)
+echo "     Password Hash = MD5 --enable-password-hash=md5"
+	;;
+	sha256)
+echo "     Password Hash = SHA256 --enable-password-hash=sha256"
+	;;
+	sha512)
+echo "     Password Hash = SHA512 --enable-password-hash=sha512"
+	;;
+	system)
+echo "     Password Hash = system --enable-password-hash=system"
+	;;
+esac
+
+case $with_md5crypt in
+1*|y*|Y*)
+echo "         MD5 Crypt = ON  --enable-md5-crypt=y"
+;;
+*)
+echo "         MD5 Crypt = OFF --enable-md5-crypt=n default"
+;;
+esac
+
+case $with_sha256crypt in
+1*|y*|Y*)
+echo "      SHA256 Crypt = ON  --enable-sha256-crypt=y"
+;;
+*)
+echo "      SHA256 Crypt = OFF --enable-sha256-crypt=n default"
+;;
+esac
+
+case $with_sha512crypt in
+1*|y*|Y*)
+echo "      SHA512 Crypt = ON  --enable-sha512-crypt=y"
+;;
+*)
+echo "      SHA512 Crypt = OFF --enable-sha512-crypt=n default"
+;;
+esac
