@@ -89,7 +89,7 @@ COMMONSOURCES = alloc.c alloc_re.c base64sub.c builtin_overflow.c byte_chr.c \
 hasbltnoverflow.h: trybltnoverflow.c
 	(($(COMPILE) -c trybltnoverflow.c && $(CC) \
 		-o trybltnoverflow trybltnoverflow.o) > /dev/null 2>&1 \
-	&& echo \#define HAS_BUILTIN_OVERFLOW 1 || exit 0 ) > hasbltnoverflow.h
+	&& echo \#define HAS_BUILTIN_OVERFLOW 1 || echo \#warning \"builtin overflow unavailable\"; exit 0 ) > hasbltnoverflow.h
 	rm -f trybltnoverflow.o trybltnoverflow
 
 uint32.h: tryulong32.c uint32.h1 uint32.h2
