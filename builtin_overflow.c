@@ -1,5 +1,8 @@
 /*
  * $Log: builtin_overflow.c,v $
+ * Revision 1.3  2020-05-09 18:44:03+05:30  Cprogrammer
+ * renamed functions __builtin_xxx_overflow() with xxx_overflow()
+ *
  * Revision 1.2  2020-05-09 17:40:39+05:30  Cprogrammer
  * use intermediary long long variable to hold result for checking overflow
  *
@@ -26,7 +29,7 @@ check_ofl(unsigned long long val, unsigned int *res)
 }
 
 int
-__builtin_add_overflow(unsigned int a, unsigned int b, unsigned int *res)
+add_overflow(unsigned int a, unsigned int b, unsigned int *res)
 {
 	unsigned long long val = a;
 
@@ -35,7 +38,7 @@ __builtin_add_overflow(unsigned int a, unsigned int b, unsigned int *res)
 }
 
 int
-__builtin_mul_overflow(unsigned int a, unsigned int b, unsigned int *res)
+mul_overflow(unsigned int a, unsigned int b, unsigned int *res)
 {
 	unsigned long long val = a;
 
