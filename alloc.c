@@ -1,5 +1,8 @@
 /*
  * $Log: alloc.c,v $
+ * Revision 1.7  2020-05-09 17:51:57+05:30  Cprogrammer
+ * use __builtin_add_overflow() to handle overflow
+ *
  * Revision 1.6  2010-03-22 09:20:31+05:30  Cprogrammer
  * add unsigned integer overflow check to alloc.c
  * Matthew Dempsky - http://marc.info/?l=qmail&m=125213850310173&w=2
@@ -20,6 +23,7 @@
 #include "alloc.h"
 #include "error.h"
 #include <stdlib.h>
+#include "hasbltnoverflow.h"
 
 #define ALIGNMENT 16			/*- XXX: assuming that this alignment is enough */
 #define SPACE 4096				/*- must be multiple of ALIGNMENT */
@@ -39,14 +43,16 @@ static unsigned int avail = SPACE;	/*- multiple of ALIGNMENT; 0<=avail<=SPACE */
 {
 	char           *x;
 	unsigned int    m = n;
-
-	if ((n = ALIGNMENT + n - (n & (ALIGNMENT - 1))) < m)	/*- handle overflow */
-	{
+#ifdef HAS_BUILTIN_OVERFLOW
+	if (__builtin_add_overflow(ALIGNMENT, n - (n & (ALIGNMENT - 1)), &m)) {
+#else
+	m = n;
+	if ((n = ALIGNMENT + n - (n & (ALIGNMENT - 1))) < m) { /*- handle overflow */
+#endif
 		errno = error_nomem;
 		return 0;
 	}
-	if (n <= avail)
-	{
+	if (n <= avail) {
 		avail -= n;
 		return space + avail;
 	}
@@ -67,7 +73,7 @@ alloc_free(x)
 void
 getversion_alloc_c()
 {
-	static char    *x = "$Id: alloc.c,v 1.6 2010-03-22 09:20:31+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: alloc.c,v 1.7 2020-05-09 17:51:57+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
