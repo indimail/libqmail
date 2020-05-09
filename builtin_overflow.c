@@ -1,34 +1,45 @@
 /*
  * $Log: builtin_overflow.c,v $
+ * Revision 1.2  2020-05-09 17:40:39+05:30  Cprogrammer
+ * use intermediary long long variable to hold result for checking overflow
+ *
  * Revision 1.1  2020-05-09 14:21:15+05:30  Cprogrammer
  * Initial revision
  *
  */
 #ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 #ifdef HAVE_LIMITS_H
 #include <limits.h>
-#endif
 #endif
 #include "hasbltnoverflow.h"
 
 #ifndef HAS_BUILTIN_OVERFLOW
-int
-__builtin_add_overflow(unsigned int a, unsigned int b, unsigned int *result)
+static inline int
+check_ofl(unsigned long long val, unsigned int *res)
 {
-	if (a > INT_MAX - b || b > INT_MAX - a) 
-		return -1; 
-	*result = a + b;
+	if (val >> 32)
+		return 1;
+	*res = (unsigned int)val;
 	return 0;
 }
 
 int
-__builtin_mul_overflow(unsigned int a, unsigned int b, unsigned int *result)
+__builtin_add_overflow(unsigned int a, unsigned int b, unsigned int *res)
 {
-	*result = a * b;
-	if (b && a != (*result / b))
-		return 1;
-	if (a && b != (*result / a))
-		return 1;
-	return 0;
+	unsigned long long val = a;
+
+	val += b;
+	return check_ofl(val, res);
+}
+
+int
+__builtin_mul_overflow(unsigned int a, unsigned int b, unsigned int *res)
+{
+	unsigned long long val = a;
+
+	val *= b;
+	return check_ofl(val, res);
 }
 #endif
