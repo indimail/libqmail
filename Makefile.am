@@ -138,7 +138,7 @@ select.h: trysysel.c select.h1 select.h2
 	rm -f trysysel.o trysysel
 
 base64sub.lo: base64.h stralloc.h str.h gen_alloc.h
-builtin_overflow.lo:hasbltnoverflow.c
+builtin_overflow.lo:hasbltnoverflow.h
 byte_copy.lo: byte.h
 byte_chr.lo: byte.h
 byte_rchr.lo: byte.h
@@ -183,7 +183,7 @@ stralloc_num.lo: stralloc.h gen_alloc.h
 stralloc_opyb.lo: stralloc.h byte.h gen_alloc.h
 stralloc_opys.lo: byte.h str.h stralloc.h gen_alloc.h
 stralloc_pend.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h hasbltnoverflow.h
-alloc.lo: alloc.h error.h
+alloc.lo: alloc.h error.h hasbltnoverflow.h
 alloc_re.lo: alloc.h byte.h
 getEnvConfig.lo: config.h scan.h env.h
 env.lo: env.h str.h alloc.h
