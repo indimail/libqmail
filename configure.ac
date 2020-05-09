@@ -34,7 +34,7 @@ PKG_INSTALLDIR
 dnl Checks for header files.
 AC_ISC_POSIX
 dnl AC_HEADER_STDC
-AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h fcntl.h signal.h sys/types.h sys/wait.h sys/file.h)
+AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h fcntl.h signal.h sys/types.h sys/wait.h sys/file.h)
 
 AC_CHECK_FUNC(flock)
 if test "$ac_cv_func_flock" = yes ; then
