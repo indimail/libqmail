@@ -13,9 +13,9 @@
 %global _hardened_build    1
 %endif
 
-Name:	libqmail
+Name: libqmail
 Version: 0.1
-Release: 1%{?dist}
+Release: 9.1%{?dist}
 Summary: Reimplementation of djb functions
 %if %{undefined suse_version} && %{undefined sles_version}
 Group: System Environment/Libraries
@@ -131,6 +131,7 @@ make %{?_smp_mflags}
 %attr(644,root,root)                    %{_prefix}/include/qmail/fd.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/fifo.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/fmt.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/hasbltnoverflow.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/hmac.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/in_crypt.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/gen_allocdefs.h
@@ -193,7 +194,7 @@ if [ "%{_libdir}" != "/usr/lib64" -a "%{_libdir}" != "/usr/lib" ] ; then
 fi
 
 %changelog
-* Wed Apr 01 2020 17:56:50 +9530 mbhangui@gmail.com 0.9-1.7%{?dist}
+* Wed Apr 01 2020 17:56:50 +9530 mbhangui@gmail.com 0.9-1.1%{?dist}
 Release 0.1 Start 12/09/2018
 13/09/2018
 1.  First version
@@ -209,3 +210,7 @@ Release 0.1 Start 12/09/2018
     hmac_ripemd, hmac_sha1, hmac_sha256, hmac_sha512, md5
 8.  added md5_crypt, sha256_crypt, sha512_crypt
 9.  added mkpasswd function to generate password
+10. use __builtin_add_overflow(), __builtin_mul_overflow() in
+    gen_allocdefs.h to avoid overflow
+11. builtin_overflow.c wrapper functions for builtin_add_overflow(),
+    builtin_mul_overflow() for compilers missing built-in overflow functions
