@@ -9,7 +9,7 @@ INSTALL_SCRIPT = ${INSTALL}           -c
 install_sh_SCRIPT = $(install_sh)     -c
 INSTALL_STRIP_PROGRAM = $(install_sh) -c $(STRIP_OPT)
 all: uint32.h uint64.h haswaitp.h hasflock.h hassgact.h hassgprm.h \
-	select.h hasmkffo.h
+	select.h hasmkffo.h hasbltnoverflow.h
 
 libqmail_LTLIBRARIES = libqmail.la
 libqmail_la_SOURCES = $(COMMONSOURCES)
@@ -19,7 +19,7 @@ libqmail_la_CFLAGS = -fPIC
 libqmaildir=@libdir@
 
 MOSTLYCLEANFILES = uint32.h uint64.h haswaitp.h hasflock.h hassgact.h \
-	hassgprm.h select.h hasmkffo.h
+	hassgprm.h select.h hasmkffo.h hasbltnoverflow.h
 
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libqmail.pc
@@ -41,27 +41,28 @@ docdir=@docdir@
 include_HEADERS = alloc.h base64.h byte.h caldate.h caltime.h case.h \
 	cdb.h cdbmake.h cdb_make.h coe.h constmap.h datetime.h digest_md5.h \
 	env.h error.h exit.h fd.h fifo.h fmt.h gen_allocdefs.h gen_alloc.h \
-	getEnvConfig.h getln.h global.h hmac.h in_crypt.h leapsecs.h lock.h \
-	md5.h makesalt.h mkpasswd.h ndelay.h now.h open.h pw_comp.h ripemd.h \
-	scan.h seek.h select.h sgetopt.h sha1.h sig.h stralloc.h strerr.h \
-	str.h subfd.h subgetopt.h substdio.h taia.h tai.h tai2.h \
-	timeoutread.h timeoutwrite.h typesx.h uint32.h uint64.h wait.h \
-	qprintf.h strmsg.h
+	getEnvConfig.h getln.h global.h hasbltnoverflow.h hmac.h in_crypt.h \
+	leapsecs.h lock.h md5.h makesalt.h mkpasswd.h ndelay.h now.h open.h \
+	pw_comp.h ripemd.h scan.h seek.h select.h sgetopt.h sha1.h sig.h \
+	stralloc.h strerr.h str.h subfd.h subgetopt.h substdio.h taia.h \
+	tai.h tai2.h timeoutread.h timeoutwrite.h typesx.h uint32.h \
+	uint64.h wait.h qprintf.h strmsg.h
 
 includedir=@prefix@/include/qmail
-COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c byte_copy.c \
-	byte_cr.c byte_cspn.c byte_diff.c byte_rchr.c byte_rcspn.c byte_zero.c \
-	caldate_fmjd.c caldate_fmt.c caldate_mjd.c caldate_scan.c caltime_fmt.c \
-	caltime_tai.c caltime_utc.c case_diffb.c case_diffs.c case_lowerb.c \
-	case_lowers.c case_startb.c case_starts.c cdb.c cdb_hash.c cdb_make.c \
-	cdbmake_add.c cdbmake_hash.c cdbmake_pack.c cdb_seek.c cdb_unpack.c coe.c \
-	constmap.c datetime.c datetime_un.c digest_md5.c env.c envread.c error.c \
-	error_str.c error_temp.c fd_copy.c fd_move.c fifo.c fmt_8long.c \
-	fmt_double.c fmt_fill.c fmt_hexbytes.c fmt_int.c fmt_long.c fmt_minus.c \
-	fmt_pad.c fmt_plusminus.c fmt_str.c fmt_strn.c fmt_uint0.c fmt_uint.c \
-	fmt_ulong.c fmt_ulonglong.c fmt_ushort.c fmt_xlong.c getEnvConfig.c \
-	getln2.c getln.c hmac_md5.c hmac_ripemd.c hmac_sha1.c hmac_sha256.c \
-	hmac_sha512.c in_crypt.c leapsecs_add.c leapsecs_init.c leapsecs_read.c \
+COMMONSOURCES = alloc.c alloc_re.c base64sub.c builtin_overflow.c byte_chr.c \
+	byte_copy.c byte_cr.c byte_cspn.c byte_diff.c byte_rchr.c byte_rcspn.c \
+	byte_zero.c caldate_fmjd.c caldate_fmt.c caldate_mjd.c caldate_scan.c \
+	caltime_fmt.c caltime_tai.c caltime_utc.c case_diffb.c case_diffs.c \
+	case_lowerb.c case_lowers.c case_startb.c case_starts.c cdb.c cdb_hash.c \
+	cdb_make.c cdbmake_add.c cdbmake_hash.c cdbmake_pack.c cdb_seek.c \
+	cdb_unpack.c coe.c constmap.c datetime.c datetime_un.c digest_md5.c \
+	env.c envread.c error.c error_str.c error_temp.c fd_copy.c fd_move.c \
+	fifo.c fmt_8long.c fmt_double.c fmt_fill.c fmt_hexbytes.c fmt_int.c \
+	fmt_long.c fmt_minus.c fmt_pad.c fmt_plusminus.c fmt_str.c \
+	fmt_strn.c fmt_uint0.c fmt_uint.c fmt_ulong.c fmt_ulonglong.c \
+	fmt_ushort.c fmt_xlong.c getEnvConfig.c getln2.c getln.c \
+	hmac_md5.c hmac_ripemd.c hmac_sha1.c hmac_sha256.c hmac_sha512.c \
+	in_crypt.c leapsecs_add.c leapsecs_init.c leapsecs_read.c \
 	leapsecs_sub.c lock_ex.c lock_exnb.c lock_un.c makesalt.c md5.c \
 	md5_crypt.c ndelay.c ndelay_off.c now.c open_append.c open_excl.c \
 	open_read.c open_readwrite.c open_trunc.c open_write.c mkpasswd.c \
@@ -84,6 +85,12 @@ COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c byte_copy.c \
 	tai64n_decode.c tai64n_encode.c tai_decode.c tai_encode.c \
 	tai_now.c tai_pack.c tai_sub.c tai_unpack.c timeoutread.c \
 	timeoutwrite.c uint32_pack.c uint32_unpack.c wait_nohang.c wait_pid.c
+
+hasbltnoverflow.h: trybltnoverflow.c
+	(($(COMPILE) -c trybltnoverflow.c && $(CC) \
+		-o trybltnoverflow trybltnoverflow.o) > /dev/null 2>&1 \
+	&& echo \#define HAS_BUILTIN_OVERFLOW 1 || exit 0 ) > hasbltnoverflow.h
+	rm -f trybltnoverflow.o trybltnoverflow
 
 uint32.h: tryulong32.c uint32.h1 uint32.h2
 	(( $(COMPILE) -c tryulong32.c && $(CC) -o tryulong32 tryulong32.o && \
@@ -130,7 +137,8 @@ select.h: trysysel.c select.h1 select.h2
 	&& cat select.h2 || cat select.h1 ) > select.h
 	rm -f trysysel.o trysysel
 
-base64sub.lo: base64.h stralloc.h str.h
+base64sub.lo: base64.h stralloc.h str.h gen_alloc.h
+builtin_overflow.lo:hasbltnoverflow.c
 byte_copy.lo: byte.h
 byte_chr.lo: byte.h
 byte_rchr.lo: byte.h
@@ -144,6 +152,9 @@ constmap.lo: constmap.h alloc.h case.h
 error.lo: error.h
 error_str.lo: error.h
 error_temp.lo: error.h
+mkpasswd.lo: gen_alloc.h str.h strerr.h stralloc.h in_crypt.h makesalt.h
+pw_comp.lo: gen_alloc.h stralloc.h strerr.h env.h error.h str.h subfd.h \
+	in_crypt.h hmac.h digest_md5.h mkpasswd.h pw_comp.h
 str_len.lo: str.h
 str_chr.lo: str.h
 str_chrn.lo: str.h
@@ -160,18 +171,18 @@ substdi.lo: substdio.c byte.h error.h
 substdo.lo: substdio.h str.h byte.h error.h
 substdio.lo: substdio.h
 substdio_copy.lo: substdio.h
-getln.lo: getln.h substdio.h stralloc.h byte.h
-getln2.lo: getln.h substdio.h stralloc.h byte.h
-stralloc_catb.lo: stralloc.h byte.h
-stralloc_eady.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h
-stralloc_pend.lo: alloc.h stralloc.h gen_allocdefs.h
-stralloc_arts.lo: stralloc.h byte.h str.h
-stralloc_num.lo: stralloc.h
-stralloc_opyb.lo: stralloc.h byte.h
-stralloc_opys.lo: byte.h str.h stralloc.h
-stralloc_cats.lo: byte.h str.h stralloc.h
-stralloc_copy.lo: byte.h stralloc.h
-stralloc_cat.lo: byte.h stralloc.h
+getln.lo: getln.h substdio.h stralloc.h byte.h gen_alloc.h
+getln2.lo: getln.h substdio.h stralloc.h byte.h gen_alloc.h
+stralloc_arts.lo: stralloc.h byte.h str.h gen_alloc.h
+stralloc_cat.lo: byte.h stralloc.h gen_alloc.h
+stralloc_catb.lo: stralloc.h byte.h gen_alloc.h
+stralloc_cats.lo: byte.h str.h stralloc.h gen_alloc.h
+stralloc_copy.lo: byte.h stralloc.h gen_alloc.h
+stralloc_eady.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h hasbltnoverflow.h
+stralloc_num.lo: stralloc.h gen_alloc.h
+stralloc_opyb.lo: stralloc.h byte.h gen_alloc.h
+stralloc_opys.lo: byte.h str.h stralloc.h gen_alloc.h
+stralloc_pend.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h hasbltnoverflow.h
 alloc.lo: alloc.h error.h
 alloc_re.lo: alloc.h byte.h
 getEnvConfig.lo: config.h scan.h env.h
@@ -276,7 +287,7 @@ tai_now.lo: tai.h uint64.h
 tai_unpack.lo: tai.h uint64.h
 tai_pack.lo: tai.h uint64.h
 tai_encode.lo: tai2.h 
-tai_decode.lo: tai2.h stralloc.h
+tai_decode.lo: tai2.h stralloc.h gen_alloc.h
 tai64n_encode.lo: tai2.h uint64.h
 tai64n_decode.lo: tai2.h uint64.h
 taia_add.lo: taia.h
