@@ -1,10 +1,13 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.1  2020-05-11 12:32:48+05:30  Cprogrammer
+# Initial revision
+#
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
 #
-# $Id: configure.ac,v 1.1 2014-09-02 22:13:49+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.1 2020-05-11 12:32:48+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],0.1,[Manvendra Bhangui manvendra@indimail.org],libqmail, [https://sourceforge.net/projects/indimail])
@@ -17,7 +20,7 @@ AM_CONFIG_HEADER(config.h)
 AC_DEFINE_UNQUOTED(PACKAGE_BUGREPORT, "mbhangui@gmail.com")
 if test "$GCC" = yes ; then
 	CXXFLAGS="$CXXFLAGS -Wall"
-	CFLAGS="$CFLAGS -O4 -Wall"
+	CFLAGS="$CFLAGS -O4 -Wall -Wshadow"
 fi
 
 dnl Checks for programs.
