@@ -1,5 +1,8 @@
 /*
  * $Log: stralloc_eady.c,v $
+ * Revision 1.7  2020-05-10 17:50:59+05:30  Cprogrammer
+ * GEN_ALLOC refactoring (by Rolf Eike Beer) to fix memory overflow reported by Qualys Security Advisory
+ *
  * Revision 1.6  2019-07-19 14:08:25+05:30  Cprogrammer
  * fixed data type of length argument of stralloc_readyplus()
  *
@@ -22,13 +25,18 @@
 #include "stralloc.h"
 #include "gen_allocdefs.h"
 
-GEN_ALLOC_ready(stralloc, char, s, len, a, i, n, x, 30, stralloc_ready)
-GEN_ALLOC_readyplus(stralloc, char, s, len, a, i, n, x, 30, stralloc_readyplus)
+/*-
+ * NOTE:
+ * GEN_ALLOC_readyplus call shoud be before GEN_ALLOC_ready()
+ * helper function.
+ */
+GEN_ALLOC_readyplus(stralloc, char, s, len, a, 30, stralloc_readyplus)
+GEN_ALLOC_ready(stralloc, char, s, len, a, 30, stralloc_ready)
 
 void
 getversion_stralloc_eady_c()
 {
-	static char    *x = "$Id: stralloc_eady.c,v 1.6 2019-07-19 14:08:25+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: stralloc_eady.c,v 1.7 2020-05-10 17:50:59+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
