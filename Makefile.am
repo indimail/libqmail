@@ -49,7 +49,7 @@ include_HEADERS = alloc.h base64.h byte.h caldate.h caltime.h case.h \
 	uint64.h wait.h qprintf.h strmsg.h
 
 includedir=@prefix@/include/qmail
-COMMONSOURCES = alloc.c alloc_re.c base64sub.c builtin_overflow.c byte_chr.c \
+COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c \
 	byte_copy.c byte_cr.c byte_cspn.c byte_diff.c byte_rchr.c byte_rcspn.c \
 	byte_zero.c caldate_fmjd.c caldate_fmt.c caldate_mjd.c caldate_scan.c \
 	caltime_fmt.c caltime_tai.c caltime_utc.c case_diffb.c case_diffs.c \
@@ -138,7 +138,6 @@ select.h: trysysel.c select.h1 select.h2
 	rm -f trysysel.o trysysel
 
 base64sub.lo: base64.h stralloc.h str.h gen_alloc.h
-builtin_overflow.lo:hasbltnoverflow.h
 byte_copy.lo: byte.h
 byte_chr.lo: byte.h
 byte_rchr.lo: byte.h
