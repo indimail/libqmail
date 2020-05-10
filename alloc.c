@@ -1,5 +1,8 @@
 /*
  * $Log: alloc.c,v $
+ * Revision 1.8  2020-05-10 17:48:32+05:30  Cprogrammer
+ * removed unecessary initialization
+ *
  * Revision 1.7  2020-05-09 17:51:57+05:30  Cprogrammer
  * use __builtin_add_overflow() to handle overflow
  *
@@ -42,7 +45,7 @@ static unsigned int avail = SPACE;	/*- multiple of ALIGNMENT; 0<=avail<=SPACE */
 	unsigned int    n;
 {
 	char           *x;
-	unsigned int    m = n;
+	unsigned int    m;
 #ifdef HAS_BUILTIN_OVERFLOW
 	if (__builtin_add_overflow(ALIGNMENT, n - (n & (ALIGNMENT - 1)), &m)) {
 #else
@@ -73,7 +76,7 @@ alloc_free(x)
 void
 getversion_alloc_c()
 {
-	static char    *x = "$Id: alloc.c,v 1.7 2020-05-09 17:51:57+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: alloc.c,v 1.8 2020-05-10 17:48:32+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
