@@ -1,5 +1,8 @@
 /*
  * $Log: alloc.c,v $
+ * Revision 1.9  2020-05-10 19:27:43+05:30  Cprogrammer
+ * fixed bug with allocation
+ *
  * Revision 1.8  2020-05-10 17:48:32+05:30  Cprogrammer
  * removed unecessary initialization
  *
@@ -45,11 +48,10 @@ static unsigned int avail = SPACE;	/*- multiple of ALIGNMENT; 0<=avail<=SPACE */
 	unsigned int    n;
 {
 	char           *x;
-	unsigned int    m;
+	unsigned int    m = n;
 #ifdef HAS_BUILTIN_OVERFLOW
-	if (__builtin_add_overflow(ALIGNMENT, n - (n & (ALIGNMENT - 1)), &m)) {
+	if (__builtin_add_overflow(ALIGNMENT, m - (m & (ALIGNMENT - 1)), &n)) {
 #else
-	m = n;
 	if ((n = ALIGNMENT + n - (n & (ALIGNMENT - 1))) < m) { /*- handle overflow */
 #endif
 		errno = error_nomem;
@@ -76,7 +78,7 @@ alloc_free(x)
 void
 getversion_alloc_c()
 {
-	static char    *x = "$Id: alloc.c,v 1.8 2020-05-10 17:48:32+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: alloc.c,v 1.9 2020-05-10 19:27:43+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
