@@ -15,7 +15,7 @@
 
 Name: libqmail
 Version: 0.1
-Release: 9.1%{?dist}
+Release: 10.1%{?dist}
 Summary: Reimplementation of djb functions
 %if %{undefined suse_version} && %{undefined sles_version}
 Group: System Environment/Libraries
@@ -210,7 +210,9 @@ Release 0.1 Start 12/09/2018
     hmac_ripemd, hmac_sha1, hmac_sha256, hmac_sha512, md5
 8.  added md5_crypt, sha256_crypt, sha512_crypt
 9.  added mkpasswd function to generate password
-10. use __builtin_add_overflow(), __builtin_mul_overflow() in
-    gen_allocdefs.h to avoid overflow
-11. builtin_overflow.c wrapper functions for builtin_add_overflow(),
+10. gen_allocdefs.h - use __builtin_add_overflow(), __builtin_mul_overflow()
+    to avoid overflow (CVE-2005-1513)
+11. gen_allocdefs.h - added wrapper functions for builtin_add_overflow(),
     builtin_mul_overflow() for compilers missing built-in overflow functions
+12. fixed shadowing of global variables by local variables
+13. alloc.c use malloc instead of custom allocator for memory allocation >= 4096
