@@ -2,7 +2,7 @@ Format: 3.0 (quilt)
 Source: libqmail
 Binary: libqmail, libqmail-dev
 Architecture: any
-Version: 0.1-7
+Version: 0.1-10
 Maintainer: Manvendra Bhangui <manvendra@indimail.org>
 Homepage: http://www.indimail.org
 Debtransform-Files-Tar: debian.tar.gz
