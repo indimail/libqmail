@@ -1,7 +1,7 @@
 /*
  * $Log: gen_allocdefs.h,v $
- * Revision 1.3  2020-05-10 17:49:33+05:30  Cprogrammer
- * GEN_ALLOC refactoring (by Rolf Eike Beer) to fix memory overflow reported by Qualys Security Advisory
+ * Revision 1.3  2020-05-11 19:08:48+05:30  Cprogrammer
+ * https://github.com/notqmail/notqmail/pull/128 (fix overflow CVE-2005-1513)
  *
  * Revision 1.2  2004-06-18 22:59:00+05:30  Cprogrammer
  * added RCS log
