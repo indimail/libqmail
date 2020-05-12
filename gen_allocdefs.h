@@ -1,5 +1,8 @@
 /*
  * $Log: gen_allocdefs.h,v $
+ * Revision 1.4  2020-05-12 11:18:19+05:30  Cprogrammer
+ * set errno to error_nomem on overflow
+ *
  * Revision 1.3  2020-05-11 19:08:48+05:30  Cprogrammer
  * https://github.com/notqmail/notqmail/pull/128 (fix overflow CVE-2005-1513)
  *
@@ -10,6 +13,7 @@
 #ifndef GEN_ALLOC_DEFS_H
 #define GEN_ALLOC_DEFS_H
 #include "hasbltnoverflow.h"
+#include "error.h"
 
 /*- From Rolf Eike Beer notqmail */
 #ifndef HAS_BUILTIN_OVERFLOW
@@ -48,22 +52,27 @@ static int ta_rplus ## _internal (ta *x, unsigned int n, unsigned int pluslen) \
 { \
   unsigned int nlen; \
   if (x->field) { \
-    if (__builtin_add_overflow(n, pluslen, &n)) \
-      return 0; \
+    if (__builtin_add_overflow(n, pluslen, &n)) { \
+        errno = error_nomem; \
+      return 0; } \
     if (n > x->a) { \
       unsigned int nnum; \
-      if (__builtin_add_overflow(n, (n >> 3) + base, &nnum)) \
-        return 0; \
-      if (__builtin_mul_overflow(nnum, sizeof(type), &nlen)) \
-        return 0; \
-      if (!alloc_re(&x->field,x->a * sizeof(type),nlen)) \
-        return 0; \
+      if (__builtin_add_overflow(n, (n >> 3) + base, &nnum)) { \
+        errno = error_nomem; \
+        return 0; } \
+      if (__builtin_mul_overflow(nnum, sizeof(type), &nlen)) { \
+        errno = error_nomem; \
+        return 0; } \
+      if (!alloc_re(&x->field,x->a * sizeof(type),nlen)) { \
+        errno = error_nomem; \
+        return 0; } \
       x->a = nnum; \
       return 1; } \
     return 1; } \
   x->len = 0; \
-  if (__builtin_mul_overflow(n, sizeof(type), &nlen)) \
-    return 0; \
+  if (__builtin_mul_overflow(n, sizeof(type), &nlen)) { \
+    errno = error_nomem; \
+    return 0; } \
   if (!(x->field = (type *) alloc(nlen))) \
     return 0; \
   x->a = n; \
