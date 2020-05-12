@@ -35,3 +35,4 @@ RCS
 debian.tar.gz
 ChangeLog
 debian/changelog
+libqmail.spec
