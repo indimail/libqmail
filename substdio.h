@@ -1,5 +1,9 @@
 /*
  * $Log: substdio.h,v $
+ * Revision 1.7  2020-05-12 11:27:24+05:30  Cprogrammer
+ * changed len argument of substdio_fdbuf to size_t
+ * length argument for substdio_put(), substdio_bput(), substdio_putflsh() changed to unsigned to fix integer signedness error (CVE-2005-1515)
+ *
  * Revision 1.6  2018-05-24 16:23:49+05:30  Cprogrammer
  * added subsdio_discard() function to discard unflushed data
  *
@@ -32,13 +36,13 @@ substdio;
 
 #define SUBSTDIO_FDBUF(op,fd,buf,len) { (buf), 0, (len), (fd), (op) }
 
-void            substdio_fdbuf(substdio *, ssize_t (*op) (), int, char *, int);
+void            substdio_fdbuf(substdio *, ssize_t (*op) (), int, char *, size_t);
 int             substdio_flush(substdio *);
 void            substdio_discard(substdio *);
-int             substdio_putalign(substdio *,char *,unsigned int);
-int             substdio_put(substdio *, char *, int);
-int             substdio_bput(substdio *, char *, int);
-int             substdio_putflush(substdio *, char *, int);
+int             substdio_putalign(substdio *, char *, unsigned int);
+int             substdio_put(substdio *, char *, unsigned int);
+int             substdio_bput(substdio *, char *, unsigned int);
+int             substdio_putflush(substdio *, char *, unsigned int);
 int             substdio_puts(substdio *, char *);
 int             substdio_bputs(substdio *, char *);
 int             substdio_putsflush(substdio *, char *);
