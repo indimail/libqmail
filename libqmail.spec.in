@@ -194,31 +194,3 @@ if [ "%{_libdir}" != "/usr/lib64" -a "%{_libdir}" != "/usr/lib" ] ; then
 fi
 
 %changelog
-* Tue May 12 2020 12:01:43 +0530 mbhangui@gmail.com 0.1-10.1%{?dist}
-Release 0.1 Start 12/09/2018
-1.  First version
-2.  added tai, taia functions for indimail-mta
-3.  fixed data type of length argument of stralloc_readyplus(),
-    stralloc_copyb(), stralloc_catb()
-4.  fixed generation of hasmkffo.h
-5.  fixed incorrect definitions of signals in sig.h
-6.  define env_isinit as extern in env.h as it is already
-    defined in env.c
-7.  added authentication crytographic routines digest_md5, hmac_md5,
-    hmac_ripemd, hmac_sha1, hmac_sha256, hmac_sha512, md5
-8.  added md5_crypt, sha256_crypt, sha512_crypt
-9.  added mkpasswd function to generate password
-10. gen_allocdefs.h - use __builtin_add_overflow(), __builtin_mul_overflow()
-    to avoid overflow (CVE-2005-1513)
-11. gen_allocdefs.h - added wrapper functions for builtin_add_overflow(),
-    builtin_mul_overflow() for compilers missing built-in overflow functions
-12. fixed shadowing of global variables by local variables
-13. alloc.c use malloc instead of custom allocator for memory allocation >= 4096
-14. gen_allocdefs.h - set errno to error_nomem on overflow
-15. substdio.c - converted to C89 prototype and len argument changed to size_t
-16. substdio.h - changed len argument of substdio_fdbuf to size_t
-17. substdio.h - length argument for substdio_put(), substdio_bput(),
-    substdio_putflsh() changed to unsigned to fix integer signedness error (CVE-2005-1515)
-18. substdo.c - length argument for allwrite(), substdio_put(),
-    substdio_bput(), substdio_putflsh() changed to unsigned to fix integer
-    signedness error (CVE-2005-1515)
