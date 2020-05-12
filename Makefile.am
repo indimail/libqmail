@@ -2,6 +2,8 @@ COFLAGS=-z+05:30
 ACLOCAL_AMFLAGS=-I m4
 
 DEFS=@DEFS@ -fno-strict-aliasing -I. -g
+release=$(shell grep Release: libqmail.spec.in | cut -d: -f2|cut -c2-)
+DATE=$(shell date +'%a %b %d %Y %H:%M:%S')
 
 INSTALL_PROGRAM = ${INSTALL}          -c
 install_sh_PROGRAM = $(install_sh)    -c
@@ -23,6 +25,8 @@ MOSTLYCLEANFILES = uint32.h uint64.h haswaitp.h hasflock.h hassgact.h \
 
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libqmail.pc
+
+noinst_SCRIPTS = libqmail.spec
 
 man_MANS = alloc.3 byte.3 caldate.3 caldate_mjd.3 caltime.3 \
 	caltime_tai.3 case.3 cdb.3 coe.3 datetime.3 env.3 error_str.3 \
@@ -85,6 +89,19 @@ COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c \
 	tai64n_decode.c tai64n_encode.c tai_decode.c tai_encode.c \
 	tai_now.c tai_pack.c tai_sub.c tai_unpack.c timeoutread.c \
 	timeoutwrite.c uint32_pack.c uint32_unpack.c wait_nohang.c wait_pid.c
+
+edit = sed \
+	-e 's}@PACKAGE\@}$(PACKAGE)}g' \
+	-e 's}@PACKAGE_VERSION\@}$(PACKAGE_VERSION)}g' \
+	-e 's}@version\@}$(VERSION)}g' \
+	-e 's|@release\@|$(release)|g' \
+	-e 's}@pkgconfigdir\@}$(pkgconfigdir)}g' \
+	-e 's}@VERSION\@}$(VERSION)}g' \
+	-e 's}@DATE\@}$(DATE)}g' \
+	-e 's}@prefix\@}$(prefix)}g'
+
+libqmail.spec: libqmail.spec.in catChangeLog ChangeLog
+	(cat $@.in;./catChangeLog) | $(edit) > $@
 
 hasbltnoverflow.h: trybltnoverflow.c
 	(($(COMPILE) -c trybltnoverflow.c && $(CC) \
