@@ -1,5 +1,8 @@
 /*
  * $Log: gen_allocdefs.h,v $
+ * Revision 1.5  2020-05-13 06:06:42+05:30  Cprogrammer
+ * moved overflow macros to builtinoflmacros.h
+ *
  * Revision 1.4  2020-05-12 11:18:19+05:30  Cprogrammer
  * set errno to error_nomem on overflow
  *
@@ -12,40 +15,8 @@
  */
 #ifndef GEN_ALLOC_DEFS_H
 #define GEN_ALLOC_DEFS_H
-#include "hasbltnoverflow.h"
+#include "builtinoflmacros.h"
 #include "error.h"
-
-/*- From Rolf Eike Beer notqmail */
-#ifndef HAS_BUILTIN_OVERFLOW
-static inline int
-check_ofl(unsigned long long val, unsigned int *res)
-{
-  if (val >> 32)
-    return 1;
-  *res = (unsigned int)val;
-  return 0;
-}
-
-static inline int
-add_overflow(unsigned int a, unsigned int b, unsigned int *res)
-{
-  unsigned long long val = a;
-
-  val += b;
-  return check_ofl(val, res);
-}
-
-static inline int
-mul_overflow(unsigned int a, unsigned int b, unsigned int *res)
-{
-  unsigned long long val = a;
-
-  val *= b;
-  return check_ofl(val, res);
-}
-#define __builtin_add_overflow add_overflow
-#define __builtin_mul_overflow mul_overflow
-#endif /*- #ifndef HAS_BUILTIN_OVERFLOW */
 
 #define GEN_ALLOC_readyplus(ta,type,field,len,a,base,ta_rplus) \
 static int ta_rplus ## _internal (ta *x, unsigned int n, unsigned int pluslen) \
