@@ -11,7 +11,7 @@ INSTALL_SCRIPT = ${INSTALL}           -c
 install_sh_SCRIPT = $(install_sh)     -c
 INSTALL_STRIP_PROGRAM = $(install_sh) -c $(STRIP_OPT)
 all: uint32.h uint64.h haswaitp.h hasflock.h hassgact.h hassgprm.h \
-	select.h hasmkffo.h hasbltnoverflow.h
+	select.h hasmkffo.h hasbltnofl.h builtinoflmacros.h
 
 libqmail_LTLIBRARIES = libqmail.la
 libqmail_la_SOURCES = $(COMMONSOURCES)
@@ -21,7 +21,7 @@ libqmail_la_CFLAGS = -fPIC
 libqmaildir=@libdir@
 
 MOSTLYCLEANFILES = uint32.h uint64.h haswaitp.h hasflock.h hassgact.h \
-	hassgprm.h select.h hasmkffo.h hasbltnoverflow.h
+	hassgprm.h select.h hasmkffo.h hasbltnofl.h
 
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libqmail.pc
@@ -42,15 +42,15 @@ man_MANS = alloc.3 byte.3 caldate.3 caldate_mjd.3 caltime.3 \
 docs = README ChangeLog COPYING AUTHORS
 docdir=@docdir@
 
-include_HEADERS = alloc.h base64.h byte.h caldate.h caltime.h case.h \
-	cdb.h cdbmake.h cdb_make.h coe.h constmap.h datetime.h digest_md5.h \
-	env.h error.h exit.h fd.h fifo.h fmt.h gen_allocdefs.h gen_alloc.h \
-	getEnvConfig.h getln.h global.h hasbltnoverflow.h hmac.h in_crypt.h \
-	leapsecs.h lock.h md5.h makesalt.h mkpasswd.h ndelay.h now.h open.h \
-	pw_comp.h ripemd.h scan.h seek.h select.h sgetopt.h sha1.h sig.h \
-	stralloc.h strerr.h str.h subfd.h subgetopt.h substdio.h taia.h \
-	tai.h tai2.h timeoutread.h timeoutwrite.h typesx.h uint32.h \
-	uint64.h wait.h qprintf.h strmsg.h
+include_HEADERS = alloc.h base64.h builtinoflmacros.h byte.h caldate.h \
+	caltime.h case.h cdb.h cdbmake.h cdb_make.h coe.h constmap.h \
+	datetime.h digest_md5.h env.h error.h exit.h fd.h fifo.h fmt.h \
+	gen_allocdefs.h gen_alloc.h getEnvConfig.h getln.h global.h \
+	hasbltnofl.h hmac.h in_crypt.h leapsecs.h lock.h md5.h makesalt.h \
+	mkpasswd.h ndelay.h now.h open.h pw_comp.h ripemd.h scan.h seek.h \
+	select.h sgetopt.h sha1.h sig.h stralloc.h strerr.h str.h subfd.h \
+	subgetopt.h substdio.h taia.h tai.h tai2.h timeoutread.h \
+	timeoutwrite.h typesx.h uint32.h uint64.h wait.h qprintf.h strmsg.h
 
 includedir=@prefix@/include/qmail
 COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c \
@@ -103,10 +103,11 @@ edit = sed \
 libqmail.spec: libqmail.spec.in catChangeLog ChangeLog
 	(cat $@.in;./catChangeLog) | $(edit) > $@
 
-hasbltnoverflow.h: trybltnoverflow.c
+hasbltnofl.h: trybltnoverflow.c
 	(($(COMPILE) -c trybltnoverflow.c && $(CC) \
 		-o trybltnoverflow trybltnoverflow.o) > /dev/null 2>&1 \
-	&& echo \#define HAS_BUILTIN_OVERFLOW 1 || echo \#warning \"builtin overflow unavailable\"; exit 0 ) > hasbltnoverflow.h
+	&& echo \#define HAS_BUILTIN_OVERFLOW 1 || \
+		echo \#warning \"builtin overflow unavailable\"; exit 0 ) > hasbltnofl.h
 	rm -f trybltnoverflow.o trybltnoverflow
 
 uint32.h: tryulong32.c uint32.h1 uint32.h2
@@ -191,15 +192,15 @@ getln.lo: getln.h substdio.h stralloc.h byte.h gen_alloc.h
 getln2.lo: getln.h substdio.h stralloc.h byte.h gen_alloc.h
 stralloc_arts.lo: stralloc.h byte.h str.h gen_alloc.h
 stralloc_cat.lo: byte.h stralloc.h gen_alloc.h
-stralloc_catb.lo: stralloc.h byte.h gen_alloc.h
+stralloc_catb.lo: stralloc.h byte.h gen_alloc.h hasbltnofl.h
 stralloc_cats.lo: byte.h str.h stralloc.h gen_alloc.h
 stralloc_copy.lo: byte.h stralloc.h gen_alloc.h
-stralloc_eady.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h hasbltnoverflow.h
+stralloc_eady.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h hasbltnofl.h
 stralloc_num.lo: stralloc.h gen_alloc.h
 stralloc_opyb.lo: stralloc.h byte.h gen_alloc.h
 stralloc_opys.lo: byte.h str.h stralloc.h gen_alloc.h
-stralloc_pend.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h hasbltnoverflow.h
-alloc.lo: alloc.h error.h hasbltnoverflow.h
+stralloc_pend.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h hasbltnofl.h
+alloc.lo: alloc.h error.h hasbltnofl.h
 alloc_re.lo: alloc.h byte.h
 getEnvConfig.lo: config.h scan.h env.h
 env.lo: env.h str.h alloc.h
