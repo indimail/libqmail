@@ -192,14 +192,14 @@ getln.lo: getln.h substdio.h stralloc.h byte.h gen_alloc.h
 getln2.lo: getln.h substdio.h stralloc.h byte.h gen_alloc.h
 stralloc_arts.lo: stralloc.h byte.h str.h gen_alloc.h
 stralloc_cat.lo: byte.h stralloc.h gen_alloc.h
-stralloc_catb.lo: stralloc.h byte.h gen_alloc.h hasbltnofl.h
+stralloc_catb.lo: stralloc.h byte.h gen_alloc.h hasbltnofl.h builtinoflmacros.h error.h
 stralloc_cats.lo: byte.h str.h stralloc.h gen_alloc.h
 stralloc_copy.lo: byte.h stralloc.h gen_alloc.h
-stralloc_eady.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h hasbltnofl.h
+stralloc_eady.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h hasbltnofl.h error.h
 stralloc_num.lo: stralloc.h gen_alloc.h
-stralloc_opyb.lo: stralloc.h byte.h gen_alloc.h
+stralloc_opyb.lo: stralloc.h byte.h gen_alloc.h hasbltnofl.h builtinoflmacros.h error.h
 stralloc_opys.lo: byte.h str.h stralloc.h gen_alloc.h
-stralloc_pend.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h hasbltnofl.h
+stralloc_pend.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h hasbltnofl.h error.h
 alloc.lo: alloc.h error.h hasbltnofl.h
 alloc_re.lo: alloc.h byte.h
 getEnvConfig.lo: config.h scan.h env.h
