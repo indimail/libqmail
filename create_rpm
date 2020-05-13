@@ -1,5 +1,13 @@
 #!/bin/sh
 ver=0.1
+cd ..
+if [ -d libqmail-"$ver" ] ; then
+	cp -rp libqmail-"$ver" /tmp
+	cd /tmp/libqmail-"$ver"
+else
+	echo "libqmail-"$ver": No such file or directory" 1>&2
+	exit 1
+fi
 make clean
 make distclean
 if test -f $HOME/.rpmmacros
@@ -23,4 +31,4 @@ tar \
 	-cf - libqmail-"$ver" \
 	| gzip -c > $rpmbuild/SOURCES/libqmail-"$ver".tar.gz
 cd libqmail-"$ver"
-rpmbuild -bb --clean libqmail.spec
+rpmbuild -ba --clean libqmail.spec
