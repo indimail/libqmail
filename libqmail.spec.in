@@ -131,7 +131,8 @@ make %{?_smp_mflags}
 %attr(644,root,root)                    %{_prefix}/include/qmail/fd.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/fifo.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/fmt.h
-%attr(644,root,root)                    %{_prefix}/include/qmail/hasbltnoverflow.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/hasbltnofl.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/builtinoflmacros.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/hmac.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/in_crypt.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/gen_allocdefs.h
