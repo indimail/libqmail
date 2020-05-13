@@ -1,5 +1,8 @@
 /*
  * $Log: stralloc_opyb.c,v $
+ * Revision 1.6  2020-05-13 07:27:07+05:30  Cprogrammer
+ * fix possible integer overflow
+ *
  * Revision 1.5  2019-07-19 14:08:46+05:30  Cprogrammer
  * fixed data type of length argument of stralloc_copyb()
  *
@@ -15,25 +18,30 @@
  */
 #include "stralloc.h"
 #include "byte.h"
+#include "error.h"
+#include "builtinoflmacros.h"
 
 int
-stralloc_copyb(sa, s, n)
-	stralloc       *sa;
-	char           *s;
-	unsigned int    n;
+stralloc_copyb(stralloc *sa, char *s, unsigned int n)
 {
-	if (!stralloc_ready(sa, n + 1))
+	unsigned int    i;
+
+	if (__builtin_add_overflow(n, 1, &i)) {
+		errno = error_nomem;
+		return 0;
+	}
+	if (!stralloc_ready(sa, i))
 		return 0;
 	byte_copy(sa->s, n, s);
 	sa->len = n;
-	sa->s[n] = 'Z';				/*- ``offensive programming'' */
+	sa->s[n] = 'Z'; /*- ``offensive programming'' */
 	return 1;
 }
 
 void
 getversion_stralloc_opyb_c()
 {
-	static char    *x = "$Id: stralloc_opyb.c,v 1.5 2019-07-19 14:08:46+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: stralloc_opyb.c,v 1.6 2020-05-13 07:27:07+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

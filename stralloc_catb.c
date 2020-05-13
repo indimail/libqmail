@@ -1,5 +1,8 @@
 /*
  * $Log: stralloc_catb.c,v $
+ * Revision 1.6  2020-05-13 07:26:46+05:30  Cprogrammer
+ * fix possible integer overflow
+ *
  * Revision 1.5  2019-07-19 14:08:10+05:30  Cprogrammer
  * fixed data type of length argument of stralloc_catb()
  *
@@ -15,27 +18,32 @@
  */
 #include "stralloc.h"
 #include "byte.h"
+#include "error.h"
+#include "builtinoflmacros.h"
 
 int
-stralloc_catb(sa, s, n)
-	stralloc       *sa;
-	char           *s;
-	unsigned int    n;
+stralloc_catb(stralloc *sa, char *s, unsigned int n)
 {
+	unsigned int    i;
+
 	if (!sa->s)
 		return stralloc_copyb(sa, s, n);
-	if (!stralloc_readyplus(sa, n + 1))
+	if (__builtin_add_overflow(n, 1, &i)) {
+		errno = error_nomem;
+		return 0;
+	}
+	if (!stralloc_readyplus(sa, i))
 		return 0;
 	byte_copy(sa->s + sa->len, n, s);
 	sa->len += n;
-	sa->s[sa->len] = 'Z';		/*- ``offensive programming'' */
+	sa->s[sa->len] = 'Z'; /*- ``offensive programming'' */
 	return 1;
 }
 
 void
 getversion_stralloc_catb_c()
 {
-	static char    *x = "$Id: stralloc_catb.c,v 1.5 2019-07-19 14:08:10+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: stralloc_catb.c,v 1.6 2020-05-13 07:26:46+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
