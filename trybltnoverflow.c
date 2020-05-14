@@ -1,9 +1,13 @@
+/*
+ * $Log: trybltnoverflow.c,v $
+ * Revision 1.1  2020-05-14 11:07:18+05:30  Cprogrammer
+ * Initial revision
+ *
+ */
 int
 main(int argc, char **argv)
 {
-	unsigned int i;
+	unsigned int    a = 0x80000000, b = 0x80000000, c;
 
-	if (__builtin_add_overflow(1, 2, &i) || __builtin_mul_overflow(1, 2, &i))
-		return 1;
-	return 0;
+	return !__builtin_add_overflow(a, b, &c) && !__builtin_mul_overflow(a, b, &c);
 }
