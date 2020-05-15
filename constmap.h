@@ -1,5 +1,8 @@
 /*
  * $Log: constmap.h,v $
+ * Revision 1.4  2020-05-15 11:37:12+05:30  Cprogrammer
+ * define function prototypes as extern
+ *
  * Revision 1.3  2004-10-11 13:51:38+05:30  Cprogrammer
  * added function prototypes
  *
@@ -23,8 +26,8 @@ struct constmap
 	int            *inputlen;
 };
 
-int             constmap_init(struct constmap *, char *, int, int);
-void            constmap_free(struct constmap *);
-char           *constmap(struct constmap *, char *, int);
+extern int      constmap_init(struct constmap *, char *, unsigned int, int);
+extern void     constmap_free(struct constmap *);
+extern char    *constmap(struct constmap *, char *, unsigned int);
 
 #endif
