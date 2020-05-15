@@ -1,5 +1,8 @@
 /*
  * $Log: env.h,v $
+ * Revision 1.7  2020-05-15 11:35:17+05:30  Cprogrammer
+ * made defintions extern
+ *
  * Revision 1.6  2019-10-26 21:06:27+05:30  Cprogrammer
  * define env_isinit as extern
  *
@@ -22,14 +25,14 @@
 extern int      env_isinit;
 extern char   **environ;
 
-int             env_init(void);
-int             env_put(char *);
-int             env_put2(char *, char *);
-int             env_unset(char *);
-void            restore_env(void);
-char           *env_get(char *);
-char           *env_pick(void);
-void            env_clear(void);
-char           *env_findeq(char *);
+extern int      env_init(void);
+extern int      env_put(char *);
+extern int      env_put2(char *, char *);
+extern int      env_unset(char *);
+extern void     restore_env(void);
+extern char    *env_get(char *);
+extern char    *env_pick(void);
+extern void     env_clear(void);
+extern char    *env_findeq(char *);
 
 #endif
