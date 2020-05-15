@@ -165,7 +165,7 @@ byte_rcspn.lo: byte.h
 byte_zero.lo: byte.h
 byte_diff.lo: byte.h
 coe.lo: coe.h
-constmap.lo: constmap.h alloc.h case.h
+constmap.lo: constmap.h alloc.h case.h hasbltnofl.h builtinoflmacros.h
 error.lo: error.h
 error_str.lo: error.h
 error_temp.lo: error.h
@@ -203,7 +203,7 @@ stralloc_pend.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h hasbltnofl.h er
 alloc.lo: alloc.h error.h hasbltnofl.h
 alloc_re.lo: alloc.h byte.h
 getEnvConfig.lo: config.h scan.h env.h
-env.lo: env.h str.h alloc.h
+env.lo: env.h str.h alloc.h hasbltnofl.h builtinoflmacros.h
 envread.lo: env.h str.h
 sgetopt.lo: substdio.h subfd.h sgetopt.h subgetopt.h
 subgetopt.lo: subgetopt.h
