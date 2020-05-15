@@ -30,5 +30,12 @@ tar \
 	--exclude="libqmail-$ver/RCS" \
 	-cf - libqmail-"$ver" \
 	| gzip -c > $rpmbuild/SOURCES/libqmail-"$ver".tar.gz
+if [ -d /usr/include/qmail ] ; then
+	release=$(rpm -qf /usr/include/qmail | cut -d- -f4 | cut -d. -f1)
+	release=$(expr $release + 1)
+else
+	release=1
+fi
 cd libqmail-"$ver"
+sed -i -e "s|^Release: .*|Release: $release.1%{?dist}|g" libqmail.spec
 rpmbuild -ba --clean libqmail.spec
