@@ -1,5 +1,9 @@
 /*
  * $Log: constmap.c,v $
+ * Revision 1.4  2020-05-15 11:36:20+05:30  Cprogrammer
+ * convert function prototypes to c89 standards
+ * fix possible integer overflow
+ *
  * Revision 1.3  2004-10-22 20:24:08+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,18 +14,17 @@
 #include "constmap.h"
 #include "alloc.h"
 #include "case.h"
+#include "error.h"
+#include "builtinoflmacros.h"
 
 static constmap_hash
-hash(s, len)
-	char           *s;
-	int             len;
+hash(char *s, unsigned int len)
 {
 	unsigned char   ch;
 	constmap_hash   h;
 
 	h = 5381;
-	while (len > 0)
-	{
+	while (len > 0) {
 		ch = *s++ - 'A';
 		if (ch <= 'Z' - 'A')
 			ch += 'a' - 'A';
@@ -32,18 +35,14 @@ hash(s, len)
 }
 
 char           *
-constmap(cm, s, len)
-	struct constmap *cm;
-	char           *s;
-	int             len;
+constmap(struct constmap *cm, char *s, unsigned int len)
 {
 	constmap_hash   h;
 	int             pos;
 
 	h = hash(s, len);
 	pos = cm->first[h & cm->mask];
-	while (pos != -1)
-	{
+	while (pos != -1) {
 		if (h == cm->hash[pos])
 			if (len == cm->inputlen[pos])
 				if (!case_diffb(cm->input[pos], len, s))
@@ -54,16 +53,9 @@ constmap(cm, s, len)
 }
 
 int
-constmap_init(cm, s, len, flagcolon)
-	struct constmap *cm;
-	char           *s;
-	int             len;
-	int             flagcolon;
+constmap_init(struct constmap *cm, char *s, unsigned int len, int flagcolon)
 {
-	int             i;
-	int             j;
-	int             k;
-	int             pos;
+	unsigned int    i, j, k, t, pos;
 	constmap_hash   h;
 
 	cm->num = 0;
@@ -75,35 +67,31 @@ constmap_init(cm, s, len, flagcolon)
 		h += h;
 	cm->mask = h - 1;
 	cm->first = (int *) alloc(sizeof(int) * h);
-	if (cm->first)
-	{
+	if (cm->first) {
 		cm->input = (char **) alloc(sizeof(char *) * cm->num);
-		if (cm->input)
-		{
+		if (cm->input) {
 			cm->inputlen = (int *) alloc(sizeof(int) * cm->num);
-			if (cm->inputlen)
-			{
-				cm->hash = (constmap_hash *) alloc(sizeof(constmap_hash) * cm->num);
-				if (cm->hash)
-				{
+			if (cm->inputlen) {
+				if (__builtin_mul_overflow(sizeof(constmap_hash), cm->num, &t)) {
+					errno = error_nomem;
+					return 0;
+				}
+				cm->hash = (constmap_hash *) alloc(t);
+				if (cm->hash) {
 					cm->next = (int *) alloc(sizeof(int) * cm->num);
-					if (cm->next)
-					{
+					if (cm->next) {
 						for (h = 0; h <= cm->mask; ++h)
 							cm->first[h] = -1;
 						pos = 0;
 						i = 0;
 						for (j = 0; j < len; ++j)
-							if (!s[j])
-							{
+							if (!s[j]) {
 								k = j - i;
-								if (flagcolon)
-								{
+								if (flagcolon) {
 									for (k = i; k < j; ++k)
 										if (s[k] == ':')
 											break;
-									if (k >= j)
-									{
+									if (k >= j) {
 										i = j + 1;
 										continue;
 									}
@@ -133,8 +121,7 @@ constmap_init(cm, s, len, flagcolon)
 }
 
 void
-constmap_free(cm)
-	struct constmap *cm;
+constmap_free(struct constmap *cm)
 {
 	alloc_free((char *) cm->next);
 	alloc_free((char *) cm->hash);
@@ -146,7 +133,7 @@ constmap_free(cm)
 void
 getversion_constmap_c()
 {
-	static char    *x = "$Id: constmap.c,v 1.3 2004-10-22 20:24:08+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: constmap.c,v 1.4 2020-05-15 11:36:20+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
