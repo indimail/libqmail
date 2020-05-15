@@ -1,5 +1,9 @@
 /*
  * $Log: env.c,v $
+ * Revision 1.6  2020-05-15 11:30:41+05:30  Cprogrammer
+ * convert function prototypes to c89 standards
+ * fix possible integer overflow
+ *
  * Revision 1.5  2009-05-03 22:42:42+05:30  Cprogrammer
  * simplified restore_env()
  *
@@ -15,7 +19,7 @@
  *
  * env.c, envread.c, env.h: environ library
  * Daniel J. Bernstein, djb@silverton.berkeley.edu.
- * Depends on str.h, alloc.h.
+ * Depends on str.h, alloc.h, env.h, builtinoflmacros.h.
  * Requires environ.
  * 19960113: rewrite. warning: interface is different.
  * No known patent problems.
@@ -24,11 +28,13 @@
 #include "str.h"
 #include "alloc.h"
 #include "env.h"
+#include "error.h"
+#include "builtinoflmacros.h"
 
 int             env_isinit = 0;	/*- if env_isinit: */
 static int      ea;				/*- environ is a pointer to ea+1 char*'s.  */
 static int      en;				/*- the first en of those are ALLOCATED. environ[en] is 0.  */
-static char   **origenv;
+static char   **origenv;        /*- points to pristine original environment */
 
 static void
 env_goodbye(i)
@@ -44,8 +50,7 @@ static char    *null = 0;
 void
 env_clear()
 {
-	if (env_isinit)
-	{
+	if (env_isinit) {
 		while (en)
 			env_goodbye(0);
 		alloc_free((char *) environ);
@@ -61,16 +66,14 @@ env_unsetlen(s, len)
 {
 	int             i;
 
-	for (i = en - 1; i >= 0; --i)
-	{
+	for (i = en - 1; i >= 0; --i) {
 		if (!str_diffn(s, environ[i], len) && environ[i][len] == '=')
 			env_goodbye(i);
 	}
 }
 
 int
-env_unset(s)
-	char           *s;
+env_unset(char *s)
 {
 	if (!env_isinit && !env_init())
 		return 0;
@@ -79,18 +82,28 @@ env_unset(s)
 }
 
 static int
-env_add(s)
-	char           *s;
+env_add(char *s)
 {
 	char           *t;
+	unsigned int    i;
 
 	if ((t = env_findeq(s)))
 		env_unsetlen(s, t - s);
-	if (en == ea)
-	{
-		ea += 30;
-		if (!alloc_re((char *) &environ, (en + 1) * sizeof(char *), (ea + 1) * sizeof(char *)))
-		{
+	if (en == ea) {
+		/*- 
+		 * we add one extra to ea to avoid overflow check again
+		 * while calling alloc()
+		 */
+		if (__builtin_add_overflow(ea, 30+1, &i)) {
+			errno = error_nomem;
+			return 0;
+		}
+		ea = i - 1; /*- substract the one extra added above */
+		/*-
+		 * no overflow check for en +1 as it would have succeeded in an
+		 * earlier call to alloc()
+		 */
+		if (!alloc_re((char *) &environ, (en + 1) * sizeof(char *), i * sizeof(char *))) {
 			ea = en;
 			return 0;
 		}
@@ -101,18 +114,21 @@ env_add(s)
 }
 
 int
-env_put(s)
-	char           *s;
+env_put(char *s)
 {
 	char           *u;
+	unsigned int    i;
 
 	if (!env_isinit && !env_init())
 		return 0;
-	if (!(u = alloc(str_len(s) + 1)))
+	if (__builtin_add_overflow(str_len(s), 1, &i)) {
+		errno = error_nomem;
+		return 0;
+	}
+	if (!(u = alloc(i)))
 		return 0;
 	str_copy(u, s);
-	if (!env_add(u))
-	{
+	if (!env_add(u)) {
 		alloc_free(u);
 		return 0;
 	}
@@ -120,23 +136,32 @@ env_put(s)
 }
 
 int
-env_put2(s, t)
-	char           *s;
-	char           *t;
+env_put2(char *s, char *t)
 {
 	char           *u;
-	int             slen;
+	unsigned int    slen, i;
 
 	if (!env_isinit && !env_init())
 		return 0;
 	slen = str_len(s);
-	if (!(u = alloc(slen + str_len(t) + 2)))
+	if (__builtin_add_overflow(slen, str_len(t), &i)) {
+		errno = error_nomem;
+		return 0;
+	}
+	if (__builtin_add_overflow(i, 2, &i)) {
+		errno = error_nomem;
+		return 0;
+	}
+	if (!(u = alloc(i)))
 		return 0;
 	str_copy(u, s);
 	u[slen] = '=';
+	/*- 
+	 * overflow cannot happen in slen+1 as above builtin
+	 * overflow checks succeeded
+	 */
 	str_copy(u + slen + 1, t);
-	if (!env_add(u))
-	{
+	if (!env_add(u)) {
 		alloc_free(u);
 		return 0;
 	}
@@ -147,16 +172,26 @@ int
 env_init()
 {
 	char          **newenviron;
-	int             i;
+	unsigned int    i;
 
 	for (en = 0; environ[en]; ++en);
-	ea = en + 10;
-	if (!(newenviron = (char **) alloc((ea + 1) * sizeof(char *))))
+	/*- 
+	 * we add one extra to ea to avoid overflow check again
+	 * while calling alloc()
+	 */
+	if (__builtin_add_overflow(en, 10+1, &i)) {
+		errno = error_nomem;
 		return 0;
-	for (en = 0; environ[en]; ++en)
-	{
-		if (!(newenviron[en] = alloc(str_len(environ[en]) + 1)))
-		{
+	}
+	ea = i - 1; /*- substract the one extra added above */
+	if (!(newenviron = (char **) alloc(i * sizeof(char *))))
+		return 0;
+	for (en = 0; environ[en]; ++en) {
+		if (__builtin_add_overflow(str_len(environ[en]), 1, &i)) {
+			errno = error_nomem;
+			return 0;
+		}
+		if (!(newenviron[en] = alloc(i))) {
 			for (i = 0; i < en; ++i)
 				alloc_free(newenviron[i]);
 			alloc_free((char *) newenviron);
@@ -175,8 +210,7 @@ env_init()
 void
 restore_env()
 {
-	if (origenv)
-	{
+	if (origenv) {
 		env_clear();
 		environ = origenv;
 		origenv = 0;
@@ -187,7 +221,7 @@ restore_env()
 void
 getversion_env_c()
 {
-	static char    *x = "$Id: env.c,v 1.5 2009-05-03 22:42:42+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: env.c,v 1.6 2020-05-15 11:30:41+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
