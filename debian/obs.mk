@@ -10,7 +10,7 @@ edit = sed \
 
 changelog: changelog.in ../conf-release ../conf-version
 	(cat $@.in; echo ""; \
-	echo " -- libqmail <libqmail@indimail.org>  `date +'%a, %d %b %Y %H:%S:%M %z'`" ) \
+	echo " -- libqmail <libqmail@indimail.org>  `date +'%a, %d %b %Y %H:%M:%S %z'`" ) \
 	| $(edit) > $@
 
 libqmail.dsc: libqmail.dsc.in ../conf-release ../conf-version
