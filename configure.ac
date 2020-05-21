@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.3  2020-05-21 10:52:32+05:30  Cprogrammer
+# version 0.3
+#
 # Revision 1.2  2020-05-21 09:00:12+05:30  Cprogrammer
 # version 0.2
 #
@@ -10,10 +13,10 @@
 # Initial revision
 #
 #
-# $Id: configure.ac,v 1.2 2020-05-21 09:00:12+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.3 2020-05-21 10:52:32+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
-AC_INIT([libqmail],0.2,[Manvendra Bhangui manvendra@indimail.org],libqmail, [https://sourceforge.net/projects/indimail])
+AC_INIT([libqmail],0.3,[Manvendra Bhangui manvendra@indimail.org],libqmail, [https://github.com/mbhangui/libqmail])
 AC_CANONICAL_TARGET
 PACKAGE=$PACKAGE_NAME
 VERSION=$PACKAGE_VERSION
