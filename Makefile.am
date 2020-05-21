@@ -100,7 +100,7 @@ edit = sed \
 	-e 's}@DATE\@}$(DATE)}g' \
 	-e 's}@prefix\@}$(prefix)}g'
 
-libqmail.spec: libqmail.spec.in catChangeLog ChangeLog
+libqmail.spec: libqmail.spec.in catChangeLog ChangeLog conf-version conf-release
 	(cat $@.in;./catChangeLog) | $(edit) > $@
 
 hasbltnofl.h: trybltnoverflow.c
