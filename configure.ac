@@ -10,7 +10,7 @@
 # $Id: configure.ac,v 1.1 2020-05-11 12:32:48+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
-AC_INIT([libqmail],0.1,[Manvendra Bhangui manvendra@indimail.org],libqmail, [https://sourceforge.net/projects/indimail])
+AC_INIT([libqmail],0.2,[Manvendra Bhangui manvendra@indimail.org],libqmail, [https://sourceforge.net/projects/indimail])
 AC_CANONICAL_TARGET
 PACKAGE=$PACKAGE_NAME
 VERSION=$PACKAGE_VERSION
