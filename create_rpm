@@ -1,13 +1,10 @@
 #!/bin/sh
-ver=0.1
+curdir=`pwd`
+ver=$(cat conf-version)
 cd ..
-if [ -d libqmail-"$ver" ] ; then
-	cp -rp libqmail-"$ver" /tmp
-	cd /tmp/libqmail-"$ver"
-else
-	echo "libqmail-"$ver": No such file or directory" 1>&2
-	exit 1
-fi
+/bin/rm -rf /tmp/libqmail-"$vers"
+cp -rp libqmail /tmp/libqmail-"$ver"
+cd /tmp/libqmail-"$ver"
 make clean
 make distclean
 if test -f $HOME/.rpmmacros
@@ -31,11 +28,22 @@ tar \
 	-cf - libqmail-"$ver" \
 	| gzip -c > $rpmbuild/SOURCES/libqmail-"$ver".tar.gz
 if [ -d /usr/include/qmail ] ; then
-	release=$(rpm -qf /usr/include/qmail | cut -d- -f4 | cut -d. -f1)
-	release=$(expr $release + 1)
+	version=$(rpm -qf /usr/include/qmail|cut -d- -f3)
+	if [ "$version" = "$ver" ] ; then
+		release=$(rpm -qf /usr/include/qmail | cut -d- -f4 | cut -d. -f2)
+		release=$(expr $release + 1)
+	else
+		release=1
+	fi
 else
 	release=1
 fi
-cd libqmail-"$ver"
-sed -i -e "s|^Release: .*|Release: $release.1%{?dist}|g" libqmail.spec
+cd /tmp/libqmail-"$ver"
+sed -i -e "s|^Release: .*|Release: 1.$release%{?dist}|g" libqmail.spec
 rpmbuild -ba --clean libqmail.spec
+cd $curdir
+if [ $? -eq 0 ] ; then
+	echo 1.$release > conf-release
+	cd debian
+	make
+fi
