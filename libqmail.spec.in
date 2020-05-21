@@ -14,8 +14,8 @@
 %endif
 
 Name: libqmail
-Version: 0.1
-Release: 10.1%{?dist}
+Version: @VERSION@
+Release: @release@%{?dist}
 Summary: Reimplementation of djb functions
 %if %{undefined suse_version} && %{undefined sles_version}
 Group: System Environment/Libraries

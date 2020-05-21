@@ -2,7 +2,7 @@ COFLAGS=-z+05:30
 ACLOCAL_AMFLAGS=-I m4
 
 DEFS=@DEFS@ -fno-strict-aliasing -I. -g
-release=$(shell grep Release: libqmail.spec.in | cut -d: -f2|cut -c2-)
+release := $(shell head -1 conf-release 2>/dev/null|| echo "1.1")
 DATE=$(shell date +'%a %b %d %Y %H:%M:%S')
 
 INSTALL_PROGRAM = ${INSTALL}          -c
