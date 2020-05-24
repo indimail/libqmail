@@ -16,7 +16,7 @@
 Name: libqmail
 Version: @VERSION@
 Release: @release@%{?dist}
-Summary: Reimplementation of djb functions
+Summary: Library for qmail
 %if %{undefined suse_version} && %{undefined sles_version}
 Group: System Environment/Libraries
 %else
