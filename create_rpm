@@ -1,10 +1,17 @@
 #!/bin/sh
+# $Log: create_rpm,v $
+# Revision 1.5  2020-05-24 12:06:39+05:30  Cprogrammer
+# rpm creation script for libqmail
+#
+#
+# $Id: create_rpm,v 1.5 2020-05-24 12:06:39+05:30 Cprogrammer Exp mbhangui $
+#
 curdir=`pwd`
-ver=$(cat conf-version)
+version=$(cat conf-version)
 cd ..
-/bin/rm -rf /tmp/libqmail-"$vers"
-cp -rp libqmail /tmp/libqmail-"$ver"
-cd /tmp/libqmail-"$ver"
+/bin/rm -rf /tmp/libqmail-"$version"
+cp -rp libqmail /tmp/libqmail-"$version"
+cd /tmp/libqmail-"$version"
 make clean
 make distclean
 if test -f $HOME/.rpmmacros
@@ -22,14 +29,14 @@ fi
 /bin/rm -rf autom4te.cache .deps
 cd ..
 tar \
-	--exclude="libqmail-$ver/.git" \
-	--exclude="libqmail-$ver/debian"  \
-	--exclude="libqmail-$ver/RCS" \
-	-cf - libqmail-"$ver" \
-	| gzip -c > $rpmbuild/SOURCES/libqmail-"$ver".tar.gz
+	--exclude="libqmail-$version/.git" \
+	--exclude="libqmail-$version/debian"  \
+	--exclude="libqmail-$version/RCS" \
+	-cf - libqmail-"$version" \
+	| gzip -c > $rpmbuild/SOURCES/libqmail-"$version".tar.gz
 if [ -d /usr/include/qmail ] ; then
-	version=$(rpm -qf /usr/include/qmail|cut -d- -f3)
-	if [ "$version" = "$ver" ] ; then
+	qversion=$(rpm -qf /usr/include/qmail|cut -d- -f3)
+	if [ "$qversion" = "$version" ] ; then
 		release=$(rpm -qf /usr/include/qmail | cut -d- -f4 | cut -d. -f2)
 		release=$(expr $release + 1)
 	else
@@ -38,27 +45,46 @@ if [ -d /usr/include/qmail ] ; then
 else
 	release=1
 fi
-echo -n "Build RPM for libqmail-"$ver"-1."$release" (Y/N) - "
+echo -n "Build RPM for libqmail-"$version"-1."$release" (Y/N) - "
 read key
 if [ " $key" = " Y" -o " $key" = " y" ] ; then
-	cp /tmp/libqmail-"$ver"/libqmail.spec /tmp
-	/bin/rm -rf /tmp/libqmail-"$ver"
+	cp /tmp/libqmail-"$version"/libqmail.spec /tmp
+	/bin/rm -rf /tmp/libqmail-"$version"
 	sed -i -e "s|^Release: .*|Release: 1.$release%{?dist}|g" /tmp/libqmail.spec
 	rpmbuild -ba --clean /tmp/libqmail.spec
+	/bin/rm /tmp/libqmail.spec
 	cd $curdir
 	if [ $? -eq 0 ] ; then
-		echo 1.$release > conf-release
-		cd debian
-		make
+		tmprel=`cat conf-release 2>/dev/null`
+		if [ ! " $tmprel" = " 1.$release" ] ; then
+			echo 1.$release > conf-release
+			cd debian
+			make
+		fi
 	fi
 	build_arch=`rpmbuild --showrc|grep "^build arch" | awk '{print $4}'`
 	dist=`uname -r |cut -d . -f4`
-	rpm --addsign $rpmbuild/RPMS/$build_arch/libqmail-"$ver"-"1.$release".$dist.$build_arch.rpm
+	rpm --addsign $rpmbuild/RPMS/$build_arch/libqmail-"$version"-"1.$release".$dist.$build_arch.rpm
+	echo -n "RPM lint for libqmail-"$version"-1."$release" (Y/N) - "
+	read key
+	if [ " $key" = " Y" -o " $key" = " y" ] ; then
+		(
+		echo libqmail
+		rpmlint $rpmbuild/RPMS/$build_arch/libqmail-"$version"-"1.$release".$dist.$build_arch.rpm
+		echo ------------------------
+		echo libqmail-devel
+		rpmlint $rpmbuild/RPMS/$build_arch/libqmail-devel-"$version"-"1.$release".$dist.$build_arch.rpm
+		echo ------------------------
+		echo libqmail-"$version"-"1.$release".$dist.src.rpm
+		rpmlint $rpmbuild/SRPMS/libqmail-"$version"-"1.$release".$dist.src.rpm
+		echo ------------------------
+		) 2>&1 | less
+	fi
 else
-	/bin/rm -rf /tmp/libqmail-"$ver"
+	/bin/rm -rf /tmp/libqmail-"$version"
 fi
 echo -n "Remove Source (Y/N) - "
 read key
 if [ " $key" = " Y" -o " $key" = " y" ] ; then
-	/bin/rm -f $rpmbuild/SOURCES/libqmail-"$ver".tar.gz
+	/bin/rm -f $rpmbuild/SOURCES/libqmail-"$version".tar.gz
 fi
