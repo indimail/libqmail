@@ -1,10 +1,13 @@
 #!/bin/sh
 # $Log: create_rpm,v $
+# Revision 1.6  2020-05-25 23:14:02+05:30  Cprogrammer
+# updated release numbers for build
+#
 # Revision 1.5  2020-05-24 12:06:39+05:30  Cprogrammer
 # rpm creation script for libqmail
 #
 #
-# $Id: create_rpm,v 1.5 2020-05-24 12:06:39+05:30 Cprogrammer Exp mbhangui $
+# $Id: create_rpm,v 1.6 2020-05-25 23:14:02+05:30 Cprogrammer Exp mbhangui $
 #
 curdir=`pwd`
 version=$(cat conf-version)
@@ -55,19 +58,22 @@ echo -n "Build RPM for libqmail-"$version"-1."$release" (Y/N) - "
 read key
 if [ " $key" = " Y" -o " $key" = " y" ] ; then
 	cp /tmp/libqmail-"$version"/libqmail.spec /tmp
-	/bin/rm -rf /tmp/libqmail-"$version"
 	sed -i -e "s|^Release: .*|Release: 1.$release%{?dist}|g" /tmp/libqmail.spec
-	rpmbuild -ba --clean /tmp/libqmail.spec
-	/bin/rm /tmp/libqmail.spec
+	/bin/rm -rf /tmp/libqmail-"$version"
 	cd $curdir
 	if [ $? -eq 0 ] ; then
 		tmprel=`cat conf-release 2>/dev/null`
 		if [ ! " $tmprel" = " 1.$release" ] ; then
 			echo 1.$release > conf-release
+			make libqmail.spec
+			cp libqmail.spec /tmp
 			cd debian
 			make
+			cd ..
 		fi
 	fi
+	rpmbuild -ba --clean /tmp/libqmail.spec
+	/bin/rm /tmp/libqmail.spec
 	build_arch=`rpmbuild --showrc|grep "^build arch" | awk '{print $4}'`
 	rpm --addsign $rpmbuild/RPMS/$build_arch/libqmail-"$version"-"1.$release".$dist.$build_arch.rpm
 	echo -n "RPM lint for libqmail-"$version"-1."$release" (Y/N) - "
