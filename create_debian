@@ -1,0 +1,16 @@
+#!/bin/sh
+set -x
+libqmail_version=$(cat conf-version)
+if [ -d ../stage ] ; then
+	/bin/rm -rf ../stage
+fi
+cd ..
+mkdir -p stage
+cp -rp libqmail stage/libqmail-$libqmail_version
+make -s -C stage/libqmail-$libqmail_version/debian
+make -s -C stage/libqmail-$libqmail_version clean
+make -s -C stage/libqmail-$libqmail_version distclean
+cd stage/libqmail-$libqmail_version
+dpkg-buildpackage -tc -b
+cd ../..
+#/bin/rm -r stage
