@@ -27,7 +27,7 @@ License: GPL-3.0+
 %else
 License: GPLv3
 %endif
-URL: http://www.indimail.org
+URL: https://github.com/mbhangui/libqmail
 Source0: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 %global see_base For a description of IndiMail visit http://www.indimail.org
 %global mandir %{_prefix}/share/man
