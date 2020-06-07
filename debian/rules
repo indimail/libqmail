@@ -23,8 +23,8 @@ prefix=/usr
 DOCDIR=$(prefix)/share/doc/libqmail
 mandir=$(prefix)/share/man
 
-bits=$(shell if [ -d /usr/lib64 ] ; then echo 64; else echo 32; fi)
-libdir=$(shell if [ $(bits) -eq 64 ] ; then echo $(prefix)/lib64; else echo $(prefix)/lib;fi)
+arch=$(shell uname -m)
+libdir=$(prefix)/lib/$(arch)-linux-gnu
 cp=/bin/cp
 rm=/bin/rm
 
@@ -40,7 +40,8 @@ build-stamp:
 	#
 	# run configure script
 	#
-	./configure --prefix=$(prefix) --mandir=$(mandir)
+	./configure --prefix=$(prefix) --libdir=$(libdir) \
+		--with-pkgconfigdir=/usr/lib/pkgconfig --mandir=$(mandir)
 	$(MAKE) -s DESTDIR=$(DESTDIR)
 	${rm} -rf $(DESTDIR)$(libdir)/*.la
 	touch build-stamp

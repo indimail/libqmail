@@ -1,4 +1,4 @@
 usr/include/qmail /usr/include
-usr/lib/libqmail.a /usr/lib
-usr/lib/*.so /usr/lib
+usr/lib/x86_64-linux-gnu/libqmail.a /usr/lib/x86_64-linux-gnu
+usr/lib/x86_64-linux-gnu/*.so /usr/lib/x86_64-linux-gnu
 usr/share/man/man3 /usr/share/man
