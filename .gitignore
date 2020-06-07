@@ -39,3 +39,5 @@ debian/changelog.in
 debian/libqmail.dsc
 libqmail.spec
 conf-release
+debian/libqmail-dev.install
+debian/libqmail.install
