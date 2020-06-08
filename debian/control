@@ -9,7 +9,7 @@ Homepage: http://indimail.sourceforge.net
 Package: libqmail
 Section: libs
 Architecture: any
-Depends: ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Reimplementation of qmail functions in a shared library
  This library is a reimplementation of qmail functions which means that it provides
  Daniel Bernstein's interfaces (with some extensions).

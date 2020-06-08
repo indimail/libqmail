@@ -15,8 +15,8 @@ cd ..
 /bin/rm -rf /tmp/libqmail-"$version"
 cp -rp libqmail /tmp/libqmail-"$version"
 cd /tmp/libqmail-"$version"
-make clean
-make distclean
+make -s clean
+make -s distclean
 if test -f $HOME/.rpmmacros
 then
 	topdir=`grep ^%_topdir $HOME/.rpmmacros | awk '{print $2}'`
@@ -31,6 +31,7 @@ else
 fi
 /bin/rm -rf autom4te.cache .deps
 cd ..
+echo "Archiving libqmail-"$version".tar.gz in `pwd`"
 tar \
 	--exclude="libqmail-$version/.git" \
 	--exclude="libqmail-$version/debian"  \
@@ -69,10 +70,10 @@ if [ " $key" = " Y" -o " $key" = " y" ] ; then
 		tmprel=`cat conf-release 2>/dev/null`
 		if [ ! " $tmprel" = " 1.$release" ] ; then
 			echo 1.$release > conf-release
-			make libqmail.spec
+			make -s libqmail.spec
 			cp libqmail.spec /tmp
 			cd debian
-			make
+			make -s
 			cd ..
 		fi
 	fi

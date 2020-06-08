@@ -20,11 +20,11 @@ else
 endif
 
 prefix=/usr
-DOCDIR=$(prefix)/share/doc/libqmail
 mandir=$(prefix)/share/man
 
 arch=$(shell uname -m)
-libdir=$(prefix)/lib/$(arch)-linux-gnu
+# check https://wiki.debian.org/Multiarch/Implementation#Dynamic_debian.2F.2A_files
+libd=$(shell if [ -d $(prefix)/lib/$(arch)-linux-gnu ] ; then echo $(arch)-linux-gnu; else echo lib;fi)
 cp=/bin/cp
 rm=/bin/rm
 
@@ -34,16 +34,12 @@ build: build-stamp
 build-stamp:
 	dh_testdir
 	#
-	# Extract source archives
-	#
-	if [ -f ../BUILD/debian/obs_deb_prep ] ; then sh ../BUILD/debian/obs_deb_prep; fi
-	#
 	# run configure script
 	#
-	./configure --prefix=$(prefix) --libdir=$(libdir) \
+	./configure --prefix=$(prefix) --libdir=$(prefix)/lib/$(libd) \
 		--with-pkgconfigdir=/usr/lib/pkgconfig --mandir=$(mandir)
 	$(MAKE) -s DESTDIR=$(DESTDIR)
-	${rm} -rf $(DESTDIR)$(libdir)/*.la
+	${rm} -rf $(DESTDIR)$(libdir)/lib/$(libd)/*.la
 	touch build-stamp
 
 clean:
@@ -61,10 +57,8 @@ install: build
 	dh_prep || dh_clean -k
 	dh_installdirs
 	$(MAKE) -s install DESTDIR=$(DESTDIR)
-	#mkdir -p $(DESTDIR)$(DOCDIR)
-	#install -m 0644 README "$(DESTDIR)$(DOCDIR)"
 
-binary-indep: build install
+binary-indep: build install debian/libqmail.install debian/libqmail-dev.install
 	dh_testdir
 	dh_testroot
 	find $(DESTDIR)$(mandir) -name '*'.? -type f -exec gzip -q {} \;
@@ -83,6 +77,11 @@ binary-indep: build install
 	dh_gencontrol
 	dh_md5sums
 	dh_builddeb
+
+debian/libqmail.install: debian/libqmail.install.in
+	sed -e 's,@libd\@,$(libd),g' $@.in > $@
+debian/libqmail-dev.install: debian/libqmail-dev.install.in
+	sed -e 's,@libd\@,$(libd),g' $@.in > $@
 
 # Build architecture-dependent files here. 
 binary-arch: build install

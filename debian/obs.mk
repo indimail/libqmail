@@ -26,8 +26,10 @@ libqmail-dev.install: libqmail-dev.install.in
 	$(edit) $@.in > $@
 
 debian.tar.gz: changelog compat control copyright libqmail-dev.dirs \
-libqmail-dev.docs libqmail-dev.install libqmail.dirs libqmail.docs \
-libqmail.dsc libqmail.install README rules
+libqmail-dev.docs libqmail.dirs libqmail.docs \
+libqmail.dsc README rules libqmail.install.in \
+libqmail-dev.install.in
 	tar cf - changelog compat control copyright libqmail-dev.dirs \
-		libqmail-dev.docs libqmail-dev.install libqmail.dirs libqmail.docs \
-		libqmail.dsc libqmail.install README rules |gzip -c >$@
+		libqmail-dev.docs libqmail.dirs libqmail.docs \
+		libqmail.dsc README rules libqmail.install.in \
+		libqmail-dev.install.in |gzip -c >$@

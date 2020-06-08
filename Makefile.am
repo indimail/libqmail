@@ -15,7 +15,7 @@ all: uint32.h uint64.h haswaitp.h hasflock.h hassgact.h hassgprm.h \
 
 libqmail_LTLIBRARIES = libqmail.la
 libqmail_la_SOURCES = $(COMMONSOURCES)
-libqmail_la_LIBADD = @LIB_CRYPT@ @LIB_SSL@ 
+libqmail_la_LIBADD = @LIB_CRYPT@ @LIB_CRYPTO@ @LIB_SSL@
 libqmail_la_LDFLAGS = -version-info @LIBVER@:0:0
 libqmail_la_CFLAGS = -fPIC
 libqmaildir=@libdir@
