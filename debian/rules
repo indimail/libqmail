@@ -24,7 +24,7 @@ mandir=$(prefix)/share/man
 
 arch=$(shell uname -m)
 # check https://wiki.debian.org/Multiarch/Implementation#Dynamic_debian.2F.2A_files
-libd=$(shell if [ -d $(prefix)/lib/$(arch)-linux-gnu ] ; then echo $(arch)-linux-gnu; else echo lib;fi)
+libd=$(shell if [ -d $(prefix)/lib/$(arch)-linux-gnu ] ; then echo lib/$(arch)-linux-gnu; else echo lib;fi)
 cp=/bin/cp
 rm=/bin/rm
 
@@ -36,10 +36,10 @@ build-stamp:
 	#
 	# run configure script
 	#
-	./configure --prefix=$(prefix) --libdir=$(prefix)/lib/$(libd) \
+	./configure --prefix=$(prefix) --libdir=$(prefix)/$(libd) \
 		--with-pkgconfigdir=/usr/lib/pkgconfig --mandir=$(mandir)
 	$(MAKE) -s DESTDIR=$(DESTDIR)
-	${rm} -rf $(DESTDIR)$(libdir)/lib/$(libd)/*.la
+	${rm} -rf $(DESTDIR)$(prefix)/$(libd)/*.la
 	touch build-stamp
 
 clean:
