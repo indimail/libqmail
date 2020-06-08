@@ -1,11 +1,14 @@
 #!/bin/sh
-set -x
+if [ ! -f /etc/debian_version ] ; then
+	echo "Not a debian or ubuntu distribution" 1>&2
+	exit 1
+fi
 libqmail_version=$(cat conf-version)
+make -s -C  $HOME/stage/libqmail-$libqmail_version/debian
 /bin/rm -rf $HOME/stage/libqmail
-mkdir -p $HOME/stage/libqmail-$libqmail_version
-
-cp -rp . $HOME/stage/libqmail-$libqmail_version
-make -s -C $HOME/stage/libqmail-$libqmail_version/debian
-cd $HOME/stage/libqmail-$libqmail_version
+mkdir -p    $HOME/stage/libqmail-$libqmail_version
+cp -rp .    $HOME/stage/libqmail-$libqmail_version
+cd          $HOME/stage/libqmail-$libqmail_version
 dpkg-buildpackage -tc -b
+/bin/rm -rf $HOME/stage/libqmail-$libqmail_version
 ls -lt $HOME/stage
