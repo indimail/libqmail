@@ -58,10 +58,12 @@ install: build
 	dh_installdirs
 	$(MAKE) -s install DESTDIR=$(DESTDIR)
 
-binary-indep: build install debian/libqmail.install debian/libqmail-dev.install
+binary-indep: build install
 	dh_testdir
 	dh_testroot
 	find $(DESTDIR)$(mandir) -name '*'.? -type f -exec gzip -q {} \;
+	sed -i -e 's,@libd\@,$(libd),g' debian/libqmail.install
+	sed -i -e 's,@libd\@,$(libd),g' debian/libqmail-dev.install
 	dh_install --sourcedir=$(DESTDIR) -plibqmail
 	dh_install --sourcedir=$(DESTDIR) -plibqmail-dev
 	dh_installchangelogs
@@ -77,11 +79,6 @@ binary-indep: build install debian/libqmail.install debian/libqmail-dev.install
 	dh_gencontrol
 	dh_md5sums
 	dh_builddeb
-
-debian/libqmail.install: debian/libqmail.install.in
-	sed -e 's,@libd\@,$(libd),g' $@.in > $@
-debian/libqmail-dev.install: debian/libqmail-dev.install.in
-	sed -e 's,@libd\@,$(libd),g' $@.in > $@
 
 # Build architecture-dependent files here. 
 binary-arch: build install

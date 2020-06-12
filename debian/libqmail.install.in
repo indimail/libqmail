@@ -1,2 +1,2 @@
-usr/@libd@/*.so.* /usr/@libd@
 usr/lib/pkgconfig/libqmail.pc /usr/lib/pkgconfig
+usr/@libd@/*.so.* /usr/@libd@
