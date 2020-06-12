@@ -3,8 +3,8 @@ if [ ! -f /etc/debian_version ] ; then
 	echo "Not a debian or ubuntu distribution" 1>&2
 	exit 1
 fi
+make -s -C debian
 libqmail_version=$(cat conf-version)
-make -s -C  $HOME/stage/libqmail-$libqmail_version/debian
 /bin/rm -rf $HOME/stage/libqmail
 mkdir -p    $HOME/stage/libqmail-$libqmail_version
 cp -rp .    $HOME/stage/libqmail-$libqmail_version

@@ -2,13 +2,11 @@ all: debian.tar.gz
 version=$(shell cat ../conf-version)
 release := $(shell head -1 ../conf-release 2>/dev/null|| echo "1.1")
 arch=$(shell uname -m)
-libd=$(arch)-linux-gnu
 
 edit = sed \
 	-e 's,@version\@,$(version),g' \
 	-e 's,@mandir\@,$(mandir),g' \
 	-e 's,@release\@,$(release),g' \
-	-e 's,@libd\@,$(libd),g' \
 	-e 's,@prefix\@,$(prefix),g'
 
 changelog: changelog.in ../conf-release ../conf-version
@@ -27,9 +25,9 @@ libqmail-dev.install: libqmail-dev.install.in
 
 debian.tar.gz: changelog compat control copyright libqmail-dev.dirs \
 libqmail-dev.docs libqmail.dirs libqmail.docs \
-libqmail.dsc README rules libqmail.install.in \
-libqmail-dev.install.in
+libqmail.dsc README rules libqmail.install \
+libqmail-dev.install
 	tar cf - changelog compat control copyright libqmail-dev.dirs \
 		libqmail-dev.docs libqmail.dirs libqmail.docs \
-		libqmail.dsc README rules libqmail.install.in \
-		libqmail-dev.install.in |gzip -c >$@
+		libqmail.dsc README rules libqmail.install \
+		libqmail-dev.install |gzip -c >$@
