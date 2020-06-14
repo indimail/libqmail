@@ -1,5 +1,9 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.4  2020-06-15 00:56:06+05:30  Cprogrammer
+# updated email address
+# added AC_CHECK_LIB(crypto, ..)
+#
 # Revision 1.3  2020-05-21 10:52:32+05:30  Cprogrammer
 # version 0.3
 #
@@ -13,7 +17,7 @@
 # Initial revision
 #
 #
-# $Id: configure.ac,v 1.3 2020-05-21 10:52:32+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.4 2020-06-15 00:56:06+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],0.3,[Manvendra Bhangui libqmail@indimail.org],libqmail, [https://github.com/mbhangui/libqmail])

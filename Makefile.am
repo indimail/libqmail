@@ -100,6 +100,10 @@ edit = sed \
 	-e 's}@DATE\@}$(DATE)}g' \
 	-e 's}@prefix\@}$(prefix)}g'
 
+conf-release:
+	if test ! -f conf-release ; then \
+		echo "1.1" > conf-release; \
+	fi ;
 libqmail.spec: libqmail.spec.in catChangeLog ChangeLog conf-version conf-release
 	(cat $@.in;./catChangeLog) | $(edit) > $@
 
