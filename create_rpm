@@ -1,5 +1,8 @@
 #!/bin/sh
 # $Log: create_rpm,v $
+# Revision 1.7  2020-06-15 00:56:33+05:30  Cprogrammer
+# refactored create_rpm script
+#
 # Revision 1.6  2020-05-25 23:14:02+05:30  Cprogrammer
 # updated release numbers for build
 #
@@ -7,7 +10,7 @@
 # rpm creation script for libqmail
 #
 #
-# $Id: create_rpm,v 1.6 2020-05-25 23:14:02+05:30 Cprogrammer Exp mbhangui $
+# $Id: create_rpm,v 1.7 2020-06-15 00:56:33+05:30 Cprogrammer Exp mbhangui $
 #
 curdir=`pwd`
 version=$(cat conf-version)

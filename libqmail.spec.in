@@ -78,7 +78,7 @@ Group: System Environment/Libraries
 %else
 Group: Development/Tools/Other
 %endif
-Requires: libqmail
+Requires: libqmail >= %{version}
 
 %description -n libqmail-devel
 This package contains the development header files and libraries
@@ -94,7 +94,7 @@ necessary to develop qmail applications
 make %{?_smp_mflags}
 
 %install
-%make_install
+%{__make} -s DESTDIR=%{buildroot} install-strip
 %{__rm} -f %{buildroot}%{_libdir}/libqmail.la
 
 %clean
