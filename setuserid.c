@@ -39,7 +39,7 @@ grpscan(char *user, int *ngroups)
 	struct passwd  *pwd;
 	struct group   *grp;
 	long            maxgroups, idx;
-	gid_t          *gidsetlen;
+	gid_t          *gidset;
 	char          **ptr;
 
 	if (!user || !*user)
@@ -47,25 +47,25 @@ grpscan(char *user, int *ngroups)
 	if ((maxgroups = sysconf(_SC_NGROUPS_MAX)) == -1)
 		return ((gid_t *) 0);
 	else
-	if (!(gidsetlen = (gid_t *) alloc(maxgroups * sizeof(gid_t))))
+	if (!(gidset = (gid_t *) alloc(maxgroups * sizeof(gid_t))))
 		return ((gid_t *) 0);
 	else
 	if (!(pwd = getpwnam(user)))
 		return ((gid_t *) 0);
 	idx = 0;
-	gidsetlen[idx++] = pwd->pw_gid;	/* the base gid */
+	gidset[idx++] = pwd->pw_gid;	/* the base gid */
 	endpwent();
 	for (;;) {
 		if (!(grp = getgrent()))
 			break;
 		for (ptr = grp->gr_mem; *ptr; ptr++) {
-			if (!str_diff(user, *ptr) && grp->gr_gid != gidsetlen[0])
-				gidsetlen[idx++] = grp->gr_gid;	/* supplementary group ids */
+			if (!str_diff(user, *ptr) && grp->gr_gid != gidset[0])
+				gidset[idx++] = grp->gr_gid;	/* supplementary group ids */
 		}
 	}
 	endgrent();
 	*ngroups = idx;
-	return (gidsetlen);
+	return (gidset);
 }
 
 
