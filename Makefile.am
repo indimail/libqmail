@@ -48,8 +48,8 @@ include_HEADERS = alloc.h base64.h builtinoflmacros.h byte.h caldate.h \
 	gen_allocdefs.h gen_alloc.h getEnvConfig.h getln.h global.h \
 	hasbltnofl.h hmac.h in_crypt.h leapsecs.h lock.h md5.h makesalt.h \
 	mkpasswd.h ndelay.h now.h open.h pw_comp.h ripemd.h scan.h seek.h \
-	select.h sgetopt.h sha1.h sig.h stralloc.h strerr.h str.h subfd.h \
-	subgetopt.h substdio.h taia.h tai.h tai2.h timeoutread.h \
+	select.h setuserid.h sgetopt.h sha1.h sig.h stralloc.h strerr.h \
+	str.h subfd.h subgetopt.h substdio.h taia.h tai.h tai2.h timeoutread.h \
 	timeoutwrite.h typesx.h uint32.h uint64.h wait.h qprintf.h strmsg.h
 
 includedir=@prefix@/include/qmail
@@ -73,8 +73,8 @@ COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c \
 	pw_comp.c qprintf.c scan_8long.c scan_double.c scan_int.c scan_long.c \
 	scan_plusminus.c scan_uint.c scan_ulong.c scan_ulonglong.c \
 	scan_ushort.c scan_xlong.c seek_cur.c seek_end.c seek_set.c \
-	seek_trunc.c sgetopt.c sha256_crypt.c sha512_crypt.c sig.c \
-	sig_alarm.c sig_block.c sig_bug.c sig_catch.c sig_child.c \
+	seek_trunc.c setuserid.c sgetopt.c sha256_crypt.c sha512_crypt.c \
+	sig.c sig_alarm.c sig_block.c sig_bug.c sig_catch.c sig_child.c \
 	sig_hup.c sig_int.c sig_misc.c sig_pause.c sig_pipe.c sig_term.c \
 	stralloc_arts.c stralloc_catb.c stralloc_cat.c stralloc_cats.c \
 	stralloc_copy.c stralloc_eady.c stralloc_num.c stralloc_opyb.c \
@@ -289,6 +289,7 @@ seek_cur.lo: seek.h
 seek_end.lo: seek.h
 seek_set.lo: seek.h
 seek_trunc.lo: seek.h
+setuserid.lo: alloc.h str.h
 sig.lo: sig.h
 sig_alarm.lo: sig.h
 sig_block.lo: sig.h hassgprm.h

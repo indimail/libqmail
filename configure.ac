@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.5  2020-06-16 16:09:30+05:30  Cprogrammer
+# added pwd.h, grp.h
+#
 # Revision 1.4  2020-06-15 00:56:06+05:30  Cprogrammer
 # updated email address
 # added AC_CHECK_LIB(crypto, ..)
@@ -17,7 +20,7 @@
 # Initial revision
 #
 #
-# $Id: configure.ac,v 1.4 2020-06-15 00:56:06+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.5 2020-06-16 16:09:30+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],0.3,[Manvendra Bhangui libqmail@indimail.org],libqmail, [https://github.com/mbhangui/libqmail])
@@ -47,7 +50,7 @@ PKG_INSTALLDIR
 dnl Checks for header files.
 AC_ISC_POSIX
 dnl AC_HEADER_STDC
-AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h fcntl.h signal.h sys/types.h sys/wait.h sys/file.h)
+AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h sys/types.h sys/wait.h sys/file.h)
 
 AC_CHECK_FUNC(flock)
 if test "$ac_cv_func_flock" = yes ; then
