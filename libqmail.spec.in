@@ -154,6 +154,7 @@ make %{?_smp_mflags}
 %attr(644,root,root)                    %{_prefix}/include/qmail/scan.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/seek.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/select.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/setuserid.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/sgetopt.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/sha1.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/sig.h
