@@ -10,8 +10,6 @@ install_sh_PROGRAM = $(install_sh)    -c
 INSTALL_SCRIPT = ${INSTALL}           -c
 install_sh_SCRIPT = $(install_sh)     -c
 INSTALL_STRIP_PROGRAM = $(install_sh) -c $(STRIP_OPT)
-all: uint32.h uint64.h haswaitp.h hasflock.h hassgact.h hassgprm.h \
-	select.h hasmkffo.h hasbltnofl.h builtinoflmacros.h
 
 libqmail_LTLIBRARIES = libqmail.la
 libqmail_la_SOURCES = $(COMMONSOURCES)
@@ -19,6 +17,9 @@ libqmail_la_LIBADD = @LIB_CRYPT@ @LIB_CRYPTO@ @LIB_SSL@
 libqmail_la_LDFLAGS = -version-info @LIBVER@:0:0
 libqmail_la_CFLAGS = -fPIC
 libqmaildir=@libdir@
+
+BUILT_SOURCES = uint32.h uint64.h haswaitp.h hasflock.h hassgact.h hassgprm.h \
+	select.h hasmkffo.h hasbltnofl.h builtinoflmacros.h
 
 MOSTLYCLEANFILES = uint32.h uint64.h haswaitp.h hasflock.h hassgact.h \
 	hassgprm.h select.h hasmkffo.h hasbltnofl.h
