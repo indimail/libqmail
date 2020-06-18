@@ -12,6 +12,9 @@
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
 #endif
+#ifdef HAVE_GRP_H
+#include <grp.h>
+#endif
 
 gid_t           *grpscan(char *, int *);
 int              setuserid(char *);
