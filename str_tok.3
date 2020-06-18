@@ -1,0 +1,119 @@
+.TH str_tok 3
+.SH NAME
+str_tok \- extract tokens from strings
+.SH SYNOPSIS
+.nf
+.B #include <string.h>
+.PP
+.BI "char *str_tok(char *" str ", const char *" delim );
+.fi
+.PP
+.SH DESCRIPTION
+The
+.BR str_tok ()
+function breaks a string into a sequence of zero or more nonempty tokens.
+On the first call to
+.BR str_tok (),
+the string to be parsed should be
+specified in
+.IR str .
+In each subsequent call that should parse the same string,
+.I str
+must be NULL.
+.PP
+The
+.I delim
+argument specifies a set of bytes that
+delimit the tokens in the parsed string.
+The caller may specify different strings in
+.I delim
+in successive
+calls that parse the same string.
+.PP
+Each call to
+.BR str_tok ()
+returns a pointer to a
+null-terminated string containing the next token.
+This string does not include the delimiting byte.
+If no more tokens are found,
+.BR str_tok ()
+returns NULL.
+.PP
+A sequence of calls to
+.BR str_tok ()
+that operate on the same string maintains a pointer
+that determines the point from which to start searching for the next token.
+The first call to
+.BR str_tok ()
+sets this pointer to point to the first byte of the string.
+The start of the next token is determined by scanning forward
+for the next nondelimiter byte in
+.IR str .
+If such a byte is found, it is taken as the start of the next token.
+If no such byte is found,
+then there are no more tokens, and
+.BR str_tok ()
+returns NULL.
+(A string that is empty or that contains only delimiters
+will thus cause
+.BR str_tok ()
+to return NULL on the first call.)
+.PP
+The end of each token is found by scanning forward until either
+the next delimiter byte is found or until the
+terminating null byte (\(aq\e0\(aq) is encountered.
+If a delimiter byte is found, it is overwritten with
+a null byte to terminate the current token, and
+.BR str_tok ()
+saves a pointer to the following byte;
+that pointer will be used as the starting point
+when searching for the next token.
+In this case,
+.BR str_tok ()
+returns a pointer to the start of the found token.
+.PP
+From the above description,
+it follows that a sequence of two or more contiguous delimiter bytes in
+the parsed string is considered to be a single delimiter, and that
+delimiter bytes at the start or end of the string are ignored.
+Put another way: the tokens returned by
+.BR str_tok ()
+are always nonempty strings.
+Thus, for example, given the string "\fIaaa;;bbb,\fP",
+successive calls to
+.BR str_tok ()
+that specify the delimiter string "\fI;,\fP"
+would return the strings "\fIaaa\fP" and "\fIbbb\fP",
+and then a null pointer.
+
+.SH RETURN VALUE
+The
+.BR str_tok ()
+function returns a pointer to
+the next token, or NULL if there are no more tokens.
+
+.SH BUGS
+Be cautious when using these functions.
+If you do use them, note that:
+.IP * 2
+This function modify its first argument.
+.IP *
+This function cannot be used on constant strings.
+.IP *
+The identity of the delimiting byte is lost.
+.IP *
+The
+.BR str_tok ()
+function uses a static buffer while parsing, so it's not thread safe.
+
+.SH SEE ALSO
+.BR index (3),
+.BR memchr (3),
+.BR rindex (3),
+.BR strchr (3),
+.BR string (3),
+.BR strpbrk (3),
+.BR strsep (3),
+.BR strspn (3),
+.BR strstr (3),
+.BR wcstok (3)

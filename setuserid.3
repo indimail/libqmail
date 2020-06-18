@@ -1,0 +1,22 @@
+.TH setuserid 3
+.SH NAME
+setuserid \- set user identity
+.SH SYNTAX
+.B #include <setuserid.h>
+
+int \fBsetuserid\fP(char* \fIuser\fR);
+.SH DESCRIPTION
+
+setuserid sets the effective user ID, effective group ID, supplementary groups of the
+user \fIuser\fR to its id in passwd(5) database. It uses setuid(2), setgid(2), setgroups, getpwnam(3), getgrent(3).
+
+setuserid returns -1 on failure, 0 on success
+
+.SH "SEE ALSO"
+setuid(2),
+setgid(2),
+setgroups(2),
+getpwnam(3),
+getgrent(3),
+grpscan(3),
+setuser_privileges(3)

@@ -1,0 +1,35 @@
+.TH str_str 3
+.SH NAME
+str_str \- locate a substring
+.SH SYNOPSIS
+.nf
+.B #include <str.h>
+.PP
+.BI "char *str_str(const char *" haystack ", const char *" needle );
+.fi
+.SH DESCRIPTION
+The
+.BR str_str ()
+function finds the first occurrence of the substring
+.I needle
+in the string
+.IR haystack .
+The terminating null bytes (\(aq\e0\(aq) are not compared.
+
+.SH RETURN VALUE
+str_str return a pointer to the beginning of the
+located substring, or NULL if the substring is not found.
+
+.SH SEE ALSO
+.BR index (3),
+.BR memchr (3),
+.BR memmem (3),
+.BR rindex (3),
+.BR strcasecmp (3),
+.BR strchr (3),
+.BR string (3),
+.BR strpbrk (3),
+.BR strsep (3),
+.BR strspn (3),
+.BR strtok (3),
+.BR wcsstr (3)
