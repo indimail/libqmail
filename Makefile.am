@@ -38,7 +38,11 @@ man_MANS = alloc.3 byte.3 caldate.3 caldate_mjd.3 caltime.3 \
 	scan_ulonglong.3 sgetopt.3 stralloc.3 subgetopt.3 substdio.3 \
 	substdio_copy.3 substdio_in.3 substdio_out.3 tai.3 tai_now.3 \
 	tai_pack.3 tai_unpack.3 tai_sub.3 tai_less.3 tai_approx.3 \
-	tai_add.3 taia_unpack.3 taia_addsec.3 wait.3 fmt_long.3 fmt_int.3
+	tai_add.3 taia_unpack.3 taia_addsec.3 wait.3 fmt_long.3 fmt_int.3 \
+	scan_xlong.3 scan_ushort.3 scan_uint.3 scan_ulong.3 scan_8long.3 \
+	str_start.3 str_len.3 str_rchr.3 str_diff.3 str_diffn.3 str_chr.3 \
+	str_copy.3 setuserid.3 grpscan.3 setuser_privileges.3 str_tok.3 \
+	str_str.3
 
 docs = README ChangeLog COPYING AUTHORS
 docdir=@docdir@

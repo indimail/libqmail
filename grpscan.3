@@ -1,0 +1,20 @@
+.TH grpscan 3
+.SH NAME
+grpscan \- return array of groups to which the user belongs
+.SH SYNTAX
+.B #include <setuserid.h>
+
+gid_t *\fBgrpscan\fP(char *\fIuser\fR, int *\fIngroups\fR);
+.SH DESCRIPTION
+
+grpscan reads group(5) database for primary and supplementary groups to which
+user belongs and returns an gid_t array of \fIngroups\fR. The return value
+and \fIngroups\fR can be further used in a call to setgroups(2).
+
+grpscan returns NULL on failure or gid_t array on success.
+
+.SH "SEE ALSO"
+setgroups(2),
+getgrent(3),
+setuserid(3)
+setuser_privileges(3)
