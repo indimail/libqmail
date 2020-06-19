@@ -1,0 +1,7 @@
+libqmail (@version@-@release@) unstable; urgency=medium
+
+  * Debian build - use /usr/lib/<triplet> (e.g. /usr/lib/x86_64-linux-gnu)
+  * configur.ac - use LIB_SSL, LIB_CRYPTO
+  * debian/control - use ${shlibs:Depends}
+  * added setuserid.c, setuserid.h
+  * Makefile.am: use BUILT_SOURCES to build all needed header files

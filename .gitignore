@@ -33,9 +33,7 @@ ltmain.sh
 missing
 RCS
 debian.tar.gz
-ChangeLog
 debian/changelog
-debian/changelog.in
 debian/libqmail.dsc
 libqmail.spec
 conf-release
