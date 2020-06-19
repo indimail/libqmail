@@ -5,3 +5,4 @@ libqmail (@version@-@release@) unstable; urgency=medium
   * debian/control - use ${shlibs:Depends}
   * added setuserid.c, setuserid.h
   * Makefile.am: use BUILT_SOURCES to build all needed header files
+  * added AC_PROG_CC_C99 to configure.ac

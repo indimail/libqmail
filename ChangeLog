@@ -3,6 +3,8 @@ Release 0.3 Start 21/05/2020
 01. Debian build - use /usr/lib/<triplet> (e.g. /usr/lib/x86_64-linux-gnu)
 02. configur.ac - use LIB_SSL, LIB_CRYPTO
 03. debian/control - use ${shlibs:Depends}
-16/06/2020
+- 16/06/2020
 04. added setuserid.c, setuserid.h
 05. Makefile.am: use BUILT_SOURCES to build all needed header files
+- 20/06/2020
+06. added AC_PROG_CC_C99 to configure.ac

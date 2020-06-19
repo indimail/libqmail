@@ -41,6 +41,7 @@ AC_PROG_LIBTOOL
 AC_PROG_LN_S
 AC_PROG_AWK
 AC_PROG_CC
+AC_PROG_CC_C99
 AC_PROG_INSTALL
 AC_CONFIG_MACRO_DIR([m4])
 AC_PROG_MAKE_SET
@@ -124,6 +125,14 @@ case $pwdhash in
 	AC_DEFINE_UNQUOTED(PASSWORD_HASH,-1,Use System Crypt Encryption)
 	;;
 esac
+
+if test -f conf-release
+then
+	release=$(cat conf-release)
+else
+	release="1.1"
+fi
+AC_SUBST(release)
 
 AC_OUTPUT(Makefile)
 

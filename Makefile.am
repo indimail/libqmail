@@ -2,8 +2,7 @@ COFLAGS=-z+05:30
 ACLOCAL_AMFLAGS=-I m4
 
 DEFS=@DEFS@ -fno-strict-aliasing -I. -g
-release := $(shell head -1 conf-release 2>/dev/null|| echo "1.1")
-DATE=$(shell date +'%a %b %d %Y %H:%M:%S')
+release=@release@
 
 INSTALL_PROGRAM = ${INSTALL}          -c
 install_sh_PROGRAM = $(install_sh)    -c
@@ -102,7 +101,6 @@ edit = sed \
 	-e 's|@release\@|$(release)|g' \
 	-e 's}@pkgconfigdir\@}$(pkgconfigdir)}g' \
 	-e 's}@VERSION\@}$(VERSION)}g' \
-	-e 's}@DATE\@}$(DATE)}g' \
 	-e 's}@prefix\@}$(prefix)}g'
 
 conf-release:
