@@ -8,3 +8,4 @@ Release 0.3 Start 21/05/2020
 05. Makefile.am: use BUILT_SOURCES to build all needed header files
 - 20/06/2020
 06. added AC_PROG_CC_C99 to configure.ac
+07. use m4_normalize(m4_include([conf-version])) in AC_INIT

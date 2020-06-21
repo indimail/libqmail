@@ -6,3 +6,4 @@ libqmail (@version@-@release@) unstable; urgency=medium
   * added setuserid.c, setuserid.h
   * Makefile.am: use BUILT_SOURCES to build all needed header files
   * added AC_PROG_CC_C99 to configure.ac
+  * use m4_normalize(m4_include([conf-version])) in AC_INIT
