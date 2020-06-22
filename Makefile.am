@@ -12,7 +12,7 @@ INSTALL_STRIP_PROGRAM = $(install_sh) -c $(STRIP_OPT)
 libqmail_LTLIBRARIES = libqmail.la
 libqmail_la_SOURCES = $(COMMONSOURCES)
 libqmail_la_LIBADD = @LIB_CRYPT@ @LIB_CRYPTO@ @LIB_SSL@
-libqmail_la_LDFLAGS = -version-info @LIBVER@:0:0 -release @VERSION@
+libqmail_la_LDFLAGS = -version-info @LIBVER@:0:0
 libqmail_la_CFLAGS = -fPIC
 libqmaildir=@libdir@
 
