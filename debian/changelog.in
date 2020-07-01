@@ -7,3 +7,5 @@ libqmail (@version@-@release@) unstable; urgency=medium
   * Makefile.am: use BUILT_SOURCES to build all needed header files
   * added AC_PROG_CC_C99 to configure.ac
   * use m4_normalize(m4_include([conf-version])) in AC_INIT
+  * Added textcode from libowfat, http://www.fefe.de/libowfat/ 
+  * added array library from http://cr.yp.to/lib/array.html

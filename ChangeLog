@@ -9,3 +9,6 @@ Release 0.3 Start 21/05/2020
 - 20/06/2020
 06. added AC_PROG_CC_C99 to configure.ac
 07. use m4_normalize(m4_include([conf-version])) in AC_INIT
+01/07/2020
+08. Added textcode from libowfat, http://www.fefe.de/libowfat/ 
+09. added array library from http://cr.yp.to/lib/array.html

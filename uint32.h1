@@ -9,11 +9,19 @@
  */
 #ifndef UINT32_H
 #define UINT32_H
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+#ifdef HAVE_INTTYPES_H
+#include <inttypes.h>
+#endif
 
 typedef unsigned int uint32;
-extern void uint32_pack(char *,uint32);
-extern void uint32_pack_big(char *,uint32);
-extern void uint32_unpack(char *,uint32 *);
-extern void uint32_unpack_big(char *,uint32 *);
+typedef int32_t int32;
+
+extern void     uint32_pack(char *, uint32);
+extern void     uint32_pack_big(char *, uint32);
+extern void     uint32_unpack(char *, uint32 *);
+extern void     uint32_unpack_big(char *, uint32 *);
 
 #endif

@@ -1,7 +1,7 @@
 COFLAGS=-z+05:30
 ACLOCAL_AMFLAGS=-I m4
 
-DEFS=@DEFS@ -fno-strict-aliasing -I. -g
+DEFS=@DEFS@ -fno-strict-aliasing -I. -Iarray -Itextcode -g
 
 INSTALL_PROGRAM = ${INSTALL}          -c
 install_sh_PROGRAM = $(install_sh)    -c
@@ -42,7 +42,14 @@ man_MANS = alloc.3 byte.3 caldate.3 caldate_mjd.3 caltime.3 \
 	str_copy.3 setuserid.3 grpscan.3 setuser_privileges.3 str_tok.3 \
 	str_str.3 \
 	textcode/fmt_asn1derlength.3 textcode/fmt_asn1dertag.3 \
-	textcode/fmt_utf8.3
+	textcode/fmt_utf8.3 array/array_get.3 array/array.3 \
+	array/array_reset.3 array/array_cate.3 array/iarray_init.3 \
+	array/array_equal.3 array/array_length.3 array/array_catb.3 \
+	array/array_trunc.3 array/array_cats.3 array/array_cats0.3 \
+	array/array_fail.3 array/array_truncate.3 array/array_bytes.3 \
+	array/array_cat.3 array/array_start.3 array/iarray_allocate.3 \
+	array/iarray_get.3 array/array_cat0.3 array/iarray_free.3 \
+	array/array_allocate.3
 
 docs = README ChangeLog COPYING AUTHORS
 docdir=@docdir@
@@ -56,7 +63,8 @@ include_HEADERS = alloc.h base64.h builtinoflmacros.h byte.h caldate.h \
 	select.h setuserid.h sgetopt.h sha1.h sig.h stralloc.h strerr.h \
 	str.h subfd.h subgetopt.h substdio.h taia.h tai.h tai2.h timeoutread.h \
 	timeoutwrite.h typesx.h uint32.h uint64.h wait.h qprintf.h strmsg.h \
-	textcode/array.h textcode/entities.h textcode/textcode.h
+	array/array.h textcode/entities.h textcode/textcode.h likely.h iarray.h \
+	safemult.h uint16.h
 
 includedir=@prefix@/include/qmail
 COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c \
@@ -111,7 +119,14 @@ COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c \
 	textcode/scan_quotedprintable.c textcode/scan_to_array.c \
 	textcode/scan_tofrom_array.c textcode/scan_to_sa.c \
 	textcode/scan_urlencoded.c textcode/scan_uuencoded.c \
-	textcode/scan_yenc.c
+	textcode/scan_yenc.c \
+	array/array_cats0.c array/iarray_allocate.c array/array_start.c \
+	array/iarray_init.c array/array_trunc.c array/array_reset.c \
+	array/array_get.c array/iarray_free.c array/array_catb.c \
+	array/iarray_length.c array/array_fail.c array/array_cate.c \
+	array/array_bytes.c array/iarray_get.c array/array_truncate.c \
+	array/array_cat.c array/array_cat0.c array/array_cats.c \
+	array/array_allocate.c array/array_equal.c array/array_length.c
 
 edit = sed \
 	-e 's}@PACKAGE\@}$(PACKAGE)}g' \

@@ -39,3 +39,4 @@ libqmail.spec
 conf-release
 debian/libqmail-dev.install
 debian/libqmail.install
+.dirstamp
