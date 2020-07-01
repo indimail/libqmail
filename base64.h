@@ -9,7 +9,7 @@
 #include "stralloc.h"
 
 #ifndef _B64SUB_C
-extern char     b64alpha[];
+extern const char b64alpha[];
 #endif
 
 extern int b64decode(const unsigned char *, int, stralloc *);
