@@ -1,4 +1,7 @@
-#include "fmt.h"
+/*
+ * $Log: $
+ */
+#include "textcode.h"
 
 size_t fmt_utf8(char *dest,uint32_t n) {
   size_t i,j;
@@ -24,3 +27,10 @@ size_t fmt_utf8(char *dest,uint32_t n) {
   return 0;
 }
 
+void
+getversion_fmt_utf8_c()
+{
+	static char    *x = "$Id: $";
+
+	x++;
+}

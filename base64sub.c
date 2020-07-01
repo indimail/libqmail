@@ -29,7 +29,7 @@
 
 #define B64PAD '='
 
-static const char *b64alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+const char     *b64alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 /*
  * returns 0 ok, 1 illegal, -1 problem 

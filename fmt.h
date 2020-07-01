@@ -1,5 +1,8 @@
 /*
  * $Log: fmt.h,v $
+ * Revision 1.8  2020-07-01 16:16:41+05:30  Cprogrammer
+ * removed inttypes
+ *
  * Revision 1.7  2020-07-01 12:15:39+05:30  Cprogrammer
  * added fmt_hexdump(), fmt_tohex()
  *
@@ -26,9 +29,6 @@
 #endif
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
-#endif
-#ifdef HAVE_INTTYPES_H
-#include <inttypes.h>
 #endif
 
 #define FMT_LONG   41			/*- enough space to hold -2^127 in decimal, plus \0 */

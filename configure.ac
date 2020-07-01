@@ -1,6 +1,6 @@
 #
 # $Log: configure.ac,v $
-# Revision 1.7  2020-07-01 12:13:35+05:30  Cprogrammer
+# Revision 1.8  2020-07-01 15:59:46+05:30  Cprogrammer
 # added subdir-objects
 #
 # Revision 1.6  2020-06-21 21:27:07+05:30  Cprogrammer
@@ -25,8 +25,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-#
-# $Id: configure.ac,v 1.7 2020-07-01 12:13:35+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.8 2020-07-01 15:59:46+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],0.3,[Manvendra Bhangui libqmail@indimail.org],libqmail, [https://github.com/mbhangui/libqmail])

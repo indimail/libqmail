@@ -9,6 +9,9 @@
 #ifdef HAVE_STDDEF_H
 #include <stddef.h>
 #endif
+#ifdef HAVE_INTTYPES_H
+#include <inttypes.h>
+#endif
 #include "array.h"
 #include "stralloc.h"
 
