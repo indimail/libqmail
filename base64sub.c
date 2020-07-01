@@ -1,5 +1,8 @@
 /*
  * $Log: base64sub.c,v $
+ * Revision 1.8  2020-07-01 12:13:24+05:30  Cprogrammer
+ * define b64alpha as const
+ *
  * Revision 1.7  2013-12-05 18:10:11+05:30  Cprogrammer
  * removed substdio.h header
  *
@@ -26,7 +29,7 @@
 
 #define B64PAD '='
 
-static const char *b64alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+const char     *b64alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 /*
  * returns 0 ok, 1 illegal, -1 problem 
@@ -168,7 +171,7 @@ b64encode(in, out)
 void
 getversion_base64sub_c()
 {
-	static char    *x = "$Id: base64sub.c,v 1.7 2013-12-05 18:10:11+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: base64sub.c,v 1.8 2020-07-01 12:13:24+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
