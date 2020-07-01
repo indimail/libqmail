@@ -8,6 +8,10 @@
 #define BASE64_H
 #include "stralloc.h"
 
+#ifndef _B64SUB_C
+extern char     b64alpha[];
+#endif
+
 extern int b64decode(const unsigned char *, int, stralloc *);
 extern int b64encode(stralloc *, stralloc *);
 

@@ -19,12 +19,14 @@
  * added RCS log
  *
  */
+#define _B64SUB_C
 #include "base64.h"
 #include "stralloc.h"
 #include "str.h"
 
-static char    *b64alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 #define B64PAD '='
+
+static const char *b64alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 /*
  * returns 0 ok, 1 illegal, -1 problem 
