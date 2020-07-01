@@ -171,12 +171,17 @@ make %{?_smp_mflags}
 %attr(644,root,root)                    %{_prefix}/include/qmail/timeoutread.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/timeoutwrite.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/typesx.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/uint16.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/uint32.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/uint64.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/wait.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/array.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/entities.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/textcode.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/iarray.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/likely.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/safemult.h
+
 
 %{_libdir}/libqmail.so
 %{_libdir}/libqmail.a
