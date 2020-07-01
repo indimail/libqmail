@@ -25,7 +25,7 @@ MOSTLYCLEANFILES = uint32.h uint64.h haswaitp.h hasflock.h hassgact.h \
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libqmail.pc
 
-noinst_SCRIPTS = libqmail.spec
+noinst_DATA = libqmail.spec
 
 man_MANS = alloc.3 byte.3 caldate.3 caldate_mjd.3 caltime.3 \
 	caltime_tai.3 case.3 cdb.3 coe.3 datetime.3 env.3 error_str.3 \
@@ -40,7 +40,9 @@ man_MANS = alloc.3 byte.3 caldate.3 caldate_mjd.3 caltime.3 \
 	scan_xlong.3 scan_ushort.3 scan_uint.3 scan_ulong.3 scan_8long.3 \
 	str_start.3 str_len.3 str_rchr.3 str_diff.3 str_diffn.3 str_chr.3 \
 	str_copy.3 setuserid.3 grpscan.3 setuser_privileges.3 str_tok.3 \
-	str_str.3
+	str_str.3 \
+	textcode/fmt_asn1derlength.3 textcode/fmt_asn1dertag.3 \
+	textcode/fmt_utf8.3
 
 docs = README ChangeLog COPYING AUTHORS
 docdir=@docdir@
@@ -53,7 +55,8 @@ include_HEADERS = alloc.h base64.h builtinoflmacros.h byte.h caldate.h \
 	mkpasswd.h ndelay.h now.h open.h pw_comp.h ripemd.h scan.h seek.h \
 	select.h setuserid.h sgetopt.h sha1.h sig.h stralloc.h strerr.h \
 	str.h subfd.h subgetopt.h substdio.h taia.h tai.h tai2.h timeoutread.h \
-	timeoutwrite.h typesx.h uint32.h uint64.h wait.h qprintf.h strmsg.h
+	timeoutwrite.h typesx.h uint32.h uint64.h wait.h qprintf.h strmsg.h \
+	textcode/array.h textcode/entities.h textcode/textcode.h
 
 includedir=@prefix@/include/qmail
 COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c \
@@ -64,17 +67,17 @@ COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c \
 	cdb_make.c cdbmake_add.c cdbmake_hash.c cdbmake_pack.c cdb_seek.c \
 	cdb_unpack.c coe.c constmap.c datetime.c datetime_un.c digest_md5.c \
 	env.c envread.c error.c error_str.c error_temp.c fd_copy.c fd_move.c \
-	fifo.c fmt_8long.c fmt_double.c fmt_fill.c fmt_hexbytes.c fmt_int.c \
-	fmt_long.c fmt_minus.c fmt_pad.c fmt_plusminus.c fmt_str.c \
-	fmt_strn.c fmt_uint0.c fmt_uint.c fmt_ulong.c fmt_ulonglong.c \
-	fmt_ushort.c fmt_xlong.c getEnvConfig.c getln2.c getln.c \
-	hmac_md5.c hmac_ripemd.c hmac_sha1.c hmac_sha256.c hmac_sha512.c \
-	in_crypt.c leapsecs_add.c leapsecs_init.c leapsecs_read.c \
-	leapsecs_sub.c lock_ex.c lock_exnb.c lock_un.c makesalt.c md5.c \
-	md5_crypt.c ndelay.c ndelay_off.c now.c open_append.c open_excl.c \
+	fifo.c fmt_8long.c fmt_double.c \
+	fmt_fill.c fmt_hexbytes.c fmt_int.c fmt_long.c fmt_minus.c fmt_pad.c \
+	fmt_plusminus.c fmt_str.c fmt_strn.c fmt_tohex.c fmt_uint0.c fmt_uint.c \
+	fmt_ulong.c fmt_ulonglong.c fmt_ushort.c fmt_xlong.c \
+	getEnvConfig.c getln2.c getln.c hmac_md5.c hmac_ripemd.c hmac_sha1.c \
+	hmac_sha256.c hmac_sha512.c in_crypt.c leapsecs_add.c leapsecs_init.c \
+	leapsecs_read.c leapsecs_sub.c lock_ex.c lock_exnb.c lock_un.c makesalt.c \
+	md5.c md5_crypt.c ndelay.c ndelay_off.c now.c open_append.c open_excl.c \
 	open_read.c open_readwrite.c open_trunc.c open_write.c mkpasswd.c \
-	pw_comp.c qprintf.c scan_8long.c scan_double.c scan_int.c scan_long.c \
-	scan_plusminus.c scan_uint.c scan_ulong.c scan_ulonglong.c \
+	pw_comp.c qprintf.c scan_8long.c scan_double.c scan_fromhex.c scan_int.c \
+	scan_long.c scan_plusminus.c scan_uint.c scan_ulong.c scan_ulonglong.c \
 	scan_ushort.c scan_xlong.c seek_cur.c seek_end.c seek_set.c \
 	seek_trunc.c setuserid.c sgetopt.c sha256_crypt.c sha512_crypt.c \
 	sig.c sig_alarm.c sig_block.c sig_bug.c sig_catch.c sig_child.c \
@@ -91,7 +94,24 @@ COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c \
 	taia_pack.c taia_sub.c taia_tai.c taia_uint.c taia_unpack.c \
 	tai64n_decode.c tai64n_encode.c tai_decode.c tai_encode.c \
 	tai_now.c tai_pack.c tai_sub.c tai_unpack.c timeoutread.c \
-	timeoutwrite.c uint32_pack.c uint32_unpack.c wait_nohang.c wait_pid.c
+	timeoutwrite.c uint32_pack.c uint32_unpack.c wait_nohang.c \
+	wait_pid.c \
+	textcode/base64url.c textcode/fmt_asn1derlength.c \
+	textcode/fmt_asn1dertag.c textcode/fmt_base64.c \
+	textcode/fmt_base64url.c textcode/fmt_cescape.c \
+	textcode/fmt_foldwhitespace.c textcode/fmt_html.c \
+	textcode/fmt_html_tagarg.c textcode/fmt_jsonescape.c \
+	textcode/fmt_ldapescape2.c textcode/fmt_ldapescape.c \
+	textcode/fmt_quotedprintable.c textcode/fmt_to_array.c \
+	textcode/fmt_tofrom_array.c textcode/fmt_to_sa.c \
+	textcode/fmt_urlencoded.c textcode/fmt_utf8.c textcode/fmt_uuencoded.c \
+	textcode/fmt_xml.c textcode/fmt_yenc.c textcode/scan_base64.c \
+	textcode/scan_base64url.c textcode/scan_cescape.c textcode/scan_html.c \
+	textcode/scan_jsonescape.c textcode/scan_ldapescape.c \
+	textcode/scan_quotedprintable.c textcode/scan_to_array.c \
+	textcode/scan_tofrom_array.c textcode/scan_to_sa.c \
+	textcode/scan_urlencoded.c textcode/scan_uuencoded.c \
+	textcode/scan_yenc.c
 
 edit = sed \
 	-e 's}@PACKAGE\@}$(PACKAGE)}g' \
@@ -327,6 +347,40 @@ timeoutread.lo: timeoutread.h select.h error.h
 timeoutwrite.lo: timeoutwrite.h select.h error.h
 uint32_pack.lo: uint32.h
 uint32_unpack.lo: uint32.h
+### textcode comes from libowfat, http://www.fefe.de/libowfat
+textcode/base64url.o: textcode/base64url.c
+textcode/fmt_base64.o: textcode/fmt_base64.c fmt.h byte.h textcode.h haveinline.h
+textcode/fmt_base64url.o: textcode/fmt_base64url.c fmt.h byte.h textcode.h haveinline.h
+textcode/fmt_cescape.o: textcode/fmt_cescape.c fmt.h byte.h textcode.h str.h haveinline.h
+textcode/fmt_foldwhitespace.o: textcode/fmt_foldwhitespace.c fmt.h byte.h textcode.h str.h haveinline.h
+textcode/fmt_hexdump.o: textcode/fmt_hexdump.c fmt.h byte.h textcode.h str.h haveinline.h
+textcode/fmt_html.o: textcode/fmt_html.c fmt.h byte.h textcode.h str.h haveinline.h
+textcode/fmt_html_tagarg.o: textcode/fmt_html_tagarg.c fmt.h byte.h textcode.h str.h haveinline.h
+textcode/fmt_jsonescape.o: textcode/fmt_jsonescape.c fmt.h byte.h textcode.h str.h haveinline.h
+textcode/fmt_ldapescape.o: textcode/fmt_ldapescape.c fmt.h byte.h textcode.h haveinline.h str.h
+textcode/fmt_ldapescape2.o: textcode/fmt_ldapescape2.c fmt.h byte.h textcode.h haveinline.h
+textcode/fmt_quotedprintable.o: textcode/fmt_quotedprintable.c fmt.h byte.h textcode.h haveinline.h str.h
+textcode/fmt_to_array.o: textcode/fmt_to_array.c array.h uint64.h textcode.h
+textcode/fmt_to_sa.o: textcode/fmt_to_sa.c stralloc.h textcode.h
+textcode/fmt_tofrom_array.o: textcode/fmt_tofrom_array.c array.h uint64.h textcode.h
+textcode/fmt_urlencoded.o: textcode/fmt_urlencoded.c fmt.h byte.h textcode.h str.h haveinline.h
+textcode/fmt_uuencoded.o: textcode/fmt_uuencoded.c fmt.h byte.h textcode.h haveinline.h
+textcode/fmt_xml.o: textcode/fmt_xml.c fmt.h byte.h textcode.h str.h haveinline.h
+textcode/fmt_yenc.o: textcode/fmt_yenc.c fmt.h byte.h textcode.h
+textcode/scan_base64.o: textcode/scan_base64.c textcode.h haveinline.h
+textcode/scan_base64url.o: textcode/scan_base64url.c textcode.h haveinline.h
+textcode/scan_cescape.o: textcode/scan_cescape.c fmt.h byte.h textcode.h scan.h
+textcode/scan_hexdump.o: textcode/scan_hexdump.c fmt.h byte.h textcode.h scan.h
+textcode/scan_html.o: textcode/scan_html.c entities.h fmt.h byte.h textcode.h haveinline.h scan.h case.h str.h
+textcode/scan_jsonescape.o: textcode/scan_jsonescape.c fmt.h byte.h textcode.h scan.h
+textcode/scan_ldapescape.o: textcode/scan_ldapescape.c fmt.h byte.h textcode.h scan.h
+textcode/scan_quotedprintable.o: textcode/scan_quotedprintable.c fmt.h byte.h textcode.h scan.h
+textcode/scan_to_array.o: textcode/scan_to_array.c str.h array.h uint64.h textcode.h
+textcode/scan_to_sa.o: textcode/scan_to_sa.c str.h stralloc.h textcode.h
+textcode/scan_tofrom_array.o: textcode/scan_tofrom_array.c str.h array.h uint64.h textcode.h
+textcode/scan_urlencoded.o: textcode/scan_urlencoded.c fmt.h byte.h textcode.h scan.h
+textcode/scan_uuencoded.o: textcode/scan_uuencoded.c textcode.h
+textcode/scan_yenc.o: textcode/scan_yenc.c fmt.h byte.h textcode.h
 
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 libtool: $(LIBTOOL_DEPS)

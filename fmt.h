@@ -1,5 +1,8 @@
 /*
  * $Log: fmt.h,v $
+ * Revision 1.7  2020-07-01 12:15:39+05:30  Cprogrammer
+ * added fmt_hexdump(), fmt_tohex()
+ *
  * Revision 1.6  2019-06-24 21:22:06+05:30  Cprogrammer
  * added prototypes for fmt_int, fmt_ulonglong, fmt_long, fmt_8long, fmt_pad, fmt_fill
  *
@@ -18,6 +21,15 @@
  */
 #ifndef FMT_H
 #define FMT_H
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+#ifdef HAVE_SYS_TYPES_H
+#include <sys/types.h>
+#endif
+#ifdef HAVE_INTTYPES_H
+#include <inttypes.h>
+#endif
 
 #define FMT_LONG   41			/*- enough space to hold -2^127 in decimal, plus \0 */
 #define FMT_ULONG  40			/*- enough space to hold 2^128 - 1 in decimal, plus \0 */
@@ -36,6 +48,8 @@ unsigned int    fmt_long(char *, signed long);
 unsigned int    fmt_xlong(char *, unsigned long);
 unsigned int    fmt_8long(char *, unsigned long);
 unsigned int    fmt_hexbyte(char *, unsigned char);
+size_t          fmt_hexdump(char *, const char *, size_t);
+char            fmt_tohex(char c) __attribute__((__const__));
 unsigned int    fmt_double(char *s, double, unsigned int);
 unsigned int    fmt_plusminus(char *, int);
 unsigned int    fmt_minus(char *, int);

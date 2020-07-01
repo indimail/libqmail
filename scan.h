@@ -1,5 +1,8 @@
 /*
  * $Log: scan.h,v $
+ * Revision 1.7  2020-07-01 12:14:40+05:30  Cprogrammer
+ * added scan_fromhex()
+ *
  * Revision 1.6  2019-06-24 21:26:25+05:30  Cprogrammer
  * added scan_ulonglong, scan_plusminus prototypes
  *
@@ -22,5 +25,6 @@ unsigned int    scan_long(char *, long *);
 unsigned int    scan_8long(char *, unsigned long *);
 unsigned int    scan_int(char *, int *);
 unsigned int    scan_plusminus(char *, int *);
+int             scan_fromhex(unsigned char c);
 
 #endif

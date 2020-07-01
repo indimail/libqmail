@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.7  2020-07-01 12:13:35+05:30  Cprogrammer
+# added subdir-objects
+#
 # Revision 1.6  2020-06-21 21:27:07+05:30  Cprogrammer
 # added AC_PROG_CC_C99 to configure.ac
 #
@@ -23,7 +26,7 @@
 # Initial revision
 #
 #
-# $Id: configure.ac,v 1.6 2020-06-21 21:27:07+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.7 2020-07-01 12:13:35+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],0.3,[Manvendra Bhangui libqmail@indimail.org],libqmail, [https://github.com/mbhangui/libqmail])
@@ -31,7 +34,7 @@ AC_CANONICAL_TARGET
 PACKAGE=$PACKAGE_NAME
 VERSION=$PACKAGE_VERSION
 LT_INIT
-AM_INIT_AUTOMAKE([silent-rules])
+AM_INIT_AUTOMAKE([subdir-objects silent-rules])
 AM_CONFIG_HEADER(config.h)
 AC_DEFINE_UNQUOTED(PACKAGE_BUGREPORT, "mbhangui@gmail.com")
 if test "$GCC" = yes ; then
@@ -54,7 +57,8 @@ PKG_INSTALLDIR
 dnl Checks for header files.
 AC_ISC_POSIX
 dnl AC_HEADER_STDC
-AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h sys/types.h sys/wait.h sys/file.h)
+AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h)
+AC_CHECK_HEADERS(sys/types.h sys/wait.h sys/file.h)
 
 AC_CHECK_FUNC(flock)
 if test "$ac_cv_func_flock" = yes ; then
