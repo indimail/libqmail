@@ -1,5 +1,8 @@
 /*
  * $Log: fmt.h,v $
+ * Revision 1.9  2020-07-04 23:43:48+05:30  Cprogrammer
+ * include sys/types.h if config.h is not included
+ *
  * Revision 1.8  2020-07-01 16:16:41+05:30  Cprogrammer
  * removed inttypes
  *
@@ -26,6 +29,8 @@
 #define FMT_H
 #ifdef HAVE_CONFIG_H
 #include "config.h"
+#else
+#include <sys/types.h>
 #endif
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
