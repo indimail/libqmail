@@ -12,3 +12,9 @@ Release 0.3 Start 21/05/2020
 01/07/2020
 08. Added textcode from libowfat, http://www.fefe.de/libowfat/ 
 09. added array library from http://cr.yp.to/lib/array.html
+04/07/2020
+10. fmt.h: include sys/types.h if config.h is not included
+11. setuserid.h: include sys/types.h, grp.h if config.h is not included
+12. uint16.h: include inttypes.h if config.h is not included
+13. libqmail.spec: use smp_mflags for parallel make
+14. debian/libqmail.dsc: use Debtransform-Release to increment build number

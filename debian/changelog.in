@@ -9,3 +9,8 @@ libqmail (@version@-@release@) unstable; urgency=medium
   * use m4_normalize(m4_include([conf-version])) in AC_INIT
   * Added textcode from libowfat, http://www.fefe.de/libowfat/ 
   * added array library from http://cr.yp.to/lib/array.html
+  * fmt.h: include sys/types.h if config.h is not included
+  * setuserid.h: include sys/types.h, grp.h if config.h is not included
+  * uint16.h: include inttypes.h if config.h is not included
+  * libqmail.spec: use smp_mflags for parallel make
+  * debian/libqmail.dsc: use Debtransform-Release to increment build number
