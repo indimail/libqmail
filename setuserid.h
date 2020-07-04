@@ -1,5 +1,8 @@
 /*
  * $Log: setuserid.h,v $
+ * Revision 1.3  2020-07-04 23:45:00+05:30  Cprogrammer
+ * include sys/types.h, grp.h if config.h is not included
+ *
  * Revision 1.2  2020-06-18 20:12:50+05:30  Cprogrammer
  * added #include <grp.h>
  *
@@ -11,6 +14,9 @@
 #define SETUSERID_H
 #ifdef HAVE_CONFIG_H
 #include "config.h"
+#else
+#include <sys/types.h>
+#include <grp.h>
 #endif
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
