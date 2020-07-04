@@ -1,5 +1,8 @@
 /*
  * $Log: uint16.h,v $
+ * Revision 1.2  2020-07-04 23:47:29+05:30  Cprogrammer
+ * include inttypes.h if config.h is not included
+ *
  * Revision 1.1  2020-07-01 17:16:55+05:30  Cprogrammer
  * Initial revision
  *
@@ -10,6 +13,8 @@
 #define UINT16_H
 #ifdef HAVE_CONFIG_H
 #include "config.h"
+#else
+#include <inttypes.h>
 #endif
 #ifdef HAVE_INTTYPES_H
 #include <inttypes.h>
