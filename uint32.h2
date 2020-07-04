@@ -1,5 +1,8 @@
 /*
  * $Log: uint32.h2,v $
+ * Revision 1.3  2020-07-04 23:50:15+05:30  Cprogrammer
+ * include inttypes.h if config.h is not included
+ *
  * Revision 1.2  2008-09-16 08:26:32+05:30  Cprogrammer
  * added for cdbmake
  *
@@ -11,6 +14,8 @@
 #define UINT32_H
 #ifdef HAVE_CONFIG_H
 #include "config.h"
+#else
+#include <inttypes.h>
 #endif
 #ifdef HAVE_INTTYPES_H
 #include <inttypes.h>
