@@ -91,10 +91,10 @@ necessary to develop qmail applications
 
 %build
 %configure --prefix=/usr
-make %{?_smp_mflags}
 
 %install
-%{__make} -s DESTDIR=%{buildroot} install-strip
+%{__make} -s %{?_smp_mflags}
+%{__make} -s %{?_smp_mflags} DESTDIR=%{buildroot} install-strip
 %{__rm} -f %{buildroot}%{_libdir}/libqmail.la
 
 %clean
