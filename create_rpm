@@ -1,5 +1,8 @@
 #!/bin/sh
 # $Log: create_rpm,v $
+# Revision 1.9  2020-07-05 14:13:48+05:30  Cprogrammer
+# added command line option to set verbose rpmbuild
+#
 # Revision 1.8  2020-07-04 23:43:07+05:30  Cprogrammer
 # do rpmbuild silently
 #
@@ -13,7 +16,7 @@
 # rpm creation script for libqmail
 #
 #
-# $Id: create_rpm,v 1.8 2020-07-04 23:43:07+05:30 Cprogrammer Exp mbhangui $
+# $Id: create_rpm,v 1.9 2020-07-05 14:13:48+05:30 Cprogrammer Exp mbhangui $
 #
 curdir=`pwd`
 version=$(cat conf-version)
