@@ -18,3 +18,8 @@ Release 0.3 Start 21/05/2020
 12. uint16.h: include inttypes.h if config.h is not included
 13. libqmail.spec: use smp_mflags for parallel make
 14. debian/libqmail.dsc: use Debtransform-Release to increment build number
+07/07/2020
+15. taia_now.c: renamed variable now to tmval
+16. added CFLAGS="$CFLAGS -O4 -Wall -Wimplicit -fPIC -fno-strict-aliasing
+    -Wunused -Wcomment -Wchar-subscripts -Wuninitialized -Wshadow
+    -Wcast-align -Wwrite-strings -Wno-discarded-qualifiers"

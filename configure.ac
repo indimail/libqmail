@@ -41,7 +41,7 @@ AM_CONFIG_HEADER(config.h)
 AC_DEFINE_UNQUOTED(PACKAGE_BUGREPORT, "mbhangui@gmail.com")
 if test "$GCC" = yes ; then
 	CXXFLAGS="$CXXFLAGS -Wall"
-	CFLAGS="$CFLAGS -O4 -Wall -Wshadow"
+	CFLAGS="$CFLAGS -O4 -Wall -Wimplicit -fPIC -fno-strict-aliasing -Wunused -Wcomment -Wchar-subscripts -Wuninitialized -Wshadow -Wcast-align -Wwrite-strings -Wno-discarded-qualifiers"
 fi
 
 dnl Checks for programs.

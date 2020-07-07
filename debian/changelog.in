@@ -14,3 +14,4 @@ libqmail (@version@-@release@) unstable; urgency=medium
   * uint16.h: include inttypes.h if config.h is not included
   * libqmail.spec: use smp_mflags for parallel make
   * debian/libqmail.dsc: use Debtransform-Release to increment build number
+  * taia_now.c: renamed variable now to tmval

@@ -1,7 +1,7 @@
 COFLAGS=-z+05:30
 ACLOCAL_AMFLAGS=-I m4
 
-DEFS=@DEFS@ -fno-strict-aliasing -I. -Iarray -Itextcode -g
+DEFS=@DEFS@ -I. -Iarray -Itextcode
 
 INSTALL_PROGRAM = ${INSTALL}          -c
 install_sh_PROGRAM = $(install_sh)    -c
