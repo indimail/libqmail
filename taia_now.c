@@ -1,5 +1,8 @@
 /*
  * $Log: taia_now.c,v $
+ * Revision 1.3  2020-07-07 09:12:01+05:30  Cprogrammer
+ * renamed variable now to tmval
+ *
  * Revision 1.2  2004-10-22 20:31:30+05:30  Cprogrammer
  * added RCS id
  *
@@ -17,17 +20,17 @@
 void
 taia_now(struct taia *t)
 {
-	struct timeval  now;
-	gettimeofday(&now, (struct timezone *) 0);
-	tai_unix(&t->sec, now.tv_sec);
-	t->nano = 1000 * now.tv_usec + 500;
+	struct timeval  tmval;
+	gettimeofday(&tmval, (struct timezone *) 0);
+	tai_unix(&t->sec, tmval.tv_sec);
+	t->nano = 1000 * tmval.tv_usec + 500;
 	t->atto = 0;
 }
 
 void
 getversion_taia_now_c()
 {
-	static char    *x = "$Id: taia_now.c,v 1.2 2004-10-22 20:31:30+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: taia_now.c,v 1.3 2020-07-07 09:12:01+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
