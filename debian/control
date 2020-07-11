@@ -3,7 +3,7 @@ Section: libs
 Priority: optional
 Maintainer: Manvendra Bhangui <manvendra@indimail.org>
 Standards-Version: 3.9.5
-Build-Depends: debhelper (>= 10), libssl-dev, pkg-config, lsb-release
+Build-Depends: debhelper (>= 9), libssl-dev, pkg-config, lsb-release
 Homepage: http://indimail.sourceforge.net
 
 Package: libqmail
