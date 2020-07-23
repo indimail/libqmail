@@ -1,5 +1,8 @@
 #!/bin/sh
 if [ ! -f ./configure -o ! -f Makefile -o ! -f Makefile.in ] ; then
-autoreconf -fiv
+    autoreconf -fiv
+fi
+if [ ! -f conf-release ] ; then
+	echo 1.1 > conf-release
 fi
 ./configure --prefix=/usr --mandir=/usr/share/man
