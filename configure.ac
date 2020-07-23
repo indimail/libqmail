@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.10  2020-07-23 11:27:07+05:30  Cprogrammer
+# used comprehensive CFLAGS
+#
 # Revision 1.9  2020-07-01 16:23:05+05:30  Cprogrammer
 # added stddef.h, stdint.h
 #
@@ -28,7 +31,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.9 2020-07-01 16:23:05+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.10 2020-07-23 11:27:07+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],0.3,[Manvendra Bhangui libqmail@indimail.org],libqmail, [https://github.com/mbhangui/libqmail])
