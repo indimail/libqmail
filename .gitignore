@@ -40,3 +40,5 @@ conf-release
 debian/libqmail-dev.install
 debian/libqmail.install
 .dirstamp
+textcode/.dirstamp
+array/.dirstamp
