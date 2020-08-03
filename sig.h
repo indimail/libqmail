@@ -1,5 +1,8 @@
 /*
  * $Log: sig.h,v $
+ * Revision 1.8  2020-08-03 18:10:35+05:30  Cprogrammer
+ * added sig_usr1, sig_usr2
+ *
  * Revision 1.7  2019-10-26 21:04:33+05:30  Cprogrammer
  * fixed definitions of signals
  *
@@ -73,6 +76,8 @@ extern int      sig_hangup;
 extern int      sig_int;
 extern int      sig_pipe;
 extern int      sig_term;
+extern int      sig_usr1;
+extern int      sig_usr2;
 
 extern void     (*sig_defaulthandler) ();
 extern void     (*sig_ignorehandler) ();
