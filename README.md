@@ -1,10 +1,6 @@
 # Introduction
 
-libqmail is a library of general purpose APIs extracted from Dan Bernstein's [qmail](http://cr.yp.to/qmail.html), reimplemented and covered by the GNU General Public License Version 3.
-
-Many of the functions implemented here have since been placed in the public domain, so there are other sources to get this code (except for my extensions obviously).
-
-Man pages for many functions have been provided, mostly extracted from Dan's web documentation or documentation found in earlier versions of his software. For some reason, he abandoned man pages in favor of HTML recently.
+libqmail is a library of general purpose APIs extracted from Dan Bernstein's [qmail](http://cr.yp.to/qmail.html), reimplemented and covered by the GNU General Public License Version 3. Many of the functions implemented here have since been placed in the public domain. Many of the functions have been generously borrowed from [libowfat](http://www.fefe.de/libowfat/). libqmail is used by [indimail-mta](https://github.com/mbhangui/indimail-mta) and it's subpackages daemontools and ucspi-tcp, [indimail-virtualdomains](https://github.com/mbhangui/indimail-virtualdomains). It is also used my [mpdev](https://github.com/mbhangui/mpdev) - An event watcher for [Music Player Daemon (mpd)](https://www.musicpd.org/). The library comes with a set of man pages, though few are missing.
 
 # Compilation
 
