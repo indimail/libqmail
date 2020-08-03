@@ -42,3 +42,4 @@ debian/libqmail.install
 .dirstamp
 textcode/.dirstamp
 array/.dirstamp
+iopause.h
