@@ -1,5 +1,8 @@
 /*
  * $Log: uint32_unpack.c,v $
+ * Revision 1.2  2020-08-03 18:20:29+05:30  Cprogrammer
+ * added getversion()
+ *
  * Revision 1.1  2008-09-15 22:11:24+05:30  Cprogrammer
  * Initial revision
  *
@@ -41,7 +44,7 @@ uint32_unpack_big(char s[4], uint32 * u)
 void
 getversion_uint32_unpack_c()
 {
-	static char    *x = "$Id: uint32_unpack.c,v 1.1 2008-09-15 22:11:24+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: uint32_unpack.c,v 1.2 2020-08-03 18:20:29+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

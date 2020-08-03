@@ -1,5 +1,8 @@
 /*
  * $Log: uint16_unpack.c,v $
+ * Revision 1.2  2020-08-03 18:20:05+05:30  Cprogrammer
+ * fixed compilation
+ *
  * Revision 1.1  2003-12-31 19:47:31+05:30  Cprogrammer
  * Initial revision
  *

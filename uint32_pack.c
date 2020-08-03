@@ -1,5 +1,8 @@
 /*
  * $Log: uint32_pack.c,v $
+ * Revision 1.2  2020-08-03 18:20:22+05:30  Cprogrammer
+ * added getversion()
+ *
  * Revision 1.1  2008-09-15 22:11:15+05:30  Cprogrammer
  * Initial revision
  *
@@ -31,7 +34,7 @@ uint32_pack_big(char s[4], uint32 u)
 void
 getversion_uint32_pack_c()
 {
-	static char    *x = "$Id: uint32_pack.c,v 1.1 2008-09-15 22:11:15+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: uint32_pack.c,v 1.2 2020-08-03 18:20:22+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
