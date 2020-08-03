@@ -1,5 +1,8 @@
 /*
  * $Log: fmt.h,v $
+ * Revision 1.10  2020-08-03 18:11:20+05:30  Cprogrammer
+ * added tohex() proto
+ *
  * Revision 1.9  2020-07-04 23:43:48+05:30  Cprogrammer
  * include sys/types.h if config.h is not included
  *
@@ -55,6 +58,7 @@ unsigned int    fmt_8long(char *, unsigned long);
 unsigned int    fmt_hexbyte(char *, unsigned char);
 size_t          fmt_hexdump(char *, const char *, size_t);
 char            fmt_tohex(char c) __attribute__((__const__));
+char            tohex(char);
 unsigned int    fmt_double(char *s, double, unsigned int);
 unsigned int    fmt_plusminus(char *, int);
 unsigned int    fmt_minus(char *, int);
