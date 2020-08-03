@@ -23,3 +23,14 @@ Release 0.3 Start 21/05/2020
 16. added CFLAGS="$CFLAGS -O4 -Wall -Wimplicit -fPIC -fno-strict-aliasing
     -Wunused -Wcomment -Wchar-subscripts -Wuninitialized -Wshadow
     -Wcast-align -Wwrite-strings -Wno-discarded-qualifiers"
+23/07/2020
+17. scan.h: added scan_double(), scan_hexdump() prototyps
+18. configure.ac: used comprehensive CFLAGS
+19. default.configure: create conf-release if not exists
+03/08/2020
+20. cdb.h: added cdb_free() prototype
+21. sig.h, sig.c: added sig_usr1, sig_usr2
+22. fmt.h: added tohex() proto
+23. fmt_hexbyte.c: added tohex() function
+24. libqmail.spec: added iopause.h header file
+25. Makefile.am: added tohex(), iopause.c, uint16, functions
