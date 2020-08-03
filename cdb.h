@@ -1,5 +1,8 @@
 /*
  * $Log: cdb.h,v $
+ * Revision 1.5  2020-08-03 18:07:06+05:30  Cprogrammer
+ * added cdb_free() prototype
+ *
  * Revision 1.4  2008-09-16 08:24:45+05:30  Cprogrammer
  * mods for adding cdbmake
  *
@@ -42,5 +45,6 @@ void            cdb_findstart(struct cdb *);
 int             cdb_findnext(struct cdb *,char *,unsigned int);
 void            cdb_init(struct cdb *,int fd);
 int             cdb_read(struct cdb *,char *,unsigned int,uint32);
+void            cdb_free(struct cdb *);
 
 #endif
