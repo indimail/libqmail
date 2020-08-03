@@ -34,3 +34,4 @@ Release 0.3 Start 21/05/2020
 23. fmt_hexbyte.c: added tohex() function
 24. libqmail.spec: added iopause.h header file
 25. Makefile.am: added tohex(), iopause.c, uint16, functions
+26. added safe multiplication functions from libowfat, http://www.fefe.de/libowfat/ 

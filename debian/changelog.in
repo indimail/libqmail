@@ -24,3 +24,4 @@ libqmail (@version@-@release@) unstable; urgency=medium
   * fmt_hexbyte.c: added tohex() function
   * libqmail.spec: added iopause.h header file
   * Makefile.am: added tohex(), iopause.c, uint16, functions
+  * added safe multiplication functions from libowfat, http://www.fefe.de/libowfat/ 

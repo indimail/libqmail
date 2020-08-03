@@ -17,10 +17,10 @@ libqmail_la_CFLAGS = -fPIC
 libqmaildir=@libdir@
 
 BUILT_SOURCES = uint32.h uint64.h haswaitp.h hasflock.h hassgact.h hassgprm.h \
-	select.h hasmkffo.h hasbltnofl.h builtinoflmacros.h iopause.h
+	select.h hasmkffo.h hasbltnofl.h builtinoflmacros.h iopause.h haveuint128.h
 
 MOSTLYCLEANFILES = uint32.h uint64.h haswaitp.h hasflock.h hassgact.h \
-	hassgprm.h select.h hasmkffo.h hasbltnofl.h iopause.h
+	hassgprm.h select.h hasmkffo.h hasbltnofl.h iopause.h haveuint128.h
 
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libqmail.pc
@@ -53,7 +53,11 @@ man_MANS = alloc.3 byte.3 caldate.3 caldate_mjd.3 caltime.3 \
 	array/array_fail.3 array/array_truncate.3 array/array_bytes.3 \
 	array/array_cat.3 array/array_start.3 array/iarray_allocate.3 \
 	array/iarray_get.3 array/array_cat0.3 array/iarray_free.3 \
-	array/array_allocate.3
+	array/array_allocate.3 \
+	mult/add_of.3 mult/assign.3 mult/imult16.3 mult/imult32.3 \
+	mult/imult64.3 mult/range_ptrinbuf.3 mult/range_str2inbuf.3 \
+	mult/range_str4inbuf.3 mult/range_strinbuf.3 mult/range_validbuf.3 \
+	mult/sub_of.3 mult/umult16.3 mult/umult32.3 mult/umult64.3
 
 docs = README ChangeLog COPYING AUTHORS
 docdir=@docdir@
@@ -68,7 +72,7 @@ include_HEADERS = alloc.h base64.h builtinoflmacros.h byte.h caldate.h \
 	strerr.h str.h subfd.h subgetopt.h substdio.h taia.h tai.h tai2.h \
 	timeoutread.h timeoutwrite.h typesx.h uint16.h uint32.h uint64.h wait.h \
 	qprintf.h strmsg.h array/array.h textcode/entities.h textcode/textcode.h \
-	likely.h iarray.h safemult.h
+	likely.h iarray.h safemult.h rangecheck.h
 
 includedir=@prefix@/include/qmail
 COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c \
@@ -131,7 +135,10 @@ COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c \
 	array/iarray_length.c array/array_fail.c array/array_cate.c \
 	array/array_bytes.c array/iarray_get.c array/array_truncate.c \
 	array/array_cat.c array/array_cat0.c array/array_cats.c \
-	array/array_allocate.c array/array_equal.c array/array_length.c
+	array/array_allocate.c array/array_equal.c array/array_length.c \
+	mult/imult16.c mult/imult32.c mult/imult64.c mult/range_arrayinbuf.c \
+	mult/range_str2inbuf.c mult/range_str4inbuf.c mult/range_strinbuf.c \
+	mult/umult16.c mult/umult32.c mult/umult64.c
 
 edit = sed \
 	-e 's}@PACKAGE\@}$(PACKAGE)}g' \
@@ -196,6 +203,11 @@ select.h: trysysel.c select.h1 select.h2
 	( $(COMPILE) -c trysysel.c >/dev/null 2>&1 \
 	&& cat select.h2 || cat select.h1 ) > select.h
 	rm -f trysysel.o trysysel
+
+haveuint128.h: tryuint128.c
+	-rm -f $@
+	if $(COMPILE) -c tryuint128.c >/dev/null 2>&1; then echo "#define HAVE_UINT128"; fi > $@
+	-rm -f tryuint128.o
 
 iopause.h: trypoll.c iopause.h1 iopause.h2
 	( $(COMPILE) -c trypoll.c >/dev/null 2>&1 \
@@ -410,6 +422,16 @@ textcode/scan_tofrom_array.o: textcode/scan_tofrom_array.c str.h array.h uint64.
 textcode/scan_urlencoded.o: textcode/scan_urlencoded.c fmt.h byte.h textcode.h scan.h
 textcode/scan_uuencoded.o: textcode/scan_uuencoded.c textcode.h
 textcode/scan_yenc.o: textcode/scan_yenc.c fmt.h byte.h textcode.h
+imult16.o: mult/imult16.c uint16.h
+imult32.o: mult/imult32.c uint32.h
+imult64.o: mult/imult64.c uint64.h
+range_arrayinbuf.o: mult/range_arrayinbuf.c rangecheck.h safemult.h uint16.h uint32.h uint64.h
+range_str2inbuf.o: mult/range_str2inbuf.c rangecheck.h
+range_str4inbuf.o: mult/range_str4inbuf.c rangecheck.h
+range_strinbuf.o: mult/range_strinbuf.c rangecheck.h
+umult16.o: mult/umult16.c uint16.h
+umult32.o: mult/umult32.c uint32.h
+umult64.o: mult/umult64.c uint64.h
 
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 libtool: $(LIBTOOL_DEPS)

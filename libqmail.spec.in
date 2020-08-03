@@ -182,7 +182,7 @@ necessary to develop qmail applications
 %attr(644,root,root)                    %{_prefix}/include/qmail/iarray.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/likely.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/safemult.h
-
+%attr(644,root,root)                    %{_prefix}/include/qmail/rangecheck.h
 
 %{_libdir}/libqmail.so
 %{_libdir}/libqmail.a
