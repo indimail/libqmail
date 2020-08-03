@@ -17,10 +17,10 @@ libqmail_la_CFLAGS = -fPIC
 libqmaildir=@libdir@
 
 BUILT_SOURCES = uint32.h uint64.h haswaitp.h hasflock.h hassgact.h hassgprm.h \
-	select.h hasmkffo.h hasbltnofl.h builtinoflmacros.h
+	select.h hasmkffo.h hasbltnofl.h builtinoflmacros.h iopause.h
 
 MOSTLYCLEANFILES = uint32.h uint64.h haswaitp.h hasflock.h hassgact.h \
-	hassgprm.h select.h hasmkffo.h hasbltnofl.h
+	hassgprm.h select.h hasmkffo.h hasbltnofl.h iopause.h
 
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libqmail.pc
@@ -40,7 +40,11 @@ man_MANS = alloc.3 byte.3 caldate.3 caldate_mjd.3 caltime.3 \
 	scan_xlong.3 scan_ushort.3 scan_uint.3 scan_ulong.3 scan_8long.3 \
 	str_start.3 str_len.3 str_rchr.3 str_diff.3 str_diffn.3 str_chr.3 \
 	str_copy.3 setuserid.3 grpscan.3 setuser_privileges.3 str_tok.3 \
-	str_str.3 \
+	str_str.3 uint16_pack.3 uint16_pack_big.3 uint16_read.3 \
+	uint16_read_big.3 uint16_unpack.3 uint16_unpack_big.3 \
+	uint32_pack.3 uint32_pack_big.3 uint32_read.3 uint32_read_big.3 \
+	uint32_unpack.3 uint32_unpack_big.3 uint64_pack.3 uint64_pack_big.3 \
+	uint64_read.3 uint64_read_big.3 uint64_unpack.3 uint64_unpack_big.3 \
 	textcode/fmt_asn1derlength.3 textcode/fmt_asn1dertag.3 \
 	textcode/fmt_utf8.3 array/array_get.3 array/array.3 \
 	array/array_reset.3 array/array_cate.3 array/iarray_init.3 \
@@ -58,13 +62,13 @@ include_HEADERS = alloc.h base64.h builtinoflmacros.h byte.h caldate.h \
 	caltime.h case.h cdb.h cdbmake.h cdb_make.h coe.h constmap.h \
 	datetime.h digest_md5.h env.h error.h exit.h fd.h fifo.h fmt.h \
 	gen_allocdefs.h gen_alloc.h getEnvConfig.h getln.h global.h \
-	hasbltnofl.h hmac.h in_crypt.h leapsecs.h lock.h md5.h makesalt.h \
-	mkpasswd.h ndelay.h now.h open.h pw_comp.h ripemd.h scan.h seek.h \
-	select.h setuserid.h sgetopt.h sha1.h sig.h stralloc.h strerr.h \
-	str.h subfd.h subgetopt.h substdio.h taia.h tai.h tai2.h timeoutread.h \
-	timeoutwrite.h typesx.h uint32.h uint64.h wait.h qprintf.h strmsg.h \
-	array/array.h textcode/entities.h textcode/textcode.h likely.h iarray.h \
-	safemult.h uint16.h
+	hasbltnofl.h hmac.h in_crypt.h iopause.h leapsecs.h lock.h md5.h \
+	makesalt.h mkpasswd.h ndelay.h now.h open.h pw_comp.h ripemd.h \
+	scan.h seek.h select.h setuserid.h sgetopt.h sha1.h sig.h stralloc.h \
+	strerr.h str.h subfd.h subgetopt.h substdio.h taia.h tai.h tai2.h \
+	timeoutread.h timeoutwrite.h typesx.h uint16.h uint32.h uint64.h wait.h \
+	qprintf.h strmsg.h array/array.h textcode/entities.h textcode/textcode.h \
+	likely.h iarray.h safemult.h
 
 includedir=@prefix@/include/qmail
 COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c \
@@ -78,9 +82,9 @@ COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c \
 	fifo.c fmt_8long.c fmt_double.c \
 	fmt_fill.c fmt_hexbytes.c fmt_int.c fmt_long.c fmt_minus.c fmt_pad.c \
 	fmt_plusminus.c fmt_str.c fmt_strn.c fmt_tohex.c fmt_uint0.c fmt_uint.c \
-	fmt_ulong.c fmt_ulonglong.c fmt_ushort.c fmt_xlong.c \
-	getEnvConfig.c getln2.c getln.c hmac_md5.c hmac_ripemd.c hmac_sha1.c \
-	hmac_sha256.c hmac_sha512.c in_crypt.c leapsecs_add.c leapsecs_init.c \
+	fmt_ulong.c fmt_ulonglong.c fmt_ushort.c fmt_xlong.c getEnvConfig.c \
+	getln2.c getln.c hmac_md5.c hmac_ripemd.c hmac_sha1.c hmac_sha256.c \
+	hmac_sha512.c in_crypt.c iopause.c leapsecs_add.c leapsecs_init.c \
 	leapsecs_read.c leapsecs_sub.c lock_ex.c lock_exnb.c lock_un.c makesalt.c \
 	md5.c md5_crypt.c ndelay.c ndelay_off.c now.c open_append.c open_excl.c \
 	open_read.c open_readwrite.c open_trunc.c open_write.c mkpasswd.c \
@@ -102,8 +106,9 @@ COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c \
 	taia_pack.c taia_sub.c taia_tai.c taia_uint.c taia_unpack.c \
 	tai64n_decode.c tai64n_encode.c tai_decode.c tai_encode.c \
 	tai_now.c tai_pack.c tai_sub.c tai_unpack.c timeoutread.c \
-	timeoutwrite.c uint32_pack.c uint32_unpack.c wait_nohang.c \
-	wait_pid.c \
+	timeoutwrite.c uint16_pack.c uint16_read.c uint16_unpack.c \
+	uint32_pack.c uint32_read.c uint32_unpack.c \
+	wait_nohang.c wait_pid.c \
 	textcode/base64url.c textcode/fmt_asn1derlength.c \
 	textcode/fmt_asn1dertag.c textcode/fmt_base64.c \
 	textcode/fmt_base64url.c textcode/fmt_cescape.c \
@@ -191,6 +196,11 @@ select.h: trysysel.c select.h1 select.h2
 	( $(COMPILE) -c trysysel.c >/dev/null 2>&1 \
 	&& cat select.h2 || cat select.h1 ) > select.h
 	rm -f trysysel.o trysysel
+
+iopause.h: trypoll.c iopause.h1 iopause.h2
+	( $(COMPILE) -c trypoll.c >/dev/null 2>&1 \
+	&& cat iopause.h2 || cat iopause.h1 ) > iopause.h
+	rm -f trypoll.o trypoll
 
 base64sub.lo: base64.h stralloc.h str.h gen_alloc.h
 byte_copy.lo: byte.h
@@ -361,7 +371,11 @@ taia_addsec.lo: taia.h
 timeoutread.lo: timeoutread.h select.h error.h
 timeoutwrite.lo: timeoutwrite.h select.h error.h
 uint32_pack.lo: uint32.h
+uint32_read.lo: uint32.h
 uint32_unpack.lo: uint32.h
+uint16_pack.lo: uint16.h
+uint16_read.lo: uint16.h
+uint16_unpack.lo: uint16.h
 ### textcode comes from libowfat, http://www.fefe.de/libowfat
 textcode/base64url.o: textcode/base64url.c
 textcode/fmt_base64.o: textcode/fmt_base64.c fmt.h byte.h textcode.h haveinline.h
