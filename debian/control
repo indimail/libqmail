@@ -1,10 +1,10 @@
 Source: libqmail
 Section: libs
 Priority: optional
-Maintainer: Manvendra Bhangui <manvendra@indimail.org>
+Maintainer: Manvendra Bhangui <libqmail@indimail.org>
 Standards-Version: 3.9.5
 Build-Depends: debhelper (>= 9), libssl-dev, pkg-config, lsb-release
-Homepage: http://indimail.sourceforge.net
+Homepage: https://github.com/mbhangui/libqmail
 
 Package: libqmail
 Section: libs
@@ -23,6 +23,7 @@ Description: Reimplementation of qmail functions in a shared library
 Package: libqmail-dev
 Section: libdevel
 Architecture: any
+Depends: libqmail (= ${binary:Version}), libssl-dev, ${misc:Depends}
 Description: Reimplementation of qmail functions, development files
  This library is a reimplementation of qmail functions, which means that it provides
  Daniel Bernstein's interfaces (with some extensions).
