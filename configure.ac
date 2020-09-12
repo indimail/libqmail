@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.11  2020-09-13 01:35:26+05:30  Cprogrammer
+# fixed PACKAGE_BUGREPORT email address
+#
 # Revision 1.10  2020-07-23 11:27:07+05:30  Cprogrammer
 # used comprehensive CFLAGS
 #
@@ -31,17 +34,17 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.10 2020-07-23 11:27:07+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.11 2020-09-13 01:35:26+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
-AC_INIT([libqmail],0.3,[Manvendra Bhangui libqmail@indimail.org],libqmail, [https://github.com/mbhangui/libqmail])
+AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),[Manvendra Bhangui libqmail@indimail.org],indimail, [https://github.com/mbhangui/libqmail])
 AC_CANONICAL_TARGET
 PACKAGE=$PACKAGE_NAME
 VERSION=$PACKAGE_VERSION
 LT_INIT
 AM_INIT_AUTOMAKE([subdir-objects silent-rules])
 AM_CONFIG_HEADER(config.h)
-AC_DEFINE_UNQUOTED(PACKAGE_BUGREPORT, "mbhangui@gmail.com")
+AC_DEFINE_UNQUOTED(PACKAGE_BUGREPORT, "libqmail@indimail.org")
 if test "$GCC" = yes ; then
 	CXXFLAGS="$CXXFLAGS -Wall"
 	CFLAGS="$CFLAGS -O4 -Wall -Wimplicit -fPIC -fno-strict-aliasing -Wunused -Wcomment -Wchar-subscripts -Wuninitialized -Wshadow -Wcast-align -Wwrite-strings -Wno-discarded-qualifiers"
