@@ -54,6 +54,10 @@ BuildRequires: -post-build-checks
 %endif
 %endif
 
+AutoReqProv: Yes
+Provides: qmail-libs = %{version}
+Provides: qmail-libs%{?_isa} = %{version}
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
