@@ -1,28 +1,4 @@
 libqmail (@version@-@release@) unstable; urgency=medium
 
-  * Debian build - use /usr/lib/<triplet> (e.g. /usr/lib/x86_64-linux-gnu)
-  * configur.ac - use LIB_SSL, LIB_CRYPTO
-  * debian/control - use ${shlibs:Depends}
-  * added setuserid.c, setuserid.h
-  * Makefile.am: use BUILT_SOURCES to build all needed header files
-  * added AC_PROG_CC_C99 to configure.ac
-  * use m4_normalize(m4_include([conf-version])) in AC_INIT
-  * Added textcode from libowfat, http://www.fefe.de/libowfat/ 
-  * added array library from http://cr.yp.to/lib/array.html
-  * fmt.h: include sys/types.h if config.h is not included
-  * setuserid.h: include sys/types.h, grp.h if config.h is not included
-  * uint16.h: include inttypes.h if config.h is not included
-  * libqmail.spec: use smp_mflags for parallel make
-  * debian/libqmail.dsc: use Debtransform-Release to increment build number
-  * taia_now.c: renamed variable now to tmval
-  * scan.h: added scan_double(), scan_hexdump() prototyps
-  * configure.ac: used comprehensive CFLAGS
-  * default.configure: create conf-release if not exists
-  * cdb.h: added cdb_free() prototype
-  * sig.h, sig.c: added sig_usr1, sig_usr2
-  * fmt.h: added tohex() proto
-  * fmt_hexbyte.c: added tohex() function
-  * libqmail.spec: added iopause.h header file
-  * Makefile.am: added tohex(), iopause.c, uint16, functions
-  * added safe multiplication functions from libowfat, http://www.fefe.de/libowfat/ 
-  * fixed lib path in libqmail.install, libqmail-dev.install
+  * added --release option to specify release on command line
+  * added Provides: qmail-libs
