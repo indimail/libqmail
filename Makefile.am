@@ -28,23 +28,27 @@ pkgconfig_DATA = libqmail.pc
 noinst_DATA = libqmail.spec
 
 man_MANS = alloc.3 byte.3 caldate.3 caldate_mjd.3 caltime.3 \
-	caltime_tai.3 case.3 cdb.3 coe.3 datetime.3 env.3 error_str.3 \
+	caltime_tai.3 case.3 cdb.3 coe.3 commands.3 config.3 \
+	datetime.3 env.3 error_str.3 \
 	error_temp.3 fd_copy.3 fd_move.3 fifo_make.3 fmt_8long.3 \
 	fmt_double.3 fmt_fill.3 fmt_minus.3 fmt_pad.3 fmt_plusminus.3 \
-	fmt_ulonglong.3 getln2.3 getln.3 leapsecs.3 now.3 qerror.3 \
+	fmt_ulonglong.3 getln2.3 getln.3 leapsecs.3 mess822.3 \
+	mess822_addr.3 mess822_date.3 mess822_fold.3 mess822_quote.3 \
+	mess822_token.3 mess822_when.3 now.3 qerror.3 rewritehost.3 \
 	scan_double.3 scan_int.3 scan_long.3 scan_plusminus.3 \
 	scan_ulonglong.3 sgetopt.3 stralloc.3 subgetopt.3 substdio.3 \
 	substdio_copy.3 substdio_in.3 substdio_out.3 tai.3 tai_now.3 \
 	tai_pack.3 tai_unpack.3 tai_sub.3 tai_less.3 tai_approx.3 \
-	tai_add.3 taia_unpack.3 taia_addsec.3 wait.3 fmt_long.3 fmt_int.3 \
-	scan_xlong.3 scan_ushort.3 scan_uint.3 scan_ulong.3 scan_8long.3 \
-	str_start.3 str_len.3 str_rchr.3 str_diff.3 str_diffn.3 str_chr.3 \
-	str_copy.3 setuserid.3 grpscan.3 setuser_privileges.3 str_tok.3 \
-	str_str.3 uint16_pack.3 uint16_pack_big.3 uint16_read.3 \
-	uint16_read_big.3 uint16_unpack.3 uint16_unpack_big.3 \
-	uint32_pack.3 uint32_pack_big.3 uint32_read.3 uint32_read_big.3 \
-	uint32_unpack.3 uint32_unpack_big.3 uint64_pack.3 uint64_pack_big.3 \
-	uint64_read.3 uint64_read_big.3 uint64_unpack.3 uint64_unpack_big.3 \
+	tai_add.3 taia.3 taia_addsec.3 taia_now.3 taia_pack.3 taia_unpack.3 \
+	wait.3 fmt_long.3 fmt_int.3 scan_xlong.3 scan_ushort.3 scan_uint.3 \
+	scan_ulong.3 scan_8long.3 str_start.3 str_len.3 str_rchr.3 \
+	str_diff.3 str_diffn.3 str_chr.3 str_copy.3 setuserid.3 \
+	grpscan.3 setuser_privileges.3 str_tok.3 str_str.3 \
+	uint16_pack.3 uint16_pack_big.3 uint16_read.3 uint16_read_big.3 \
+	uint16_unpack.3 uint16_unpack_big.3 uint32_pack.3 \
+	uint32_pack_big.3 uint32_read.3 uint32_read_big.3 uint32_unpack.3 \
+	uint32_unpack_big.3 uint64_pack.3 uint64_pack_big.3 uint64_read.3 \
+	uint64_read_big.3 uint64_unpack.3 uint64_unpack_big.3 \
 	textcode/fmt_asn1derlength.3 textcode/fmt_asn1dertag.3 \
 	textcode/fmt_utf8.3 array/array_get.3 array/array.3 \
 	array/array_reset.3 array/array_cate.3 array/iarray_init.3 \
@@ -63,15 +67,16 @@ docs = README ChangeLog COPYING AUTHORS
 docdir=@docdir@
 
 include_HEADERS = alloc.h base64.h builtinoflmacros.h byte.h caldate.h \
-	caltime.h case.h cdb.h cdbmake.h cdb_make.h coe.h constmap.h \
-	datetime.h digest_md5.h env.h error.h exit.h fd.h fifo.h fmt.h \
-	gen_allocdefs.h gen_alloc.h getEnvConfig.h getln.h global.h \
+	caltime.h case.h cdb.h cdbmake.h cdb_make.h coe.h commands.h \
+	constmap.h datetime.h digest_md5.h env.h error.h exit.h fd.h fifo.h \
+	fmt.h gen_allocdefs.h gen_alloc.h getEnvConfig.h getln.h global.h \
 	hasbltnofl.h hmac.h in_crypt.h iopause.h leapsecs.h lock.h md5.h \
-	makesalt.h mkpasswd.h ndelay.h now.h open.h pw_comp.h ripemd.h \
-	scan.h seek.h select.h setuserid.h sgetopt.h sha1.h sig.h stralloc.h \
-	strerr.h str.h subfd.h subgetopt.h substdio.h taia.h tai.h tai2.h \
-	timeoutread.h timeoutwrite.h typesx.h uint16.h uint32.h uint64.h wait.h \
-	qprintf.h strmsg.h array/array.h textcode/entities.h textcode/textcode.h \
+	makesalt.h mess822.h mkpasswd.h ndelay.h now.h open.h pw_comp.h \
+	rewritehost.h ripemd.h scan.h sconfig.h seek.h select.h setuserid.h \
+	sgetopt.h sha1.h sig.h stralloc.h strerr.h str.h strmsg.h subfd.h \
+	subgetopt.h substdio.h taia.h tai.h tai2.h timeoutread.h \
+	timeoutwrite.h typesx.h uint16.h uint32.h uint64.h wait.h qprintf.h \
+	array/array.h textcode/entities.h textcode/textcode.h \
 	likely.h iarray.h safemult.h rangecheck.h
 
 includedir=@prefix@/include/qmail
@@ -81,29 +86,31 @@ COMMONSOURCES = alloc.c alloc_re.c base64sub.c byte_chr.c \
 	caltime_fmt.c caltime_tai.c caltime_utc.c case_diffb.c case_diffs.c \
 	case_lowerb.c case_lowers.c case_startb.c case_starts.c cdb.c cdb_hash.c \
 	cdb_make.c cdbmake_add.c cdbmake_hash.c cdbmake_pack.c cdb_seek.c \
-	cdb_unpack.c coe.c constmap.c datetime.c datetime_un.c digest_md5.c \
-	env.c envread.c error.c error_str.c error_temp.c fd_copy.c fd_move.c \
-	fifo.c fmt_8long.c fmt_double.c \
+	cdb_unpack.c coe.c commands.c constmap.c datetime.c datetime_un.c \
+	digest_md5.c env.c envread.c error.c error_str.c error_temp.c fd_copy.c \
+	fd_move.c fifo.c fmt_8long.c fmt_double.c \
 	fmt_fill.c fmt_hexbytes.c fmt_int.c fmt_long.c fmt_minus.c fmt_pad.c \
 	fmt_plusminus.c fmt_str.c fmt_strn.c fmt_tohex.c fmt_uint0.c fmt_uint.c \
 	fmt_ulong.c fmt_ulonglong.c fmt_ushort.c fmt_xlong.c getEnvConfig.c \
 	getln2.c getln.c hmac_md5.c hmac_ripemd.c hmac_sha1.c hmac_sha256.c \
 	hmac_sha512.c in_crypt.c iopause.c leapsecs_add.c leapsecs_init.c \
 	leapsecs_read.c leapsecs_sub.c lock_ex.c lock_exnb.c lock_un.c makesalt.c \
-	md5.c md5_crypt.c ndelay.c ndelay_off.c now.c open_append.c open_excl.c \
+	md5.c md5_crypt.c mess822_addr.c mess822_fold.c mess822_line.c \
+	mess822_quote.c mess822_when.c mess822_date.c mess822.h mess822_ok.c \
+	mess822_token.c ndelay.c ndelay_off.c now.c open_append.c open_excl.c \
 	open_read.c open_readwrite.c open_trunc.c open_write.c mkpasswd.c \
-	pw_comp.c qprintf.c scan_8long.c scan_double.c scan_fromhex.c scan_int.c \
-	scan_long.c scan_plusminus.c scan_uint.c scan_ulong.c scan_ulonglong.c \
-	scan_ushort.c scan_xlong.c seek_cur.c seek_end.c seek_set.c \
-	seek_trunc.c setuserid.c sgetopt.c sha256_crypt.c sha512_crypt.c \
-	sig.c sig_alarm.c sig_block.c sig_bug.c sig_catch.c sig_child.c \
-	sig_hup.c sig_int.c sig_misc.c sig_pause.c sig_pipe.c sig_term.c \
-	stralloc_arts.c stralloc_catb.c stralloc_cat.c stralloc_cats.c \
-	stralloc_copy.c stralloc_eady.c stralloc_num.c stralloc_opyb.c \
-	stralloc_opys.c stralloc_pend.c str_chr.c str_chrn.c str_cpyb.c \
-	str_cpy.c str_cspn.c str_diff.c str_diffn.c str_end.c strerr_die.c \
-	strerr_sys.c str_len.c strmsg_out.c str_rchr.c str_start.c \
-	str_str.c str_tok.c subfderr.c subfdin.c subfdins.c \
+	pw_comp.c qprintf.c rewritehost.c scan_8long.c scan_double.c \
+	scan_fromhex.c scan_int.c scan_long.c scan_plusminus.c scan_uint.c \
+	scan_ulong.c scan_ulonglong.c scan_ushort.c scan_xlong.c sconfig.c \
+	seek_cur.c seek_end.c seek_set.c seek_trunc.c setuserid.c sgetopt.c \
+	sha256_crypt.c sha512_crypt.c sig.c sig_alarm.c sig_block.c sig_bug.c \
+	sig_catch.c sig_child.c sig_hup.c sig_int.c sig_misc.c sig_pause.c \
+	sig_pipe.c sig_term.c stralloc_arts.c stralloc_catb.c stralloc_cat.c \
+	stralloc_cats.c stralloc_copy.c stralloc_eady.c stralloc_num.c \
+	stralloc_opyb.c stralloc_opys.c stralloc_pend.c str_chr.c str_chrn.c \
+	str_cpyb.c str_cpy.c str_cspn.c str_diff.c str_diffn.c str_end.c \
+	strerr_die.c strerr_sys.c str_len.c strmsg_out.c str_rchr.c \
+	str_start.c str_str.c str_tok.c subfderr.c subfdin.c subfdins.c \
 	subfdout.c subfdouts.c subgetopt.c substdi.c substdio.c \
 	substdio_copy.c substdo.c taia_add.c taia_addsec.c taia_approx.c \
 	taia_half.c taia_fmtfrac.c taia_frac.c taia_less.c taia_now.c \

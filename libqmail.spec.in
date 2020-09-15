@@ -145,10 +145,13 @@ necessary to develop qmail applications
 %attr(644,root,root)                    %{_prefix}/include/qmail/getEnvConfig.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/getln.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/global.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/commands.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/rewritehost.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/leapsecs.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/lock.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/makesalt.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/md5.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/mess822.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/mkpasswd.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/ndelay.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/now.h
@@ -157,6 +160,7 @@ necessary to develop qmail applications
 %attr(644,root,root)                    %{_prefix}/include/qmail/qprintf.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/ripemd.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/scan.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/sconfig.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/seek.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/select.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/setuserid.h

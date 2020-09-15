@@ -1,4 +1,7 @@
 * ChangeLog
 Release 1.0 Start 21/05/2020
 01. added --release option to specify release on command line
+- 13/09/2020
 02. added Provides: qmail-libs
+- 15/09/2020
+03. added mess822, commands, rewritehost, sconfig functions from indimail-mta
