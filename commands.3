@@ -1,0 +1,128 @@
+.TH commands 3
+.SH NAME
+commands \- read and obey \en-terminated commands
+.SH SYNTAX
+.B #include <commands.h>
+
+int \fBcommands\fP(&\fIss\fR,\fIc\fR);
+
+substdio \fIss\fR;
+.br
+struct commands \fIc\fR[];
+.SH DESCRIPTION
+.B commands
+reads a series of commands from
+.I ss
+and follows the corresponding instructions listed in
+.IR c .
+
+.B commands
+returns 0 when it reaches end of file.
+It returns \-1, setting
+.B errno
+appropriately,
+if it runs out of memory or has trouble reading
+.IR ss .
+
+Each command is terminated by \en.
+Partial final lines are ignored.
+If a command ends with \er,
+the \er is removed.
+
+Each command contains a
+.BR verb ,
+consisting of zero or more non-space characters,
+followed optionally by one or more spaces and an
+.BR argument .
+
+Recognized verbs are listed in
+.IR c .
+.I c
+is an array of one or more
+.B struct commands\fR.
+Each
+.B struct
+has three components:
+char *\fBverb\fR;
+void *\fBaction\fR();
+and
+void *\fBflush\fR().
+
+.B verb
+points to a \e0-terminated string, interpreted without regard to case.
+If the command verb matches this string,
+.B commands
+calls
+.BR action (\fIarg\fR),
+followed by
+.BR flush ()
+if
+.B flush
+is not the zero pointer.
+Here
+.I arg
+is a pointer to a \e0-terminated string
+containing the argument
+(with any \e0 inside the argument replaced by \en),
+or the empty string if there is no argument.
+
+Exception:
+In the last
+.B struct
+in
+.IR c ,
+.B verb
+is the 0 pointer.
+.B commands
+uses this action for all unrecognized verbs.
+.SH "ENGINEERING NOTES"
+The format accepted by
+.B commands
+has been copied from one Internet protocol to another.
+It is used in SMTP, FTP, POP, etc.
+
+This does not mean it is a good format.
+It violates basic engineering principles.
+It has produced a continuing string of interoperability problems.
+
+See
+.B http://pobox.com/~djb/proto/design.html
+for further comments.
+.SH EXAMPLE
+If
+.I c
+is initialized to
+
+.EX
+   { { "help", usage, empty }
+.br
+   , { "do", doit, 0 }
+.br
+   , { 0, syntax, empty }
+.br
+   }
+.EE
+
+and
+.B commands
+receives the input
+
+.EX
+   Do this
+.br
+   undo  that
+.br
+   HELP
+.EE
+
+then
+.B commands
+will call
+.BR doit("this") ,
+.BR syntax("that") ,
+.BR empty() ,
+.BR usage("") ,
+and
+.BR empty() .
+.SH "SEE ALSO"
+substdio(3)
