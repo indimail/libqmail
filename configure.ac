@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.12  2020-09-16 21:53:54+05:30  Cprogrammer
+# FreeBSD fix
+#
 # Revision 1.11  2020-09-13 01:35:26+05:30  Cprogrammer
 # fixed PACKAGE_BUGREPORT email address
 #
@@ -34,7 +37,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.11 2020-09-13 01:35:26+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.12 2020-09-16 21:53:54+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),[Manvendra Bhangui libqmail@indimail.org],indimail, [https://github.com/mbhangui/libqmail])
@@ -65,8 +68,8 @@ PKG_INSTALLDIR
 dnl Checks for header files.
 AC_ISC_POSIX
 dnl AC_HEADER_STDC
-AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h)
-AC_CHECK_HEADERS(sys/types.h sys/wait.h sys/file.h)
+AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h endian.h)
+AC_CHECK_HEADERS(sys/types.h sys/wait.h sys/file.h sys/endian.h)
 
 AC_CHECK_FUNC(flock)
 if test "$ac_cv_func_flock" = yes ; then
@@ -89,10 +92,38 @@ LIBVER=1
 AC_SUBST(LIBVER)
 AC_CONFIG_FILES([libqmail.pc:libqmail.pc.in],[], [])
 
+case "$host" in
+*-*-sunos4.1.1*)
+	CPPFLAGS="$CPPFLAGS -DSUNOS4"
+	;;
+*-*-solaris*)
+	CPPFLAGS="$CPPFLAGS -DSOLARIS"
+	;;
+*-*-linux*)
+	CPPFLAGS="$CPPFLAGS -Dlint -DLINUX -Wall"
+	;;
+*-*-freebsd*)
+	CPPFLAGS="$CPPFLAGS -Dlint -DFREEBSD -Wall"
+	;;
+*-*-darwin*)
+	CPPFLAGS="$CPPFLAGS -DDARWIN"
+	;;
+esac
+
 if test x$prefix = xNONE
 then
 	prefix="$defaultprefix"
 	ac_configure_args="$ac_configure_args -prefix=$prefix"
+fi
+
+if test " $pkgconfigdir" = " "
+then
+	if test -d $prefix/libdata/pkgconfig
+	then
+		pkgconfigdir=$prefix/libdata/pkgconfig
+	else
+		AC_MSG_ERROR(Could not find pkgconfigdir)
+	fi
 fi
 
 AC_ARG_ENABLE(ENABLE_MD5_CRYPT,    [  --enable-md5-crypt            if your system crypt does not support md5],

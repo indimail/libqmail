@@ -1,5 +1,8 @@
 /*
  * $Log: sha256_crypt.c,v $
+ * Revision 1.2  2020-09-16 21:54:07+05:30  Cprogrammer
+ * FreeBSD fix
+ *
  * Revision 1.1  2020-04-01 18:12:57+05:30  Cprogrammer
  * Initial revision
  *
@@ -11,19 +14,29 @@
 #endif
 
 #ifdef ENABLE_SHA256_CRYPT
+#ifdef HAVE_ENDIAN_H
 #include <endian.h>
+#else
+#ifdef HAVE_SYS_ENDIAN_H
+#include <sys/endian.h>
+#endif
+#endif
 #define	__USE_GNU
 #define _GNU_SOURCE
 #include <string.h>
+#include <wchar.h>
 #include <errno.h>
 #include <limits.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <sys/param.h>
 #include <sys/types.h>
+
+#ifdef FREEBSD
+void           *mempcpy(void *, const void *, size_t);
+#endif
 
 /*- Structure to save state of computation between the single steps.  */
 struct sha256_ctx
@@ -779,7 +792,7 @@ main(void)
 void
 getversion_sha256_crypt_c()
 {
-	static char    *x = "$Id: sha256_crypt.c,v 1.1 2020-04-01 18:12:57+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: sha256_crypt.c,v 1.2 2020-09-16 21:54:07+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

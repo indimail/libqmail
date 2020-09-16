@@ -1,5 +1,8 @@
 /*
  * $Log: sha512_crypt.c,v $
+ * Revision 1.2  2020-09-16 21:54:18+05:30  Cprogrammer
+ * FreeBSD fix
+ *
  * Revision 1.1  2020-04-01 18:11:12+05:30  Cprogrammer
  * Initial revision
  *
@@ -12,19 +15,29 @@
 #endif
 
 #ifdef ENABLE_SHA512_CRYPT
+#ifdef HAVE_ENDIAN_H
 #include <endian.h>
+#else
+#ifdef HAVE_SYS_ENDIAN_H
+#include <sys/endian.h>
+#endif
+#endif
 #define	__USE_GNU
 #define _GNU_SOURCE
 #include <string.h>
+#include <wchar.h>
 #include <errno.h>
 #include <limits.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <sys/param.h>
 #include <sys/types.h>
+
+#ifdef FREEBSD
+void           *mempcpy(void *, const void *, size_t);
+#endif
 
 /*
  * Structure to save state of computation between the single steps.  
@@ -560,7 +573,7 @@ sha512_crypt_r(const char *key, const char *salt, char *buffer, int buflen)
 	 * Now we can construct the result string.  It consists of three
 	 * parts.  
 	 */
-	cp = (char *) __stpncpy(buffer, sha512_salt_prefix, MAX(0, buflen));
+	cp = (char *) stpncpy(buffer, sha512_salt_prefix, MAX(0, buflen));
 	buflen -= sizeof(sha512_salt_prefix) - 1;
 
 	if (rounds_custom)
@@ -571,7 +584,7 @@ sha512_crypt_r(const char *key, const char *salt, char *buffer, int buflen)
 		buflen -= n;
 	}
 
-	cp = (char *) __stpncpy(cp, salt, MIN((size_t) MAX(0, buflen), salt_len));
+	cp = (char *) stpncpy(cp, salt, MIN((size_t) MAX(0, buflen), salt_len));
 	buflen -= MIN((size_t) MAX(0, buflen), salt_len);
 
 	if (buflen > 0)
@@ -855,7 +868,7 @@ main(void)
 void
 getversion_sha512_crypt_c()
 {
-	static char    *x = "$Id: sha512_crypt.c,v 1.1 2020-04-01 18:11:12+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: sha512_crypt.c,v 1.2 2020-09-16 21:54:18+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

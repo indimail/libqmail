@@ -2,3 +2,5 @@ libqmail (@version@-@release@) unstable; urgency=medium
 
   * added --release option to specify release on command line
   * added Provides: qmail-libs
+  * added mess822, commands, rewritehost, sconfig functions from indimail-mta
+  * FreeBSD fix
