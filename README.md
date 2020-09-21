@@ -13,7 +13,7 @@ $ make
 $ sudo make install
 ```
 
-NOTE: for FreeBSD, install automake, autoconf, libtool using pkg
+NOTE: for FreeBSD, install automake, autoconf, libtool, pkgconf using pkg
 
 # Binary Builds on openSUSE Build Service
 
