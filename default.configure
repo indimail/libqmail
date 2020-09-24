@@ -23,7 +23,6 @@ case "$SYSTEM" in
 		else
 			libdir=/usr/lib
 		fi
-	elif [ " $SYSTEM" = " FreeBSD" ] ; then
 	else
 		if [ -d /usr/lib64 ] ; then
 			libdir=/usr/lib64
