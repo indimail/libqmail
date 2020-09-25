@@ -23,9 +23,9 @@ Group: System Environment/Libraries
 Group: System/Libraries
 %endif
 %if %build_on_obs == 1
-License: GPL-3.0+
+License: GPL-2.0
 %else
-License: GPLv3
+License: GPLv2
 %endif
 URL: https://github.com/mbhangui/libqmail
 Source0: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
