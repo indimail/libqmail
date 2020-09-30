@@ -1,5 +1,8 @@
 /*
- * $Log: $
+ * $Log: scan_uuencoded.c,v $
+ * Revision 1.1  2020-09-30 09:17:54+05:30  Cprogrammer
+ * Initial revision
+ *
  */
 #include "textcode.h"
 
@@ -45,7 +48,7 @@ scan_uuencoded(const char *src, char *dest, size_t *destlen)
 void
 getversion_scan_uuencoded_c()
 {
-	static char    *x = "$Id: $";
+	static char    *x = "$Id: scan_uuencoded.c,v 1.1 2020-09-30 09:17:54+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

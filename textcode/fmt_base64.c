@@ -1,5 +1,8 @@
 /*
- * $Log: $
+ * $Log: fmt_base64.c,v $
+ * Revision 1.1  2020-09-30 09:16:27+05:30  Cprogrammer
+ * Initial revision
+ *
  */
 #include "base64.h"
 #include "fmt.h"
@@ -39,7 +42,7 @@ fmt_base64(char *dest, const char *src, size_t len)
 void
 getversion_fmt_base64_c()
 {
-	static char    *x = "$Id: $";
+	static char    *x = "$Id: fmt_base64.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

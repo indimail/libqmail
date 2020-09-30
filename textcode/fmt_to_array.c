@@ -1,5 +1,8 @@
 /*
- * $Log: $
+ * $Log: fmt_to_array.c,v $
+ * Revision 1.1  2020-09-30 09:16:27+05:30  Cprogrammer
+ * Initial revision
+ *
  */
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -24,7 +27,7 @@ fmt_to_array(size_t (*func)(char *, const char *, size_t), array * a, const char
 void
 getversion_fmt_to_array_c()
 {
-	static char    *x = "$Id: $";
+	static char    *x = "$Id: fmt_to_array.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

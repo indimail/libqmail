@@ -1,19 +1,21 @@
 /* 
- * $Log: $
+ * $Log: fmt_asn1derlength.c,v $
+ * Revision 1.1  2020-09-30 09:16:27+05:30  Cprogrammer
+ * Initial revision
+ *
  */
 #include "fmt.h"
 
-/*
+/*-
  * write int in least amount of bytes, return number of bytes 
- *
  * as used in ASN.1 length 
  */
 size_t
 fmt_asn1derlength(char *dest, unsigned long long l)
 {
-/*
- * encoding is either l%128 or (0x80+number of bytes,bytes) 
- */
+	/*- 
+	 * encoding is either l%128 or (0x80+number of bytes,bytes)
+	 */
 	size_t          needed = (sizeof l), i;
 	if (l < 128) {
 		if (dest)
@@ -39,7 +41,7 @@ fmt_asn1derlength(char *dest, unsigned long long l)
 void
 getversion_fmt_asn1derlength_c()
 {
-	static char    *x = "$Id: $";
+	static char    *x = "$Id: fmt_asn1derlength.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

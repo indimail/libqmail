@@ -1,5 +1,8 @@
 /*
- * $Log: $
+ * $Log: fmt_to_sa.c,v $
+ * Revision 1.1  2020-09-30 09:16:27+05:30  Cprogrammer
+ * Initial revision
+ *
  */
 #include "stralloc.h"
 #include "textcode.h"
@@ -19,7 +22,7 @@ fmt_to_sa(size_t (*func)(char *, const char *, size_t), stralloc * sa, const cha
 void
 getversion_fmt_to_sa_c()
 {
-	static char    *x = "$Id: $";
+	static char    *x = "$Id: fmt_to_sa.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

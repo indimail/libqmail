@@ -1,5 +1,8 @@
 /*
- * $Log: $
+ * $Log: entities.h,v $
+ * Revision 1.1  2020-09-30 09:18:09+05:30  Cprogrammer
+ * Initial revision
+ *
  */
 struct {
   uint32_t tab[9854];

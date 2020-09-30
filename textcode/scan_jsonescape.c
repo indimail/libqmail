@@ -1,5 +1,8 @@
 /*
- * $Log: $
+ * $Log: scan_jsonescape.c,v $
+ * Revision 1.1  2020-09-30 09:17:10+05:30  Cprogrammer
+ * Initial revision
+ *
  */
 #include "fmt.h"
 #include "textcode.h"
@@ -20,7 +23,7 @@ scan_jsonescape(const char *src, char *dest, size_t *destlen)
 			{
 			case '\\':
 				if (prev != (unsigned int) -1)
-					return 0;	// lead surrogate not followed by tail surrogate
+					return 0;	/*- lead surrogate not followed by tail surrogate */
 				break;
 			case 'u':
 			{
@@ -28,11 +31,12 @@ scan_jsonescape(const char *src, char *dest, size_t *destlen)
 				for (cur = j = 0; j < 4; ++j) {
 					char            x = scan_fromhex(s[i + 2 + j]);
 					if (x < 0)
-						return 0;	// not hex -> invalid input
+						return 0;	/*- not hex -> invalid input */
 					cur = (cur << 4) | x;
 				}
 				if (cur >= 0xd800 && cur <= 0xdbff) {
-					/* utf-16 surrogate pair; needs to be followed by
+					/*-
+					 * utf-16 surrogate pair; needs to be followed by
 					 * another surrogate. We need to read both and
 					 * convert to UTF-8
 					 */
@@ -53,7 +57,7 @@ scan_jsonescape(const char *src, char *dest, size_t *destlen)
 			}
 			default:
 				if (prev != (unsigned int) -1)
-					return 0;	// lead surrogate not followed by tail surrogate
+					return 0;	/*- lead surrogate not followed by tail surrogate */
 				c = s[i + 1];
 				break;
 			}
@@ -70,7 +74,7 @@ scan_jsonescape(const char *src, char *dest, size_t *destlen)
 void
 getversion_scan_jsonescape_c()
 {
-	static char    *x = "$Id: $";
+	static char    *x = "$Id: scan_jsonescape.c,v 1.1 2020-09-30 09:17:10+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

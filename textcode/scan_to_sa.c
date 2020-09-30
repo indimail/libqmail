@@ -1,5 +1,8 @@
 /*
- * $Log: $
+ * $Log: scan_to_sa.c,v $
+ * Revision 1.1  2020-09-30 09:17:54+05:30  Cprogrammer
+ * Initial revision
+ *
  */
 #include "str.h"
 #include "stralloc.h"
@@ -20,7 +23,7 @@ scan_to_sa(size_t (*func)(const char *, char *, size_t *), const char *src, stra
 void
 getversion_scan_to_sa_c()
 {
-	static char    *x = "$Id: $";
+	static char    *x = "$Id: scan_to_sa.c,v 1.1 2020-09-30 09:17:54+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

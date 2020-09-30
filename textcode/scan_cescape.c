@@ -1,5 +1,8 @@
 /*
- * $Log: $
+ * $Log: scan_cescape.c,v $
+ * Revision 1.1  2020-09-30 09:16:27+05:30  Cprogrammer
+ * Initial revision
+ *
  */
 #include "fmt.h"
 #include "textcode.h"
@@ -67,7 +70,7 @@ scan_cescape(const char *src, char *dest, size_t *destlen)
 void
 getversion_scan_escape_c()
 {
-	static char    *x = "$Id: $";
+	static char    *x = "$Id: scan_cescape.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

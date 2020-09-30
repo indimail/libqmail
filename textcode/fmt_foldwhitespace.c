@@ -1,5 +1,8 @@
 /*
- * $Log: $
+ * $Log: fmt_foldwhitespace.c,v $
+ * Revision 1.1  2020-09-30 09:16:27+05:30  Cprogrammer
+ * Initial revision
+ *
  */
 #include "fmt.h"
 #include "textcode.h"
@@ -30,7 +33,7 @@ fmt_foldwhitespace(char *dest, const char *src, size_t len)
 void
 getversion_fmt_foldwhitespace_c()
 {
-	static char    *x = "$Id: $";
+	static char    *x = "$Id: fmt_foldwhitespace.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
