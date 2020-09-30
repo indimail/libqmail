@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.13  2020-09-30 20:48:27+05:30  Cprogrammer
+# Darwin Port
+#
 # Revision 1.12  2020-09-16 21:53:54+05:30  Cprogrammer
 # FreeBSD fix
 #
@@ -37,7 +40,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.12 2020-09-16 21:53:54+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.13 2020-09-30 20:48:27+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),[Manvendra Bhangui libqmail@indimail.org],indimail, [https://github.com/mbhangui/libqmail])
@@ -47,10 +50,8 @@ VERSION=$PACKAGE_VERSION
 LT_INIT
 AM_INIT_AUTOMAKE([subdir-objects silent-rules])
 AM_CONFIG_HEADER(config.h)
-AC_DEFINE_UNQUOTED(PACKAGE_BUGREPORT, "libqmail@indimail.org")
 if test "$GCC" = yes ; then
 	CXXFLAGS="$CXXFLAGS -Wall"
-	CFLAGS="$CFLAGS -O4 -Wall -Wimplicit -fPIC -fno-strict-aliasing -Wunused -Wcomment -Wchar-subscripts -Wuninitialized -Wshadow -Wcast-align -Wwrite-strings -Wno-discarded-qualifiers"
 fi
 
 dnl Checks for programs.
@@ -70,6 +71,27 @@ AC_ISC_POSIX
 dnl AC_HEADER_STDC
 AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h endian.h)
 AC_CHECK_HEADERS(sys/types.h sys/wait.h sys/file.h sys/endian.h)
+
+case "$host" in
+*-*-sunos4.1.1*)
+	CPPFLAGS="$CPPFLAGS -DSUNOS4"
+	;;
+*-*-solaris*)
+	CPPFLAGS="$CPPFLAGS -DSOLARIS"
+	;;
+*-*-linux*)
+	CPPFLAGS="$CPPFLAGS -Dlint -DLINUX -Wall"
+	CFLAGS="$CFLAGS -O4 -Wall -Wimplicit -fPIC -fno-strict-aliasing -Wunused -Wcomment -Wchar-subscripts -Wuninitialized -Wshadow -Wcast-align -Wwrite-strings -Wno-discarded-qualifiers"
+	;;
+*-*-freebsd*)
+	CPPFLAGS="$CPPFLAGS -Dlint -DFREEBSD -Wall"
+	CFLAGS="$CFLAGS -O4 -Wall -Wimplicit -fPIC -fno-strict-aliasing -Wunused -Wcomment -Wchar-subscripts -Wuninitialized -Wshadow -Wcast-align -Wwrite-strings"
+	;;
+*-*-darwin*)
+	CPPFLAGS="$CPPFLAGS -I/opt/local/include -DDARWIN"
+	LDFLAGS="-L/opt/local/lib"
+	;;
+esac
 
 AC_CHECK_FUNC(flock)
 if test "$ac_cv_func_flock" = yes ; then
@@ -91,24 +113,6 @@ AC_SUBST(libdir)
 LIBVER=1
 AC_SUBST(LIBVER)
 AC_CONFIG_FILES([libqmail.pc:libqmail.pc.in],[], [])
-
-case "$host" in
-*-*-sunos4.1.1*)
-	CPPFLAGS="$CPPFLAGS -DSUNOS4"
-	;;
-*-*-solaris*)
-	CPPFLAGS="$CPPFLAGS -DSOLARIS"
-	;;
-*-*-linux*)
-	CPPFLAGS="$CPPFLAGS -Dlint -DLINUX -Wall"
-	;;
-*-*-freebsd*)
-	CPPFLAGS="$CPPFLAGS -Dlint -DFREEBSD -Wall"
-	;;
-*-*-darwin*)
-	CPPFLAGS="$CPPFLAGS -DDARWIN"
-	;;
-esac
 
 if test x$prefix = xNONE
 then
