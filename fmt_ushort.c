@@ -1,5 +1,8 @@
 /*
  * $Log: fmt_ushort.c,v $
+ * Revision 1.3  2020-10-01 13:30:31+05:30  Cprogrammer
+ * changed function to c89 prototype to fix warning on Darwin (warning: promoted type 'int' of K&R function parameter is not compatible with the parameter type)
+ *
  * Revision 1.2  2004-10-22 20:25:24+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,9 +13,7 @@
 #include "fmt.h"
 
 unsigned int
-fmt_ushort(s, u)
-	register char  *s;
-	register unsigned short u;
+fmt_ushort(register char *s, register unsigned short u)
 {
 	register unsigned long l;
 	l = u;
@@ -22,7 +23,7 @@ fmt_ushort(s, u)
 void
 getversion_fmt_ushort_c()
 {
-	static char    *x = "$Id: fmt_ushort.c,v 1.2 2004-10-22 20:25:24+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: fmt_ushort.c,v 1.3 2020-10-01 13:30:31+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
