@@ -12,6 +12,7 @@ case "$SYSTEM" in
 	mandir=/usr/local/man
 	libdir=/usr/local/lib
 	pkgconfigdir=/usr/local/libdata/pkgconfig
+	extra=""
 	;;
 	Linux)
 	prefix=/usr
@@ -34,18 +35,23 @@ case "$SYSTEM" in
 		fi
 	fi
 	pkgconfigdir=$libdir/pkgconfig
+	extra=""
 	;;
 	Darwin)
 	prefix=/opt/local
 	mandir=/opt/local/share/man
 	libdir=/opt/local/lib
 	pkgconfigdir=$libdir/pkgconfig
+	extra="--enable-passwd-hash=md5"
 	;;
 	*)
 	prefix=/usr
 	mandir=/usr/man
 	libdir=/usr/lib
 	pkgconfigdir=$libdir/pkgconfig
+	extra=""
 	;;
 esac
-./configure --prefix=$prefix --mandir=$mandir --libdir=$libdir --with-pkgconfigdir=$pkgconfigdir
+./configure --prefix=$prefix --mandir=$mandir \
+	--libdir=$libdir --with-pkgconfigdir=$pkgconfigdir \
+	$extra

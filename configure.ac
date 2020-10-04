@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.14  2020-10-04 12:00:33+05:30  Cprogrammer
+# fix for broken crypt() function on Darwin Mac OS X
+#
 # Revision 1.13  2020-09-30 20:48:27+05:30  Cprogrammer
 # Darwin Port
 #
@@ -40,7 +43,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.13 2020-09-30 20:48:27+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.14 2020-10-04 12:00:33+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),[Manvendra Bhangui libqmail@indimail.org],indimail, [https://github.com/mbhangui/libqmail])
@@ -149,14 +152,11 @@ test "$with_sha512crypt" = "no" && AC_DEFINE(ENABLE_SHA512_CRYPT,1,Define if you
 AM_CONDITIONAL(ENABLE_SHA512_CRYPT, test "$with_sha512crypt" = yes)
 
 pwdhash=system
-AC_ARG_ENABLE(pwdhash,
+AC_ARG_ENABLE(passwd-hash,
 	[--enable-passwd-hash=des|md5|sha256|sha512|system Passwd Hash (des - DES, md5 - MD5, sha256 - SHA256, sha512 - SHA512, system)],
 	pwdhash=$enableval,
 	[
-	AC_DEFINE_UNQUOTED(DES_HASH,0,Enable DES Encryption)
-	AC_DEFINE_UNQUOTED(MD5_HASH,1,Enable MD5 Encryption)
-	AC_DEFINE_UNQUOTED(SHA256_HASH,2,Enable SHA256 Encryption)
-	AC_DEFINE_UNQUOTED(SHA512_HASH,3,Enable SHA512 Encryption)
+	 pwdhash=system
 	])
 case $pwdhash in
 	des)
@@ -175,6 +175,10 @@ case $pwdhash in
 	AC_DEFINE_UNQUOTED(PASSWORD_HASH,-1,Use System Crypt Encryption)
 	;;
 esac
+AC_DEFINE_UNQUOTED(DES_HASH,0,Enable DES Encryption)
+AC_DEFINE_UNQUOTED(MD5_HASH,1,Enable MD5 Encryption)
+AC_DEFINE_UNQUOTED(SHA256_HASH,2,Enable SHA256 Encryption)
+AC_DEFINE_UNQUOTED(SHA512_HASH,3,Enable SHA512 Encryption)
 
 AC_OUTPUT(Makefile)
 
