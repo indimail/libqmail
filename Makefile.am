@@ -16,48 +16,52 @@ libqmail_la_LDFLAGS = -version-info @LIBVER@:0:0
 libqmail_la_CFLAGS = -fPIC
 libqmaildir=@libdir@
 
-BUILT_SOURCES = base/uint32.h base/uint64.h base/haswaitp.h base/hasflock.h base/hassgact.h base/hassgprm.h \
-	base/select.h base/hasmkffo.h base/hasbltnofl.h base/builtinoflmacros.h base/iopause.h base/haveuint128.h
+BUILT_SOURCES = base/uint32.h base/uint64.h base/haswaitp.h base/hasflock.h \
+	base/hassgact.h base/hassgprm.h base/select.h base/hasmkffo.h \
+	base/hasbltnofl.h base/builtinoflmacros.h base/iopause.h base/haveuint128.h
 
-MOSTLYCLEANFILES = base/uint32.h base/uint64.h base/haswaitp.h base/hasflock.h base/hassgact.h \
-	base/hassgprm.h base/select.h base/hasmkffo.h base/hasbltnofl.h base/iopause.h base/haveuint128.h
+MOSTLYCLEANFILES = base/uint32.h base/uint64.h base/haswaitp.h base/hasflock.h \
+	base/hassgact.h base/hassgprm.h base/select.h base/hasmkffo.h base/hasbltnofl.h \
+	base/iopause.h base/haveuint128.h
 
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libqmail.pc
 
 noinst_DATA = libqmail.spec
 
-man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 base/caltime.3 \
-	base/caltime_tai.3 base/case.3 base/cdb.3 base/coe.3 base/commands.3 base/config.3 \
-	base/datetime.3 base/env.3 base/error_str.3 \
-	base/error_temp.3 base/fd_copy.3 base/fd_move.3 base/fifo_make.3 base/fmt_8long.3 \
-	base/fmt_double.3 base/fmt_fill.3 base/fmt_minus.3 base/fmt_pad.3 base/fmt_plusminus.3 \
-	base/fmt_ulonglong.3 base/getln2.3 base/getln.3 base/leapsecs.3 base/mess822.3 \
-	base/mess822_addr.3 base/mess822_date.3 base/mess822_fold.3 base/mess822_quote.3 \
-	base/mess822_token.3 base/mess822_when.3 base/now.3 base/qerror.3 base/rewritehost.3 \
-	base/scan_double.3 base/scan_int.3 base/scan_long.3 base/scan_plusminus.3 \
-	base/scan_ulonglong.3 base/sgetopt.3 base/stralloc.3 base/subgetopt.3 base/substdio.3 \
-	base/substdio_copy.3 base/substdio_in.3 base/substdio_out.3 base/tai.3 base/tai_now.3 \
-	base/tai_pack.3 base/tai_unpack.3 base/tai_sub.3 base/tai_less.3 base/tai_approx.3 \
-	base/tai_add.3 base/taia.3 base/taia_addsec.3 base/taia_now.3 base/taia_pack.3 base/taia_unpack.3 \
-	base/wait.3 base/fmt_long.3 base/fmt_int.3 base/scan_xlong.3 base/scan_ushort.3 base/scan_uint.3 \
-	base/scan_ulong.3 base/scan_8long.3 base/str_start.3 base/str_len.3 base/str_rchr.3 \
-	base/str_diff.3 base/str_diffn.3 base/str_chr.3 base/str_copy.3 base/setuserid.3 \
-	base/grpscan.3 base/setuser_privileges.3 base/str_tok.3 base/str_str.3 \
-	base/uint16_pack.3 base/uint16_pack_big.3 base/uint16_read.3 base/uint16_read_big.3 \
-	base/uint16_unpack.3 base/uint16_unpack_big.3 base/uint32_pack.3 \
-	base/uint32_pack_big.3 base/uint32_read.3 base/uint32_read_big.3 base/uint32_unpack.3 \
-	base/uint32_unpack_big.3 base/uint64_pack.3 base/uint64_pack_big.3 base/uint64_read.3 \
-	base/uint64_read_big.3 base/uint64_unpack.3 base/uint64_unpack_big.3 \
-	textcode/fmt_asn1derlength.3 textcode/fmt_asn1dertag.3 \
-	textcode/fmt_utf8.3 array/array_get.3 array/array.3 \
-	array/array_reset.3 array/array_cate.3 array/iarray_init.3 \
-	array/array_equal.3 array/array_length.3 array/array_catb.3 \
-	array/array_trunc.3 array/array_cats.3 array/array_cats0.3 \
+man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 \
+	base/caltime.3 base/caltime_tai.3 base/case.3 base/cdb.3 base/coe.3 \
+	base/commands.3 base/config.3 base/datetime.3 base/env.3 base/error_str.3 \
+	base/error_temp.3 base/fd_copy.3 base/fd_move.3 base/fifo_make.3 \
+	base/fmt_8long.3 base/fmt_double.3 base/fmt_fill.3 base/fmt_minus.3 \
+	base/fmt_pad.3 base/fmt_plusminus.3 base/fmt_ulonglong.3 base/getln2.3 \
+	base/getln.3 base/leapsecs.3 base/mess822.3 base/mess822_addr.3 \
+	base/mess822_date.3 base/mess822_fold.3 base/mess822_quote.3 \
+	base/mess822_token.3 base/mess822_when.3 base/now.3 base/qerror.3 \
+	base/rewritehost.3 base/scan_double.3 base/scan_int.3 base/scan_long.3 \
+	base/scan_plusminus.3 base/scan_ulonglong.3 base/sgetopt.3 base/stralloc.3 \
+	base/subgetopt.3 base/substdio.3 base/substdio_copy.3 base/substdio_in.3 \
+	base/substdio_out.3 base/tai.3 base/tai_now.3 base/tai_pack.3 base/tai_unpack.3 \
+	base/tai_sub.3 base/tai_less.3 base/tai_approx.3 base/tai_add.3 base/taia.3 \
+	base/taia_addsec.3 base/taia_now.3 base/taia_pack.3 base/taia_unpack.3 \
+	base/wait.3 base/fmt_long.3 base/fmt_int.3 base/scan_xlong.3 base/scan_ushort.3 \
+	base/scan_uint.3 base/scan_ulong.3 base/scan_8long.3 base/str_start.3 \
+	base/str_len.3 base/str_rchr.3 base/str_diff.3 base/str_diffn.3 base/str_chr.3 \
+	base/str_copy.3 base/setuserid.3 base/grpscan.3 base/setuser_privileges.3 \
+	base/str_tok.3 base/str_str.3 base/uint16_pack.3 base/uint16_pack_big.3 \
+	base/uint16_read.3 base/uint16_read_big.3 base/uint16_unpack.3 \
+	base/uint16_unpack_big.3 base/uint32_pack.3 base/uint32_pack_big.3 \
+	base/uint32_read.3 base/uint32_read_big.3 base/uint32_unpack.3 \
+	base/uint32_unpack_big.3 base/uint64_pack.3 base/uint64_pack_big.3 \
+	base/uint64_read.3 base/uint64_read_big.3 base/uint64_unpack.3 \
+	base/uint64_unpack_big.3 textcode/fmt_asn1derlength.3 textcode/fmt_asn1dertag.3 \
+	textcode/fmt_utf8.3 array/array_get.3 array/array.3 array/array_reset.3 \
+	array/array_cate.3 array/iarray_init.3 array/array_equal.3 array/array_length.3 \
+	array/array_catb.3 array/array_trunc.3 array/array_cats.3 array/array_cats0.3 \
 	array/array_fail.3 array/array_truncate.3 array/array_bytes.3 \
 	array/array_cat.3 array/array_start.3 array/iarray_allocate.3 \
 	array/iarray_get.3 array/array_cat0.3 array/iarray_free.3 \
-	array/array_allocate.3 \
+	array/array_allocate.3 
 	mult/add_of.3 mult/assign.3 mult/imult16.3 mult/imult32.3 \
 	mult/imult64.3 mult/range_ptrinbuf.3 mult/range_str2inbuf.3 \
 	mult/range_str4inbuf.3 mult/range_strinbuf.3 mult/range_validbuf.3 \
@@ -66,58 +70,76 @@ man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 base/calti
 docs = README ChangeLog COPYING AUTHORS
 docdir=@docdir@
 
-include_HEADERS = base/alloc.h base/base64.h base/builtinoflmacros.h base/byte.h base/caldate.h \
-	base/caltime.h base/case.h base/cdb.h base/cdbmake.h base/cdb_make.h base/coe.h base/commands.h \
-	base/constmap.h base/datetime.h base/digest_md5.h base/env.h base/error.h base/exit.h base/fd.h base/fifo.h \
-	base/fmt.h base/gen_allocdefs.h base/gen_alloc.h base/getEnvConfig.h base/getln.h base/global.h \
-	base/hasbltnofl.h base/hmac.h base/in_crypt.h base/iopause.h base/leapsecs.h base/lock.h base/md5.h \
-	base/makesalt.h base/mess822.h base/mkpasswd.h base/ndelay.h base/now.h base/open.h base/pw_comp.h \
-	base/rewritehost.h base/ripemd.h base/scan.h base/sconfig.h base/seek.h base/select.h base/setuserid.h \
-	base/sgetopt.h base/sha1.h base/sig.h base/stralloc.h base/strerr.h base/str.h base/strmsg.h base/subfd.h \
-	base/subgetopt.h base/substdio.h base/taia.h base/tai.h base/tai2.h base/timeoutread.h \
-	base/timeoutwrite.h base/typesx.h base/uint16.h base/uint32.h base/uint64.h base/wait.h base/qprintf.h \
-	array/array.h textcode/entities.h textcode/textcode.h \
+include_HEADERS = base/alloc.h base/base64.h base/builtinoflmacros.h \
+	base/byte.h base/caldate.h base/caltime.h base/case.h base/cdb.h \
+	base/cdbmake.h base/cdb_make.h base/coe.h base/commands.h \
+	base/constmap.h base/datetime.h base/digest_md5.h base/env.h \
+	base/error.h base/exit.h base/fd.h base/fifo.h base/fmt.h \
+	base/gen_allocdefs.h base/gen_alloc.h base/getEnvConfig.h base/getln.h \
+	base/global.h base/hasbltnofl.h base/hmac.h base/in_crypt.h \
+	base/iopause.h base/leapsecs.h base/lock.h base/md5.h base/makesalt.h \
+	base/mess822.h base/mkpasswd.h base/ndelay.h base/now.h base/open.h \
+	base/pw_comp.h base/rewritehost.h base/ripemd.h base/scan.h \
+	base/sconfig.h base/seek.h base/select.h base/setuserid.h \
+	base/sgetopt.h base/sha1.h base/sig.h base/stralloc.h base/strerr.h \
+	base/str.h base/strmsg.h base/subfd.h base/subgetopt.h base/substdio.h \
+	base/taia.h base/tai.h base/tai2.h base/timeoutread.h base/timeoutwrite.h \
+	base/typesx.h base/uint16.h base/uint32.h base/uint64.h base/wait.h \
+	base/qprintf.h array/array.h textcode/entities.h textcode/textcode.h \
 	base/likely.h base/iarray.h base/safemult.h base/rangecheck.h
 
 includedir=@prefix@/include/qmail
 COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
-	base/byte_copy.c base/byte_cr.c base/byte_cspn.c base/byte_diff.c base/byte_rchr.c base/byte_rcspn.c \
-	base/byte_zero.c base/caldate_fmjd.c base/caldate_fmt.c base/caldate_mjd.c base/caldate_scan.c \
-	base/caltime_fmt.c base/caltime_tai.c base/caltime_utc.c base/case_diffb.c base/case_diffs.c \
-	base/case_lowerb.c base/case_lowers.c base/case_startb.c base/case_starts.c base/cdb.c base/cdb_hash.c \
-	base/cdb_make.c base/cdbmake_add.c base/cdbmake_hash.c base/cdbmake_pack.c base/cdb_seek.c \
-	base/cdb_unpack.c base/coe.c base/commands.c base/constmap.c base/datetime.c base/datetime_un.c \
-	base/digest_md5.c base/env.c base/envread.c base/error.c base/error_str.c base/error_temp.c base/fd_copy.c \
-	base/fd_move.c base/fifo.c base/fmt_8long.c base/fmt_double.c \
-	base/fmt_fill.c base/fmt_hexbytes.c base/fmt_int.c base/fmt_long.c base/fmt_minus.c base/fmt_pad.c \
-	base/fmt_plusminus.c base/fmt_str.c base/fmt_strn.c base/fmt_tohex.c base/fmt_uint0.c base/fmt_uint.c \
-	base/fmt_ulong.c base/fmt_ulonglong.c base/fmt_ushort.c base/fmt_xlong.c base/getEnvConfig.c \
-	base/getln2.c base/getln.c base/hmac_md5.c base/hmac_ripemd.c base/hmac_sha1.c base/hmac_sha256.c \
-	base/hmac_sha512.c base/in_crypt.c base/iopause.c base/leapsecs_add.c base/leapsecs_init.c \
-	base/leapsecs_read.c base/leapsecs_sub.c base/lock_ex.c base/lock_exnb.c base/lock_un.c base/makesalt.c \
-	base/md5.c base/md5_crypt.c base/mess822_addr.c base/mess822_fold.c base/mess822_line.c \
-	base/mess822_quote.c base/mess822_when.c base/mess822_date.c base/mess822.h base/mess822_ok.c \
-	base/mess822_token.c base/ndelay.c base/ndelay_off.c base/now.c base/open_append.c base/open_excl.c \
-	base/open_read.c base/open_readwrite.c base/open_trunc.c base/open_write.c base/mkpasswd.c \
-	base/pw_comp.c base/qprintf.c base/rewritehost.c base/scan_8long.c base/scan_double.c \
-	base/scan_fromhex.c base/scan_int.c base/scan_long.c base/scan_plusminus.c base/scan_uint.c \
-	base/scan_ulong.c base/scan_ulonglong.c base/scan_ushort.c base/scan_xlong.c base/sconfig.c \
-	base/seek_cur.c base/seek_end.c base/seek_set.c base/seek_trunc.c base/setuserid.c base/sgetopt.c \
-	base/sha256_crypt.c base/sha512_crypt.c base/sig.c base/sig_alarm.c base/sig_block.c base/sig_bug.c \
-	base/sig_catch.c base/sig_child.c base/sig_hup.c base/sig_int.c base/sig_misc.c base/sig_pause.c \
-	base/sig_pipe.c base/sig_term.c base/stralloc_arts.c base/stralloc_catb.c base/stralloc_cat.c \
-	base/stralloc_cats.c base/stralloc_copy.c base/stralloc_eady.c base/stralloc_num.c \
-	base/stralloc_opyb.c base/stralloc_opys.c base/stralloc_pend.c base/str_chr.c base/str_chrn.c \
-	base/str_cpyb.c base/str_cpy.c base/str_cspn.c base/str_diff.c base/str_diffn.c base/str_end.c \
-	base/strerr_die.c base/strerr_sys.c base/str_len.c base/strmsg_out.c base/str_rchr.c \
-	base/str_start.c base/str_str.c base/str_tok.c base/subfderr.c base/subfdin.c base/subfdins.c \
-	base/subfdout.c base/subfdouts.c base/subgetopt.c base/substdi.c base/substdio.c \
-	base/substdio_copy.c base/substdo.c base/taia_add.c base/taia_addsec.c base/taia_approx.c \
-	base/taia_half.c base/taia_fmtfrac.c base/taia_frac.c base/taia_less.c base/taia_now.c \
-	base/taia_pack.c base/taia_sub.c base/taia_tai.c base/taia_uint.c base/taia_unpack.c \
-	base/tai64n_decode.c base/tai64n_encode.c base/tai_decode.c base/tai_encode.c \
-	base/tai_now.c base/tai_pack.c base/tai_sub.c base/tai_unpack.c base/timeoutread.c \
-	base/timeoutwrite.c base/uint16_pack.c base/uint16_read.c base/uint16_unpack.c \
+	base/byte_copy.c base/byte_cr.c base/byte_cspn.c base/byte_diff.c \
+	base/byte_rchr.c base/byte_rcspn.c base/byte_zero.c base/caldate_fmjd.c \
+	base/caldate_fmt.c base/caldate_mjd.c base/caldate_scan.c \
+	base/caltime_fmt.c base/caltime_tai.c base/caltime_utc.c base/case_diffb.c \
+	base/case_diffs.c base/case_lowerb.c base/case_lowers.c base/case_startb.c \
+	base/case_starts.c base/cdb.c base/cdb_hash.c base/cdb_make.c \
+	base/cdbmake_add.c base/cdbmake_hash.c base/cdbmake_pack.c base/cdb_seek.c \
+	base/cdb_unpack.c base/coe.c base/commands.c base/constmap.c \
+	base/datetime.c base/datetime_un.c base/digest_md5.c base/env.c \
+	base/envread.c base/error.c base/error_str.c base/error_temp.c \
+	base/fd_copy.c base/fd_move.c base/fifo.c base/fmt_8long.c \
+	base/fmt_double.c base/fmt_fill.c base/fmt_hexbytes.c base/fmt_int.c \
+	base/fmt_long.c base/fmt_minus.c base/fmt_pad.c base/fmt_plusminus.c \
+	base/fmt_str.c base/fmt_strn.c base/fmt_tohex.c base/fmt_uint0.c \
+	base/fmt_uint.c base/fmt_ulong.c base/fmt_ulonglong.c base/fmt_ushort.c \
+	base/fmt_xlong.c base/getEnvConfig.c base/getln2.c base/getln.c \
+	base/hmac_md5.c base/hmac_ripemd.c base/hmac_sha1.c base/hmac_sha256.c \
+	base/hmac_sha512.c base/in_crypt.c base/iopause.c base/leapsecs_add.c \
+	base/leapsecs_init.c base/leapsecs_read.c base/leapsecs_sub.c base/lock_ex.c \
+	base/lock_exnb.c base/lock_un.c base/makesalt.c base/md5.c base/md5_crypt.c \
+	base/mess822_addr.c base/mess822_fold.c base/mess822_line.c \
+	base/mess822_quote.c base/mess822_when.c base/mess822_date.c base/mess822.h \
+	base/mess822_ok.c base/mess822_token.c base/ndelay.c base/ndelay_off.c \
+	base/now.c base/open_append.c base/open_excl.c base/open_read.c \
+	base/open_readwrite.c base/open_trunc.c base/open_write.c base/mkpasswd.c \
+	base/pw_comp.c base/qprintf.c base/rewritehost.c base/scan_8long.c \
+	base/scan_double.c base/scan_fromhex.c base/scan_int.c base/scan_long.c \
+	base/scan_plusminus.c base/scan_uint.c base/scan_ulong.c base/scan_ulonglong.c \
+	base/scan_ushort.c base/scan_xlong.c base/sconfig.c base/seek_cur.c \
+	base/seek_end.c base/seek_set.c base/seek_trunc.c base/setuserid.c base/sgetopt.c \
+	base/sha256_crypt.c base/sha512_crypt.c base/sig.c base/sig_alarm.c \
+	base/sig_block.c base/sig_bug.c base/sig_catch.c base/sig_child.c \
+	base/sig_hup.c base/sig_int.c base/sig_misc.c base/sig_pause.c \
+	base/sig_pipe.c base/sig_term.c base/stralloc_arts.c base/stralloc_catb.c \
+	base/stralloc_cat.c base/stralloc_cats.c base/stralloc_copy.c \
+	base/stralloc_eady.c base/stralloc_num.c base/stralloc_opyb.c \
+	base/stralloc_opys.c base/stralloc_pend.c base/str_chr.c base/str_chrn.c \
+	base/str_cpyb.c base/str_cpy.c base/str_cspn.c base/str_diff.c base/str_diffn.c \
+	base/str_end.c base/strerr_die.c base/strerr_sys.c base/str_len.c \
+	base/strmsg_out.c base/str_rchr.c base/str_start.c base/str_str.c \
+	base/str_tok.c base/subfderr.c base/subfdin.c base/subfdins.c \
+	base/subfdout.c base/subfdouts.c base/subgetopt.c base/substdi.c \
+	base/substdio.c base/substdio_copy.c base/substdo.c base/taia_add.c \
+	base/taia_addsec.c base/taia_approx.c base/taia_half.c base/taia_fmtfrac.c \
+	base/taia_frac.c base/taia_less.c base/taia_now.c base/taia_pack.c \
+	base/taia_sub.c base/taia_tai.c base/taia_uint.c base/taia_unpack.c \
+	base/tai64n_decode.c base/tai64n_encode.c base/tai_decode.c \
+	base/tai_encode.c base/tai_now.c base/tai_pack.c base/tai_sub.c \
+	base/tai_unpack.c base/timeoutread.c base/timeoutwrite.c \
+	base/uint16_pack.c base/uint16_read.c base/uint16_unpack.c \
 	base/uint32_pack.c base/uint32_read.c base/uint32_unpack.c \
 	base/wait_nohang.c base/wait_pid.c \
 	textcode/base64url.c textcode/fmt_asn1derlength.c \
