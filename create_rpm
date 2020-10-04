@@ -1,5 +1,8 @@
 #!/bin/sh
 # $Log: create_rpm,v $
+# Revision 1.11  2020-10-04 14:05:40+05:30  Cprogrammer
+# exclude base/RCS from tar source archive
+#
 # Revision 1.10  2020-09-13 01:35:40+05:30  Cprogrammer
 # added --release option to specify release on command line
 #
@@ -19,7 +22,7 @@
 # rpm creation script for libqmail
 #
 #
-# $Id: create_rpm,v 1.10 2020-09-13 01:35:40+05:30 Cprogrammer Exp mbhangui $
+# $Id: create_rpm,v 1.11 2020-10-04 14:05:40+05:30 Cprogrammer Exp mbhangui $
 #
 curdir=`pwd`
 version=$(cat conf-version)
@@ -88,6 +91,7 @@ if [ $copy_src -eq 1 ] ; then
 		--exclude="libqmail-$version/.git" \
 		--exclude="libqmail-$version/debian"  \
 		--exclude="libqmail-$version/RCS" \
+		--exclude="libqmail-$version/base/RCS" \
 		-cf - libqmail-"$version" \
 		| gzip -c > $rpmbuild/SOURCES/libqmail-"$version".tar.gz
 fi
