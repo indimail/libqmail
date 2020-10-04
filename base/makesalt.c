@@ -1,5 +1,8 @@
 /*
  * $Log: makesalt.c,v $
+ * Revision 1.2  2020-10-04 16:47:47+05:30  Cprogrammer
+ * combined duplicate cases in switch
+ *
  * Revision 1.1  2020-04-01 18:14:20+05:30  Cprogrammer
  * Initial revision
  *
@@ -80,12 +83,6 @@ makesalt(char *salt, int n)
 	case DES_HASH:
 		i = 0;
 		break;
-	case MD5_HASH:
-		salt[0] = '$';
-		salt[1] = '1';
-		salt[2] = '$';
-		i = 3;
-		break;
 	case SHA256_HASH:
 		salt[0] = '$';
 		salt[1] = '5';
@@ -99,6 +96,7 @@ makesalt(char *salt, int n)
 		i = 3;
 		break;
 	default:
+	case MD5_HASH:
 		salt[0] = '$';
 		salt[1] = '1';
 		salt[2] = '$';
@@ -113,7 +111,7 @@ makesalt(char *salt, int n)
 void
 getversion_makesalt_c()
 {
-	static char    *x = "$Id: makesalt.c,v 1.1 2020-04-01 18:14:20+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: makesalt.c,v 1.2 2020-10-04 16:47:47+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
