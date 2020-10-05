@@ -1,5 +1,8 @@
 /*
  * $Log: sha256_crypt.c,v $
+ * Revision 1.3  2020-10-05 16:32:06+05:30  Cprogrammer
+ * Darwin Fix
+ *
  * Revision 1.2  2020-09-16 21:54:07+05:30  Cprogrammer
  * FreeBSD fix
  *
@@ -34,7 +37,7 @@
 #include <sys/param.h>
 #include <sys/types.h>
 
-#ifdef FREEBSD
+#if defined(FREEBSD) || defined(DARWIN)
 void           *mempcpy(void *, const void *, size_t);
 #endif
 
@@ -792,7 +795,7 @@ main(void)
 void
 getversion_sha256_crypt_c()
 {
-	static char    *x = "$Id: sha256_crypt.c,v 1.2 2020-09-16 21:54:07+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: sha256_crypt.c,v 1.3 2020-10-05 16:32:06+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
