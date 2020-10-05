@@ -2,12 +2,13 @@
 Release 1.0 Start 21/05/2020
 01. added --release option to specify release on command line
 - 13/09/2020
-02. added Provides: qmail-libs
+02. libqmail.spec: added Provides: qmail-libs
 - 15/09/2020
 03. added mess822, commands, rewritehost, sconfig functions from indimail-mta
 - 16/09/2020
-04. FreeBSD fix
+04. FreeBSD fixes
 - 01/10/2020
 05. Darwin Port (fmt_ushort.c, default.configure, configure.ac)
 - 04/10/2020
 06. fixed broken crypt(3) implemetation on Darwin Mac OS X
+07. reorgnized directory structure. All qmail functions moved to 'base'
