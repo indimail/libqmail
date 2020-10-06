@@ -13,10 +13,10 @@ $ make
 $ sudo make install
 ```
 
-NOTE: for FreeBSD, install automake, autoconf, libtool, pkgconf using pkg.
-NOTE: For Darwin (Mac OSX), install [MacPorts](https://www.macports.org/) or brew. You can look at this [document](https://paolozaino.wordpress.com/2015/05/05/how-to-install-and-use-autotools-on-mac-os-x/) for installing MacPorts.
-NOTE: libqmail build has been done with clang and gcc. So the instructions should work fine if you have either of them on FreeBSD or Darwin (Mac OSX)
-NOTE: The crypt(3) function on OSX is crippled. the default.configure script passes --enable-passwd-hash=md5 to the configure script. This enables the internal hash functions instead of the system supplied crypt(3) function. Read about his issue [here](https://stackoverflow.com/questions/32569597/how-to-get-same-crypt3-function-in-mac-os-x-as-linux-gcc-gnu-crypt3-linux-g) and [here](https://bugs.python.org/issue33213).
+* NOTE: for FreeBSD, install automake, autoconf, libtool, pkgconf using pkg.
+* NOTE: For Darwin (Mac OSX), install [MacPorts](https://www.macports.org/) or brew. You can look at this [document](https://paolozaino.wordpress.com/2015/05/05/how-to-install-and-use-autotools-on-mac-os-x/) for installing MacPorts.
+* NOTE: libqmail build has been done with clang and gcc. So the instructions should work fine if you have either of them on FreeBSD or Darwin (Mac OSX)
+* NOTE: The crypt(3) function on OSX is crippled. the default.configure script passes --enable-passwd-hash=md5 to the configure script. This enables the internal hash functions instead of the system supplied crypt(3) function. Read about his issue [here](https://stackoverflow.com/questions/32569597/how-to-get-same-crypt3-function-in-mac-os-x-as-linux-gcc-gnu-crypt3-linux-g) and [here](https://bugs.python.org/issue33213).
 
 ```
 # port install automake autoconf libtool pkgconfig
