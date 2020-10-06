@@ -1,5 +1,8 @@
 /*
  * $Log: substdo.c,v $
+ * Revision 1.8  2020-10-06 14:49:07+05:30  Cprogrammer
+ * fixed compilation warning
+ *
  * Revision 1.7  2020-05-12 11:34:33+05:30  Cprogrammer
  * length argument for allwrite(), substdio_put(), substdio_bput(), substdio_putflsh() changed to unsigned to fix integer signedness error (CVE-2005-1515)
  *
@@ -35,7 +38,8 @@ allwrite(register ssize_t (*op)(), register int fd, register char *buf, register
 				continue;
 			return -1;	/*- note that some data may have been written */
 		}
-		if (w == 0);	/*- luser's fault */
+		if (w == 0)
+			;	/*- luser's fault */
 		buf += w;
 		len -= w;
 	}
@@ -160,7 +164,7 @@ substdio_putsflush(register substdio *s, register char *buf)
 void
 getversion_substdo_c()
 {
-	static char    *x = "$Id: substdo.c,v 1.7 2020-05-12 11:34:33+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: substdo.c,v 1.8 2020-10-06 14:49:07+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
