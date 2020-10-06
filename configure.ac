@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.15  2020-10-06 14:49:45+05:30  Cprogrammer
+# remove use of GCC variable as it is set by almost non-gcc compilers too
+#
 # Revision 1.14  2020-10-04 12:00:33+05:30  Cprogrammer
 # fix for broken crypt() function on Darwin Mac OS X
 #
@@ -43,7 +46,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.14 2020-10-04 12:00:33+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.15 2020-10-06 14:49:45+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),[Manvendra Bhangui libqmail@indimail.org],indimail, [https://github.com/mbhangui/libqmail])
@@ -53,9 +56,6 @@ VERSION=$PACKAGE_VERSION
 LT_INIT
 AM_INIT_AUTOMAKE([subdir-objects silent-rules])
 AM_CONFIG_HEADER(config.h)
-if test "$GCC" = yes ; then
-	CXXFLAGS="$CXXFLAGS -Wall"
-fi
 
 dnl Checks for programs.
 AC_PROG_LIBTOOL
@@ -84,11 +84,16 @@ case "$host" in
 	;;
 *-*-linux*)
 	CPPFLAGS="$CPPFLAGS -Dlint -DLINUX -Wall"
-	CFLAGS="$CFLAGS -O4 -Wall -Wimplicit -fPIC -fno-strict-aliasing -Wunused -Wcomment -Wchar-subscripts -Wuninitialized -Wshadow -Wcast-align -Wwrite-strings -Wno-discarded-qualifiers"
+	CFLAGS="$CFLAGS -O4 -Wall -Wimplicit -fPIC -fno-strict-aliasing"
+	CFLAGS="$CFLAGS -Wunused -Wcomment -Wchar-subscripts -Wuninitialized"
+	CFLAGS="$CFLAGS -Wshadow -Wcast-align -Wwrite-strings -Wno-discarded-qualifiers"
 	;;
 *-*-freebsd*)
 	CPPFLAGS="$CPPFLAGS -Dlint -DFREEBSD -Wall"
-	CFLAGS="$CFLAGS -O4 -Wall -Wimplicit -fPIC -fno-strict-aliasing -Wunused -Wcomment -Wchar-subscripts -Wuninitialized -Wshadow -Wcast-align -Wwrite-strings"
+	CFLAGS="$CFLAGS -O3 -Wall -Wimplicit -fPIC -fno-strict-aliasing -Wunused"
+	CFLAGS="$CFLAGS -Wcomment -Wchar-subscripts"
+	CFLAGS="$CFLAGS -Wuninitialized -Wshadow -Wcast-align -Wwrite-strings"
+	CFLAGS="$CFLAGS -Wno-ignored-qualifiers -Wno-incompatible-pointer-types-discards-qualifiers -Wno-cast-align"
 	;;
 *-*-darwin*)
 	CPPFLAGS="$CPPFLAGS -I/opt/local/include -DDARWIN"
