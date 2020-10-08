@@ -7,3 +7,4 @@ libqmail (@version@-@release@) unstable; urgency=medium
   * Darwin Port (fmt_ushort.c, default.configure, configure.ac)
   * fixed broken crypt(3) implemetation on Darwin Mac OS X
   * reorgnized directory structure. All qmail functions moved to 'base'
+  * textcode/fmt_utf8.c: updated with upstream libowfat-0.32
