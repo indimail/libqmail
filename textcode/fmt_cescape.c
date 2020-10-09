@@ -56,8 +56,8 @@ fmt_cescape2(char *dest, const char *src, size_t len, const char *escapeme)
 				if (dest) {
 					dest[written] = '\\';
 					dest[written + 1] = 'x';
-					dest[written + 2] = fmt_tohex(s[i] >> 4);
-					dest[written + 3] = fmt_tohex(s[i] & 0xf);
+					dest[written + 2] = tohex(s[i] >> 4);
+					dest[written + 3] = tohex(s[i] & 0xf);
 				}
 				written += 4;
 			} else {

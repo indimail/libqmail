@@ -57,7 +57,6 @@ unsigned int    fmt_xlong(char *, unsigned long);
 unsigned int    fmt_8long(char *, unsigned long);
 unsigned int    fmt_hexbyte(char *, unsigned char);
 size_t          fmt_hexdump(char *, const char *, size_t);
-char            fmt_tohex(char c) __attribute__((__const__));
 char            tohex(char);
 unsigned int    fmt_double(char *s, double, unsigned int);
 unsigned int    fmt_plusminus(char *, int);

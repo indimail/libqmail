@@ -27,8 +27,8 @@ fmt_urlencoded2(char *dest, const char *src, size_t len, const char *escapeme)
 			|| escapeme[str_chr((char *) escapeme, s[i])] == s[i]) {
 			if (dest) {
 				dest[written] = '%';
-				dest[written + 1] = fmt_tohex(s[i] >> 4);
-				dest[written + 2] = fmt_tohex(s[i] & 15);
+				dest[written + 1] = tohex(s[i] >> 4);
+				dest[written + 2] = tohex(s[i] & 15);
 			}
 			written += 3;
 		} else {

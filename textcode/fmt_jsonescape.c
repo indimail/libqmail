@@ -35,8 +35,8 @@ fmt_jsonescape(char *dest, const char *src, size_t len)
 					dest[written + 1] = 'u';
 					dest[written + 2] = '0';
 					dest[written + 3] = '0';
-					dest[written + 4] = fmt_tohex(s[i] >> 4);
-					dest[written + 5] = fmt_tohex(s[i] & 0xf);
+					dest[written + 4] = tohex(s[i] >> 4);
+					dest[written + 5] = tohex(s[i] & 0xf);
 				}
 				written += 6;
 			} else {

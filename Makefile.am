@@ -103,7 +103,7 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
 	base/fd_copy.c base/fd_move.c base/fifo.c base/fmt_8long.c \
 	base/fmt_double.c base/fmt_fill.c base/fmt_hexbytes.c base/fmt_int.c \
 	base/fmt_long.c base/fmt_minus.c base/fmt_pad.c base/fmt_plusminus.c \
-	base/fmt_str.c base/fmt_strn.c base/fmt_tohex.c base/fmt_uint0.c \
+	base/fmt_str.c base/fmt_strn.c base/fmt_uint0.c \
 	base/fmt_uint.c base/fmt_ulong.c base/fmt_ulonglong.c base/fmt_ushort.c \
 	base/fmt_xlong.c base/getEnvConfig.c base/getln2.c base/getln.c \
 	base/hmac_md5.c base/hmac_ripemd.c base/hmac_sha1.c base/hmac_sha256.c \
