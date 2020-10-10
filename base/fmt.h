@@ -1,5 +1,8 @@
 /*
  * $Log: fmt.h,v $
+ * Revision 1.11  2020-10-10 21:18:16+05:30  Cprogrammer
+ * removed fmt_tohex()
+ *
  * Revision 1.10  2020-08-03 18:11:20+05:30  Cprogrammer
  * added tohex() proto
  *

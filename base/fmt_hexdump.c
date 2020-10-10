@@ -1,5 +1,8 @@
 /*
  * $Log: fmt_hexdump.c,v $
+ * Revision 1.2  2020-10-10 21:17:56+05:30  Cprogrammer
+ * replaced fmt_tohex() with tohex()
+ *
  * Revision 1.1  2020-07-01 12:12:28+05:30  Cprogrammer
  * Initial revision
  *
@@ -27,7 +30,7 @@ fmt_hexdump(char *dest, const char *src, size_t len)
 void
 getversion_fmt_hexdump_c()
 {
-	static char    *x = "$Id: fmt_hexdump.c,v 1.1 2020-07-01 12:12:28+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: fmt_hexdump.c,v 1.2 2020-10-10 21:17:56+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
