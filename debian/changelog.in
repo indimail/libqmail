@@ -9,3 +9,4 @@ libqmail (@version@-@release@) unstable; urgency=medium
   * reorgnized directory structure. All qmail functions moved to 'base'
   * textcode/fmt_utf8.c: updated with upstream libowfat-0.32
   * replaced fmt_tohex() with tohex()
+  * global.h, hmac_md5.c, hmac_ripemd.c, md5.c, md5.h: replaced updated functions from indimail-mta
