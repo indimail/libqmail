@@ -17,4 +17,6 @@ Release 1.0 Start 21/05/2020
 09. replaced fmt_tohex() with tohex()
 10. global.h, hmac_md5.c, hmac_ripemd.c, md5.c, md5.h: replaced updated
     functions from indimail-mta
-
+- 18/10/2020
+11. alloc_re.c: fix overwriting unallocate memory location when
+    new_size < old_size
