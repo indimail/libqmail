@@ -116,7 +116,7 @@ necessary to develop qmail applications
 %{_libdir}/libqmail.so.1
 %{_libdir}/libqmail.so.1.0.0
 
-%doc ChangeLog COPYING README.md
+%doc doc/ChangeLog COPYING README.md
 
 %files devel
 %defattr(-, root, root, 0755)

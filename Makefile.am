@@ -61,7 +61,7 @@ man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 \
 	mult/range_str4inbuf.3 mult/range_strinbuf.3 mult/range_validbuf.3 \
 	mult/sub_of.3 mult/umult16.3 mult/umult32.3 mult/umult64.3
 
-docs = README ChangeLog COPYING AUTHORS
+docs = README doc/ChangeLog COPYING AUTHORS
 docdir=@docdir@
 
 include_HEADERS = base/alloc.h base/base64.h base/builtinoflmacros.h \
@@ -172,7 +172,7 @@ edit = sed \
 	-e 's}@VERSION\@}$(VERSION)}g' \
 	-e 's}@prefix\@}$(prefix)}g'
 
-libqmail.spec: libqmail.spec.in catChangeLog ChangeLog conf-version conf-release
+libqmail.spec: libqmail.spec.in catChangeLog doc/ChangeLog conf-version conf-release
 	(cat $@.in;./catChangeLog) | $(edit) > $@
 
 base/hasbltnofl.h: base/trybltnoverflow.c
