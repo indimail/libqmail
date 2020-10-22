@@ -11,3 +11,4 @@ libqmail (@version@-@release@) unstable; urgency=medium
   * replaced fmt_tohex() with tohex()
   * global.h, hmac_md5.c, hmac_ripemd.c, md5.c, md5.h: replaced updated functions from indimail-mta
   * alloc_re.c: fix overwriting unallocate memory location when new_size < old_size
+  * Remove definition of INSTALL program in configure.ac, Makefile.am

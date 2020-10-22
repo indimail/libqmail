@@ -114,7 +114,6 @@ dnl Does not work on RHEL 5, CentOS 5 64 bit systems
 RPATH_LIB="$acl_libdirstem"
 defaultprefix="/usr"
 AC_SUBST([LIBTOOL_DEPS])
-AC_SUBST(STRIP_OPT)
 AC_SUBST(RPATH_LIB)
 AC_SUBST(defaultprefix)
 AC_SUBST(libdir)

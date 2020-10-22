@@ -3,12 +3,6 @@ ACLOCAL_AMFLAGS=-I m4
 
 DEFS=@DEFS@ -I. -Ibase -Iarray -Itextcode
 
-INSTALL_PROGRAM = ${INSTALL}          -c
-install_sh_PROGRAM = $(install_sh)    -c
-INSTALL_SCRIPT = ${INSTALL}           -c
-install_sh_SCRIPT = $(install_sh)     -c
-INSTALL_STRIP_PROGRAM = $(install_sh) -c $(STRIP_OPT)
-
 libqmail_LTLIBRARIES = libqmail.la
 libqmail_la_SOURCES = $(COMMONSOURCES)
 libqmail_la_LIBADD = @LIB_CRYPT@ @LIB_CRYPTO@ @LIB_SSL@
