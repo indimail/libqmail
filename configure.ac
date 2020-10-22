@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.16  2020-10-22 22:37:10+05:30  Cprogrammer
+# removed STRIP_OPT
+#
 # Revision 1.15  2020-10-06 14:49:45+05:30  Cprogrammer
 # remove use of GCC variable as it is set by almost non-gcc compilers too
 #
@@ -46,7 +49,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.15 2020-10-06 14:49:45+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.16 2020-10-22 22:37:10+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),[Manvendra Bhangui libqmail@indimail.org],indimail, [https://github.com/mbhangui/libqmail])
