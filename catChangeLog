@@ -10,7 +10,7 @@ flag=0
 if [ $# -eq 1 ] ; then
 	file=$1
 else
-	file=ChangeLog
+	file=doc/ChangeLog
 fi
 cat $file |while read line
 do
@@ -31,7 +31,7 @@ do
 		flag=2
 		continue
 	fi
-	echo "$line" |grep "^[0-9]" > /dev/null
+	echo "$line" |egrep "^- [0-9]|^[0-9]" > /dev/null
 	if [ $? -eq 0 ] ; then
 		echo "$line"
 	elif [ -n "$line" ] ; then
