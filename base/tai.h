@@ -1,5 +1,8 @@
 /*
  * $Log: tai.h,v $
+ * Revision 1.4  2020-11-21 21:50:59+05:30  Cprogrammer
+ * added prototypes for tai_add() tai_uint()
+ *
  * Revision 1.3  2004-10-11 14:15:10+05:30  Cprogrammer
  * added function prototypes
  *
@@ -26,9 +29,10 @@ struct tai
 #define TAI_PACK 8
 
 void            tai_now(struct tai *);
-void            tai_add();
+void            tai_add(struct tai *,const struct tai *,const struct tai *);
 void            tai_sub(struct tai *, struct tai *, struct tai *);
 void            tai_pack(char *, struct tai *);
 void            tai_unpack(char *, struct tai *);
+void            tai_uint(struct tai *,unsigned int);
 
 #endif

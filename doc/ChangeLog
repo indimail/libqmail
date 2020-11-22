@@ -22,3 +22,5 @@ Release 1.0 Start 21/05/2020
     new_size < old_size
 - 22/10/2020
 12. Remove definition of INSTALL program in configure.ac, Makefile.am
+- 22/11/2020
+13. added tai_add.c. tai_uint.c

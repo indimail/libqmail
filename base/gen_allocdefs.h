@@ -1,5 +1,8 @@
 /*
  * $Log: gen_allocdefs.h,v $
+ * Revision 1.6  2020-11-22 20:31:11+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.5  2020-05-13 06:06:42+05:30  Cprogrammer
  * moved overflow macros to builtinoflmacros.h
  *
@@ -34,7 +37,7 @@ static int ta_rplus ## _internal (ta *x, unsigned int n, unsigned int pluslen) \
       if (__builtin_mul_overflow(nnum, sizeof(type), &nlen)) { \
         errno = error_nomem; \
         return 0; } \
-      if (!alloc_re(&x->field,x->a * sizeof(type),nlen)) { \
+      if (!alloc_re((char *) &x->field,x->a * sizeof(type),nlen)) { \
         errno = error_nomem; \
         return 0; } \
       x->a = nnum; \

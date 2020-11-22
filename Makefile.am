@@ -130,9 +130,9 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
 	base/taia_addsec.c base/taia_approx.c base/taia_half.c base/taia_fmtfrac.c \
 	base/taia_frac.c base/taia_less.c base/taia_now.c base/taia_pack.c \
 	base/taia_sub.c base/taia_tai.c base/taia_uint.c base/taia_unpack.c \
-	base/tai64n_decode.c base/tai64n_encode.c base/tai_decode.c \
+	base/tai64n_decode.c base/tai64n_encode.c base/tai_add.c base/tai_decode.c \
 	base/tai_encode.c base/tai_now.c base/tai_pack.c base/tai_sub.c \
-	base/tai_unpack.c base/timeoutread.c base/timeoutwrite.c \
+	base/tai_uint.c base/tai_unpack.c base/timeoutread.c base/timeoutwrite.c \
 	base/uint16_pack.c base/uint16_read.c base/uint16_unpack.c \
 	base/uint32_pack.c base/uint32_read.c base/uint32_unpack.c \
 	base/wait_nohang.c base/wait_pid.c \
@@ -237,180 +237,180 @@ base/iopause.h: base/trypoll.c base/iopause.h1 base/iopause.h2
 	&& cat base/iopause.h2 || cat base/iopause.h1 ) > base/iopause.h
 	rm -f trypoll.o trypoll
 
-base64sub.lo: base64.h stralloc.h str.h gen_alloc.h
-byte_copy.lo: byte.h
-byte_chr.lo: byte.h
-byte_rchr.lo: byte.h
-byte_cr.lo: byte.h
-byte_cspn.lo: byte.h
-byte_rcspn.lo: byte.h
-byte_zero.lo: byte.h
-byte_diff.lo: byte.h
-coe.lo: coe.h
-constmap.lo: constmap.h alloc.h case.h hasbltnofl.h builtinoflmacros.h
-error.lo: error.h
-error_str.lo: error.h
-error_temp.lo: error.h
-mkpasswd.lo: gen_alloc.h str.h strerr.h stralloc.h in_crypt.h makesalt.h
-pw_comp.lo: gen_alloc.h stralloc.h strerr.h env.h error.h str.h subfd.h \
+base/base64sub.lo: base64.h stralloc.h str.h gen_alloc.h
+base/byte_copy.lo: byte.h
+base/byte_chr.lo: byte.h
+base/byte_rchr.lo: byte.h
+base/byte_cr.lo: byte.h
+base/byte_cspn.lo: byte.h
+base/byte_rcspn.lo: byte.h
+base/byte_zero.lo: byte.h
+base/byte_diff.lo: byte.h
+base/coe.lo: coe.h
+base/constmap.lo: constmap.h alloc.h case.h hasbltnofl.h builtinoflmacros.h
+base/error.lo: error.h
+base/error_str.lo: error.h
+base/error_temp.lo: error.h
+base/mkpasswd.lo: gen_alloc.h str.h strerr.h stralloc.h in_crypt.h makesalt.h
+base/pw_comp.lo: gen_alloc.h stralloc.h strerr.h env.h error.h str.h subfd.h \
 	in_crypt.h hmac.h digest_md5.h mkpasswd.h pw_comp.h
-str_len.lo: str.h
-str_chr.lo: str.h
-str_chrn.lo: str.h
-str_rchr.lo: str.h
-str_diff.lo: str.h
-str_diffn.lo: str.h
-str_start.lo: str.h
-str_end.lo: str.h
-str_cpy.lo: str.h
-str_cpyb.lo: str.h
-str_cspn.lo: str.h
-subprintf.lo: config.h
-substdi.lo: substdio.c byte.h error.h
-substdo.lo: substdio.h str.h byte.h error.h
-substdio.lo: substdio.h
-substdio_copy.lo: substdio.h
-getln.lo: getln.h substdio.h stralloc.h byte.h gen_alloc.h
-getln2.lo: getln.h substdio.h stralloc.h byte.h gen_alloc.h
-stralloc_arts.lo: stralloc.h byte.h str.h gen_alloc.h
-stralloc_cat.lo: byte.h stralloc.h gen_alloc.h
-stralloc_catb.lo: stralloc.h byte.h gen_alloc.h hasbltnofl.h builtinoflmacros.h error.h
-stralloc_cats.lo: byte.h str.h stralloc.h gen_alloc.h
-stralloc_copy.lo: byte.h stralloc.h gen_alloc.h
-stralloc_eady.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h hasbltnofl.h error.h
-stralloc_num.lo: stralloc.h gen_alloc.h
-stralloc_opyb.lo: stralloc.h byte.h gen_alloc.h hasbltnofl.h builtinoflmacros.h error.h
-stralloc_opys.lo: byte.h str.h stralloc.h gen_alloc.h
-stralloc_pend.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h hasbltnofl.h error.h
-alloc.lo: alloc.h error.h hasbltnofl.h
-alloc_re.lo: alloc.h byte.h
-getEnvConfig.lo: config.h scan.h env.h
-env.lo: env.h str.h alloc.h hasbltnofl.h builtinoflmacros.h
-envread.lo: env.h str.h
-sgetopt.lo: substdio.h subfd.h sgetopt.h subgetopt.h
-subgetopt.lo: subgetopt.h
-subfderr.lo: substdio.h subfd.h
-subfdin.lo: substdio.h subfd.h
-subfdins.lo: substdio.h subfd.h
-subfdout.lo: substdio.h subfd.h
-subfdouts.lo: substdio.h subfd.h
-strerr_die.lo: substdio.h subfd.h exit.h strerr.h
-strerr_sys.lo: strerr.h error.h
-case_diffb.lo: case.h
-case_diffs.lo: case.h
-case_lowerb.lo: case.h
-case_lowers.lo: case.h
-case_startb.lo: case.h
-case_starts.lo: case.h
-datetime.lo: datetime.h
-datetime_un.lo: datetime.h
-now.lo: now.h datetime.h
-cdb.lo: error.h seek.h byte.h cdb.h
-cdb_hash.lo: cdb.h uint32.h
-cdb_unpack.lo: cdb.h uint32.h
-cdb_seek.lo: cdb.h uint32.h
-cdb_make.lo: cdb.h cdbmake.h uint32.h
-cdbmake_pack.lo: cdbmake.h uint32.h
-cdbmake_hash.lo: cdbmake.h uint32.h
-cdbmake_add.lo: cdbmake.h alloc.h uint32.h
-digest_md5.lo: global.h md5.h
-fifo.lo: hasmkffo.h fifo.h
-fmt_str.lo: fmt.h
-fmt_strn.lo: fmt.h
-fmt_uint.lo: fmt.h
-fmt_uint0.lo: fmt.h
-fmt_ulong.lo: fmt.h
-fmt_hexbytes.lo: fmt.h
-fmt_xlong.lo: fmt.h
-fmt_ushort.lo: fmt.h
-fmt_double.lo: fmt.h uint64.h
-leapsecs_read.lo: tai.h leapsecs.h uint64.h
-leapsecs_init.lo: leapsecs.h
-leapsecs_sub.lo: tai.h leapsecs.h uint64.h
-leapsecs_add.lo: tai.h leapsecs.h uint64.h
-caldate_fmjd.lo: caldate.h
-caldate_mjd.lo: caldate.h
-caldate_fmt.lo: caldate.h
-caldate_scan.lo: caldate.h
-caltime_utc.lo: tai.h leapsecs.h caldate.h caltime.h uint64.h
-caltime_fmt.lo: caldate.h caltime.h uint64.h
-caltime_tai.lo: tai.h leapsecs.h caldate.h caltime.h uint64.h
-wait_pid.lo: error.h haswaitp.h
-wait_nohang.lo: wait.h
-fd_copy.lo: fd.h
-fd_move.lo: fd.h
-getEnvConfig.lo: env.h scan.h
-hmac_md5.lo: global.h md5.h
-hmac_ripemd.lo: typesx.h ripemd.h
-hmac_sha1.lo: typesx.h sha1.h
-hmac_sha256.lo: typesx.h sha1.h
-hmac_sha512.lo: typesx.h sha1.h
-in_crypt.lo: getEnvConfig.h in_crypt.h
-lock_ex.lo: lock.h hasflock.h
-lock_exnb.lo: lock.h
-lock_un.lo: lock.h
-md5.c: global.h md5.h
-md5_crypt.lo: config.h global.h md5.h
-ndelay.lo: ndelay.h
-ndelay_off.lo: ndelay.h
-open_append.lo: open.h
-open_excl.lo: open.h
-open_read.lo: open.h
-open_write.lo: open.h
-open_trunc.lo: open.h
-scan_ulong.lo: scan.h
-scan_xlong.lo: scan.h
-scan_8long.lo: scan.h
-scan_ushort.lo: scan.h
-scan_uint.lo: scan.h
-seek_cur.lo: seek.h
-seek_end.lo: seek.h
-seek_set.lo: seek.h
-seek_trunc.lo: seek.h
-setuserid.lo: alloc.h str.h
-sig.lo: sig.h
-sig_alarm.lo: sig.h
-sig_block.lo: sig.h hassgprm.h
-sig_catch.lo: sig.h hassgact.h
-sig_pause.lo: sig.h hassgprm.h
-sig_pipe.lo: sig.h
-sig_child.lo: sig.h
-sig_hup.lo: sig.h
-sig_term.lo: sig.h
-sig_int.lo: sig.h
-sig_bug.lo: sig.h
-sig_misc.lo: sig.h
-sha512_crypt.lo: config.h
-sha256_crypt.lo: config.h
-tai_sub.lo: tai.h uint64.h
-tai_now.lo: tai.h uint64.h
-tai_unpack.lo: tai.h uint64.h
-tai_pack.lo: tai.h uint64.h
-tai_encode.lo: tai2.h 
-tai_decode.lo: tai2.h stralloc.h gen_alloc.h
-tai64n_encode.lo: tai2.h uint64.h
-tai64n_decode.lo: tai2.h uint64.h
-taia_add.lo: taia.h
-taia_less.lo: taia.h
-taia_sub.lo: taia.h
-taia_approx.lo: taia.h
-taia_uint.lo: taia.h
-taia_frac.lo: taia.h
-taia_now.lo: taia.h
-taia_pack.lo: taia.h
-taia_fmtfrac.lo: taia.h
-taia_tai.lo: taia.h
-taia_unpack.lo: taia.h uint32.h
-taia_half.lo: taia.h uint32.h
-taia_addsec.lo: taia.h
-timeoutread.lo: timeoutread.h select.h error.h
-timeoutwrite.lo: timeoutwrite.h select.h error.h
-uint32_pack.lo: uint32.h
-uint32_read.lo: uint32.h
-uint32_unpack.lo: uint32.h
-uint16_pack.lo: uint16.h
-uint16_read.lo: uint16.h
-uint16_unpack.lo: uint16.h
+base/str_len.lo: str.h
+base/str_chr.lo: str.h
+base/str_chrn.lo: str.h
+base/str_rchr.lo: str.h
+base/str_diff.lo: str.h
+base/str_diffn.lo: str.h
+base/str_start.lo: str.h
+base/str_end.lo: str.h
+base/str_cpy.lo: str.h
+base/str_cpyb.lo: str.h
+base/str_cspn.lo: str.h
+base/subprintf.lo: config.h
+base/substdi.lo: substdio.c byte.h error.h
+base/substdo.lo: substdio.h str.h byte.h error.h
+base/substdio.lo: substdio.h
+base/substdio_copy.lo: substdio.h
+base/getln.lo: getln.h substdio.h stralloc.h byte.h gen_alloc.h
+base/getln2.lo: getln.h substdio.h stralloc.h byte.h gen_alloc.h
+base/stralloc_arts.lo: stralloc.h byte.h str.h gen_alloc.h
+base/stralloc_cat.lo: byte.h stralloc.h gen_alloc.h
+base/stralloc_catb.lo: stralloc.h byte.h gen_alloc.h hasbltnofl.h builtinoflmacros.h error.h
+base/stralloc_cats.lo: byte.h str.h stralloc.h gen_alloc.h
+base/stralloc_copy.lo: byte.h stralloc.h gen_alloc.h
+base/stralloc_eady.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h hasbltnofl.h error.h
+base/stralloc_num.lo: stralloc.h gen_alloc.h
+base/stralloc_opyb.lo: stralloc.h byte.h gen_alloc.h hasbltnofl.h builtinoflmacros.h error.h
+base/stralloc_opys.lo: byte.h str.h stralloc.h gen_alloc.h
+base/stralloc_pend.lo: alloc.h stralloc.h gen_alloc.h gen_allocdefs.h hasbltnofl.h error.h
+base/alloc.lo: alloc.h error.h hasbltnofl.h
+base/alloc_re.lo: alloc.h byte.h
+base/getEnvConfig.lo: config.h scan.h env.h
+base/env.lo: env.h str.h alloc.h hasbltnofl.h builtinoflmacros.h
+base/envread.lo: env.h str.h
+base/sgetopt.lo: substdio.h subfd.h sgetopt.h subgetopt.h
+base/subgetopt.lo: subgetopt.h
+base/subfderr.lo: substdio.h subfd.h
+base/subfdin.lo: substdio.h subfd.h
+base/subfdins.lo: substdio.h subfd.h
+base/subfdout.lo: substdio.h subfd.h
+base/subfdouts.lo: substdio.h subfd.h
+base/strerr_die.lo: substdio.h subfd.h exit.h strerr.h
+base/strerr_sys.lo: strerr.h error.h
+base/case_diffb.lo: case.h
+base/case_diffs.lo: case.h
+base/case_lowerb.lo: case.h
+base/case_lowers.lo: case.h
+base/case_startb.lo: case.h
+base/case_starts.lo: case.h
+base/datetime.lo: datetime.h
+base/datetime_un.lo: datetime.h
+base/now.lo: now.h datetime.h
+base/cdb.lo: error.h seek.h byte.h cdb.h
+base/cdb_hash.lo: cdb.h uint32.h
+base/cdb_unpack.lo: cdb.h uint32.h
+base/cdb_seek.lo: cdb.h uint32.h
+base/cdb_make.lo: cdb.h cdbmake.h uint32.h
+base/cdbmake_pack.lo: cdbmake.h uint32.h
+base/cdbmake_hash.lo: cdbmake.h uint32.h
+base/cdbmake_add.lo: cdbmake.h alloc.h uint32.h
+base/digest_md5.lo: global.h md5.h
+base/fifo.lo: hasmkffo.h fifo.h
+base/fmt_str.lo: fmt.h
+base/fmt_strn.lo: fmt.h
+base/fmt_uint.lo: fmt.h
+base/fmt_uint0.lo: fmt.h
+base/fmt_ulong.lo: fmt.h
+base/fmt_hexbytes.lo: fmt.h
+base/fmt_xlong.lo: fmt.h
+base/fmt_ushort.lo: fmt.h
+base/fmt_double.lo: fmt.h uint64.h
+base/leapsecs_read.lo: tai.h leapsecs.h uint64.h
+base/leapsecs_init.lo: leapsecs.h
+base/leapsecs_sub.lo: tai.h leapsecs.h uint64.h
+base/leapsecs_add.lo: tai.h leapsecs.h uint64.h
+base/caldate_fmjd.lo: caldate.h
+base/caldate_mjd.lo: caldate.h
+base/caldate_fmt.lo: caldate.h
+base/caldate_scan.lo: caldate.h
+base/caltime_utc.lo: tai.h leapsecs.h caldate.h caltime.h uint64.h
+base/caltime_fmt.lo: caldate.h caltime.h uint64.h
+base/caltime_tai.lo: tai.h leapsecs.h caldate.h caltime.h uint64.h
+base/wait_pid.lo: error.h haswaitp.h
+base/wait_nohang.lo: wait.h
+base/fd_copy.lo: fd.h
+base/fd_move.lo: fd.h
+base/getEnvConfig.lo: env.h scan.h
+base/hmac_md5.lo: global.h md5.h
+base/hmac_ripemd.lo: typesx.h ripemd.h
+base/hmac_sha1.lo: typesx.h sha1.h
+base/hmac_sha256.lo: typesx.h sha1.h
+base/hmac_sha512.lo: typesx.h sha1.h
+base/in_crypt.lo: getEnvConfig.h in_crypt.h
+base/lock_ex.lo: lock.h hasflock.h
+base/lock_exnb.lo: lock.h
+base/lock_un.lo: lock.h
+base/md5.lo: global.h md5.h
+base/md5_crypt.lo: config.h global.h md5.h
+base/ndelay.lo: ndelay.h
+base/ndelay_off.lo: ndelay.h
+base/open_append.lo: open.h
+base/open_excl.lo: open.h
+base/open_read.lo: open.h
+base/open_write.lo: open.h
+base/open_trunc.lo: open.h
+base/scan_ulong.lo: scan.h
+base/scan_xlong.lo: scan.h
+base/scan_8long.lo: scan.h
+base/scan_ushort.lo: scan.h
+base/scan_uint.lo: scan.h
+base/seek_cur.lo: seek.h
+base/seek_end.lo: seek.h
+base/seek_set.lo: seek.h
+base/seek_trunc.lo: seek.h
+base/setuserid.lo: alloc.h str.h
+base/sig.lo: sig.h
+base/sig_alarm.lo: sig.h
+base/sig_block.lo: sig.h hassgprm.h
+base/sig_catch.lo: sig.h hassgact.h
+base/sig_pause.lo: sig.h hassgprm.h
+base/sig_pipe.lo: sig.h
+base/sig_child.lo: sig.h
+base/sig_hup.lo: sig.h
+base/sig_term.lo: sig.h
+base/sig_int.lo: sig.h
+base/sig_bug.lo: sig.h
+base/sig_misc.lo: sig.h
+base/sha512_crypt.lo: config.h
+base/sha256_crypt.lo: config.h
+base/tai_sub.lo: tai.h uint64.h
+base/tai_now.lo: tai.h uint64.h
+base/tai_unpack.lo: tai.h uint64.h
+base/tai_pack.lo: tai.h uint64.h
+base/tai_encode.lo: tai2.h
+base/tai_decode.lo: tai2.h stralloc.h gen_alloc.h
+base/tai64n_encode.lo: tai2.h uint64.h
+base/tai64n_decode.lo: tai2.h uint64.h
+base/taia_add.lo: taia.h
+base/taia_less.lo: taia.h
+base/taia_sub.lo: taia.h
+base/taia_approx.lo: taia.h
+base/taia_uint.lo: taia.h
+base/taia_frac.lo: taia.h
+base/taia_now.lo: taia.h
+base/taia_pack.lo: taia.h
+base/taia_fmtfrac.lo: taia.h
+base/taia_tai.lo: taia.h
+base/taia_unpack.lo: taia.h uint32.h
+base/taia_half.lo: taia.h uint32.h
+base/taia_addsec.lo: taia.h
+base/timeoutread.lo: timeoutread.h select.h error.h
+base/timeoutwrite.lo: timeoutwrite.h select.h error.h
+base/uint32_pack.lo: uint32.h
+base/uint32_read.lo: uint32.h
+base/uint32_unpack.lo: uint32.h
+base/uint16_pack.lo: uint16.h
+base/uint16_read.lo: uint16.h
+base/uint16_unpack.lo: uint16.h
 ### textcode comes from libowfat, http://www.fefe.de/libowfat
 textcode/base64url.o: textcode/base64url.c
 textcode/fmt_base64.o: textcode/fmt_base64.c fmt.h byte.h textcode.h haveinline.h
