@@ -1,5 +1,8 @@
 /*
  * $Log: uint32_unpack.c,v $
+ * Revision 1.3  2020-11-23 00:18:58+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.2  2020-08-03 18:20:29+05:30  Cprogrammer
  * added getversion()
  *
@@ -10,7 +13,7 @@
 #include "uint32.h"
 
 void
-uint32_unpack(char s[4], uint32 * u)
+uint32_unpack(const char s[4], uint32 *u)
 {
 	uint32          result;
 
@@ -26,7 +29,7 @@ uint32_unpack(char s[4], uint32 * u)
 }
 
 void
-uint32_unpack_big(char s[4], uint32 * u)
+uint32_unpack_big(const char s[4], uint32 *u)
 {
 	uint32          result;
 
@@ -44,7 +47,7 @@ uint32_unpack_big(char s[4], uint32 * u)
 void
 getversion_uint32_unpack_c()
 {
-	static char    *x = "$Id: uint32_unpack.c,v 1.2 2020-08-03 18:20:29+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: uint32_unpack.c,v 1.3 2020-11-23 00:18:58+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
