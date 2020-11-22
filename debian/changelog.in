@@ -13,3 +13,4 @@ libqmail (@version@-@release@) unstable; urgency=medium
   * alloc_re.c: fix overwriting unallocate memory location when new_size < old_size
   * Remove definition of INSTALL program in configure.ac, Makefile.am
   * added tai_add.c. tai_uint.c
+  * use const keyword
