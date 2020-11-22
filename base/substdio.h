@@ -1,5 +1,8 @@
 /*
  * $Log: substdio.h,v $
+ * Revision 1.8  2020-11-22 20:31:54+05:30  Cprogrammer
+ * removed newline
+ *
  * Revision 1.7  2020-05-12 11:27:24+05:30  Cprogrammer
  * changed len argument of substdio_fdbuf to size_t
  * length argument for substdio_put(), substdio_bput(), substdio_putflsh() changed to unsigned to fix integer signedness error (CVE-2005-1515)
@@ -31,8 +34,7 @@ typedef struct substdio
 	int             n;
 	int             fd;
 	ssize_t         (*op) ();
-}
-substdio;
+} substdio;
 
 #define SUBSTDIO_FDBUF(op,fd,buf,len) { (buf), 0, (len), (fd), (op) }
 
