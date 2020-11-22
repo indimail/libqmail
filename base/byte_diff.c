@@ -1,5 +1,8 @@
 /*
  * $Log: byte_diff.c,v $
+ * Revision 1.4  2020-11-22 23:49:11+05:30  Cprogrammer
+ * changed argument to const char *
+ *
  * Revision 1.3  2004-10-22 20:22:34+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,13 +13,9 @@
 #include "byte.h"
 
 int
-byte_diff(s, n, t)
-	register char  *s;
-	register unsigned int n;
-	register char  *t;
+byte_diff(register const char *s, register unsigned int n, register const char *t)
 {
-	for (;;)
-	{
+	for (;;) {
 		if (!n)
 			return 0;
 		if (*s != *t)
@@ -52,7 +51,7 @@ byte_diff(s, n, t)
 void
 getversion_byte_diff_c()
 {
-	static char    *x = "$Id: byte_diff.c,v 1.3 2004-10-22 20:22:34+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: byte_diff.c,v 1.4 2020-11-22 23:49:11+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

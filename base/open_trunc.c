@@ -1,5 +1,8 @@
 /*
  * $Log: open_trunc.c,v $
+ * Revision 1.4  2020-11-22 23:51:53+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2004-10-22 20:27:51+05:30  Cprogrammer
  * added RCS id
  *
@@ -12,8 +15,7 @@
 #include "open.h"
 
 int
-open_trunc(fn)
-	char           *fn;
+open_trunc(const char *fn)
 {
 	return open(fn, O_WRONLY | O_NDELAY | O_TRUNC | O_CREAT, 0644);
 }
@@ -21,7 +23,7 @@ open_trunc(fn)
 void
 getversion_open_trunc_c()
 {
-	static char    *x = "$Id: open_trunc.c,v 1.3 2004-10-22 20:27:51+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: open_trunc.c,v 1.4 2020-11-22 23:51:53+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: envread.c,v $
+ * Revision 1.6  2020-11-22 23:51:16+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.5  2008-08-03 18:25:43+05:30  Cprogrammer
  * use proper proto
  *
@@ -14,8 +17,7 @@
 #include "str.h"
 
 char       *
-env_get(s)
-	char           *s;
+env_get(const char *s)
 {
 	int             i;
 	unsigned int    slen;
@@ -37,8 +39,7 @@ env_pick()
 }
 
 char    *
-env_findeq(s)
-	char           *s;
+env_findeq(const char *s)
 {
 	for (; *s; ++s)
 		if (*s == '=')
@@ -49,7 +50,7 @@ env_findeq(s)
 void
 getversion_envread_c()
 {
-	static char    *x = "$Id: envread.c,v 1.5 2008-08-03 18:25:43+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: envread.c,v 1.6 2020-11-22 23:51:16+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

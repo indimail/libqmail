@@ -1,5 +1,8 @@
 /*
  * $Log: open.h,v $
+ * Revision 1.8  2020-11-22 23:51:45+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.7  2019-06-24 21:23:48+05:30  Cprogrammer
  * added open_readwrite prototype
  *
@@ -13,10 +16,10 @@
 #ifndef OPEN_H
 #define OPEN_H
 
-int             open_read(char *);
-int             open_excl(char *);
-int             open_append(char *);
-int             open_trunc(char *);
-int             open_write(char *);
-int             open_readwrite(char *);
+int             open_read(const char *);
+int             open_excl(const char *);
+int             open_append(const char *);
+int             open_trunc(const char *);
+int             open_write(const char *);
+int             open_readwrite(const char *);
 #endif

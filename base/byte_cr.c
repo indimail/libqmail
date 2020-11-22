@@ -1,5 +1,8 @@
 /*
  * $Log: byte_cr.c,v $
+ * Revision 1.4  2020-11-22 23:49:02+05:30  Cprogrammer
+ * changed argument to const char *
+ *
  * Revision 1.3  2004-10-22 20:22:29+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,15 +13,11 @@
 #include "byte.h"
 
 void
-byte_copyr(to, n, from)
-	register char  *to;
-	register unsigned int n;
-	register char  *from;
+byte_copyr(register char *to, register unsigned int n, register const char *from)
 {
 	to += n;
 	from += n;
-	for (;;)
-	{
+	for (;;) {
 		if (!n)
 			return;
 		*--to = *--from;
@@ -41,7 +40,7 @@ byte_copyr(to, n, from)
 void
 getversion_byte_cr_c()
 {
-	static char    *x = "$Id: byte_cr.c,v 1.3 2004-10-22 20:22:29+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: byte_cr.c,v 1.4 2020-11-22 23:49:02+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

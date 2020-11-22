@@ -1,5 +1,8 @@
 /*
  * $Log: case_diffb.c,v $
+ * Revision 1.4  2020-11-22 23:50:10+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2004-10-22 20:23:15+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,16 +13,12 @@
 #include "case.h"
 
 int
-case_diffb(s, len, t)
-	register char  *s;
-	unsigned int    len;
-	register char  *t;
+case_diffb(register const char *s, unsigned int len, register const char *t)
 {
 	register unsigned char x;
 	register unsigned char y;
 
-	while (len > 0)
-	{
+	while (len > 0) {
 		--len;
 		x = *s++ - 'A';
 		if (x <= 'Z' - 'A')
@@ -40,7 +39,7 @@ case_diffb(s, len, t)
 void
 getversion_case_diffb_c()
 {
-	static char    *x = "$Id: case_diffb.c,v 1.3 2004-10-22 20:23:15+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: case_diffb.c,v 1.4 2020-11-22 23:50:10+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: scan_long.c,v $
+ * Revision 1.4  2020-11-22 23:52:07+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2019-07-18 10:09:03+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -13,9 +16,7 @@
 #include "scan.h"
 
 unsigned int
-scan_long(s, i)
-	register char  *s;
-	register long  *i;
+scan_long(register const char *s, register long *i)
 {
 	int             sign;
 	unsigned long   u;
@@ -34,7 +35,7 @@ scan_long(s, i)
 void
 getversion_scan_long_c()
 {
-	static char    *x = "$Id: scan_long.c,v 1.3 2019-07-18 10:09:03+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: scan_long.c,v 1.4 2020-11-22 23:52:07+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

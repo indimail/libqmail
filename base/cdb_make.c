@@ -1,5 +1,8 @@
 /*
  * $Log: cdb_make.c,v $
+ * Revision 1.2  2020-11-22 23:50:46+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.1  2008-09-15 21:39:12+05:30  Cprogrammer
  * Initial revision
  *
@@ -86,7 +89,7 @@ cdb_make_addbegin(struct cdb_make *c, unsigned int keylen, unsigned int datalen)
 }
 
 int
-cdb_make_add(struct cdb_make *c, char *key, unsigned int keylen, char *data, unsigned int datalen)
+cdb_make_add(struct cdb_make *c, const char *key, unsigned int keylen, const char *data, unsigned int datalen)
 {
 	if (cdb_make_addbegin(c, keylen, datalen) == -1)
 		return -1;
@@ -94,7 +97,7 @@ cdb_make_add(struct cdb_make *c, char *key, unsigned int keylen, char *data, uns
 		return -1;
 	if (substdio_putalign(&c->b, data, datalen) == -1)
 		return -1;
-	return cdb_make_addend(c, keylen, datalen, cdb_hash((unsigned char *) key, keylen));
+	return cdb_make_addend(c, keylen, datalen, cdb_hash(key, keylen));
 }
 
 int
@@ -191,7 +194,7 @@ cdb_make_finish(struct cdb_make *c)
 void
 getversion_cdb_make_c()
 {
-	static char    *x = "$Id: cdb_make.c,v 1.1 2008-09-15 21:39:12+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: cdb_make.c,v 1.2 2020-11-22 23:50:46+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

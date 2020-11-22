@@ -1,5 +1,8 @@
 /*
  * $Log: scan_xlong.c,v $
+ * Revision 1.3  2020-11-22 23:52:28+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.2  2005-06-15 22:35:48+05:30  Cprogrammer
  * added RCS version information
  *
@@ -24,7 +27,7 @@ fromhex(unsigned char c)
 }
 
 unsigned int
-scan_xlong(char *src, unsigned long *dest)
+scan_xlong(const char *src, unsigned long *dest)
 {
 	register const char *tmp = src;
 	register int    l = 0;
@@ -41,7 +44,7 @@ scan_xlong(char *src, unsigned long *dest)
 void
 getversion_scan_xlong_c()
 {
-	static char    *x = "$Id: scan_xlong.c,v 1.2 2005-06-15 22:35:48+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: scan_xlong.c,v 1.3 2020-11-22 23:52:28+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

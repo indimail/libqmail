@@ -1,5 +1,8 @@
 /*
  * $Log: env.h,v $
+ * Revision 1.8  2020-11-22 23:51:14+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.7  2020-05-15 11:35:17+05:30  Cprogrammer
  * made defintions extern
  *
@@ -26,13 +29,13 @@ extern int      env_isinit;
 extern char   **environ;
 
 extern int      env_init(void);
-extern int      env_put(char *);
-extern int      env_put2(char *, char *);
-extern int      env_unset(char *);
+extern int      env_put(const char *);
+extern int      env_put2(const char *, const char *);
+extern int      env_unset(const char *);
 extern void     restore_env(void);
-extern char    *env_get(char *);
+extern char    *env_get(const char *);
 extern char    *env_pick(void);
 extern void     env_clear(void);
-extern char    *env_findeq(char *);
+extern char    *env_findeq(const char *);
 
 #endif

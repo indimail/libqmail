@@ -1,5 +1,8 @@
 /*
  * $Log: cdb.h,v $
+ * Revision 1.6  2020-11-22 23:50:43+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.5  2020-08-03 18:07:06+05:30  Cprogrammer
  * added cdb_free() prototype
  *
@@ -35,14 +38,14 @@ struct cdb
 	uint32          dlen;		/* initialized if cdb_findnext() returns 1 */
 };
 
-uint32          cdb_hash(unsigned char *, unsigned int);
+uint32          cdb_hash(const char *, unsigned int);
 uint32          cdb_hashadd(uint32, unsigned char);
 uint32          cdb_unpack(unsigned char *);
 int             cdb_bread(int, char *, int);
-int             cdb_seek(int, char *, unsigned int, uint32 *);
-int             cdb_find(struct cdb *,char *,unsigned int);
+int             cdb_seek(int, const char *, unsigned int, uint32 *);
+int             cdb_find(struct cdb *,const char *,unsigned int);
 void            cdb_findstart(struct cdb *);
-int             cdb_findnext(struct cdb *,char *,unsigned int);
+int             cdb_findnext(struct cdb *,const char *,unsigned int);
 void            cdb_init(struct cdb *,int fd);
 int             cdb_read(struct cdb *,char *,unsigned int,uint32);
 void            cdb_free(struct cdb *);

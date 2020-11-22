@@ -1,5 +1,8 @@
 /*
  * $Log: subgetopt.c,v $
+ * Revision 1.4  2020-11-22 23:53:56+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2004-10-22 20:31:07+05:30  Cprogrammer
  * added RCS id
  *
@@ -35,10 +38,7 @@ int             optproblem = 0;
 int             optdone = SUBGETOPTDONE;
 
 int
-sgopt(argc, argv, opts)
-	int             argc;
-	char          **argv;
-	char           *opts;
+sgopt(int argc, const char **argv, const char *opts)
 {
 	int             c;
 	char           *s;
@@ -106,7 +106,7 @@ sgopt(argc, argv, opts)
 void
 getversion_subgetopt_c()
 {
-	static char    *x = "$Id: subgetopt.c,v 1.3 2004-10-22 20:31:07+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: subgetopt.c,v 1.4 2020-11-22 23:53:56+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

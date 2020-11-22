@@ -1,5 +1,8 @@
 /*
  * $Log: scan.h,v $
+ * Revision 1.9  2020-11-22 23:52:02+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.8  2020-07-23 11:27:48+05:30  Cprogrammer
  * added scan_double(), scan_hexdump() prototyps
  *
@@ -28,15 +31,15 @@
 #include <sys/types.h>
 #endif
 
-unsigned int    scan_uint(char *, unsigned int *);
-unsigned int    scan_ushort(char *, unsigned short *);
-unsigned int    scan_ulong(char *, unsigned long *);
-unsigned int    scan_ulonglong(char *, unsigned long long *);
-unsigned int    scan_xlong(char *, unsigned long *);
-unsigned int    scan_long(char *, long *);
-unsigned int    scan_8long(char *, unsigned long *);
-unsigned int    scan_int(char *, int *);
-unsigned int    scan_plusminus(char *, int *);
+unsigned int    scan_uint(const char *, unsigned int *);
+unsigned int    scan_ushort(const char *, unsigned short *);
+unsigned int    scan_ulong(const char *, unsigned long *);
+unsigned int    scan_ulonglong(const char *, unsigned long long *);
+unsigned int    scan_xlong(const char *, unsigned long *);
+unsigned int    scan_long(const char *, long *);
+unsigned int    scan_8long(const char *, unsigned long *);
+unsigned int    scan_int(const char *, int *);
+unsigned int    scan_plusminus(const char *, int *);
 int             scan_fromhex(unsigned char c);
 unsigned int    scan_double(const char *, double *);
 size_t          scan_hexdump(const char *, char *, size_t *);

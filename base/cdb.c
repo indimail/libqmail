@@ -1,5 +1,8 @@
 /*
  * $Log: cdb.c,v $
+ * Revision 1.2  2020-11-22 23:50:37+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.1  2019-06-24 21:17:45+05:30  Cprogrammer
  * Initial revision
  *
@@ -102,14 +105,14 @@ match(struct cdb *c, char *key, unsigned int len, uint32 pos)
 }
 
 int
-cdb_findnext(struct cdb *c, char *key, unsigned int len)
+cdb_findnext(struct cdb *c, const char *key, unsigned int len)
 {
 	char            buf[8];
 	uint32          pos;
 	uint32          u;
 
 	if (!c->loop) {
-		u = cdb_hash((unsigned char *) key, len);
+		u = cdb_hash(key, len);
 		if (cdb_read(c, buf, 8, (u << 3) & 2047) == -1)
 			return -1;
 		uint32_unpack(buf + 4, &c->hslots);
@@ -154,7 +157,7 @@ cdb_findnext(struct cdb *c, char *key, unsigned int len)
 }
 
 int
-cdb_find(struct cdb *c, char *key, unsigned int len)
+cdb_find(struct cdb *c, const char *key, unsigned int len)
 {
 	cdb_findstart(c);
 	return cdb_findnext(c, key, len);
@@ -163,7 +166,7 @@ cdb_find(struct cdb *c, char *key, unsigned int len)
 void
 getversion_cdb_c()
 {
-	static char    *x = "$Id: cdb.c,v 1.1 2019-06-24 21:17:45+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: cdb.c,v 1.2 2020-11-22 23:50:37+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

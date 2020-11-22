@@ -1,5 +1,8 @@
 /*
  * $Log: str_chrn.c,v $
+ * Revision 1.2  2020-11-22 23:53:12+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.1  2005-01-22 01:01:09+05:30  Cprogrammer
  * Initial revision
  *
@@ -13,7 +16,7 @@
  * or len bytes
  */
 char           *
-str_chrn(register char *s, int c, int len)
+str_chrn(register const char *s, int c, int len)
 {
 	register char   ch;
 	register char  *t;
@@ -38,7 +41,7 @@ str_chrn(register char *s, int c, int len)
 void
 getversion_str_chrn_c()
 {
-	static char    *x = "$Id: str_chrn.c,v 1.1 2005-01-22 01:01:09+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: str_chrn.c,v 1.2 2020-11-22 23:53:12+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: open_readwrite.c,v $
+ * Revision 1.4  2020-11-22 23:51:50+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2019-07-18 10:08:38+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -15,8 +18,7 @@
 #include "open.h"
 
 int
-open_readwrite(fn)
-	char           *fn;
+open_readwrite(const char *fn)
 {
 	return open(fn, O_RDWR | O_NDELAY);
 }
@@ -24,7 +26,7 @@ open_readwrite(fn)
 void
 getversion_open_readwrite_c()
 {
-	static char    *x = "$Id: open_readwrite.c,v 1.3 2019-07-18 10:08:38+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: open_readwrite.c,v 1.4 2020-11-22 23:51:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

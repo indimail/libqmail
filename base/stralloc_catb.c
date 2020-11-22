@@ -1,5 +1,8 @@
 /*
  * $Log: stralloc_catb.c,v $
+ * Revision 1.7  2020-11-22 23:52:49+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.6  2020-05-13 07:26:46+05:30  Cprogrammer
  * fix possible integer overflow
  *
@@ -22,7 +25,7 @@
 #include "builtinoflmacros.h"
 
 int
-stralloc_catb(stralloc *sa, char *s, unsigned int n)
+stralloc_catb(stralloc *sa, const char *s, unsigned int n)
 {
 	unsigned int    i;
 
@@ -43,7 +46,7 @@ stralloc_catb(stralloc *sa, char *s, unsigned int n)
 void
 getversion_stralloc_catb_c()
 {
-	static char    *x = "$Id: stralloc_catb.c,v 1.6 2020-05-13 07:26:46+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: stralloc_catb.c,v 1.7 2020-11-22 23:52:49+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

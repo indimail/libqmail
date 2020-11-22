@@ -1,5 +1,8 @@
 /*
  * $Log: byte_chr.c,v $
+ * Revision 1.4  2020-11-22 23:48:14+05:30  Cprogrammer
+ * changed argument to const char *
+ *
  * Revision 1.3  2004-10-22 20:22:24+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,10 +13,7 @@
 #include "byte.h"
 
 unsigned int
-byte_chr(s, n, c)
-	char           *s;
-	register unsigned int n;
-	int             c;
+byte_chr(const char *s, register unsigned int n, int c)
 {
 	register char   ch;
 	register char  *t;
@@ -53,7 +53,7 @@ byte_chr(s, n, c)
 void
 getversion_byte_chr_c()
 {
-	static char    *x = "$Id: byte_chr.c,v 1.3 2004-10-22 20:22:24+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: byte_chr.c,v 1.4 2020-11-22 23:48:14+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

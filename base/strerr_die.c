@@ -1,5 +1,8 @@
 /*
  * $Log: strerr_die.c,v $
+ * Revision 1.6  2020-11-22 23:53:35+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.5  2019-06-24 21:28:02+05:30  Cprogrammer
  * added 8 more arguments to strerr_warn(), strerr_die() functions
  *
@@ -20,22 +23,22 @@
 
 void
 strerr_warn(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, se)
-	char           *x1;
-	char           *x2;
-	char           *x3;
-	char           *x4;
-	char           *x5;
-	char           *x6;
-	char           *x7;
-	char           *x8;
-	char           *x9;
-	char           *x10;
-	char           *x11;
-	char           *x12;
-	char           *x13;
-	char           *x14;
-	char           *x15;
-	char           *x16;
+	const char     *x1;
+	const char     *x2;
+	const char     *x3;
+	const char     *x4;
+	const char     *x5;
+	const char     *x6;
+	const char     *x7;
+	const char     *x8;
+	const char     *x9;
+	const char     *x10;
+	const char     *x11;
+	const char     *x12;
+	const char     *x13;
+	const char     *x14;
+	const char     *x15;
+	const char     *x16;
 	struct strerr  *se;
 {
 	strerr_sysinit();
@@ -86,22 +89,22 @@ strerr_warn(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x1
 void
 strerr_die(e, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, se)
 	int             e;
-	char           *x1;
-	char           *x2;
-	char           *x3;
-	char           *x4;
-	char           *x5;
-	char           *x6;
-	char           *x7;
-	char           *x8;
-	char           *x9;
-	char           *x10;
-	char           *x11;
-	char           *x12;
-	char           *x13;
-	char           *x14;
-	char           *x15;
-	char           *x16;
+	const char     *x1;
+	const char     *x2;
+	const char     *x3;
+	const char     *x4;
+	const char     *x5;
+	const char     *x6;
+	const char     *x7;
+	const char     *x8;
+	const char     *x9;
+	const char     *x10;
+	const char     *x11;
+	const char     *x12;
+	const char     *x13;
+	const char     *x14;
+	const char     *x15;
+	const char     *x16;
 	struct strerr  *se;
 {
 	strerr_warn(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, se);
@@ -111,7 +114,7 @@ strerr_die(e, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, 
 void
 getversion_strerr_die_c()
 {
-	static char    *x = "$Id: strerr_die.c,v 1.5 2019-06-24 21:28:02+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: strerr_die.c,v 1.6 2020-11-22 23:53:35+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

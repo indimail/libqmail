@@ -1,5 +1,8 @@
 /*
  * $Log: substdo.c,v $
+ * Revision 1.9  2020-11-22 23:54:07+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.8  2020-10-06 14:49:07+05:30  Cprogrammer
  * fixed compilation warning
  *
@@ -65,7 +68,7 @@ substdio_flush(register substdio *s)
 }
 
 int
-substdio_bput(register substdio *s, register char *buf, register unsigned int len)
+substdio_bput(register substdio *s, register const char *buf, register unsigned int len)
 {
 	register unsigned int n;
 
@@ -86,7 +89,7 @@ substdio_bput(register substdio *s, register char *buf, register unsigned int le
 }
 
 int
-substdio_putalign(substdio *s, char *buf, unsigned int len)
+substdio_putalign(substdio *s, const char *buf, unsigned int len)
 {
 	unsigned int    n;
  
@@ -105,7 +108,7 @@ substdio_putalign(substdio *s, char *buf, unsigned int len)
 }
 
 int
-substdio_put(register substdio *s, register char *buf, register unsigned int len)
+substdio_put(register substdio *s, register const char *buf, register unsigned int len)
 {
 	register unsigned int n = s->n; /* how many bytes to write in next chunk */
 
@@ -136,7 +139,7 @@ substdio_put(register substdio *s, register char *buf, register unsigned int len
 }
 
 int
-substdio_putflush(register substdio *s, register char *buf, register unsigned int len)
+substdio_putflush(register substdio *s, register const char *buf, register unsigned int len)
 {
 	if (substdio_flush(s) == -1)
 		return -1;
@@ -144,19 +147,19 @@ substdio_putflush(register substdio *s, register char *buf, register unsigned in
 }
 
 int
-substdio_bputs(register substdio *s, register char *buf)
+substdio_bputs(register substdio *s, register const char *buf)
 {
 	return substdio_bput(s, buf, str_len(buf));
 }
 
 int
-substdio_puts(register substdio *s, register char *buf)
+substdio_puts(register substdio *s, register const char *buf)
 {
 	return substdio_put(s, buf, str_len(buf));
 }
 
 int
-substdio_putsflush(register substdio *s, register char *buf)
+substdio_putsflush(register substdio *s, register const char *buf)
 {
 	return substdio_putflush(s, buf, str_len(buf));
 }
@@ -164,7 +167,7 @@ substdio_putsflush(register substdio *s, register char *buf)
 void
 getversion_substdo_c()
 {
-	static char    *x = "$Id: substdo.c,v 1.8 2020-10-06 14:49:07+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: substdo.c,v 1.9 2020-11-22 23:54:07+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: substdio.h,v $
+ * Revision 1.9  2020-11-22 23:54:03+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.8  2020-11-22 20:31:54+05:30  Cprogrammer
  * removed newline
  *
@@ -41,13 +44,13 @@ typedef struct substdio
 void            substdio_fdbuf(substdio *, ssize_t (*op) (), int, char *, size_t);
 int             substdio_flush(substdio *);
 void            substdio_discard(substdio *);
-int             substdio_putalign(substdio *, char *, unsigned int);
-int             substdio_put(substdio *, char *, unsigned int);
-int             substdio_bput(substdio *, char *, unsigned int);
-int             substdio_putflush(substdio *, char *, unsigned int);
-int             substdio_puts(substdio *, char *);
-int             substdio_bputs(substdio *, char *);
-int             substdio_putsflush(substdio *, char *);
+int             substdio_putalign(substdio *, const char *, unsigned int);
+int             substdio_put(substdio *, const char *, unsigned int);
+int             substdio_bput(substdio *, const char *, unsigned int);
+int             substdio_putflush(substdio *, const char *, unsigned int);
+int             substdio_puts(substdio *, const char *);
+int             substdio_bputs(substdio *, const char *);
+int             substdio_putsflush(substdio *, const char *);
 int             substdio_get(substdio *, char *, int);
 int             substdio_bget(substdio *, char *, int);
 int             substdio_feed(substdio *);

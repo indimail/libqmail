@@ -1,5 +1,8 @@
 /*
  * $Log: scan_uint.c,v $
+ * Revision 1.3  2020-11-22 23:52:13+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.2  2004-10-22 20:30:06+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,9 +13,7 @@
 #include "scan.h"
 
 unsigned int
-scan_uint(s, u)
-	register char  *s;
-	register unsigned int *u;
+scan_uint(register const char *s, register unsigned int *u)
 {
 	register unsigned int pos;
 	unsigned long   result;
@@ -24,7 +25,7 @@ scan_uint(s, u)
 void
 getversion_scan_uint_c()
 {
-	static char    *x = "$Id: scan_uint.c,v 1.2 2004-10-22 20:30:06+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: scan_uint.c,v 1.3 2020-11-22 23:52:13+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

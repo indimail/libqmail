@@ -1,5 +1,8 @@
 /*
  * $Log: str_cpy.c,v $
+ * Revision 1.4  2020-11-22 23:53:20+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2004-10-22 20:30:55+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,34 +13,32 @@
 #include "str.h"
 
 unsigned int
-str_copy(s, t)
-	register char  *s;
-	register char  *t;
+str_copy(register char *to, register const char *from)
 {
 	register int    len;
 
 	len = 0;
 	for (;;)
 	{
-		if (!(*s = *t))
+		if (!(*to = *from))
 			return len;
-		++s;
-		++t;
+		++to;
+		++from;
 		++len;
-		if (!(*s = *t))
+		if (!(*to = *from))
 			return len;
-		++s;
-		++t;
+		++to;
+		++from;
 		++len;
-		if (!(*s = *t))
+		if (!(*to = *from))
 			return len;
-		++s;
-		++t;
+		++to;
+		++from;
 		++len;
-		if (!(*s = *t))
+		if (!(*to = *from))
 			return len;
-		++s;
-		++t;
+		++to;
+		++from;
 		++len;
 	}
 }
@@ -45,7 +46,7 @@ str_copy(s, t)
 void
 getversion_str_cpy_c()
 {
-	static char    *x = "$Id: str_cpy.c,v 1.3 2004-10-22 20:30:55+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: str_cpy.c,v 1.4 2020-11-22 23:53:20+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: scan_int.c,v $
+ * Revision 1.4  2020-11-22 23:52:05+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2019-07-18 10:08:58+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -13,9 +16,7 @@
 #include "scan.h"
 
 unsigned int
-scan_int(s, i)
-	register char  *s;
-	register int   *i;
+scan_int(register const char *s, register int *i)
 {
 	register unsigned int pos;
 	register int result;
@@ -55,7 +56,7 @@ scan_int(s, i)
 void
 getversion_scan_int_c()
 {
-	static char    *x = "$Id: scan_int.c,v 1.3 2019-07-18 10:08:58+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: scan_int.c,v 1.4 2020-11-22 23:52:05+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

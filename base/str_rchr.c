@@ -1,5 +1,8 @@
 /*
  * $Log: str_rchr.c,v $
+ * Revision 1.4  2020-11-22 23:53:50+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2004-10-22 20:31:00+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,9 +13,7 @@
 #include "str.h"
 
 unsigned int
-str_rchr(s, c)
-	register char  *s;
-	int             c;
+str_rchr(register const char *s, int c)
 {
 	register char   ch;
 	register char  *t;
@@ -52,7 +53,7 @@ str_rchr(s, c)
 void
 getversion_str_rchr_c()
 {
-	static char    *x = "$Id: str_rchr.c,v 1.3 2004-10-22 20:31:00+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: str_rchr.c,v 1.4 2020-11-22 23:53:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

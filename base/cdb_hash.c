@@ -1,5 +1,8 @@
 /*
  * $Log: cdb_hash.c,v $
+ * Revision 1.5  2020-11-22 23:50:40+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.4  2008-09-16 08:24:30+05:30  Cprogrammer
  * added cdb_hashadd()
  *
@@ -20,9 +23,7 @@ cdb_hashadd(uint32 h, unsigned char c)
 }
 
 uint32
-cdb_hash(buf, len)
-	unsigned char  *buf;
-	unsigned int    len;
+cdb_hash(const char *buf, unsigned int len)
 {
 	uint32          h;
 
@@ -39,7 +40,7 @@ cdb_hash(buf, len)
 void
 getversion_cdb_hash_c()
 {
-	static char    *x = "$Id: cdb_hash.c,v 1.4 2008-09-16 08:24:30+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: cdb_hash.c,v 1.5 2020-11-22 23:50:40+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

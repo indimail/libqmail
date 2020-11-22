@@ -1,5 +1,8 @@
 /*
  * $Log: scan_ulonglong.c,v $
+ * Revision 1.4  2020-11-22 23:52:22+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2019-07-18 10:09:14+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -13,7 +16,7 @@
 #include "scan.h"
 
 unsigned int
-scan_ulonglong(char *src, unsigned long long *dest)
+scan_ulonglong(const char *src, unsigned long long *dest)
 {
 	register const char *tmp = src;
 	register unsigned long long l = 0;
@@ -42,7 +45,7 @@ scan_ulonglong(char *src, unsigned long long *dest)
 void
 getversion_scan_ulonglong_c()
 {
-	static char    *x = "$Id: scan_ulonglong.c,v 1.3 2019-07-18 10:09:14+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: scan_ulonglong.c,v 1.4 2020-11-22 23:52:22+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

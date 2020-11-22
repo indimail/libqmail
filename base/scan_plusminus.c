@@ -1,5 +1,8 @@
 /*
  * $Log: scan_plusminus.c,v $
+ * Revision 1.4  2020-11-22 23:52:10+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2019-07-18 10:09:08+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -13,7 +16,7 @@
 #include "scan.h"
 
 unsigned int
-scan_plusminus(char *src, signed int *dest)
+scan_plusminus(const char *src, signed int *dest)
 {
 	*dest = 1;
 	switch (*src)
@@ -29,7 +32,7 @@ scan_plusminus(char *src, signed int *dest)
 void
 getversion_scan_plusminus_c()
 {
-	static char    *x = "$Id: scan_plusminus.c,v 1.3 2019-07-18 10:09:08+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: scan_plusminus.c,v 1.4 2020-11-22 23:52:10+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

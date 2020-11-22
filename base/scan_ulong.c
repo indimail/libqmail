@@ -1,5 +1,8 @@
 /*
  * $Log: scan_ulong.c,v $
+ * Revision 1.7  2020-11-22 23:52:18+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.6  2019-06-24 21:27:20+05:30  Cprogrammer
  * removed scan_int() to scan_int.c
  *
@@ -16,9 +19,7 @@
 #include "scan.h"
 
 unsigned int
-scan_ulong(s, u)
-	register char  *s;
-	register unsigned long *u;
+scan_ulong(register const char *s, register unsigned long *u)
 {
 	register unsigned int pos;
 	register unsigned long result;
@@ -38,7 +39,7 @@ scan_ulong(s, u)
 void
 getversion_scan_ulong_c()
 {
-	static char    *x = "$Id: scan_ulong.c,v 1.6 2019-06-24 21:27:20+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: scan_ulong.c,v 1.7 2020-11-22 23:52:18+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: case_startb.c,v $
+ * Revision 1.4  2020-11-22 23:50:31+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2004-10-22 20:23:18+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,16 +13,12 @@
 #include "case.h"
 
 int
-case_startb(s, len, t)
-	register char  *s;
-	unsigned int    len;
-	register char  *t;
+case_startb(register const char *s, unsigned int len, register const char *t)
 {
 	register unsigned char x;
 	register unsigned char y;
 
-	for (;;)
-	{
+	for (;;) {
 		y = *t++ - 'A';
 		if (y <= 'Z' - 'A')
 			y += 'a';
@@ -43,7 +42,7 @@ case_startb(s, len, t)
 void
 getversion_case_startb_c()
 {
-	static char    *x = "$Id: case_startb.c,v 1.3 2004-10-22 20:23:18+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: case_startb.c,v 1.4 2020-11-22 23:50:31+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

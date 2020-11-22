@@ -1,5 +1,8 @@
 /*
  * $Log: str_cpyb.c,v $
+ * Revision 1.4  2020-11-22 23:53:16+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2018-04-25 21:37:41+05:30  Cprogrammer
  * BUG - Fixed extra copy
  *
@@ -13,10 +16,7 @@
 #include "str.h"
 
 unsigned int
-str_copyb(s, t, max)
-	register char  *s;
-	register char  *t;
-	unsigned int    max;
+str_copyb(register char *s, register const char *t, unsigned int max)
 {
 	register int    len;
 
@@ -34,7 +34,7 @@ str_copyb(s, t, max)
 void
 getversion_str_cpyb_c()
 {
-	static char    *x = "$Id: str_cpyb.c,v 1.3 2018-04-25 21:37:41+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: str_cpyb.c,v 1.4 2020-11-22 23:53:16+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

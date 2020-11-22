@@ -1,5 +1,8 @@
 /*
  * $Log: open_write.c,v $
+ * Revision 1.4  2020-11-22 23:51:55+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2004-10-22 20:27:52+05:30  Cprogrammer
  * added RCS id
  *
@@ -12,8 +15,7 @@
 #include "open.h"
 
 int
-open_write(fn)
-	char           *fn;
+open_write(const char *fn)
 {
 	return open(fn, O_WRONLY | O_NDELAY);
 }
@@ -21,7 +23,7 @@ open_write(fn)
 void
 getversion_open_write_c()
 {
-	static char    *x = "$Id: open_write.c,v 1.3 2004-10-22 20:27:52+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: open_write.c,v 1.4 2020-11-22 23:51:55+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: stralloc.h,v $
+ * Revision 1.6  2020-11-22 23:53:00+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.5  2019-07-19 14:05:45+05:30  Cprogrammer
  * fixed data type of length argument of stralloc_readyplus(), stralloc_copyb(), stralloc_catb()
  *
@@ -18,14 +21,14 @@
 GEN_ALLOC_typedef(stralloc, char, s, len, a)
 int             stralloc_ready(stralloc *, unsigned int);
 int             stralloc_readyplus(stralloc *, unsigned int);
-int             stralloc_copy(stralloc *, stralloc *);
-int             stralloc_copys(stralloc *, char *);
-int             stralloc_copyb(stralloc *, char *, unsigned int);
-int             stralloc_cat(stralloc *, stralloc *);
-int             stralloc_cats(stralloc *, char *);
-int             stralloc_catb(stralloc *, char *, unsigned int);
-int             stralloc_append(stralloc *, char *); /*- beware: this takes a pointer to 1 char */
-int             stralloc_starts(stralloc *, char *);
+int             stralloc_copy(stralloc *, const stralloc *);
+int             stralloc_copys(stralloc *, const char *);
+int             stralloc_copyb(stralloc *, const char *, unsigned int);
+int             stralloc_cat(stralloc *, const stralloc *);
+int             stralloc_cats(stralloc *, const char *);
+int             stralloc_catb(stralloc *, const char *, unsigned int);
+int             stralloc_append(stralloc *, const char *); /*- beware: this takes a pointer to 1 char */
+int             stralloc_starts(stralloc *, const char *);
 int             stralloc_catulong0(stralloc *, unsigned long, unsigned int);
 int             stralloc_catlong0(stralloc *, long, unsigned int);
 

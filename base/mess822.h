@@ -1,5 +1,8 @@
 /*
  * $Log: mess822.h,v $
+ * Revision 1.4  2020-11-22 23:51:26+05:30  Cprogrammer
+ * removed extra newline
+ *
  * Revision 1.3  2004-10-11 13:55:55+05:30  Cprogrammer
  * added function prototypes
  *
@@ -18,8 +21,7 @@ typedef struct
 {
 	struct caltime  ct;
 	int             known; /*- 0 for ct uninitialized; 1 if ok; 2 if ok and right zone */
-}
-mess822_time;
+} mess822_time;
 
 typedef struct
 {
@@ -29,15 +31,13 @@ typedef struct
 	stralloc       *value;
 	stralloc       *addr;
 	mess822_time   *when;
-}
-mess822_action;
+} mess822_action;
 
 typedef struct
 {
 	stralloc        inprogress;
 	mess822_action *action;
-}
-mess822_header;
+} mess822_header;
 
 int             mess822_quoteplus(stralloc *, char *, char *);
 int             mess822_quote(stralloc *, char *, char *);

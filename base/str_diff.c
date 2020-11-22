@@ -1,5 +1,8 @@
 /*
  * $Log: str_diff.c,v $
+ * Revision 1.4  2020-11-22 23:53:23+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2004-10-22 20:30:56+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,14 +13,11 @@
 #include "str.h"
 
 int
-str_diff(s, t)
-	register char  *s;
-	register char  *t;
+str_diff(register const char *s, register const char *t)
 {
 	register char   x;
 
-	for (;;)
-	{
+	for (;;) {
 		x = *s;
 		if (x != *t)
 			break;
@@ -53,7 +53,7 @@ str_diff(s, t)
 void
 getversion_str_diff_c()
 {
-	static char    *x = "$Id: str_diff.c,v 1.3 2004-10-22 20:30:56+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: str_diff.c,v 1.4 2020-11-22 23:53:23+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

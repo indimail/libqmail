@@ -1,5 +1,8 @@
 /*
  * $Log: byte_rchr.c,v $
+ * Revision 1.4  2020-11-22 23:50:01+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2004-10-22 20:32:22+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,10 +13,7 @@
 #include "byte.h"
 
 unsigned int
-byte_rchr(s, n, c)
-	char           *s;
-	register unsigned int n;
-	int             c;
+byte_rchr(const char *s, register unsigned int n, int c)
 {
 	register char   ch;
 	register char  *t;
@@ -57,7 +57,7 @@ byte_rchr(s, n, c)
 void
 getversion_byte_rchr_c()
 {
-	static char    *x = "$Id: byte_rchr.c,v 1.3 2004-10-22 20:32:22+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: byte_rchr.c,v 1.4 2020-11-22 23:50:01+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: str.h,v $
+ * Revision 1.9  2020-11-22 23:53:43+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.8  2019-06-24 21:29:40+05:30  Cprogrammer
  * added str_str(), str_tok() functions
  *
@@ -25,17 +28,17 @@
 #ifndef STR_H
 #define STR_H
 
-unsigned int    str_copy(char *, char *);
-unsigned int    str_copyb(char *, char *, unsigned int);
-int             str_diff(char *, char *);
-int             str_diffn(char *, char *, unsigned int);
-unsigned int    str_len(char *);
-unsigned int    str_chr(char *, int);
-unsigned int    str_rchr(char *, int);
-int             str_start(char *, char *);
-int             str_end(char *, char *);
-char           *str_chrn(char *, int, int);
-char           *str_str(char *, char *);
+unsigned int    str_copy(char *, const char *);
+unsigned int    str_copyb(char *, const char *, unsigned int);
+int             str_diff(const char *, const char *);
+int             str_diffn(const char *, const char *, unsigned int);
+unsigned int    str_len(const char *);
+unsigned int    str_chr(const char *, int);
+unsigned int    str_rchr(const char *, int);
+int             str_start(const char *, const char *);
+int             str_end(const char *, const char *);
+char           *str_chrn(const char *, int, int);
+char           *str_str(const char *, const char *);
 #include <sys/types.h>
 size_t          str_cspn(const char *, register const char *);
 char           *str_tok(char *, const char *);

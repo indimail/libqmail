@@ -1,5 +1,8 @@
 /*
  * $Log: env.c,v $
+ * Revision 1.7  2020-11-22 23:51:11+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.6  2020-05-15 11:30:41+05:30  Cprogrammer
  * convert function prototypes to c89 standards
  * fix possible integer overflow
@@ -60,9 +63,7 @@ env_clear()
 }
 
 static void
-env_unsetlen(s, len)
-	char           *s;
-	int             len;
+env_unsetlen(const char *s, int len)
 {
 	int             i;
 
@@ -73,7 +74,7 @@ env_unsetlen(s, len)
 }
 
 int
-env_unset(char *s)
+env_unset(const char *s)
 {
 	if (!env_isinit && !env_init())
 		return 0;
@@ -82,7 +83,7 @@ env_unset(char *s)
 }
 
 static int
-env_add(char *s)
+env_add(const char *s)
 {
 	char           *t;
 	unsigned int    i;
@@ -114,7 +115,7 @@ env_add(char *s)
 }
 
 int
-env_put(char *s)
+env_put(const char *s)
 {
 	char           *u;
 	unsigned int    i;
@@ -136,7 +137,7 @@ env_put(char *s)
 }
 
 int
-env_put2(char *s, char *t)
+env_put2(const char *s, const char *t)
 {
 	char           *u;
 	unsigned int    slen, i;
@@ -221,7 +222,7 @@ restore_env()
 void
 getversion_env_c()
 {
-	static char    *x = "$Id: env.c,v 1.6 2020-05-15 11:30:41+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: env.c,v 1.7 2020-11-22 23:51:11+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

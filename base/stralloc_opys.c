@@ -1,5 +1,8 @@
 /*
  * $Log: stralloc_opys.c,v $
+ * Revision 1.4  2020-11-22 23:53:06+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2004-10-22 20:30:52+05:30  Cprogrammer
  * added RCS id
  *
@@ -12,9 +15,7 @@
 #include "stralloc.h"
 
 int
-stralloc_copys(sa, s)
-	stralloc       *sa;
-	char           *s;
+stralloc_copys(stralloc *sa, const char *s)
 {
 	return stralloc_copyb(sa, s, str_len(s));
 }
@@ -22,7 +23,7 @@ stralloc_copys(sa, s)
 void
 getversion_stralloc_opys_c()
 {
-	static char    *x = "$Id: stralloc_opys.c,v 1.3 2004-10-22 20:30:52+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: stralloc_opys.c,v 1.4 2020-11-22 23:53:06+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

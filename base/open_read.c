@@ -1,5 +1,8 @@
 /*
  * $Log: open_read.c,v $
+ * Revision 1.4  2020-11-22 23:51:48+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2004-10-22 20:27:50+05:30  Cprogrammer
  * added RCS id
  *
@@ -12,8 +15,7 @@
 #include "open.h"
 
 int
-open_read(fn)
-	char           *fn;
+open_read(const char *fn)
 {
 	return open(fn, O_RDONLY | O_NDELAY);
 }
@@ -21,7 +23,7 @@ open_read(fn)
 void
 getversion_open_read_c()
 {
-	static char    *x = "$Id: open_read.c,v 1.3 2004-10-22 20:27:50+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: open_read.c,v 1.4 2020-11-22 23:51:48+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

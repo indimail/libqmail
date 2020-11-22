@@ -1,5 +1,8 @@
 /*
  * $Log: byte_rcspn.c,v $
+ * Revision 1.3  2020-11-22 23:50:05+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.2  2004-10-22 20:23:01+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,15 +13,11 @@
 #include "byte.h"
 
 unsigned int
-byte_rcspn(s, n, c)
-	register char  *s;
-	register unsigned int n;
-	register char  *c;
+byte_rcspn(register const char *s, register unsigned int n, register const char *c)
 {
 	unsigned int    ret, pos, i;
 
-	for (ret = n, pos = 0; *c; ++c)
-	{
+	for (ret = n, pos = 0; *c; ++c) {
 		if ((i = byte_rchr(s + pos, n - pos, *c) + pos) < n)
 			ret = pos = i;
 	}
@@ -28,7 +27,7 @@ byte_rcspn(s, n, c)
 void
 getversion_byte_rcspn_c()
 {
-	static char    *x = "$Id: byte_rcspn.c,v 1.2 2004-10-22 20:23:01+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: byte_rcspn.c,v 1.3 2020-11-22 23:50:05+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

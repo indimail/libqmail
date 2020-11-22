@@ -1,5 +1,8 @@
 /*
  * $Log: str_len.c,v $
+ * Revision 1.4  2020-11-22 23:53:47+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2004-10-22 20:30:59+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,14 +13,12 @@
 #include "str.h"
 
 unsigned int
-str_len(s)
-	register char  *s;
+str_len(register const char *s)
 {
 	register char  *t;
 
 	t = s;
-	for (;;)
-	{
+	for (;;) {
 		if (!*t)
 			return t - s;
 		++t;
@@ -36,7 +37,7 @@ str_len(s)
 void
 getversion_str_len_c()
 {
-	static char    *x = "$Id: str_len.c,v 1.3 2004-10-22 20:30:59+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: str_len.c,v 1.4 2020-11-22 23:53:47+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

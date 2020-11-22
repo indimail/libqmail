@@ -27,10 +27,7 @@ int             opterr = 1;
 char           *optprogname = 0;
 
 int
-getopt(argc, argv, opts)
-	int             argc;
-	char          **argv;
-	char           *opts;
+getopt(int argc, const char **argv, const char *opts)
 {
 	int             c;
 	char           *s;
@@ -67,7 +64,7 @@ getopt(argc, argv, opts)
 void
 getversion_sgetopt_c()
 {
-	static char    *x = "$Id: sgetopt.c,v 1.2 2004-10-22 20:30:18+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: sgetopt.c,v 1.3 2020-11-22 23:52:33+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

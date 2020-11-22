@@ -1,5 +1,8 @@
 /*
  * $Log: str_end.c,v $
+ * Revision 1.2  2020-11-22 23:53:30+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.1  2016-02-08 18:27:16+05:30  Cprogrammer
  * Initial revision
  *
@@ -7,9 +10,7 @@
 #include "str.h"
 
 int
-str_end(s, t)
-	register char  *s;
-	register char  *t;
+str_end(register const char *s, register const char *t)
 {
 	register char   x, y, *z;
 
@@ -71,7 +72,7 @@ str_end(s, t)
 void
 getversion_str_end_c()
 {
-	static char    *x = "$Id: str_end.c,v 1.1 2016-02-08 18:27:16+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: str_end.c,v 1.2 2020-11-22 23:53:30+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

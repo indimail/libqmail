@@ -1,5 +1,8 @@
 /*
  * $Log: str_start.c,v $
+ * Revision 1.4  2020-11-22 23:53:53+05:30  Cprogrammer
+ * use const keyword
+ *
  * Revision 1.3  2004-10-22 20:31:02+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,14 +13,11 @@
 #include "str.h"
 
 int
-str_start(s, t)
-	register char  *s;
-	register char  *t;
+str_start(register const char *s, register const char *t)
 {
 	register char   x;
 
-	for (;;)
-	{
+	for (;;) {
 		x = *t++;
 		if (!x)
 			return 1;
@@ -44,7 +44,7 @@ str_start(s, t)
 void
 getversion_str_start_c()
 {
-	static char    *x = "$Id: str_start.c,v 1.3 2004-10-22 20:31:02+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: str_start.c,v 1.4 2020-11-22 23:53:53+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
