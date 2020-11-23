@@ -1,7 +1,7 @@
 /*
  * $Log: sgetopt.h,v $
- * Revision 1.4  2020-11-22 23:52:40+05:30  Cprogrammer
- * use const keyword
+ * Revision 1.4  2020-11-23 17:53:30+05:30  Cprogrammer
+ * use const keyword to suppress compiler warnings
  *
  * Revision 1.3  2004-10-11 14:05:37+05:30  Cprogrammer
  * added function prototypes
@@ -29,6 +29,6 @@
 extern int      sgetopterr;
 extern char    *sgetoptprogname;
 
-int             sgetoptmine(int, const char **, const char *);
+int             sgetoptmine(int, char **, const char *);
 
 #endif

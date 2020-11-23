@@ -1,7 +1,7 @@
 /*
  * $Log: subgetopt.h,v $
- * Revision 1.5  2020-11-22 23:53:59+05:30  Cprogrammer
- * use const keyword
+ * Revision 1.5  2020-11-23 17:54:09+05:30  Cprogrammer
+ * use const keyword to suppress compiler warnings
  *
  * Revision 1.4  2019-06-07 10:03:23+05:30  Cprogrammer
  * BUG Fix. Declare variables as extern to prevent wrong assignment
@@ -34,6 +34,6 @@ extern int      subgetoptpos;
 extern int      subgetoptproblem;
 extern int      subgetoptdone;
 extern char    *subgetoptprogname;
-int             subgetopt(int, const char **, const char *);
+int             subgetopt(int, char **, const char *);
 
 #endif

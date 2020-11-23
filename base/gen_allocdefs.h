@@ -1,9 +1,6 @@
 /*
  * $Log: gen_allocdefs.h,v $
- * Revision 1.7  2020-11-22 23:51:19+05:30  Cprogrammer
- * use const keyword
- *
- * Revision 1.6  2020-11-22 20:31:11+05:30  Cprogrammer
+ * Revision 1.6  2020-11-23 17:53:14+05:30  Cprogrammer
  * fixed compiler warning
  *
  * Revision 1.5  2020-05-13 06:06:42+05:30  Cprogrammer
@@ -66,7 +63,7 @@ int ta_ready(ta *x, unsigned int n) \
 { return ta_ready ## plus_internal (x, n, 0); }
 
 #define GEN_ALLOC_append(ta,type,field,len,a,base,ta_rplus,ta_append) \
-int ta_append(ta *x, const type *i) \
+int ta_append(ta *x, type *i) \
 { if (!ta_rplus(x,1)) return 0; x->field[x->len++] = *i; return 1; }
 
 #endif
