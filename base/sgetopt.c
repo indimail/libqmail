@@ -1,4 +1,9 @@
 /*
+ * $Log: sgetopt.c,v $
+ * Revision 1.3  2020-11-23 18:04:36+05:30  Cprogrammer
+ * use const keyword for options argument
+ *
+ *
  * sgetopt.c, sgetopt.h: (yet another) improved getopt clone, outer layer
  * D. J. Bernstein, djb@pobox.com.
  * Depends on subgetopt.h, substdio.h, subfd.h.
@@ -27,13 +32,12 @@ int             opterr = 1;
 char           *optprogname = 0;
 
 int
-getopt(int argc, const char **argv, const char *opts)
+getopt(int argc, char **argv, const char *opts)
 {
 	int             c;
 	char           *s;
 
-	if (!optprogname)
-	{
+	if (!optprogname) {
 		optprogname = *argv;
 		if (!optprogname)
 			optprogname = "";
@@ -42,10 +46,8 @@ getopt(int argc, const char **argv, const char *opts)
 				optprogname = s + 1;
 	}
 	c = subgetopt(argc, argv, opts);
-	if (opterr)
-	{
-		if (c == '?')
-		{
+	if (opterr) {
+		if (c == '?') {
 			char            chp[2];
 			chp[0] = optproblem;
 			chp[1] = '\n';
@@ -64,7 +66,7 @@ getopt(int argc, const char **argv, const char *opts)
 void
 getversion_sgetopt_c()
 {
-	static char    *x = "$Id: sgetopt.c,v 1.3 2020-11-22 23:52:33+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: sgetopt.c,v 1.3 2020-11-23 18:04:36+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

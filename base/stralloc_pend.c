@@ -1,5 +1,8 @@
 /*
  * $Log: stralloc_pend.c,v $
+ * Revision 1.5  2020-11-23 18:05:03+05:30  Cprogrammer
+ * use const keyword for argument
+ *
  * Revision 1.4  2020-05-10 17:51:05+05:30  Cprogrammer
  * GEN_ALLOC refactoring (by Rolf Eike Beer) to fix memory overflow reported by Qualys Security Advisory
  *
@@ -14,12 +17,12 @@
 #include "stralloc.h"
 #include "gen_allocdefs.h"
 
-GEN_ALLOC_append(stralloc, char, s, len, a, 30, stralloc_readyplus, stralloc_append)
+GEN_ALLOC_append(stralloc, const char, s, len, a, 30, stralloc_readyplus, stralloc_append)
 
 void
 getversion_stralloc_pend_c()
 {
-	static char    *x = "$Id: stralloc_pend.c,v 1.4 2020-05-10 17:51:05+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: stralloc_pend.c,v 1.5 2020-11-23 18:05:03+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
