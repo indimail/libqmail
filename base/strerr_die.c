@@ -1,5 +1,8 @@
 /*
  * $Log: strerr_die.c,v $
+ * Revision 1.7  2020-11-24 13:34:20+05:30  Cprogrammer
+ * removed exit.h
+ *
  * Revision 1.6  2020-11-22 23:53:35+05:30  Cprogrammer
  * use const keyword
  *
@@ -16,9 +19,9 @@
  * added RCS log
  *
  */
+#include <unistd.h>
 #include "substdio.h"
 #include "subfd.h"
-#include "exit.h"
 #include "strerr.h"
 
 void
@@ -114,7 +117,7 @@ strerr_die(e, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, 
 void
 getversion_strerr_die_c()
 {
-	static char    *x = "$Id: strerr_die.c,v 1.6 2020-11-22 23:53:35+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: strerr_die.c,v 1.7 2020-11-24 13:34:20+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

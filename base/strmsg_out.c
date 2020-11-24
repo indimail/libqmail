@@ -1,5 +1,8 @@
 /*
  * $Log: strmsg_out.c,v $
+ * Revision 1.4  2020-11-24 13:35:30+05:30  Cprogrammer
+ * removed exit.h
+ *
  * Revision 1.3  2019-07-18 10:13:45+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -12,7 +15,6 @@
  */
 #include "substdio.h"
 #include "subfd.h"
-#include "exit.h"
 
 void
 strmsg_out(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16)
@@ -69,7 +71,7 @@ strmsg_out(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16
 void
 getversion_strmsg_out_c()
 {
-	static char    *x = "$Id: strmsg_out.c,v 1.3 2019-07-18 10:13:45+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: strmsg_out.c,v 1.4 2020-11-24 13:35:30+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
