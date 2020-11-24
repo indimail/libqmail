@@ -1,5 +1,8 @@
 /*
  * $Log: fmt.h,v $
+ * Revision 1.12  2020-11-24 09:31:23+05:30  Cprogrammer
+ * use const keyword for readonly arguments
+ *
  * Revision 1.11  2020-10-10 21:18:16+05:30  Cprogrammer
  * removed fmt_tohex()
  *
@@ -76,8 +79,8 @@ unsigned int    fmt_minus(char *, int);
  * This is more efficient because strcat needs to scan the string to
  * find the end and append.
  */
-unsigned int    fmt_str(char *, char *);
-unsigned int    fmt_strn(char *, char *, unsigned int);
+unsigned int    fmt_str(char *, const char *);
+unsigned int    fmt_strn(char *, const char *, unsigned int);
 /*-
  * write padlen-srclen spaces, if that is >= 0.  Then copy srclen
  * characters from src.  Truncate only if total length is larger than

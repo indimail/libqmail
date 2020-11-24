@@ -1,5 +1,8 @@
 /*
  * $Log: fmt_strn.c,v $
+ * Revision 1.4  2020-11-24 09:32:06+05:30  Cprogrammer
+ * use const keyword for readonly arguments
+ *
  * Revision 1.3  2004-10-22 20:25:17+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,10 +13,7 @@
 #include "fmt.h"
 
 unsigned int
-fmt_strn(s, t, n)
-	register char  *s;
-	register char  *t;
-	register unsigned int n;
+fmt_strn(register char *s, register const char *t, register unsigned int n)
 {
 	register unsigned int len;
 	char            ch;
@@ -31,7 +31,7 @@ fmt_strn(s, t, n)
 void
 getversion_fmt_strn_c()
 {
-	static char    *x = "$Id: fmt_strn.c,v 1.3 2004-10-22 20:25:17+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: fmt_strn.c,v 1.4 2020-11-24 09:32:06+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
