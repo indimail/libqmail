@@ -1,5 +1,8 @@
 /*
  * $Log: strerr.h,v $
+ * Revision 1.7  2020-11-24 13:34:28+05:30  Cprogrammer
+ * added noreturn attribute for strerr_die()
+ *
  * Revision 1.6  2020-11-22 23:53:39+05:30  Cprogrammer
  * use const keyword
  *
@@ -40,7 +43,8 @@ void            strerr_warn(c_char *, c_char *, c_char *, c_char *, c_char *,
 void            strerr_die(int, c_char *, c_char *, c_char *, c_char *,
 					c_char *, c_char *, c_char *, c_char *, c_char *,
 					c_char *, c_char *, c_char *, c_char *, c_char *,
-					c_char *, c_char *, struct strerr *);
+					c_char *, c_char *, struct strerr *)
+					__attribute__((noreturn));
 
 #define STRERR(r,se,a) \
 { se.who = 0; se.x = a; se.y = 0; se.z = 0; return r; }
