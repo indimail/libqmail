@@ -68,19 +68,20 @@ include_HEADERS = base/alloc.h base/base64.h base/builtinoflmacros.h \
 	base/byte.h base/caldate.h base/caltime.h base/case.h base/cdb.h \
 	base/cdbmake.h base/cdb_make.h base/coe.h base/commands.h \
 	base/constmap.h base/datetime.h base/digest_md5.h base/env.h \
-	base/error.h base/exit.h base/fd.h base/fifo.h base/fmt.h \
+	base/error.h base/fd.h base/fifo.h base/fmt.h \
 	base/gen_allocdefs.h base/gen_alloc.h base/getEnvConfig.h base/getln.h \
 	base/global.h base/hasbltnofl.h base/hmac.h base/in_crypt.h \
 	base/iopause.h base/leapsecs.h base/lock.h base/md5.h base/makesalt.h \
 	base/mess822.h base/mkpasswd.h base/ndelay.h base/now.h base/open.h \
-	base/pw_comp.h base/rewritehost.h base/ripemd.h base/scan.h \
-	base/sconfig.h base/seek.h base/select.h base/setuserid.h \
-	base/sgetopt.h base/sha1.h base/sig.h base/stralloc.h base/strerr.h \
-	base/str.h base/strmsg.h base/subfd.h base/subgetopt.h base/substdio.h \
-	base/taia.h base/tai.h base/tai2.h base/timeoutread.h base/timeoutwrite.h \
-	base/typesx.h base/uint16.h base/uint32.h base/uint64.h base/wait.h \
-	base/qprintf.h array/array.h textcode/entities.h textcode/textcode.h \
-	base/likely.h base/iarray.h base/safemult.h base/rangecheck.h
+	base/openreadclose.h base/pw_comp.h base/readclose.h base/rewritehost.h \
+	base/ripemd.h base/scan.h base/sconfig.h base/seek.h base/select.h \
+	base/setuserid.h base/sgetopt.h base/sha1.h base/sig.h base/stralloc.h \
+	base/strerr.h base/str.h base/strmsg.h base/subfd.h base/subgetopt.h \
+	base/substdio.h base/taia.h base/tai.h base/tai2.h base/timeoutread.h \
+	base/timeoutwrite.h base/typesx.h base/uint16.h base/uint32.h \
+	base/uint64.h base/wait.h base/qprintf.h array/array.h \
+	textcode/entities.h textcode/textcode.h base/likely.h base/iarray.h \
+	base/safemult.h base/rangecheck.h
 
 includedir=@prefix@/include/qmail
 COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
@@ -103,18 +104,18 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
 	base/hmac_md5.c base/hmac_ripemd.c base/hmac_sha1.c base/hmac_sha256.c \
 	base/hmac_sha512.c base/in_crypt.c base/iopause.c base/leapsecs_add.c \
 	base/leapsecs_init.c base/leapsecs_read.c base/leapsecs_sub.c base/lock_ex.c \
-	base/lock_exnb.c base/lock_un.c base/makesalt.c base/md5.c base/md5_crypt.c \
-	base/mess822_addr.c base/mess822_fold.c base/mess822_line.c \
+	base/lock_exnb.c base/lock_un.c base/makesalt.c base/md5.c \
+	base/md5_crypt.c base/mess822_addr.c base/mess822_fold.c base/mess822_line.c \
 	base/mess822_quote.c base/mess822_when.c base/mess822_date.c base/mess822.h \
 	base/mess822_ok.c base/mess822_token.c base/ndelay.c base/ndelay_off.c \
 	base/now.c base/open_append.c base/open_excl.c base/open_read.c \
-	base/open_readwrite.c base/open_trunc.c base/open_write.c base/mkpasswd.c \
-	base/pw_comp.c base/qprintf.c base/rewritehost.c base/scan_8long.c \
-	base/scan_double.c base/scan_fromhex.c base/scan_int.c base/scan_long.c \
-	base/scan_plusminus.c base/scan_uint.c base/scan_ulong.c base/scan_ulonglong.c \
-	base/scan_ushort.c base/scan_xlong.c base/sconfig.c base/seek_cur.c \
-	base/seek_end.c base/seek_set.c base/seek_trunc.c base/setuserid.c base/sgetopt.c \
-	base/sha256_crypt.c base/sha512_crypt.c base/sig.c base/sig_alarm.c \
+	base/open_readwrite.c base/open_trunc.c base/open_write.c base/openreadclose.c \
+	base/mkpasswd.c base/pw_comp.c base/qprintf.c base/readclose.c base/rewritehost.c \
+	base/scan_8long.c base/scan_double.c base/scan_fromhex.c base/scan_int.c \
+	base/scan_long.c base/scan_plusminus.c base/scan_uint.c base/scan_ulong.c \
+	base/scan_ulonglong.c base/scan_ushort.c base/scan_xlong.c base/sconfig.c \
+	base/seek_cur.c base/seek_end.c base/seek_set.c base/seek_trunc.c base/setuserid.c \
+	base/sgetopt.c base/sha256_crypt.c base/sha512_crypt.c base/sig.c base/sig_alarm.c \
 	base/sig_block.c base/sig_bug.c base/sig_catch.c base/sig_child.c \
 	base/sig_hup.c base/sig_int.c base/sig_misc.c base/sig_pause.c \
 	base/sig_pipe.c base/sig_term.c base/stralloc_arts.c base/stralloc_catb.c \
@@ -294,7 +295,7 @@ base/subfdin.lo: substdio.h subfd.h
 base/subfdins.lo: substdio.h subfd.h
 base/subfdout.lo: substdio.h subfd.h
 base/subfdouts.lo: substdio.h subfd.h
-base/strerr_die.lo: substdio.h subfd.h exit.h strerr.h
+base/strerr_die.lo: substdio.h subfd.h strerr.h
 base/strerr_sys.lo: strerr.h error.h
 base/case_diffb.lo: case.h
 base/case_diffs.lo: case.h
