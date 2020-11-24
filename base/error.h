@@ -1,5 +1,8 @@
 /*
  * $Log: error.h,v $
+ * Revision 1.10  2020-11-24 13:33:59+05:30  Cprogrammer
+ * added error_notdir
+ *
  * Revision 1.9  2019-06-24 21:18:50+05:30  Cprogrammer
  * added error_restart
  *
@@ -43,6 +46,7 @@ extern int      error_nodevice;
 extern int      error_proto;
 extern int      error_isdir;
 extern int      error_connrefused;
+extern int      error_notdir;
 extern int      error_hostdown;
 extern int      error_netunreach;
 extern int      error_hostunreach;

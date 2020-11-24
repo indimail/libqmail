@@ -1,5 +1,8 @@
 /*
  * $Log: error.c,v $
+ * Revision 1.9  2020-11-24 13:33:44+05:30  Cprogrammer
+ * added error_notdir
+ *
  * Revision 1.8  2019-06-24 21:13:50+05:30  Cprogrammer
  * added ERESTART
  *
@@ -174,24 +177,31 @@ EDQUOT;
 -21;
 #endif
 
+int error_notdir =
+#ifdef ENOTDIR
+ENOTDIR;
+#else
+-22;
+#endif
+
 int error_srch =
 #ifdef ESRCH
 ESRCH;
 #else
--1;
+-23;
 #endif
 
 int error_restart =
 #ifdef ERESTART
 ERESTART;
 #else
--1;
+-24;
 #endif
 
 void
 getversion_error_c()
 {
-	static char    *x = "$Id: error.c,v 1.8 2019-06-24 21:13:50+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: error.c,v 1.9 2020-11-24 13:33:44+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
