@@ -14,3 +14,6 @@ libqmail (@version@-@release@) unstable; urgency=medium
   * Remove definition of INSTALL program in configure.ac, Makefile.am
   * added tai_add.c. tai_uint.c
   * use const keyword
+  * added readclose(), openreadclose()
+  * added noreturn attribute for strerr_die()
+  * removed exit.h
