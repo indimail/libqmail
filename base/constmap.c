@@ -1,8 +1,5 @@
 /*
  * $Log: constmap.c,v $
- * Revision 1.5  2020-11-24 13:31:13+05:30  Cprogrammer
- * added constmap_index(), constmap_get()
- *
  * Revision 1.4  2020-05-15 11:36:20+05:30  Cprogrammer
  * convert function prototypes to c89 standards
  * fix possible integer overflow
@@ -37,109 +34,86 @@ hash(char *s, unsigned int len)
 	return h;
 }
 
-int
-constmap_index(const struct constmap *cm,const char *s,int len)
+char           *
+constmap(struct constmap *cm, char *s, unsigned int len)
 {
 	constmap_hash   h;
 	int             pos;
-	struct constmap_entry *e;
 
-	h = hash(s,len);
+	h = hash(s, len);
 	pos = cm->first[h & cm->mask];
 	while (pos != -1) {
-		e = &cm->entries[pos];
-		if (h == e->hash && len == e->inputlen && !case_diffb(e->input,len,s))
-			return pos + 1;
-		pos = e->next;
+		if (h == cm->hash[pos])
+			if (len == cm->inputlen[pos])
+				if (!case_diffb(cm->input[pos], len, s))
+					return cm->input[pos] + cm->inputlen[pos] + 1;
+		pos = cm->next[pos];
 	}
 	return 0;
 }
 
-/* returns pointer to sz of string with index "idx". 1 = first, 2 = second...*/
-const char     *
-constmap_get(struct constmap *cm,unsigned int idx)
-{
-	if (idx <= 0 || idx > cm->num)
-		return 0;
-	else
-		return cm->entries[idx-1].input;
-}
-
-const char     *
-constmap(struct constmap *cm, const char *s, int len)
-{
-	constmap_hash   h;
-	struct constmap_entry *e;
-	int             pos;
-
-	h = hash(s,len);
-	pos = cm->first[h & cm->mask];
-	while (pos != -1) {
-		e = &cm->entries[pos];
-		if (h == e->hash && len == e->inputlen && !case_diffb(e->input,len,s))
-			return e->input + e->inputlen + 1;
-		pos = e->next;
-	}
-	return 0;
-}
-
-/* 
- * if splitchar is set, we process only the stuff before that character
- * on each line. Otherwise, it's the entire line. Still, the entire line
- * is stored!
- */
 int
-constmap_init(struct constmap *cm, const char *s, int len, int splitchar)
+constmap_init(struct constmap *cm, char *s, unsigned int len, int flagcolon)
 {
- 	int             i, j, k, pos;
+	unsigned int    i, j, k, t, pos;
 	constmap_hash   h;
-	struct constmap_entry *e;
- 
+
 	cm->num = 0;
-	for (j = 0;j < len;++j) {
+	for (j = 0; j < len; ++j)
 		if (!s[j])
 			++cm->num;
-	}
- 
 	h = 64;
 	while (h && (h < cm->num))
 		h += h;
 	cm->mask = h - 1;
-
 	cm->first = (int *) alloc(sizeof(int) * h);
 	if (cm->first) {
-		cm->entries = (struct constmap_entry *) alloc(cm->num * sizeof *cm->entries);
-		if (cm->entries) {
-			for (h = 0;h <= cm->mask;++h)
-				cm->first[h] = -1;
-			pos = 0;
-			i = 0;
-			for (j = 0;j < len;++j) {
-				if (!s[j]) {
-					k = j - i;
-					if (splitchar) {
-						for (k = i;k < j;++k)
-							if (s[k] == splitchar)
-								break;
-						if (k >= j) {
-							i = j + 1;
-							continue;
-						}
-						k -= i;
-					}
-					h = hash(s + i,k);
-					e = &cm->entries[pos];
-					e->input = s + i;
-					e->inputlen = k;
-					e->hash = h;
-					h &= cm->mask;
-					e->next = cm->first[h];
-					cm->first[h] = pos;
-					++pos;
-					i = j + 1;
+		cm->input = (char **) alloc(sizeof(char *) * cm->num);
+		if (cm->input) {
+			cm->inputlen = (int *) alloc(sizeof(int) * cm->num);
+			if (cm->inputlen) {
+				if (__builtin_mul_overflow(sizeof(constmap_hash), cm->num, &t)) {
+					errno = error_nomem;
+					return 0;
 				}
-				return 1;
+				cm->hash = (constmap_hash *) alloc(t);
+				if (cm->hash) {
+					cm->next = (int *) alloc(sizeof(int) * cm->num);
+					if (cm->next) {
+						for (h = 0; h <= cm->mask; ++h)
+							cm->first[h] = -1;
+						pos = 0;
+						i = 0;
+						for (j = 0; j < len; ++j)
+							if (!s[j]) {
+								k = j - i;
+								if (flagcolon) {
+									for (k = i; k < j; ++k)
+										if (s[k] == ':')
+											break;
+									if (k >= j) {
+										i = j + 1;
+										continue;
+									}
+									k -= i;
+								}
+								cm->input[pos] = s + i;
+								cm->inputlen[pos] = k;
+								h = hash(s + i, k);
+								cm->hash[pos] = h;
+								h &= cm->mask;
+								cm->next[pos] = cm->first[h];
+								cm->first[h] = pos;
+								++pos;
+								i = j + 1;
+							}
+						return 1;
+					}
+					alloc_free((char *) cm->hash);
+				}
+				alloc_free((char *) cm->inputlen);
 			}
+			alloc_free((char *) cm->input);
 		}
 		alloc_free((char *) cm->first);
 	}
@@ -149,14 +123,17 @@ constmap_init(struct constmap *cm, const char *s, int len, int splitchar)
 void
 constmap_free(struct constmap *cm)
 {
-	alloc_free((char *) cm->entries);
+	alloc_free((char *) cm->next);
+	alloc_free((char *) cm->hash);
+	alloc_free((char *) cm->inputlen);
+	alloc_free((char *) cm->input);
 	alloc_free((char *) cm->first);
 }
 
 void
 getversion_constmap_c()
 {
-	static char    *x = "$Id: constmap.c,v 1.5 2020-11-24 13:31:13+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: constmap.c,v 1.4 2020-05-15 11:36:20+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

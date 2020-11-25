@@ -1,8 +1,5 @@
 /*
  * $Log: constmap.h,v $
- * Revision 1.5  2020-11-24 13:31:43+05:30  Cprogrammer
- * added constmap_index(), constmap_get()
- *
  * Revision 1.4  2020-05-15 11:37:12+05:30  Cprogrammer
  * define function prototypes as extern
  *
@@ -18,24 +15,19 @@
 
 typedef unsigned long constmap_hash;
 
-struct constmap_entry {
- 	const char     *input;
-	int             inputlen;
-	constmap_hash   hash;
-	int             next;
-};
-
-struct constmap {
-	unsigned int    num;
+struct constmap
+{
+	int             num;
 	constmap_hash   mask;
+	constmap_hash  *hash;
 	int            *first;
-	struct constmap_entry *entries;
+	int            *next;
+	char          **input;
+	int            *inputlen;
 };
 
-extern int      constmap_init(struct constmap *cm, const char *s, int len, int splitchar);
+extern int      constmap_init(struct constmap *, char *, unsigned int, int);
 extern void     constmap_free(struct constmap *);
-extern const char *constmap(struct constmap *, const char *, int);
-extern const char *constmap_get(struct constmap *cm, unsigned int idx);
-extern int      constmap_index(const struct constmap *cm, const char *s, int len);
+extern char    *constmap(struct constmap *, char *, unsigned int);
 
 #endif
