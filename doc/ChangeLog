@@ -33,3 +33,4 @@ Release 1.0 Start 21/05/2020
 18. constmap.c: allow delimiter to be changed from the default colon
     character.
 19. added man page for constmap function
+20. constmap.c, constmap.h: added constmap_index(), constmap_get() functions

@@ -19,3 +19,4 @@ libqmail (@version@-@release@) unstable; urgency=medium
   * removed exit.h
   * constmap.c: allow delimiter to be changed from the default colon character.
   * added man page for constmap function
+  * constmap.c, constmap.h: added constmap_index(), constmap_get() functions
