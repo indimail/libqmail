@@ -1,5 +1,8 @@
 /*
  * $Log: constmap.c,v $
+ * Revision 1.5  2020-11-26 11:58:51+05:30  Cprogrammer
+ * allow delimiter to be changed
+ *
  * Revision 1.4  2020-05-15 11:36:20+05:30  Cprogrammer
  * convert function prototypes to c89 standards
  * fix possible integer overflow
@@ -16,6 +19,8 @@
 #include "case.h"
 #include "error.h"
 #include "builtinoflmacros.h"
+
+static int      delimiter = ':';
 
 static constmap_hash
 hash(char *s, unsigned int len)
@@ -53,12 +58,17 @@ constmap(struct constmap *cm, char *s, unsigned int len)
 }
 
 int
-constmap_init(struct constmap *cm, char *s, unsigned int len, int flagcolon)
+constmap_init(struct constmap *cm, char *s, unsigned int len, int flagkey)
 {
 	unsigned int    i, j, k, t, pos;
 	constmap_hash   h;
 
 	cm->num = 0;
+	if (flagkey < ' ' || flagkey > '~')
+		delimiter = ':';
+	else
+	if (flagkey)
+		delimiter = flagkey;
 	for (j = 0; j < len; ++j)
 		if (!s[j])
 			++cm->num;
@@ -87,9 +97,9 @@ constmap_init(struct constmap *cm, char *s, unsigned int len, int flagcolon)
 						for (j = 0; j < len; ++j)
 							if (!s[j]) {
 								k = j - i;
-								if (flagcolon) {
+								if (flagkey) {
 									for (k = i; k < j; ++k)
-										if (s[k] == ':')
+										if (s[k] == delimiter)
 											break;
 									if (k >= j) {
 										i = j + 1;
@@ -133,7 +143,7 @@ constmap_free(struct constmap *cm)
 void
 getversion_constmap_c()
 {
-	static char    *x = "$Id: constmap.c,v 1.4 2020-05-15 11:36:20+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: constmap.c,v 1.5 2020-11-26 11:58:51+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
