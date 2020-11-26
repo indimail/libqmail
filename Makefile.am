@@ -43,7 +43,7 @@ man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 \
 	base/str_len.3 base/str_rchr.3 base/str_diff.3 base/str_diffn.3 base/str_chr.3 \
 	base/str_copy.3 base/setuserid.3 base/grpscan.3 base/setuser_privileges.3 \
 	base/str_tok.3 base/str_str.3 base/uint16_pack.3 base/uint16_pack_big.3 \
-	base/uint16_read.3 base/uint16_read_big.3 base/uint16_unpack.3 \
+	base/uint16_read.3 base/uint16_read_big.3 base/uint16_unpack.3 base/constmap.3 \
 	base/uint16_unpack_big.3 base/uint32_pack.3 base/uint32_pack_big.3 \
 	base/uint32_read.3 base/uint32_read_big.3 base/uint32_unpack.3 \
 	base/uint32_unpack_big.3 base/uint64_pack.3 base/uint64_pack_big.3 \

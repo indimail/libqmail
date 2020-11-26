@@ -17,3 +17,5 @@ libqmail (@version@-@release@) unstable; urgency=medium
   * added readclose(), openreadclose()
   * added noreturn attribute for strerr_die()
   * removed exit.h
+  * constmap.c: allow delimiter to be changed from the default colon character.
+  * added man page for constmap function

@@ -29,3 +29,7 @@ Release 1.0 Start 21/05/2020
 15. added readclose(), openreadclose()
 16. added noreturn attribute for strerr_die()
 17. removed exit.h
+- 26/11/2020
+18. constmap.c: allow delimiter to be changed from the default colon
+    character.
+19. added man page for constmap function

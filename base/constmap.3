@@ -1,0 +1,33 @@
+.TH constmap 3
+.SH NAME
+constmap \- create, search constant search maps
+.SH SYNTAX
+.B #include <constmap.h>
+
+int \fBconstmap_init\fP(struct constmap *\fIcm\fR, char *\fIstr\fR, int \fIsize\fR, int \fIdelimiter\fR);
+.br
+int \fBconstmap\fP(struct constmap *\fIcm\fR, char *\fIstr\fR, int \fIlen\fR);
+.br
+int \fBconstmap_free\fP(struct constmap *\fIcm\fR);
+
+.SH DESCRIPTION
+
+\fBconstmap_init\fR() initializes a constmap database with content in \fIstr\fR
+of size \fIsize\fR. You can prepare \fIstr\fR using
+
+\fBcontrol_readfile\fR(&\fIstr\fR, "filename");
+
+\fBconstmap_init\fR() converts the data into a constant search map. You
+can specify if the records are unstructured or in key/value pair separated
+by colon ':' character by using 1 for \fIdelimiter\fR. If you want to change
+the delimiter to something else, specify the character in \fIdelimiter\fR. You
+can specifiy an ASCII character from SPACE ' ' to TILDE '~'. Any other value
+sets the delimiter to the colon character ':'.
+
+\fBconstmap\fR() returns a pointer to data pointed by \fIstr\fR if found else
+it returns NULL.
+
+\fBconstmap_free\fR() frees memory allocated my \fBconstmap_init\fR().
+
+.SH See Also
+ascii(7)
