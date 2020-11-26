@@ -3,7 +3,7 @@ Section: libs
 Priority: optional
 Maintainer: Manvendra Bhangui <libqmail@indimail.org>
 Standards-Version: 3.9.5
-Build-Depends: debhelper (>= 9), binutils coreutils, libssl-dev, pkg-config, lsb-release
+Build-Depends: debhelper (>= 9), binutils, coreutils, libssl-dev, pkg-config, lsb-release
 Homepage: https://github.com/mbhangui/libqmail
 
 Package: libqmail
