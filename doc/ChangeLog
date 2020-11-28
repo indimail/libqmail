@@ -34,3 +34,6 @@ Release 1.0 Start 21/05/2020
     character.
 19. added man page for constmap function
 20. constmap.c, constmap.h: added constmap_index(), constmap_get() functions
+- 28/11/2020
+31. +HeaderName feature by Erwin Hoffman: display all headers which have
+    HeaderName as the initial text
