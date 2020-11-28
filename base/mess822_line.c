@@ -1,5 +1,8 @@
 /*
  * $Log: mess822_line.c,v $
+ * Revision 1.6  2020-11-28 19:54:51+05:30  Cprogrammer
+ * refactored logic to skip extra wsp
+ *
  * Revision 1.5  2020-11-28 11:41:31+05:30  Cprogrammer
  * +HeaderName feature to display all headers which have HeaderName as the initial text
  *
@@ -103,14 +106,16 @@ mess822_end(mess822_header *h)
 		if (ch == '\r') /*- for dos formatted files */
 			continue;
 		/*- collapse multiple successive WSP into 1 */
-		if (prev && (ch == ' ' || ch == '\t'))
+		if ((prev == '\n' || prev == ' ' || prev == '\t') && (ch == ' ' || ch == '\t'))
 			continue;
-		prev = (ch == ' ' || ch == '\t') ? 1 : 0;
 		if (ch != '\n') {
 			if (!ch)
 				ch = '\n';
+			prev = ch;
 			h->inprogress.s[j++] = ch;
-		}
+		} else
+		if (prev != ';')
+			prev = ch;
 	}
 	h->inprogress.len = j;
 	if (!stralloc_0(&h->inprogress))
@@ -145,7 +150,7 @@ mess822_line(mess822_header *h, stralloc * s)
 {
 	if (!s->len)
 		return 1;
-	if ((s->s[0] == ' ') || (s->s[0] == '\t'))
+	if (s->s[0] == ' ' || s->s[0] == '\t')
 		return stralloc_cat(&h->inprogress, s);
 	if (!mess822_end(h))
 		return 0;
@@ -155,7 +160,7 @@ mess822_line(mess822_header *h, stralloc * s)
 void
 getversion_mess822_line_c()
 {
-	static char    *x = "$Id: mess822_line.c,v 1.5 2020-11-28 11:41:31+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: mess822_line.c,v 1.6 2020-11-28 19:54:51+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
