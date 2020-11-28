@@ -1,5 +1,8 @@
 /*
  * $Log: mess822_line.c,v $
+ * Revision 1.5  2020-11-28 11:41:31+05:30  Cprogrammer
+ * +HeaderName feature to display all headers which have HeaderName as the initial text
+ *
  * Revision 1.4  2011-05-07 15:57:43+05:30  Cprogrammer
  * added headers for str & case function prototypes
  *
@@ -18,13 +21,10 @@
 #include "str.h"
 
 int
-mess822_begin(h, a)
-	mess822_header *h;
-	mess822_action *a;
+mess822_begin(mess822_header *h, mess822_action *a)
 {
 	h->action = a;
-	for (;;)
-	{
+	for (;;) {
 		if (a->value && !stralloc_copys(a->value, ""))
 			return 0;
 		if (a->copy && !stralloc_copys(a->copy, ""))
@@ -45,19 +45,15 @@ mess822_begin(h, a)
 static stralloc addrlist = { 0 };
 
 int
-mess822_end(h)
-	mess822_header *h;
+mess822_end(mess822_header *h)
 {
 	mess822_action *a;
-	int             pos;
-	char            ch;
-	int             i;
-	int             j;
+	int             pos, i, j;
+	char            ch, prev;
 
 	if (!h->inprogress.len)
 		return 1;
-	for (pos = 0; pos < h->inprogress.len; ++pos)
-	{
+	for (pos = 0; pos < h->inprogress.len; ++pos) {
 		ch = h->inprogress.s[pos];
 		if (ch == ':')
 			break;
@@ -66,32 +62,51 @@ mess822_end(h)
 		if (ch > 126)
 			break;
 	}
-	for (a = h->action; a->name; ++a)
-	{
-		if (str_len(a->name) == pos && !case_diffb(h->inprogress.s, pos, a->name))
+	for (a = h->action; a->name; ++a) {
+		j = str_len(a->name);
+		if (!a->flag || (a->flag && *a->flag != 2)) {
+			if ( h->inprogress.s[j] == ':' && !case_diffb(h->inprogress.s, j, a->name)) {
+				break;
+			}
+		} else /*- we have given a + in the field name */
+		if (!case_diffb(h->inprogress.s, j, a->name)) { /* compare length of a->name, not pos of ':' */
+			if (!stralloc_catb(a->value, h->inprogress.s, pos + 1)) /*- include header name */
+				return 0;
 			break;
+		}
 	}
-	for (; pos < h->inprogress.len; ++pos)
-	{
+	for (; pos < h->inprogress.len; ++pos) {
 		ch = h->inprogress.s[pos];
 		if ((ch != ' ') && (ch != '\t'))
-			break;
+			break;	/*- skip past : or WSP */
 	}
-	if (pos < h->inprogress.len && h->inprogress.s[pos] == ':')
-		++pos;
+	if (pos < h->inprogress.len) { /*- skip past : and WSP */
+		if (h->inprogress.s[pos] == ':')
+			++pos;
+		if (!a->flag || (a->flag && *a->flag != 2)) {
+			if (h->inprogress.s[pos] == ' ')
+				++pos;
+		}
+	}
 	/*
 	 * XXX: allocate all necessary memory before doing anything? 
 	 */
 	if (a->flag)
-		*a->flag = 1;
+		if (*a->flag != 2)
+			*a->flag = 1;
 	if (a->copy && !stralloc_cat(a->copy, &h->inprogress))
 		return 0;
 	j = 0;
-	for (i = pos; i < h->inprogress.len; ++i)
-	{
+	prev = 0;
+	for (i = pos; i < h->inprogress.len; ++i) {
 		ch = h->inprogress.s[i];
-		if (ch != '\n')
-		{
+		if (ch == '\r') /*- for dos formatted files */
+			continue;
+		/*- collapse multiple successive WSP into 1 */
+		if (prev && (ch == ' ' || ch == '\t'))
+			continue;
+		prev = (ch == ' ' || ch == '\t') ? 1 : 0;
+		if (ch != '\n') {
 			if (!ch)
 				ch = '\n';
 			h->inprogress.s[j++] = ch;
@@ -100,10 +115,8 @@ mess822_end(h)
 	h->inprogress.len = j;
 	if (!stralloc_0(&h->inprogress))
 		return 0;
-	if (a->value)
-	{
-		for (i = 0; (ch = h->inprogress.s[i]); ++i)
-		{
+	if (a->value) {
+		for (i = 0; (ch = h->inprogress.s[i]); ++i) {
 			if (ch == '\n')
 				ch = 0;
 			if (!stralloc_append(a->value, &ch))
@@ -115,8 +128,7 @@ mess822_end(h)
 	/*
 	 * XXX: tokenize once for both addr and when? 
 	 */
-	if (a->addr)
-	{
+	if (a->addr) {
 		if (!mess822_addrlist(&addrlist, h->inprogress.s))
 			return 0;
 		if (!stralloc_cat(a->addr, &addrlist))
@@ -129,9 +141,7 @@ mess822_end(h)
 }
 
 int
-mess822_line(h, s)
-	mess822_header *h;
-	stralloc       *s;
+mess822_line(mess822_header *h, stralloc * s)
 {
 	if (!s->len)
 		return 1;
@@ -145,7 +155,7 @@ mess822_line(h, s)
 void
 getversion_mess822_line_c()
 {
-	static char    *x = "$Id: mess822_line.c,v 1.4 2011-05-07 15:57:43+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: mess822_line.c,v 1.5 2020-11-28 11:41:31+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
