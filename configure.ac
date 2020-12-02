@@ -95,8 +95,8 @@ case "$host" in
 	CPPFLAGS="$CPPFLAGS -Dlint -DFREEBSD -Wall"
 	CFLAGS="$CFLAGS -O3 -Wall -Wimplicit -fPIC -fno-strict-aliasing -Wunused"
 	CFLAGS="$CFLAGS -Wcomment -Wchar-subscripts"
-	CFLAGS="$CFLAGS -Wuninitialized -Wshadow -Wcast-align -Wwrite-strings"
-	CFLAGS="$CFLAGS -Wno-ignored-qualifiers -Wno-incompatible-pointer-types-discards-qualifiers -Wno-cast-align"
+	CFLAGS="$CFLAGS -Wuninitialized -Wshadow -Wwrite-strings -Wno-ignored-qualifiers"
+	CFLAGS="$CFLAGS -Wno-incompatible-pointer-types-discards-qualifiers -Wno-cast-align"
 	;;
 *-*-darwin*)
 	CPPFLAGS="$CPPFLAGS -I/opt/local/include -DDARWIN"
