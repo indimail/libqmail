@@ -1,5 +1,8 @@
 /*
  * $Log: alloc.c,v $
+ * Revision 1.8  2020-12-02 14:50:28+05:30  Cprogrammer
+ * changed return type to void *
+ *
  * Revision 1.7  2020-05-11 19:14:07+05:30  Cprogrammer
  * use malloc instead of custom allocator for memory allocation >= 4096
  *
@@ -37,7 +40,7 @@ static aligned  realspace[SPACE / ALIGNMENT];
 #define space ((char *) realspace)
 static unsigned int avail = SPACE;	/*- multiple of ALIGNMENT; 0<=avail<=SPACE */
 
-/*@null@*//*@out@*/char *alloc(n)
+/*@null@*//*@out@*/void *alloc(n)
 	unsigned int    n;
 {
 	char           *x;
@@ -69,7 +72,7 @@ alloc_free(x)
 void
 getversion_alloc_c()
 {
-	static char    *x = "$Id: alloc.c,v 1.7 2020-05-11 19:14:07+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: alloc.c,v 1.8 2020-12-02 14:50:28+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

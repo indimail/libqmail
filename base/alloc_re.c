@@ -1,5 +1,8 @@
 /*
  * $Log: alloc_re.c,v $
+ * Revision 1.7  2020-12-02 14:50:48+05:30  Cprogrammer
+ * changed return type of alloc() to void *
+ *
  * Revision 1.6  2020-10-18 09:28:24+05:30  Cprogrammer
  * fix overwriting unallocate memory location when new_size < old_size
  *
@@ -20,11 +23,11 @@
 
 int
 alloc_re(x, old_size, new_size)
-	char          **x;
+	void          **x;
 	unsigned int    old_size;
 	unsigned int    new_size;
 {
-	char           *y;
+	void           *y;
 
 	if (old_size == new_size)
 		return 1;
@@ -40,7 +43,7 @@ alloc_re(x, old_size, new_size)
 void
 getversion_alloc_re_c()
 {
-	static char    *x = "$Id: alloc_re.c,v 1.6 2020-10-18 09:28:24+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: alloc_re.c,v 1.7 2020-12-02 14:50:48+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

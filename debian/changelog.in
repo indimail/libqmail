@@ -21,3 +21,4 @@ libqmail (@version@-@release@) unstable; urgency=medium
   * added man page for constmap function
   * constmap.c, constmap.h: added constmap_index(), constmap_get() functions
   * +HeaderName feature by Erwin Hoffman: display all headers which have HeaderName as the initial text
+  * changed return type of alloc to void *

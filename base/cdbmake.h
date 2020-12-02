@@ -1,5 +1,8 @@
 /*
  * $Log: cdbmake.h,v $
+ * Revision 1.4  2020-12-02 14:51:07+05:30  Cprogrammer
+ * changed return type of alloc() to void *
+ *
  * Revision 1.3  2004-10-11 13:49:51+05:30  Cprogrammer
  * added function prototypes
  *
@@ -42,8 +45,8 @@ struct cdbmake
 void            cdbmake_pack(unsigned char *, uint32);
 uint32          cdbmake_hashadd(uint32, unsigned int);
 void            cdbmake_init(struct cdbmake *);
-int             cdbmake_add(struct cdbmake *, uint32, uint32, char *(*alloc)());
-int             cdbmake_split(struct cdbmake *, char *(*alloc)());
+int             cdbmake_add(struct cdbmake *, uint32, uint32, void *(*alloc)());
+int             cdbmake_split(struct cdbmake *, void *(*alloc)());
 uint32          cdbmake_throw(struct cdbmake *, uint32, int);
 
 #endif

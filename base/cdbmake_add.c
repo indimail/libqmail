@@ -1,5 +1,8 @@
 /*
  * $Log: cdbmake_add.c,v $
+ * Revision 1.7  2020-12-02 14:50:59+05:30  Cprogrammer
+ * changed return type of alloc() to void *
+ *
  * Revision 1.6  2020-05-11 12:32:05+05:30  Cprogrammer
  * fixed shadowing of global variables by local variables
  *
@@ -26,7 +29,7 @@ cdbmake_init(cdbm)
 }
 
 int
-cdbmake_add(struct cdbmake *cdbm, uint32 h, uint32 p, char *(*alloc)())
+cdbmake_add(struct cdbmake *cdbm, uint32 h, uint32 p, void *(*alloc)())
 {
 	struct cdbmake_hplist *head;
 
@@ -46,7 +49,7 @@ cdbmake_add(struct cdbmake *cdbm, uint32 h, uint32 p, char *(*alloc)())
 }
 
 int
-cdbmake_split(struct cdbmake *cdbm, char *(*alloc)())
+cdbmake_split(struct cdbmake *cdbm, void *(*alloc)())
 {
 	int             i;
 	uint32          u, memsize;
@@ -119,7 +122,7 @@ cdbmake_throw(cdbm, pos, b)
 void
 getversion_cdbmake_add_c()
 {
-	static char    *x = "$Id: cdbmake_add.c,v 1.6 2020-05-11 12:32:05+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: cdbmake_add.c,v 1.7 2020-12-02 14:50:59+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
