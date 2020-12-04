@@ -1,5 +1,8 @@
 /*
  * $Log: substdo.c,v $
+ * Revision 1.10  2020-12-04 12:28:19+05:30  Cprogrammer
+ * changed unsigned int to size_t
+ *
  * Revision 1.9  2020-11-22 23:54:07+05:30  Cprogrammer
  * use const keyword
  *
@@ -25,13 +28,14 @@
  * added RCS log
  *
  */
+#include <sys/types.h>
 #include "substdio.h"
 #include "str.h"
 #include "byte.h"
 #include "error.h"
 
 static int
-allwrite(register ssize_t (*op)(), register int fd, register char *buf, register unsigned int len)
+allwrite(register ssize_t (*op)(), register int fd, register char *buf, register size_t len)
 {
 	register int    w;
 
@@ -68,7 +72,7 @@ substdio_flush(register substdio *s)
 }
 
 int
-substdio_bput(register substdio *s, register const char *buf, register unsigned int len)
+substdio_bput(register substdio *s, register const char *buf, register size_t len)
 {
 	register unsigned int n;
 
@@ -89,7 +93,7 @@ substdio_bput(register substdio *s, register const char *buf, register unsigned 
 }
 
 int
-substdio_putalign(substdio *s, const char *buf, unsigned int len)
+substdio_putalign(substdio *s, const char *buf, size_t len)
 {
 	unsigned int    n;
  
@@ -108,7 +112,7 @@ substdio_putalign(substdio *s, const char *buf, unsigned int len)
 }
 
 int
-substdio_put(register substdio *s, register const char *buf, register unsigned int len)
+substdio_put(register substdio *s, register const char *buf, register size_t len)
 {
 	register unsigned int n = s->n; /* how many bytes to write in next chunk */
 
@@ -139,7 +143,7 @@ substdio_put(register substdio *s, register const char *buf, register unsigned i
 }
 
 int
-substdio_putflush(register substdio *s, register const char *buf, register unsigned int len)
+substdio_putflush(register substdio *s, register const char *buf, register size_t len)
 {
 	if (substdio_flush(s) == -1)
 		return -1;
@@ -167,7 +171,7 @@ substdio_putsflush(register substdio *s, register const char *buf)
 void
 getversion_substdo_c()
 {
-	static char    *x = "$Id: substdo.c,v 1.9 2020-11-22 23:54:07+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: substdo.c,v 1.10 2020-12-04 12:28:19+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
