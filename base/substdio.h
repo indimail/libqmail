@@ -1,5 +1,8 @@
 /*
  * $Log: substdio.h,v $
+ * Revision 1.10  2020-12-04 12:30:43+05:30  Cprogrammer
+ * changed unsigned int to size_t
+ *
  * Revision 1.9  2020-11-22 23:54:03+05:30  Cprogrammer
  * use const keyword
  *
@@ -44,10 +47,10 @@ typedef struct substdio
 void            substdio_fdbuf(substdio *, ssize_t (*op) (), int, char *, size_t);
 int             substdio_flush(substdio *);
 void            substdio_discard(substdio *);
-int             substdio_putalign(substdio *, const char *, unsigned int);
-int             substdio_put(substdio *, const char *, unsigned int);
-int             substdio_bput(substdio *, const char *, unsigned int);
-int             substdio_putflush(substdio *, const char *, unsigned int);
+int             substdio_putalign(substdio *, const char *, size_t);
+int             substdio_put(substdio *, const char *, size_t);
+int             substdio_bput(substdio *, const char *, size_t);
+int             substdio_putflush(substdio *, const char *, size_t);
 int             substdio_puts(substdio *, const char *);
 int             substdio_bputs(substdio *, const char *);
 int             substdio_putsflush(substdio *, const char *);
