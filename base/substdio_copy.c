@@ -1,5 +1,8 @@
 /*
  * $Log: substdio_copy.c,v $
+ * Revision 1.4  2020-12-04 12:27:46+05:30  Cprogrammer
+ * use ansi c function declaration
+ *
  * Revision 1.3  2004-10-22 20:31:10+05:30  Cprogrammer
  * added RCS id
  *
@@ -7,21 +10,19 @@
  * added RCS log
  *
  */
+#include <sys/types.h>
 #include "substdio.h"
 
 int
-substdio_copy(ssout, ssin)
-	register substdio *ssout;
-	register substdio *ssin;
+substdio_copy(register substdio *ssout, register substdio *ssin)
 {
-	register int    n;
 	register char  *x;
 
-	for (;;)
-	{
-		n = substdio_feed(ssin);
-		if (n < 0)
+	for (;;) {
+		ssize_t         n;
+		if ((n = substdio_feed(ssin)) == -1)
 			return -2;
+		else
 		if (!n)
 			return 0;
 		x = substdio_PEEK(ssin);
@@ -34,7 +35,7 @@ substdio_copy(ssout, ssin)
 void
 getversion_substdio_copy_c()
 {
-	static char    *x = "$Id: substdio_copy.c,v 1.3 2004-10-22 20:31:10+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: substdio_copy.c,v 1.4 2020-12-04 12:27:46+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
