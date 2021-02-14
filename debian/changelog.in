@@ -1,24 +1,3 @@
 libqmail (@version@-@release@) unstable; urgency=medium
 
-  * added --release option to specify release on command line
-  * libqmail.spec: added Provides: qmail-libs
-  * added mess822, commands, rewritehost, sconfig functions from indimail-mta
-  * FreeBSD fixes
-  * Darwin Port (fmt_ushort.c, default.configure, configure.ac)
-  * fixed broken crypt(3) implemetation on Darwin Mac OS X
-  * reorgnized directory structure. All qmail functions moved to 'base'
-  * textcode/fmt_utf8.c: updated with upstream libowfat-0.32
-  * replaced fmt_tohex() with tohex()
-  * global.h, hmac_md5.c, hmac_ripemd.c, md5.c, md5.h: replaced updated functions from indimail-mta
-  * alloc_re.c: fix overwriting unallocate memory location when new_size < old_size
-  * Remove definition of INSTALL program in configure.ac, Makefile.am
-  * added tai_add.c. tai_uint.c
-  * use const keyword
-  * added readclose(), openreadclose()
-  * added noreturn attribute for strerr_die()
-  * removed exit.h
-  * constmap.c: allow delimiter to be changed from the default colon character.
-  * added man page for constmap function
-  * constmap.c, constmap.h: added constmap_index(), constmap_get() functions
-  * +HeaderName feature by Erwin Hoffman: display all headers which have HeaderName as the initial text
-  * changed return type of alloc to void *
+  * 

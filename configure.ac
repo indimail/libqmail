@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.17  2021-01-11 23:25:45+05:30  Cprogrammer
+# removed -Wcast-align
+#
 # Revision 1.16  2020-10-22 22:37:10+05:30  Cprogrammer
 # removed STRIP_OPT
 #
@@ -49,7 +52,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.16 2020-10-22 22:37:10+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.17 2021-01-11 23:25:45+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),[Manvendra Bhangui libqmail@indimail.org],indimail, [https://github.com/mbhangui/libqmail])
