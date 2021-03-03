@@ -1,5 +1,8 @@
 /*
  * $Log: timeoutwrite.c,v $
+ * Revision 1.5  2021-03-03 23:56:39+05:30  Cprogrammer
+ * fix data types
+ *
  * Revision 1.4  2004-10-22 20:31:46+05:30  Cprogrammer
  * added RCS id
  *
@@ -11,16 +14,13 @@
  *
  */
 #include <unistd.h>
+#include <sys/types.h>
 #include "timeoutwrite.h"
 #include "select.h"
 #include "error.h"
 
-int
-timeoutwrite(t, fd, buf, len)
-	int             t;
-	int             fd;
-	char           *buf;
-	int             len;
+ssize_t
+timeoutwrite(long t, int fd, char *buf, size_t len)
 {
 	fd_set          wfds;
 	struct timeval  tv;
@@ -43,7 +43,7 @@ timeoutwrite(t, fd, buf, len)
 void
 getversion_timeoutwrite_c()
 {
-	static char    *x = "$Id: timeoutwrite.c,v 1.4 2004-10-22 20:31:46+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: timeoutwrite.c,v 1.5 2021-03-03 23:56:39+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

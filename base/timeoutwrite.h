@@ -1,5 +1,8 @@
 /*
  * $Log: timeoutwrite.h,v $
+ * Revision 1.4  2021-03-03 23:56:44+05:30  Cprogrammer
+ * fix data types
+ *
  * Revision 1.3  2004-10-11 14:15:27+05:30  Cprogrammer
  * added function prototypes
  *
@@ -9,7 +12,8 @@
  */
 #ifndef TIMEOUTWRITE_H
 #define TIMEOUTWRITE_H
+#include <sys/types.h>
 
-int             timeoutwrite(int, int, char *, int);
+ssize_t         timeoutwrite(long, int, char *, size_t);
 
 #endif
