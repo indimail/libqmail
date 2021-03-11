@@ -4,6 +4,8 @@ libqmail is a library of general purpose APIs extracted from Dan Bernstein's [qm
 
 # Compilation
 
+[![C/C++ CI](https://github.com/mbhangui/libqmail/actions/workflows/c-cpp.yml/badge.svg)](https://github.com/mbhangui/libqmail/actions/workflows/c-cpp.yml)
+
 ```
 $ cd /usr/local/src
 $ git clone https://github.com/mbhangui/libqmail.git
