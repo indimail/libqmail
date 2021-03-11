@@ -105,8 +105,8 @@ case "$host" in
 	CFLAGS="$CFLAGS -Wno-incompatible-pointer-types-discards-qualifiers -Wno-cast-align"
 	;;
 *-*-darwin*)
-	CPPFLAGS="$CPPFLAGS -Dlint -I/opt/local/include -DDARWIN"
-	LDFLAGS="-L/opt/local/lib"
+	CPPFLAGS="$CPPFLAGS -Dlint -I/opt/local/include -DDARWIN -I/usr/local/include"
+	LDFLAGS="-L/opt/local/lib -L/usr/local/lib"
 	;;
 esac
 
