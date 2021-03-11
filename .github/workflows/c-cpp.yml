@@ -17,7 +17,14 @@ jobs:
         host: [ubuntu-latest, macos-latest]
     
     steps:
-    - uses: actions/checkout@v2
+    - name: checkout
+      uses: actions/checkout@v2
+      
+    - name: maocos
+      run: if [ "${OS}" = "macos-latest" ]; then brew install automake autoconf libtool pkgconfig openssl; fi
+      env:
+        OS: ${{ matrix.host }}
+
     - name: configure
       run: ./default.configure
     - name: make
