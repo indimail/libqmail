@@ -1,0 +1,31 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: ${{ matrix.host }}-${{ matrix.config.name }}
+    runs-on: ${{ matrix.host }}
+    strategy:
+      fail-fast: false
+      matrix:
+        host: [ubuntu-latest, macos-latest]
+    
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+      
+    - name: maocos
+      run: if [ "${OS}" = "macos-latest" ]; then brew install automake autoconf libtool pkgconfig openssl; fi
+      env:
+        OS: ${{ matrix.host }}
+
+    - name: configure
+      run: ./default.configure
+    - name: make
+      run: make
