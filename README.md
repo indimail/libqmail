@@ -4,7 +4,8 @@ libqmail is a library of general purpose APIs extracted from Dan Bernstein's [qm
 
 # Compilation
 
-[![C/C++ CI](https://github.com/mbhangui/libqmail/actions/workflows/c-cpp.yml/badge.svg)](https://github.com/mbhangui/libqmail/actions/workflows/c-cpp.yml)
+[![Ubuntu, Mac OSX](https://github.com/mbhangui/libqmail/actions/workflows/c-cpp.yml/badge.svg)](https://github.com/mbhangui/libqmail/actions/workflows/c-cpp.yml)
+[![FreeBSD](https://github.com/mbhangui/libqmail/actions/workflows/freebsd.yml/badge.svg)](https://github.com/mbhangui/libqmail/actions/workflows/freebsd.yml)
 
 ```
 $ cd /usr/local/src
@@ -23,7 +24,7 @@ $ sudo make install
 # port install openssl
 # port update outdated
 ```
-* NOTE: The crypt(3) function on OSX is crippled. the default.configure script passes --enable-passwd-hash=md5 to the configure script. This enables the internal hash functions instead of the system supplied crypt(3) function. Read about his issue [here](https://stackoverflow.com/questions/32569597/how-to-get-same-crypt3-function-in-mac-os-x-as-linux-gcc-gnu-crypt3-linux-g) and [here](https://bugs.python.org/issue33213).
+* NOTE: The crypt(3) function on OSX is crippled. the default.configure script passes --enable-passwd-hash=md5 to the configure script. This enables the internal hash functions instead of the crippled system supplied crypt(3) function. Read about his issue [here](https://stackoverflow.com/questions/32569597/how-to-get-same-crypt3-function-in-mac-os-x-as-linux-gcc-gnu-crypt3-linux-g) and [here](https://bugs.python.org/issue33213).
 
 # Binary Builds on openSUSE Build Service
 
