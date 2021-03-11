@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.19  2021-03-11 20:45:10+05:30  Cprogrammer
+# updated CPPFLAGS, LDFLAGS for brew
+#
 # Revision 1.18  2021-03-11 18:33:21+05:30  Cprogrammer
 # added -Dlint for macos
 #
@@ -55,7 +58,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.18 2021-03-11 18:33:21+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.19 2021-03-11 20:45:10+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),[Manvendra Bhangui libqmail@indimail.org],indimail, [https://github.com/mbhangui/libqmail])
