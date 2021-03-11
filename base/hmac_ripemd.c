@@ -1,5 +1,8 @@
 /*
  * $Log: hmac_ripemd.c,v $
+ * Revision 1.3  2021-03-11 18:17:19+05:30  Cprogrammer
+ * removed undefined variables
+ *
  * Revision 1.2  2020-10-10 21:18:48+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -73,10 +76,6 @@ void hmac_ripemd(text, text_len, key, key_len, digest)
 void
 getversion_hmac_ripemd_c()
 {
-	static char    *x = "$Id: hmac_ripemd.c,v 1.2 2020-10-10 21:18:48+05:30 Cprogrammer Exp mbhangui $";
-#ifndef lint
-	x=sccsidripemdh;
-	x=sccsidtypesxh;
-#endif
+	static char    *x = "$Id: hmac_ripemd.c,v 1.3 2021-03-11 18:17:19+05:30 Cprogrammer Exp mbhangui $";
 	x++;
 }
