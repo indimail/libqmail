@@ -2,14 +2,15 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - '*'
   pull_request:
     branches: [ master ]
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest, macos-latest, centos-latest, fedora-latest]
 
     steps:
     - uses: actions/checkout@v2
