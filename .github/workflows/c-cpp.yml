@@ -20,7 +20,7 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
       
-    - name: maocos
+    - name: Darwin
       run: if [ "${OS}" = "macos-latest" ]; then brew install automake autoconf libtool pkgconfig openssl; fi
       env:
         OS: ${{ matrix.host }}
