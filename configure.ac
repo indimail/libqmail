@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.18  2021-03-11 18:33:21+05:30  Cprogrammer
+# added -Dlint for macos
+#
 # Revision 1.17  2021-01-11 23:25:45+05:30  Cprogrammer
 # removed -Wcast-align
 #
@@ -52,7 +55,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.17 2021-01-11 23:25:45+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.18 2021-03-11 18:33:21+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),[Manvendra Bhangui libqmail@indimail.org],indimail, [https://github.com/mbhangui/libqmail])
@@ -102,7 +105,7 @@ case "$host" in
 	CFLAGS="$CFLAGS -Wno-incompatible-pointer-types-discards-qualifiers -Wno-cast-align"
 	;;
 *-*-darwin*)
-	CPPFLAGS="$CPPFLAGS -I/opt/local/include -DDARWIN"
+	CPPFLAGS="$CPPFLAGS -Dlint -I/opt/local/include -DDARWIN"
 	LDFLAGS="-L/opt/local/lib"
 	;;
 esac
