@@ -9,12 +9,18 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest, macos-latest, centos-latest, fedora-latest
-
+    name: ${{ matrix.host }}-${{ matrix.config.name }}
+    runs-on: ${{ matrix.host }}
+    strategy:
+    fail-fast: false
+    matrix:
+    host: [ubuntu-latest, macos-latest]
+    config:
+     -{
     steps:
     - uses: actions/checkout@v2
     - name: configure
       run: ./default.configure
     - name: make
       run: make
+    }
