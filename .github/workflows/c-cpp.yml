@@ -21,11 +21,11 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Darwin
-      run: if [ "${OS}" = "macos-latest" ]; then brew install automake autoconf libtool pkgconfig openssl; brew link --force openssl; ln -s /usr/local/opt/openssl/include/openssl /usr/local/include; fi
+      run: if [ "${OS}" = "macos-latest" ]; then brew install automake autoconf libtool pkgconfig openssl; fi
       env:
         OS: ${{ matrix.host }}
 
     - name: configure
-      run: ./default.configure
-    - name: make
+      run: CPPFLAGS="-I/usr/local/opt/openssl@1.1/include" LDFLAGS="-L/usr/local/opt/openssl@1.1/lib" ./default.configure
+    - name: CPPFLAGS="-I/usr/local/opt/openssl@1.1/include" LDFLAGS="-L/usr/local/opt/openssl@1.1/lib" make
       run: make
