@@ -26,6 +26,6 @@ jobs:
         OS: ${{ matrix.host }}
 
     - name: configure
-      run: CPPFLAGS="-I/usr/local/opt/openssl@1.1/include" LDFLAGS="-L/usr/local/opt/openssl@1.1/lib" ./default.configure
-    - name: CPPFLAGS="-I/usr/local/opt/openssl@1.1/include" LDFLAGS="-L/usr/local/opt/openssl@1.1/lib" make
-      run: make
+      run: env CPPFLAGS="-I/usr/local/opt/openssl@1.1/include" LDFLAGS="-L/usr/local/opt/openssl@1.1/lib" ./default.configure
+    - name: make
+      run: env CPPFLAGS="-I/usr/local/opt/openssl@1.1/include" LDFLAGS="-L/usr/local/opt/openssl@1.1/lib" make
