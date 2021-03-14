@@ -1,9 +1,16 @@
-name: Ubuntu, Mac OSX CI
+name: libqmail Ubuntu, Mac OSX CI
 
 on:
   push:
     branches:
-      - '*'
+      - master
+    paths:
+      - '**/libqmail/**'
+      - .github/workflows/libqmail-c-cpp.yml
+      - '!**/libqmail/debian/*'
+      - '!**/libqmail/doc/*'
+      - '!**/libqmail/libqmail.spec.in'
+      - '!**.md'
   pull_request:
     branches: [ master ]
 
