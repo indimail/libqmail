@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - '**/libqmail/**'
+      - '**'
       - .github/workflows/libqmail-c-cpp.yml
       - '!**/libqmail/debian/*'
       - '!**/libqmail/doc/*'
