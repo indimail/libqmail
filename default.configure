@@ -24,6 +24,7 @@ case "$SYSTEM" in
 		else
 			libdir=/usr/lib
 		fi
+		pkgconfigdir=/usr/lib/pkgconfig
 	else
 		if [ -d /usr/lib64 ] ; then
 			libdir=/usr/lib64
@@ -33,8 +34,8 @@ case "$SYSTEM" in
 			echo "could not find libdir " 1>&2
 			exit 1
 		fi
+		pkgconfigdir=$libdir/pkgconfig
 	fi
-	pkgconfigdir=$libdir/pkgconfig
 	extra=""
 	;;
 	Darwin)
