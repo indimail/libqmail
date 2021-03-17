@@ -44,4 +44,5 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: Prepare OBS
-        path: '*'.tar.gz '*'.spec
+        path: '*'.tar.gz 
+        path: '*'.spec
