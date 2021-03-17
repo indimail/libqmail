@@ -7,11 +7,12 @@ on:
     paths:
       - '**'
       - .github/workflows/libqmail-freebsd.yml
-      - '!**/libqmail/debian/*'
-      - '!**/libqmail/doc/*'
-      - '!**/libqmail/libqmail.spec.in'
+      - '!**/debian/*'
+      - '!**/doc/*'
+      - '!**/libqmail.spec.in'
       - '!**.md'
       - '!**/libqmail-c-cpp.yml'
+      - '!**/libqmail-obs.yml'
   pull_request:
     branches: [ master ]
 
