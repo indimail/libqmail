@@ -11,7 +11,7 @@ on:
       - '!**/libqmail/doc/*'
       - '!**/libqmail/libqmail.spec.in'
       - '!**.md'
-      - '!libqmail-c-cpp.yml'
+      - '!**/libqmail-c-cpp.yml'
   pull_request:
     branches: [ master ]
 

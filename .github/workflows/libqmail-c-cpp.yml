@@ -11,7 +11,7 @@ on:
       - '!**/libqmail/doc/*'
       - '!**/libqmail/libqmail.spec.in'
       - '!**.md'
-      - '!libqmail-freebsd.yml'
+      - '!**/libqmail-freebsd.yml'
   pull_request:
     branches: [ master ]
 
@@ -43,6 +43,7 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: Prepare_OBS
-        path: '*'.tar.gz 
-        path: '*'.spec
+        name: libqmail-obs
+        path: |
+          '*'.tar.gz 
+          '*'.spec
