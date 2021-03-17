@@ -31,5 +31,6 @@ jobs:
           ~/*.spec
           ~/*.dsc
     - shell: bash
+      name: trigger_obs
       run: |
         curl -H "Authorization: Token ${{secrets.obs_token_value}}" -X POST https://build.opensuse.org/trigger/runservice
