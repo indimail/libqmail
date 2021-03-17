@@ -44,6 +44,5 @@ jobs:
         OS: ${{ matrix.host }}
     - uses: actions/upload-artifact@v2
       with:
-        path: |
-          '~/*.gz'
-          '~/*.spec'
+        path: '~/*.gz'
+        path: '~/*.spec'
