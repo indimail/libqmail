@@ -34,9 +34,10 @@ make clean
 cp -rpf . ../stage/$name-$ver
 cd ../stage
 tar cfz $name-$ver.tar.gz $name-$ver
-mv libqmail.spec debian.tar.gz $name-$ver.tar.gz ..
+mv libqmail.spec debian.tar.gz $name-$ver.tar.gz $HOME
 status=$?
-cd ..
+cd $HOME
+echo HOME=$HOME
 /bin/ls -l $name-$ver.tar.gz $name.spec debian.tar.gz
 rmdir stage 2>/dev/null || true
 exit $?
