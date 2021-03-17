@@ -1,4 +1,8 @@
 #!/bin/sh
+#
+# This script prepares artifacts that can be downloaded for openSUSE build service
+# It creates name.tar.gz, debian.tar.gz and name.spec
+#
 set -e
 if [ $# -lt 1 ] ; then
 	echo "USAGE: prepare_obs name" 1>&2
@@ -20,24 +24,32 @@ fi
 if [ ! -f ./configure -o ! -f ./Makefile ] ; then
   ./default.configure
 fi
+
+# Create spec file
 if [ ! -f ./$name.spec ] ; then
   make $name.spec
 fi
 mkdir -p ../stage
+
+# Create debian.tar.gz
 make debian/Makefile
 make -C debian
 cp debian/debian.tar.gz ../stage
 cp $name.spec ../stage
+cp debian/*.dsc ../stage
 
 make -C debian clean
 make clean
 cp -rpf . ../stage/$name-$ver
 cd ../stage
+
+#remove debian directory
+/bin/rm -rf $name-$ver/debian
 tar cfz $name-$ver.tar.gz $name-$ver
-mv libqmail.spec debian.tar.gz $name-$ver.tar.gz $HOME
+mv libqmail.spec debian.tar.gz $name-$ver.tar.gz *.dsc $HOME
 status=$?
 cd $HOME
 echo HOME=$HOME
-/bin/ls -l $name-$ver.tar.gz $name.spec debian.tar.gz
+/bin/ls -l $name-$ver.tar.gz $name.spec *.dsc debian.tar.gz
 rmdir stage 2>/dev/null || true
 exit $?
