@@ -47,5 +47,6 @@ jobs:
       with:
         name: libqmail-obs
         path: |
+          cd ..
           '*'.tar.gz 
           '*'.spec
