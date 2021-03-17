@@ -5,7 +5,11 @@ if [ $# -lt 1 ] ; then
 	exit 1
 fi
 name=$1
-type=$2
+if [ $# -eq 2 ] ; then
+	type=$2
+else
+	type=0
+fi
 ver=$(cat conf-version)
 if [ -z "$ver" ] ; then
 	exit 1
