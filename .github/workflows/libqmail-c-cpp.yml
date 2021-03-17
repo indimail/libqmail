@@ -40,6 +40,8 @@ jobs:
     - name: prepare obs
       run: |
         if [ "${OS}" = "ubuntu-latest" ]; then ./prepare_obs libqmail; fi
+      env:
+        OS: ${{ matrix.host }}
 
     - uses: actions/upload-artifact@v2
       with:
