@@ -44,4 +44,6 @@ jobs:
         OS: ${{ matrix.host }}
     - uses: actions/upload-artifact@v2
       with:
-        path: ~/*.tar.gz
+        path: |
+          ~/*.tar.gz
+          ~/*.spec
