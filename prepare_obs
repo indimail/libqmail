@@ -37,19 +37,31 @@ make -C debian
 cp debian/debian.tar.gz ../stage
 cp $name.spec ../stage
 cp debian/*.dsc ../stage
+if [ -f $name-rpmlintrc ] ; then
+	cp $name-rpmlintrc ../stage
+fi
 
 make -C debian clean
 make clean
 cp -rpf . ../stage/$name-$ver
+
+# change cwd to staging directory
 cd ../stage
 
 #remove debian directory
 /bin/rm -rf $name-$ver/debian
 tar cfz $name-$ver.tar.gz $name-$ver
-mv libqmail.spec debian.tar.gz $name-$ver.tar.gz *.dsc $HOME
+mv $name.spec debian.tar.gz $name-$ver.tar.gz *.dsc $HOME
+if [ -f $name-rpmlintrc ] ; then
+	mv $name-rpmlintrc $HOME
+fi
 status=$?
 cd $HOME
 echo HOME=$HOME
-/bin/ls -l $name-$ver.tar.gz $name.spec *.dsc debian.tar.gz
+if [ -f $name-rpmlintrc ] ; then
+  /bin/ls -l $name-$ver.tar.gz $name.spec *.dsc debian.tar.gz $name-rpmlintrc
+else
+  /bin/ls -l $name-$ver.tar.gz $name.spec *.dsc debian.tar.gz
+fi
 rmdir stage 2>/dev/null || true
 exit $?
