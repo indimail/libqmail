@@ -1,0 +1,38 @@
+#!/bin/sh
+set -e
+if [ $# -lt 1 ] ; then
+	echo "USAGE: prepare_obs name" 1>&2
+	exit 1
+fi
+name=$1
+type=$2
+ver=$(cat conf-version)
+if [ -z "$ver" ] ; then
+	exit 1
+fi
+if [ $type -eq 1 ] ; then
+	/bin/rm -f ../$name.spec ../$name-$ver.tar.gz ../debian.tar.gz
+fi
+if [ ! -f ./configure -o ! -f ./Makefile ] ; then
+  ./default.configure
+fi
+if [ ! -f ./$name.spec ] ; then
+  make $name.spec
+fi
+mkdir -p ../stage
+make debian/Makefile
+make -C debian
+cp debian/debian.tar.gz ../stage
+cp $name.spec ../stage
+
+make -C debian clean
+make clean
+cp -rpf . ../stage/$name-$ver
+cd ../stage
+tar cfz $name-$ver.tar.gz $name-$ver
+mv libqmail.spec debian.tar.gz $name-$ver.tar.gz ..
+status=$?
+cd ..
+/bin/ls -l $name-$ver.tar.gz $name.spec debian.tar.gz
+rmdir stage 2>/dev/null || true
+exit $?
