@@ -35,6 +35,8 @@ LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 
 # Binary Builds on openSUSE Build Service
 
+[![libqmail obs CI](https://github.com/mbhangui/libqmail/actions/workflows/libqmail-obs.yml/badge.svg)](https://github.com/mbhangui/libqmail/actions/workflows/libqmail-obs.yml)
+
 You can get binary RPM / Debian packages at
 
 * [Stable Releases](http://download.opensuse.org/repositories/home:/indimail/)
