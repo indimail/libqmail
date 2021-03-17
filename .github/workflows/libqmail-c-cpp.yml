@@ -38,12 +38,9 @@ jobs:
       run: env CPPFLAGS="-I/usr/local/opt/openssl@1.1/include" LDFLAGS="-L/usr/local/opt/openssl@1.1/lib" make
     - name: prepare obs
       run: |
-        ver=$(cat conf-version)
-        if [ "${OS}" = "ubnuntu-latest" ]; then make -C debian; mv debian/debian.tar.gz ..; make libqmail.spec;/bin/rm -rf debian .git .github autom4te.cache .deps; cd ..; mv libqmail libqmail-$ver;tar cfz libqmail-$ver.tar.gz libqmail-$ver; /bin/rm -rf libqmail-$ver; fi
-      env:
-        OS: ${{ matrix.host }}
+        if [ "${OS}" = "ubnuntu-latest" ]; then ./prepare_obs; fi
 
     - uses: actions/upload-artifact@v2
       with:
-        name: mpdev
-        path: *.tar.gz
+        name: Prepare OBS
+        path: *.tar.gz *.spec
