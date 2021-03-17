@@ -22,7 +22,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: prepare obs
-      run: sudo apt-get update; sudo apt-get install osc;./prepare_obs libqmail
+      run: sudo apt-get update; sudo apt-get install curl;./prepare_obs libqmail
     - uses: actions/upload-artifact@v2
       with:
         name: libqmail
@@ -31,4 +31,4 @@ jobs:
           ~/*.spec
           ~/*.dsc
     - name: tigger obs
-      run: osc token --trigger ${{secrets.obs_token_id}}
+      run: curl -H "Authorization: Token ${{secrets.obs_token_value}}" -X POST /trigger/runservice?project=home:mbhangui&package=libqmail
