@@ -39,7 +39,7 @@ jobs:
       run: env CPPFLAGS="-I/usr/local/opt/openssl@1.1/include" LDFLAGS="-L/usr/local/opt/openssl@1.1/lib" make
     - name: prepare obs
       run: |
-        if [ "${OS}" = "ubuntu-latest" ]; then ./prepare_obs; fi
+        if [ "${OS}" = "ubuntu-latest" ]; then ./prepare_obs libqmail; fi
 
     - uses: actions/upload-artifact@v2
       with:
