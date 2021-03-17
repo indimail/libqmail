@@ -25,6 +25,7 @@ jobs:
       run: ./prepare_obs libqmail
     - uses: actions/upload-artifact@v2
       with:
+        name: libqmail
         path: |
           ~/*.tar.gz
           ~/*.spec
