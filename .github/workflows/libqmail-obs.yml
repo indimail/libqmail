@@ -30,5 +30,7 @@ jobs:
           ~/*.tar.gz
           ~/*.spec
           ~/*.dsc
-    - name: tigger obs
-      run: curl -H "Authorization: Token ${{secrets.obs_token_value}}" -X POST https://build.opensuse.org/trigger/runservice
+    - shell: bash
+      env:
+        OBS_TOKEN: ${{secrets.obs_token_value}}
+      run: curl -H "Authorization: Token $OBS_TOKEN" -X POST https://build.opensuse.org/trigger/runservice
