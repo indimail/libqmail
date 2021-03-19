@@ -1,4 +1,4 @@
-name: libqmail obs CI
+name: libqmail obs trigger
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - master
     paths:
       - '**'
-      - .github/workflows/libqmail-c-cpp.yml
+      - .github/workflows/libqmail-obs.yml
       - '!**/doc/*'
       - '!**.md'
       - '!**/libqmail-freebsd.yml'

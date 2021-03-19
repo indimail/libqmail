@@ -8,8 +8,8 @@ on:
       - '**'
       - .github/workflows/libqmail-freebsd.yml
       - '!**/debian/*'
-      - '!**/doc/*'
       - '!**/libqmail.spec.in'
+      - '!**/doc/*'
       - '!**.md'
       - '!**/libqmail-c-cpp.yml'
       - '!**/libqmail-obs.yml'
