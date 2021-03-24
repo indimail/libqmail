@@ -2,8 +2,6 @@ name: libqmail obs trigger
 
 on:
   push:
-    branches:
-      - master
     paths:
       - '**'
       - .github/workflows/libqmail-obs.yml
@@ -11,8 +9,6 @@ on:
       - '!**.md'
       - '!**/libqmail-freebsd.yml'
       - '!**/libqmail-c-cpp.yml'
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build:
