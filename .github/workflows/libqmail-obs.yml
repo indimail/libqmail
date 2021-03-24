@@ -22,7 +22,9 @@ jobs:
       uses: actions/checkout@v2
 
     - name: prepare obs
-      run: sudo apt-get update; sudo apt-get install curl; ./prepare_obs libqmail
+      run: |
+        sudo apt-get update; sudo apt-get install libssl-dev libmysqlclient-dev
+        ./prepare_obs libqmail
     - uses: actions/upload-artifact@v2
       with:
         name: libqmail
@@ -33,4 +35,12 @@ jobs:
     - shell: bash
       name: trigger_obs
       run: |
-        curl -H "Authorization: Token ${{secrets.obs_token_value}}" -X POST https://build.opensuse.org/trigger/runservice
+        mkdir ~/.ssh
+        echo "${{secrets.sf_private_key}}" > ~/.private_key
+        chmod 600 ~/.private_key
+        echo "${{secrets.sf_known_hosts}}" > ~/.ssh/known_hosts
+        cd ~
+        tar cvfz $GITHUB_WORKSPACE/libqmail-obs.tar.gz *.tar.gz *.spec *.dsc
+        # copy to /home/frs/project/indimail/github
+        scp -q -i ~/.private_key $GITHUB_WORKSPACE/libqmail-obs.tar.gz  "${{secrets.sf_user}}:${{secrets.sf_upload_path}}"
+        rm -f ~/.private_key ~/.ssh/known_hosts $GITHUB_WORKSPACE/libqmail-obs.tar.gz
