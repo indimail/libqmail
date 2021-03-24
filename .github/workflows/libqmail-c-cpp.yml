@@ -2,8 +2,6 @@ name: libqmail Ubuntu, Mac OSX CI
 
 on:
   push:
-    branches:
-      - master
     paths:
       - '**'
       - .github/workflows/libqmail-c-cpp.yml
@@ -13,8 +11,6 @@ on:
       - '!**.md'
       - '!**/libqmail-freebsd.yml'
       - '!**/libqmail-obs.yml'
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build:

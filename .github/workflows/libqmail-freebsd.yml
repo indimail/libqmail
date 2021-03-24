@@ -2,8 +2,6 @@ name: libqmail FreeBSD CI
 
 on:
   push:
-    branches:
-      - master
     paths:
       - '**'
       - .github/workflows/libqmail-freebsd.yml
@@ -13,8 +11,6 @@ on:
       - '!**.md'
       - '!**/libqmail-c-cpp.yml'
       - '!**/libqmail-obs.yml'
-  pull_request:
-    branches: [ master ]
 
 jobs:
   testfreebsd:
