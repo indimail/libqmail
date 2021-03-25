@@ -12,7 +12,7 @@ edit = sed \
 
 changelog: ../doc/ChangeLog Makefile ../conf-version ../conf-release \
 ../conf-email
-	../catChangeLog --debian --name=indimail-mta --state=unstable \
+	../catChangeLog --debian --name=libqmail --state=unstable \
 		--urgency=low ../doc/ChangeLog > $@
 control: control.in ../conf-email
 	$(edit) $@.in > $@
