@@ -34,8 +34,11 @@ missing
 RCS
 debian.tar.gz
 debian/changelog
+debian/copyright
+debian/control
 debian/libqmail.dsc
 libqmail.spec
+libqmail.changes
 conf-release
 debian/libqmail-dev.install
 debian/libqmail.install
