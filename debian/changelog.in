@@ -1,3 +1,0 @@
-libqmail (@version@-@release@) unstable; urgency=medium
-
-  * timeoutread, timeoutwrite - fix data types

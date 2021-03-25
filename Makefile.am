@@ -21,7 +21,7 @@ MOSTLYCLEANFILES = base/uint32.h base/uint64.h base/haswaitp.h base/hasflock.h \
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libqmail.pc
 
-noinst_DATA = libqmail.spec
+noinst_DATA = libqmail.spec libqmail.changes
 
 man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 \
 	base/caltime.3 base/caltime_tai.3 base/case.3 base/cdb.3 base/coe.3 \
@@ -169,12 +169,15 @@ edit = sed \
 	-e 's}@PACKAGE_VERSION\@}$(PACKAGE_VERSION)}g' \
 	-e 's}@version\@}$(VERSION)}g' \
 	-e "s|@release\@|"`cat conf-release`"|g" \
+	-e 's|@email\@|'"`cat conf-email`"'|g' \
 	-e 's}@pkgconfigdir\@}$(pkgconfigdir)}g' \
 	-e 's}@VERSION\@}$(VERSION)}g' \
 	-e 's}@prefix\@}$(prefix)}g'
 
-libqmail.spec: libqmail.spec.in catChangeLog doc/ChangeLog conf-version conf-release
+libqmail.spec: libqmail.spec.in catChangeLog doc/ChangeLog conf-version conf-release conf-email
 	(cat $@.in;./catChangeLog) | $(edit) > $@
+libqmail.changes: doc/ChangeLog conf-version conf-release conf-email
+	./catChangeLog --changes doc/ChangeLog > $@
 
 base/hasbltnofl.h: base/trybltnoverflow.c
 	(($(COMPILE) -c base/trybltnoverflow.c && $(CC) \

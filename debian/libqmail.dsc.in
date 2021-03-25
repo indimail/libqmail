@@ -3,7 +3,7 @@ Source: libqmail
 Binary: libqmail, libqmail-dev
 Architecture: any
 Version: @version@-@release@
-Maintainer: Manvendra Bhangui <libqmail@indimail.org>
+Maintainer: @email@
 Homepage: https://github.com/mbhangui/indimail-mta
 Debtransform-Release: 1
 Debtransform-Files-Tar: debian.tar.gz

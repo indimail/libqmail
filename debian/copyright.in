@@ -1,9 +1,9 @@
 Format-Specification: http://svn.debian.org/wsvn/dep/web/deps/dep5.mdwn?op=file&rev=135
 Name: libqmail
-Maintainer: Manvendra Bhangui <libqmail@indimail.org>
+Maintainer: @email@
 Source: https://github.com/mbhangui/libqmail
 
-Copyright: 2008-2011, Manvendra Bhangui <libqmail@indimail.org>
+Copyright: 2008-2011, Manvendra Bhangui <mbhangui@gmail.com>
 License: GPL-3+
 
 License: GPL-3+
