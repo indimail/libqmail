@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.21  2021-03-26 18:28:01+05:30  Cprogrammer
+# use conf-email for email address
+#
 # Revision 1.20  2021-03-12 13:11:25+05:30  Cprogrammer
 # add LDFLAGS to existing LDFLAGS
 #
@@ -61,7 +64,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.20 2021-03-12 13:11:25+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.21 2021-03-26 18:28:01+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),indimail, [https://github.com/mbhangui/libqmail])
