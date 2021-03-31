@@ -9,6 +9,7 @@ on:
       - '!**/libqmail.spec.in'
       - '!**/doc/*'
       - '!**.md'
+      - '!**/obs/*'
       - '!**/libqmail-c-cpp.yml'
       - '!**/libqmail-obs.yml'
 
