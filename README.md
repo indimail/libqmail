@@ -9,6 +9,38 @@ libqmail is a library of general purpose APIs extracted from Dan Bernstein's [qm
 
 # Compilation
 
+You will need to have the compiler, make, autoconf, automake, libtool, m4 installed.
+
+```
+Linux (RPM based)
+# yum/dnf install gcc gcc-c++ autoconf automake libtool pkgconfig m4 sed findutils diffutils openssl-devel
+
+Linux (Debian based)
+# apt-get install build-essential gcc g++ autoconf automake libtool pkg-config m4 libssl-dev
+
+Linux (Arch Linux)
+# pacman -S --needed archlinux-keyring
+# pacman -S --refresh --sysupgrade
+# pacman -S base-devel diffutils coreutils openssl
+
+FreeBSD
+# pkg install automake autoconf libtool pkgconf
+
+Darwin
+# port install autoconf libtool automake pkgconfig openssl
+# port update outdated
+```
+
+* NOTE: For Darwin (Mac OSX), install [MacPorts](https://www.macports.org/) or [Homebrew](https://brew.sh/). You can look at this [document](https://paolozaino.wordpress.com/2015/05/05/how-to-install-and-use-autotools-on-mac-os-x/) for installing MacPorts.
+* NOTE: libqmail build has been done with clang and gcc. So the instructions should work fine if you have either of them on FreeBSD or Darwin (Mac OSX)
+* NOTE: The crypt(3) function on OSX is crippled. the default.configure script passes --enable-passwd-hash=md5 to the configure script. This enables the internal hash functions instead of the crippled system supplied crypt(3) function. Read about his issue [here](https://stackoverflow.com/questions/32569597/how-to-get-same-crypt3-function-in-mac-os-x-as-linux-gcc-gnu-crypt3-linux-g) and [here](https://bugs.python.org/issue33213).
+* NOTE: If you use brew to install openssl on OSX, then you have to do some crazy stuff like setting CPPFLAGS and LDFLAGS before calling default.configure and make commands given below in this document. Using macports is cleaner and easier.
+
+```
+CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+```
+
 ```
 $ cd /usr/local/src
 $ git clone https://github.com/mbhangui/libqmail.git
@@ -16,21 +48,6 @@ $ cd /usr/local/src/libqmail/libqmail
 $ ./default.configure
 $ make
 $ sudo make install
-```
-
-* NOTE: for FreeBSD, install automake, autoconf, libtool, pkgconf using pkg.
-* NOTE: For Darwin (Mac OSX), install [MacPorts](https://www.macports.org/) or [Homebrew](https://brew.sh/). You can look at this [document](https://paolozaino.wordpress.com/2015/05/05/how-to-install-and-use-autotools-on-mac-os-x/) for installing MacPorts.
-* NOTE: libqmail build has been done with clang and gcc. So the instructions should work fine if you have either of them on FreeBSD or Darwin (Mac OSX)
-```
-# port install automake autoconf libtool pkgconfig
-# port install openssl
-# port update outdated
-```
-* NOTE: The crypt(3) function on OSX is crippled. the default.configure script passes --enable-passwd-hash=md5 to the configure script. This enables the internal hash functions instead of the crippled system supplied crypt(3) function. Read about his issue [here](https://stackoverflow.com/questions/32569597/how-to-get-same-crypt3-function-in-mac-os-x-as-linux-gcc-gnu-crypt3-linux-g) and [here](https://bugs.python.org/issue33213).
-* NOTE: If you use brew to install openssl on OSX, then you have to do some crazy stuff like setting CPPFLAGS and LDFLAGS before calling default.configure and make commands given below in this document. Using macports is cleaner and easier.
-```
-CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
-LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 ```
 
 # Binary Builds on openSUSE Build Service
