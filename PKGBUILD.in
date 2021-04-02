@@ -1,0 +1,30 @@
+# Maintainer: @email@
+pkgname=libqmail
+pkgver=@version@
+pkgrel=@release@
+pkgdesc="Reimplementation of qmail functions in a library"
+arch=('i686' 'x86_64')
+url="https://github.com/mbhangui/libqmail"
+license=('GPL2')
+groups=('base-devel')
+depends=('coreutils' 'findutils' 'sed' 'openssl')
+makedepends=('pkgconfig')
+source=("libqmail-${pkgver}.tar.gz" 'libqmail-rpmlintrc')
+sha256sums=('SKIP' 'SKIP')
+provides=('libqmail')
+options=('strip' '!libtool' 'docs' 'staticlibs' 'zipman' 'debug')
+changelog=$pkgname.changes
+
+build() {
+  cd $srcdir/libqmail-${pkgver}
+  ./default.configure
+  make -s
+  cd $srcdir
+}
+
+package() {
+  cd $srcdir/libqmail-${pkgver}
+  make DESTDIR=${pkgdir} install
+  # fix WARNING: Package contains reference to $srcdir
+  sed -i 's{ -fdebug-prefix-map=${srcdir}=/usr/src/debug{{g' ${pkgdir}/usr/lib64/pkgconfig/libqmail.pc
+}

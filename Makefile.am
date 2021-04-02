@@ -21,7 +21,7 @@ MOSTLYCLEANFILES = base/uint32.h base/uint64.h base/haswaitp.h base/hasflock.h \
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libqmail.pc
 
-noinst_DATA = libqmail.spec libqmail.changes
+noinst_DATA = libqmail.spec libqmail.changes PKGBUILD
 
 man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 \
 	base/caltime.3 base/caltime_tai.3 base/case.3 base/cdb.3 base/coe.3 \
@@ -178,6 +178,9 @@ libqmail.spec: libqmail.spec.in catChangeLog doc/ChangeLog conf-version conf-rel
 	(cat $@.in;./catChangeLog) | $(edit) > $@
 libqmail.changes: doc/ChangeLog conf-version conf-release conf-email
 	./catChangeLog --changes doc/ChangeLog > $@
+PKGBUILD: PKGBUILD.in catChangeLog Makefile conf-email \
+conf-version conf-release doc/ChangeLog libqmail.changes
+	cat $@.in | $(edit) > $@
 
 base/hasbltnofl.h: base/trybltnoverflow.c
 	(($(COMPILE) -c base/trybltnoverflow.c && $(CC) \
