@@ -65,10 +65,10 @@ prepare_artifacts()
         fi
     done
 
-    for i in spec changes
+    for i in $pkg_name.spec $pkg_name.changes PKGBUILD
     do
-      if [ -f $pkg_name.$i ] ; then
-        cp $pkg_name.$i $stage
+      if [ -f $i ] ; then
+        cp $i $stage
       fi
     done
 
