@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.22  2021-04-02 20:14:00+05:30  Cprogrammer
+# updated configure.ac
+#
 # Revision 1.21  2021-03-26 18:28:01+05:30  Cprogrammer
 # use conf-email for email address
 #
@@ -64,7 +67,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.21 2021-03-26 18:28:01+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.22 2021-04-02 20:14:00+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),indimail, [https://github.com/mbhangui/libqmail])
@@ -76,7 +79,7 @@ AM_INIT_AUTOMAKE([subdir-objects silent-rules])
 AM_CONFIG_HEADER(config.h)
 
 dnl Checks for programs.
-AC_PROG_LIBTOOL
+LT_INIT
 AC_PROG_LN_S
 AC_PROG_AWK
 AC_PROG_CC
@@ -88,8 +91,6 @@ PKG_PROG_PKG_CONFIG
 PKG_INSTALLDIR
 
 dnl Checks for header files.
-AC_ISC_POSIX
-dnl AC_HEADER_STDC
 AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h endian.h)
 AC_CHECK_HEADERS(sys/types.h sys/wait.h sys/file.h sys/endian.h)
 
@@ -202,7 +203,8 @@ AC_DEFINE_UNQUOTED(MD5_HASH,1,Enable MD5 Encryption)
 AC_DEFINE_UNQUOTED(SHA256_HASH,2,Enable SHA256 Encryption)
 AC_DEFINE_UNQUOTED(SHA512_HASH,3,Enable SHA512 Encryption)
 
-AC_OUTPUT(Makefile)
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT
 
 case $pwdhash in
 	des)
