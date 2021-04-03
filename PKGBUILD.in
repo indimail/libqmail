@@ -26,5 +26,5 @@ package() {
   cd $srcdir/libqmail-${pkgver}
   make DESTDIR=${pkgdir} install
   # fix WARNING: Package contains reference to $srcdir
-  sed -i "s{ -fdebug-prefix-map=${srcdir}=/usr/src/debug{{g" ${pkgdir}/usr/lib64/pkgconfig/libqmail.pc
+  sed -i "s{ -fdebug-prefix-map=${srcdir}=/usr/src/debug{{g" ${pkgdir}/usr/lib/pkgconfig/libqmail.pc
 }
