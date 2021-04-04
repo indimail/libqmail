@@ -27,4 +27,5 @@ package() {
   make DESTDIR=${pkgdir} install
   # fix WARNING: Package contains reference to $srcdir
   sed -i "s{ -fdebug-prefix-map=${srcdir}=/usr/src/debug{{g" ${pkgdir}/usr/lib/pkgconfig/libqmail.pc
+  install -D -m 0644 ${pkgname}.changes "$pkgdir"${_shareddir}/doc/${pkgname}.changes
 }

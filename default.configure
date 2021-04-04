@@ -25,7 +25,7 @@ case "$SYSTEM" in
       libdir=/usr/lib
     fi
     pkgconfigdir=/usr/lib/pkgconfig
-  elif [ -f /etc/arch-version ] ; then
+  elif [ -f /etc/arch-release ] ; then
       libdir=/usr/lib
       pkgconfigdir=$libdir/pkgconfig
   else
