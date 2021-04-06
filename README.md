@@ -52,6 +52,8 @@ $ sudo make install
 
 # Binary Builds on openSUSE Build Service
 
+**[Build Status on](https://build.opensuse.org/project/monitor/home:mbhangui) [Open Build Service](https://build.opensuse.org/project/show/home:mbhangui)**
+
 [![libqmail obs CI](https://github.com/mbhangui/libqmail/actions/workflows/libqmail-obs.yml/badge.svg)](https://github.com/mbhangui/libqmail/actions/workflows/libqmail-obs.yml)
 
 You can get binary RPM / Debian packages at
