@@ -11,7 +11,6 @@ fi
 name=$1
 curdir=$PWD
 version=$(cat conf-version)
-release=$(cat conf-release)
 stage=$HOME/stage
 mkdir -p $stage
 meta_pkg=0
