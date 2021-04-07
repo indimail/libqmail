@@ -1,6 +1,8 @@
 #!/bin/sh
 if [ ! -f ./configure -o ! -f Makefile -o ! -f Makefile.in ] ; then
-    autoreconf -fiv
+  echo "reconfiguring"
+  mkdir -p m4
+  autoreconf -fi
 fi
 if [ ! -f conf-release ] ; then
   echo 1.1 > conf-release
