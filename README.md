@@ -91,6 +91,7 @@ Currently, the list of supported distributions for libqmail is
           o Fedora 32
           o Fedora 33
           o Red Hat Enterprise Linux 7
+		  o Scientific Linux 7
           o CentOS 7
           o CentOS 8
 
