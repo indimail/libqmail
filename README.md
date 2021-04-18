@@ -23,6 +23,13 @@ Linux (Arch Linux)
 # pacman -S --refresh --sysupgrade
 # pacman -S base-devel diffutils coreutils openssl
 
+Gentoo Linux
+# emaint -a sync
+# emerge-webrsync
+# emerge -a app-portage/eix
+# eix-sync
+# etc-update
+
 FreeBSD
 # pkg install automake autoconf libtool pkgconf
 
