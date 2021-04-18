@@ -67,8 +67,8 @@ docdir=@docdir@
 include_HEADERS = base/alloc.h base/base64.h base/builtinoflmacros.h \
 	base/byte.h base/caldate.h base/caltime.h base/case.h base/cdb.h \
 	base/cdbmake.h base/cdb_make.h base/coe.h base/commands.h \
-	base/constmap.h base/datetime.h base/digest_md5.h base/env.h \
-	base/error.h base/fd.h base/fifo.h base/fmt.h \
+	base/constmap.h base/date822fmt.h base/datetime.h base/digest_md5.h \
+	base/env.h base/error.h base/fd.h base/fifo.h base/fmt.h \
 	base/gen_allocdefs.h base/gen_alloc.h base/getEnvConfig.h base/getln.h \
 	base/global.h base/hasbltnofl.h base/hmac.h base/in_crypt.h \
 	base/iopause.h base/leapsecs.h base/lock.h base/md5.h base/makesalt.h \
@@ -92,7 +92,7 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
 	base/case_diffs.c base/case_lowerb.c base/case_lowers.c base/case_startb.c \
 	base/case_starts.c base/cdb.c base/cdb_hash.c base/cdb_make.c \
 	base/cdbmake_add.c base/cdbmake_hash.c base/cdbmake_pack.c base/cdb_seek.c \
-	base/cdb_unpack.c base/coe.c base/commands.c base/constmap.c \
+	base/cdb_unpack.c base/coe.c base/commands.c base/constmap.c base/date822fmt.c \
 	base/datetime.c base/datetime_un.c base/digest_md5.c base/env.c \
 	base/envread.c base/error.c base/error_str.c base/error_temp.c \
 	base/fd_copy.c base/fd_move.c base/fifo.c base/fmt_8long.c \
