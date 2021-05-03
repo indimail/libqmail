@@ -1,5 +1,8 @@
 /*
  * $Log: uint32.h2,v $
+ * Revision 1.5  2021-05-03 10:03:30+05:30  Cprogrammer
+ * fixed function prototype and warning -Warray-parameter
+ *
  * Revision 1.4  2020-11-23 00:18:53+05:30  Cprogrammer
  * use const keyword
  *
@@ -27,9 +30,9 @@
 typedef unsigned long uint32;
 typedef int32_t int32;
 
-extern void     uint32_pack(char *, uint32);
-extern void     uint32_pack_big(char *, uint32);
-extern void     uint32_unpack(const char *, uint32 *);
-extern void     uint32_unpack_big(const char *, uint32 *);
+extern void     uint32_pack(char out[4], uint32);
+extern void     uint32_pack_big(char out[4], uint32);
+extern void     uint32_unpack(const char out[4], uint32 *);
+extern void     uint32_unpack_big(const char out[4], uint32 *);
 
 #endif

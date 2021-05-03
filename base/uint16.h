@@ -1,5 +1,8 @@
 /*
  * $Log: uint16.h,v $
+ * Revision 1.3  2021-05-03 10:02:13+05:30  Cprogrammer
+ * fixed function prototype and warning -Warray-parameter
+ *
  * Revision 1.2  2020-07-04 23:47:29+05:30  Cprogrammer
  * include inttypes.h if config.h is not included
  *
@@ -47,8 +50,8 @@ void            uint16_pack_big(char *out, uint16 in);
 void            uint16_unpack_big(const char *in, uint16 * out);
 uint16          uint16_read_big(const char *in);
 #else
-void            uint16_pack(char *out, uint16 in);
-void            uint16_pack_big(char *out, uint16 in);
+void            uint16_pack(char out[2], uint16 in);
+void            uint16_pack_big(char out[2], uint16 in);
 void            uint16_unpack(const char *in, uint16 * out);
 void            uint16_unpack_big(const char *in, uint16 * out);
 uint16          uint16_read(const char *in);
