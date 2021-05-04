@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.23  2021-05-04 14:17:42+05:30  Cprogrammer
+# removed -lssl from link
+#
 # Revision 1.22  2021-04-02 20:14:00+05:30  Cprogrammer
 # updated configure.ac
 #
@@ -67,7 +70,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.22 2021-04-02 20:14:00+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.23 2021-05-04 14:17:42+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),indimail, [https://github.com/mbhangui/libqmail])
@@ -125,7 +128,6 @@ if test "$ac_cv_func_flock" = yes ; then
 	AC_DEFINE([HAVE_FLOCK], [1], [flock function])
 fi
 
-AC_CHECK_LIB(ssl, SSL_CTX_new, [AC_SUBST([LIB_SSL], ["-lssl"]) AC_DEFINE([HAVE_SSL], [1],[OpenSSL Library])],,-lssl)
 AC_CHECK_LIB(crypto, CRYPTO_new_ex_data, [AC_SUBST([LIB_CRYPTO], ["-lcrypto"]) AC_DEFINE([HAVE_CRYPTO], [1],[Crypto Library])],,-lcrypto)
 AC_CHECK_LIB(crypt, crypt, [AC_SUBST([LIB_CRYPT], ["-lcrypt"]) AC_DEFINE([HAVE_CRYPT], [1],[crypt Library])],,)
 

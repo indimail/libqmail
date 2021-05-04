@@ -1,5 +1,8 @@
 /*
  * $Log: hmac_sha1.c,v $
+ * Revision 1.2  2021-05-04 14:18:57+05:30  Cprogrammer
+ * fixed indentation of comments
+ *
  * Revision 1.1  2020-04-01 18:03:45+05:30  Cprogrammer
  * Initial revision
  *
@@ -39,33 +42,25 @@ hmac_sha1(text, text_len, key, key_len, digest)
 		key_len = TK;
 	}
 
-/*
- * start out by storing key in pads 
- */
+	/*- start out by storing key in pads */
 	memset(k_ipad, 0, PAD);
 	memcpy(k_ipad, key, key_len);
 	memset(k_opad, 0, PAD);
 	memcpy(k_opad, key, key_len);
 
-/*
- * XOR key with ipad and opad values 
- */
+	/*- XOR key with ipad and opad values */
 	for (i = 0; i < PAD; i++) {
 		k_ipad[i] ^= 0x36;
 		k_opad[i] ^= 0x5c;
 	}
 
-/*
- * perform inner SHA1 
- */
+	/*- perform inner SHA1 */
 	SHA1_Init(&ctx);			/* init ctx for 1st pass */
 	SHA1_Update(&ctx, k_ipad, PAD);	/* start with inner pad */
 	SHA1_Update(&ctx, text, text_len);	/* then text of datagram */
 	SHA1_Final(digest, &ctx);	/* finish up 1st pass */
 
-/*
- * perform outer SHA1 
- */
+	/*- perform outer SHA1 */
 	SHA1_Init(&ctx);			/* init ctx for 2nd pass */
 	SHA1_Update(&ctx, k_opad, PAD);	/* start with outer pad */
 	SHA1_Update(&ctx, digest, TK);	/* then results of 1st hash */
@@ -75,7 +70,7 @@ hmac_sha1(text, text_len, key, key_len, digest)
 void
 getversion_hmac_sha1_c()
 {
-	static char    *x = "$Id: hmac_sha1.c,v 1.1 2020-04-01 18:03:45+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: hmac_sha1.c,v 1.2 2021-05-04 14:18:57+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
