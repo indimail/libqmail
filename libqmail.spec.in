@@ -127,6 +127,7 @@ necessary to develop qmail applications
 %attr(644,root,root)                    %{_prefix}/include/qmail/date822fmt.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/datetime.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/digest_md5.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/direntry.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/env.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/envdir.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/error.h

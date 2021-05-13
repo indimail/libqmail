@@ -68,10 +68,10 @@ include_HEADERS = base/alloc.h base/base64.h base/builtinoflmacros.h \
 	base/byte.h base/caldate.h base/caltime.h base/case.h base/cdb.h \
 	base/cdbmake.h base/cdb_make.h base/coe.h base/commands.h \
 	base/constmap.h base/date822fmt.h base/datetime.h base/digest_md5.h \
-	base/env.h base/error.h base/envdir.h base/fd.h base/fifo.h \
-	base/fmt.h base/gen_allocdefs.h base/gen_alloc.h base/getEnvConfig.h \
-	base/getln.h base/global.h base/hasbltnofl.h base/hmac.h \
-	base/in_crypt.h base/iopause.h base/leapsecs.h base/lock.h \
+	base/direntry.h base/env.h base/error.h base/envdir.h base/fd.h \
+	base/fifo.h base/fmt.h base/gen_allocdefs.h base/gen_alloc.h \
+	base/getEnvConfig.h base/getln.h base/global.h base/hasbltnofl.h \
+	base/hmac.h base/in_crypt.h base/iopause.h base/leapsecs.h base/lock.h \
 	base/md5.h base/makesalt.h base/mess822.h base/mkpasswd.h \
 	base/ndelay.h base/now.h base/open.h base/openreadclose.h \
 	base/pathexec.h base/pw_comp.h base/readclose.h \
