@@ -25,18 +25,19 @@ noinst_DATA = libqmail.spec libqmail.changes PKGBUILD
 
 man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 \
 	base/caltime.3 base/caltime_tai.3 base/case.3 base/cdb.3 base/coe.3 \
-	base/commands.3 base/config.3 base/datetime.3 base/env.3 base/error_str.3 \
-	base/error_temp.3 base/fd_copy.3 base/fd_move.3 base/fifo_make.3 \
-	base/fmt_8long.3 base/fmt_double.3 base/fmt_fill.3 base/fmt_minus.3 \
-	base/fmt_pad.3 base/fmt_plusminus.3 base/fmt_ulonglong.3 base/getln2.3 \
-	base/getln.3 base/leapsecs.3 base/mess822.3 base/mess822_addr.3 \
-	base/mess822_date.3 base/mess822_fold.3 base/mess822_quote.3 \
-	base/mess822_token.3 base/mess822_when.3 base/now.3 base/qerror.3 \
-	base/rewritehost.3 base/scan_double.3 base/scan_int.3 base/scan_long.3 \
-	base/scan_plusminus.3 base/scan_ulonglong.3 base/sgetopt.3 base/stralloc.3 \
-	base/subgetopt.3 base/substdio.3 base/substdio_copy.3 base/substdio_in.3 \
-	base/substdio_out.3 base/tai.3 base/tai_now.3 base/tai_pack.3 base/tai_unpack.3 \
-	base/tai_sub.3 base/tai_less.3 base/tai_approx.3 base/tai_add.3 base/taia.3 \
+	base/commands.3 base/config.3 base/datetime.3 base/direntry.3 \
+	base/env.3 base/error_str.3 base/error_temp.3 base/fd_copy.3 \
+	base/fd_move.3 base/fifo_make.3 base/fmt_8long.3 base/fmt_double.3 \
+	base/fmt_fill.3 base/fmt_minus.3 base/fmt_pad.3 base/fmt_plusminus.3 \
+	base/fmt_ulonglong.3 base/getln2.3 base/getln.3 base/leapsecs.3 \
+	base/mess822.3 base/mess822_addr.3 base/mess822_date.3 base/mess822_fold.3 \
+	base/mess822_quote.3 base/mess822_token.3 base/mess822_when.3 \
+	base/now.3 base/qerror.3 base/rewritehost.3 base/scan_double.3 \
+	base/scan_int.3 base/scan_long.3 base/scan_plusminus.3 base/scan_ulonglong.3 \
+	base/sgetopt.3 base/stralloc.3 base/subgetopt.3 base/substdio.3 \
+	base/substdio_copy.3 base/substdio_in.3 base/substdio_out.3 base/tai.3 \
+	base/tai_now.3 base/tai_pack.3 base/tai_unpack.3 base/tai_sub.3 \
+	base/tai_less.3 base/tai_approx.3 base/tai_add.3 base/taia.3 \
 	base/taia_addsec.3 base/taia_now.3 base/taia_pack.3 base/taia_unpack.3 \
 	base/wait.3 base/fmt_long.3 base/fmt_int.3 base/scan_xlong.3 base/scan_ushort.3 \
 	base/scan_uint.3 base/scan_ulong.3 base/scan_8long.3 base/str_start.3 \
