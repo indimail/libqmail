@@ -17,6 +17,7 @@ hasbltnofl.h
 select.h
 uint32.h
 uint64.h
+direntry.h
 libqmail.la
 *.lo
 *.o

@@ -11,12 +11,12 @@ libqmail_la_CFLAGS = -fPIC
 libqmaildir=@libdir@
 
 BUILT_SOURCES = base/uint32.h base/uint64.h base/haswaitp.h base/hasflock.h \
-	base/hassgact.h base/hassgprm.h base/select.h base/hasmkffo.h \
+	base/hassgact.h base/hassgprm.h base/select.h base/hasmkffo.h base/direntry.h \
 	base/hasbltnofl.h base/builtinoflmacros.h base/iopause.h base/haveuint128.h
 
 MOSTLYCLEANFILES = base/uint32.h base/uint64.h base/haswaitp.h base/hasflock.h \
 	base/hassgact.h base/hassgprm.h base/select.h base/hasmkffo.h base/hasbltnofl.h \
-	base/iopause.h base/haveuint128.h
+	base/iopause.h base/haveuint128.h base/direntry.h
 
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libqmail.pc
@@ -68,12 +68,13 @@ include_HEADERS = base/alloc.h base/base64.h base/builtinoflmacros.h \
 	base/byte.h base/caldate.h base/caltime.h base/case.h base/cdb.h \
 	base/cdbmake.h base/cdb_make.h base/coe.h base/commands.h \
 	base/constmap.h base/date822fmt.h base/datetime.h base/digest_md5.h \
-	base/env.h base/error.h base/fd.h base/fifo.h base/fmt.h \
-	base/gen_allocdefs.h base/gen_alloc.h base/getEnvConfig.h base/getln.h \
-	base/global.h base/hasbltnofl.h base/hmac.h base/in_crypt.h \
-	base/iopause.h base/leapsecs.h base/lock.h base/md5.h base/makesalt.h \
-	base/mess822.h base/mkpasswd.h base/ndelay.h base/now.h base/open.h \
-	base/openreadclose.h base/pathexec.h base/pw_comp.h base/readclose.h \
+	base/env.h base/error.h base/envdir.h base/fd.h base/fifo.h \
+	base/fmt.h base/gen_allocdefs.h base/gen_alloc.h base/getEnvConfig.h \
+	base/getln.h base/global.h base/hasbltnofl.h base/hmac.h \
+	base/in_crypt.h base/iopause.h base/leapsecs.h base/lock.h \
+	base/md5.h base/makesalt.h base/mess822.h base/mkpasswd.h \
+	base/ndelay.h base/now.h base/open.h base/openreadclose.h \
+	base/pathexec.h base/pw_comp.h base/readclose.h \
 	base/rewritehost.h base/ripemd.h base/scan.h base/sconfig.h base/seek.h \
 	base/select.h base/setuserid.h base/sgetopt.h base/sha1.h base/sig.h \
 	base/stralloc.h base/strerr.h base/str.h base/strmsg.h base/subfd.h \
@@ -94,7 +95,7 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
 	base/cdbmake_add.c base/cdbmake_hash.c base/cdbmake_pack.c base/cdb_seek.c \
 	base/cdb_unpack.c base/coe.c base/commands.c base/constmap.c base/date822fmt.c \
 	base/datetime.c base/datetime_un.c base/digest_md5.c base/env.c \
-	base/envread.c base/error.c base/error_str.c base/error_temp.c \
+	base/envdir.c base/envread.c base/error.c base/error_str.c base/error_temp.c \
 	base/fd_copy.c base/fd_move.c base/fifo.c base/fmt_8long.c \
 	base/fmt_double.c base/fmt_fill.c base/fmt_hexbytes.c base/fmt_int.c \
 	base/fmt_long.c base/fmt_minus.c base/fmt_pad.c base/fmt_plusminus.c \
@@ -202,6 +203,12 @@ base/uint64.h: base/tryulong64.c base/uint64.h1 base/uint64.h2
 	&& cat base/uint64.h1 || cat base/uint64.h2 ) > base/uint64.h
 	rm -f tryulong64.o tryulong64
 
+base/direntry.h: base/trydrent.c base/direntry.h1 base/direntry.h2
+	(( $(COMPILE) -c base/trydrent.c && $(CC) -o trydrent trydrent.o && \
+	./trydrent ) >/dev/null 2>&1 \
+	&& cat base/direntry.h1 || cat base/direntry.h2 ) > base/direntry.h
+	rm -f trydrent.o trydrent
+
 base/haswaitp.h: base/trywaitp.c
 	(( $(COMPILE) -c base/trywaitp.c && $(CC) -o trywaitp trywaitp.o ) >/dev/null 2>&1 \
 	&& echo \#define HASWAITPID 1 || exit 0 ) > base/haswaitp.h
@@ -256,7 +263,9 @@ base/byte_zero.lo: byte.h
 base/byte_diff.lo: byte.h
 base/coe.lo: coe.h
 base/constmap.lo: constmap.h alloc.h case.h hasbltnofl.h builtinoflmacros.h
-base/error.lo: error.h
+base/date822fmt.lo: datetime.h fmt.h date822fmt.h
+base/envdir.lo: error.h open.h pathexec.h openreadclose.h byte.h \
+direntry.h stralloc.h
 base/error_str.lo: error.h
 base/error_temp.lo: error.h
 base/mkpasswd.lo: gen_alloc.h str.h strerr.h stralloc.h in_crypt.h makesalt.h
@@ -366,6 +375,8 @@ base/open_excl.lo: open.h
 base/open_read.lo: open.h
 base/open_write.lo: open.h
 base/open_trunc.lo: open.h
+base/pathexec_env.lo: stralloc.h alloc.h str.h byte.h env.h pathexec.h
+base/pathexec_run.lo: error.h stralloc.h str.h env.h pathexec.h
 base/scan_ulong.lo: scan.h
 base/scan_xlong.lo: scan.h
 base/scan_8long.lo: scan.h
