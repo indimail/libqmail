@@ -1,5 +1,8 @@
 /*
  * $Log: envdir.h,v $
+ * Revision 1.4  2021-05-13 14:59:22+05:30  Cprogrammer
+ * added envdir_str() function
+ *
  * Revision 1.3  2021-05-13 09:38:13+05:30  Cprogrammer
  * added argument to return filename in error
  *
