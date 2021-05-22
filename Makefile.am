@@ -69,8 +69,8 @@ include_HEADERS = base/alloc.h base/base64.h base/builtinoflmacros.h \
 	base/byte.h base/caldate.h base/caltime.h base/case.h base/cdb.h \
 	base/cdbmake.h base/cdb_make.h base/coe.h base/commands.h \
 	base/constmap.h base/date822fmt.h base/datetime.h base/digest_md5.h \
-	base/direntry.h base/env.h base/error.h base/envdir.h base/fd.h \
-	base/fifo.h base/fmt.h base/gen_allocdefs.h base/gen_alloc.h \
+	base/direntry.h base/env.h base/error.h base/envdir.h base/evaluate.h \
+	base/fd.h base/fifo.h base/fmt.h base/gen_allocdefs.h base/gen_alloc.h \
 	base/getEnvConfig.h base/getln.h base/global.h base/hasbltnofl.h \
 	base/hmac.h base/in_crypt.h base/iopause.h base/leapsecs.h base/lock.h \
 	base/md5.h base/makesalt.h base/mess822.h base/mkpasswd.h \
@@ -97,7 +97,7 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
 	base/cdb_unpack.c base/coe.c base/commands.c base/constmap.c base/date822fmt.c \
 	base/datetime.c base/datetime_un.c base/digest_md5.c base/env.c \
 	base/envdir.c base/envread.c base/error.c base/error_str.c base/error_temp.c \
-	base/fd_copy.c base/fd_move.c base/fifo.c base/fmt_8long.c \
+	base/evaluate.c base/fd_copy.c base/fd_move.c base/fifo.c base/fmt_8long.c \
 	base/fmt_double.c base/fmt_fill.c base/fmt_hexbytes.c base/fmt_int.c \
 	base/fmt_long.c base/fmt_minus.c base/fmt_pad.c base/fmt_plusminus.c \
 	base/fmt_str.c base/fmt_strn.c base/fmt_uint0.c \
@@ -269,6 +269,7 @@ base/envdir.lo: error.h open.h pathexec.h openreadclose.h byte.h \
 direntry.h stralloc.h
 base/error_str.lo: error.h
 base/error_temp.lo: error.h
+base/evaluate.lo: evaluate.h str.h alloc.h
 base/mkpasswd.lo: gen_alloc.h str.h strerr.h stralloc.h in_crypt.h makesalt.h
 base/pw_comp.lo: gen_alloc.h stralloc.h strerr.h env.h error.h str.h subfd.h \
 	in_crypt.h hmac.h digest_md5.h mkpasswd.h pw_comp.h

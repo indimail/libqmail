@@ -131,6 +131,7 @@ necessary to develop qmail applications
 %attr(644,root,root)                    %{_prefix}/include/qmail/env.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/envdir.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/error.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/evaluate.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/fd.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/fifo.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/fmt.h
