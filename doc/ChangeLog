@@ -18,6 +18,8 @@ Release 1.1 Start 14/02/2021
 08. added envdir.c, envdir.h, dirent.h
 - 22/05/2021
 09. added evaluate.c, evaluate.h, for evaluate()
+- 26/05/2021
+10. qprintf: pad with zeros for numbers
 
 * Sunday 14 February 2021 11:27:21 PM IST
 Release 1.0 Start 21/05/2020

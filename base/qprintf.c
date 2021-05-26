@@ -1,5 +1,8 @@
 /*
  * $Log: qprintf.c,v $
+ * Revision 1.4  2021-05-26 11:58:45+05:30  Cprogrammer
+ * pad with zeros for numbers
+ *
  * Revision 1.3  2019-07-18 10:08:45+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -27,7 +30,8 @@ int
 qprintf(substdio *ss, char *src, char *format_spec)
 {
 	register int    len = 0, todo;
-	int             i = -1;
+	char           *delim = " ";
+	int             i = -1, j;
 
 	len = str_len(src);
 	if (*format_spec != '%') {
@@ -38,10 +42,20 @@ qprintf(substdio *ss, char *src, char *format_spec)
 	switch (*(format_spec + 1))
 	{
 	case '+':
+		for (j = 1; format_spec[j]; j++) {
+			if (format_spec[j] == 's') {
+				delim = " ";
+				break;
+			} else
+			if (format_spec[j] == 'd') {
+				delim = "0";
+				break;
+			}
+		}
 		scan_int(format_spec + 2, &i);
 		if ((todo = i - len) > 0) {
 			for (; todo > 0; todo--) {
-				if (substdio_put(ss, " ", 1) == -1)
+				if (substdio_put(ss, delim, 1) == -1)
 					strerr_die1x(111, "qprintf: unable to write output: ");
 			}
 			if (substdio_put(ss, src, len) == -1)
@@ -55,11 +69,21 @@ qprintf(substdio *ss, char *src, char *format_spec)
 	default:
 		if (i == -1)
 			scan_int(format_spec + 1, &i);
+		for (j = 1; format_spec[j]; j++) {
+			if (format_spec[j] == 's') {
+				delim = " ";
+				break;
+			} else
+			if (format_spec[j] == 'd') {
+				delim = "0";
+				break;
+			}
+		}
 		if (len < i) {
 			if (substdio_put(ss, src, len) == -1)
 				strerr_die1x(111, "qprintf: unable to write output: ");
 			for (todo = i - len; todo; todo--) {
-				if (substdio_put(ss, " ", 1) == -1)
+				if (substdio_put(ss, delim, 1) == -1)
 					strerr_die1x(111, "qprintf: unable to write output: ");
 			}
 			return (0);
@@ -74,7 +98,7 @@ qprintf(substdio *ss, char *src, char *format_spec)
 void
 getversion_qprintf_c()
 {
-	static char    *x = "$Id: qprintf.c,v 1.3 2019-07-18 10:08:45+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: qprintf.c,v 1.4 2021-05-26 11:58:45+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
