@@ -1,5 +1,8 @@
 /*
  * $Log: leapsecs_read.c,v $
+ * Revision 1.5  2021-05-28 22:34:42+05:30  Cprogrammer
+ * use config.h for SYSCONFIGDIR to read leapsecs.dat
+ *
  * Revision 1.4  2018-01-09 11:44:10+05:30  Cprogrammer
  * moved leapsecs.dat to /etc/indimail
  *
@@ -13,6 +16,9 @@
  * Initial revision
  *
  */
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -35,9 +41,7 @@ leapsecs_read()
 	int             i;
 	struct tai      u;
 
-	fd = open("leapsecs.dat", O_RDONLY | O_NDELAY);
-	if (fd == -1)
-	{
+	if ((fd = open(SYSCONFDIR"/leapsecs.dat", O_RDONLY | O_NDELAY)) == -1) {
 		if (errno != ENOENT)
 			return -1;
 		if (leapsecs)
@@ -47,31 +51,26 @@ leapsecs_read()
 		return 0;
 	}
 
-	if (fstat(fd, &st) == -1)
-	{
+	if (fstat(fd, &st) == -1) {
 		close(fd);
 		return -1;
 	}
 
-	t = (struct tai *) malloc(st.st_size);
-	if (!t)
-	{
+	if (!(t = (struct tai *) malloc(st.st_size))) {
 		close(fd);
 		return -1;
 	}
 
 	n = read(fd, (char *) t, st.st_size);
 	close(fd);
-	if (n != st.st_size)
-	{
+	if (n != st.st_size) {
 		free(t);
 		return -1;
 	}
 
 	n /= sizeof(struct tai);
 
-	for (i = 0; i < n; ++i)
-	{
+	for (i = 0; i < n; ++i) {
 		tai_unpack((char *) &t[i], &u);
 		t[i] = u;
 	}
@@ -87,7 +86,7 @@ leapsecs_read()
 void
 getversion_leapsecs_read_c()
 {
-	static char    *x = "$Id: leapsecs_read.c,v 1.4 2018-01-09 11:44:10+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: leapsecs_read.c,v 1.5 2021-05-28 22:34:42+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

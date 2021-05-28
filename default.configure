@@ -60,4 +60,4 @@ case "$SYSTEM" in
 esac
 ./configure --prefix=$prefix --mandir=$mandir \
   --libdir=$libdir --with-pkgconfigdir=$pkgconfigdir \
-  $extra
+  --sysconfdir=/etc/indimail $extra

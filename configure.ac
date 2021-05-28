@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.24  2021-05-28 22:33:11+05:30  Cprogrammer
+# define SYSCONFDIR for leapsecs.dat
+#
 # Revision 1.23  2021-05-04 14:17:42+05:30  Cprogrammer
 # removed -lssl from link
 #
@@ -70,7 +73,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.23 2021-05-04 14:17:42+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.24 2021-05-28 22:33:11+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),indimail, [https://github.com/mbhangui/libqmail])
@@ -204,6 +207,7 @@ AC_DEFINE_UNQUOTED(DES_HASH,0,Enable DES Encryption)
 AC_DEFINE_UNQUOTED(MD5_HASH,1,Enable MD5 Encryption)
 AC_DEFINE_UNQUOTED(SHA256_HASH,2,Enable SHA256 Encryption)
 AC_DEFINE_UNQUOTED(SHA512_HASH,3,Enable SHA512 Encryption)
+AC_DEFINE_UNQUOTED(SYSCONFDIR,"$sysconfdir", Directory for leapsecs.dat)
 
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
