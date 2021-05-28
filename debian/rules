@@ -27,6 +27,7 @@ build-stamp:
 	#
 	./configure $(shell dpkg-buildflags --export=cmdline) \
 		--prefix=$(prefix) --libdir=$(prefix)/$(libd) \
+		--sysconfdir=/etc/indimail \
 		--with-pkgconfigdir=/usr/lib/pkgconfig --mandir=$(mandir)
 	$(MAKE) -s DESTDIR=$(DESTDIR)
 	${rm} -rf $(DESTDIR)$(prefix)/$(libd)/*.la

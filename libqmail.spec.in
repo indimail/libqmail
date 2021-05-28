@@ -86,7 +86,7 @@ necessary to develop qmail applications
 %setup -q
 
 %build
-%configure --prefix=/usr
+%configure --prefix=/usr --sysconfdir=/etc/indimail
 
 %install
 %{__make} -s %{?_smp_mflags}
