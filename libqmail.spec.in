@@ -159,6 +159,7 @@ necessary to develop qmail applications
 %attr(644,root,root)                    %{_prefix}/include/qmail/pathexec.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/pw_comp.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/qprintf.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/qtime.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/readclose.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/ripemd.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/scan.h
