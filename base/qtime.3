@@ -1,0 +1,58 @@
+.TH CTIME 3 
+.SH NAME
+qtime transform date and time to ASCII
+.SH SYNOPSIS
+.nf
+.B #include <datetime.h>
+.PP
+.BI "char *qtime(const datetime_sec dts );
+.fi
+.PP
+.ad
+.SH DESCRIPTION
+The
+.BR qtime (),
+function take an argument of data type \fIdatetime_sec\fP, which
+represents calendar time. When interpreted as an absolute time value, it
+represents number of real-time seconds that have elapsed since the end of
+1969 TAI.
+.PP
+.BI qtime( dts )
+converts the calendar time \fIt\fP into a
+null-terminated string of the form
+.PP
+.in +4n
+.EX
+"Tue Jun 30 09:28:41 2021\en"
+.EE
+.in
+.PP
+The abbreviations for the days of the week are "Sun", "Mon", "Tue", "Wed",
+"Thu", "Fri", and "Sat".
+The abbreviations for the months are "Jan",
+"Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", and
+"Dec".
+The return value points to a statically allocated string which
+might be overwritten by subsequent calls to any of the date and time
+functions.
+
+.SH RETURN VALUE
+On success,
+.BR qtime ()
+return a pointer to a string.
+
+.SH SEE ALSO
+.BR date (1),
+.BR gettimeofday (2),
+.BR time (2),
+.BR utime (2),
+.BR clock (3),
+.BR difftime (3),
+.BR strftime (3),
+.BR strptime (3),
+.BR datetime (3),
+.BR caltime (3),
+.BR caltime_tai (3),
+.BR timegm (3),
+.BR tzset (3),
+.BR time (7)

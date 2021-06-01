@@ -24,6 +24,8 @@ Release 1.1 Start 14/02/2021
 11. configure.ac: define SYSCONFDIR for leapsecs.dat
 12. leapsecs_read.c: use SYSCONFDIR for leapsecs.dat
 13. default.configure: added --syscondir=/etc/indimail
+- 01/06/2021
+14. added qtime() function - qtime.c, qtime.h, qtime.3
 
 * Sunday 14 February 2021 11:27:21 PM IST
 Release 1.0 Start 21/05/2020
