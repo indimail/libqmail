@@ -1,5 +1,8 @@
 /*
  * $Log: str.h,v $
+ * Revision 1.10  2021-06-10 10:50:30+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.9  2020-11-22 23:53:43+05:30  Cprogrammer
  * use const keyword
  *
@@ -33,11 +36,11 @@ unsigned int    str_copyb(char *, const char *, unsigned int);
 int             str_diff(const char *, const char *);
 int             str_diffn(const char *, const char *, unsigned int);
 unsigned int    str_len(const char *);
-unsigned int    str_chr(const char *, int);
-unsigned int    str_rchr(const char *, int);
+unsigned int    str_chr(char *, int);
+char           *str_chrn(char *, int, int);
+unsigned int    str_rchr(char *, int);
 int             str_start(const char *, const char *);
 int             str_end(const char *, const char *);
-char           *str_chrn(const char *, int, int);
 char           *str_str(const char *, const char *);
 #include <sys/types.h>
 size_t          str_cspn(const char *, register const char *);

@@ -1,5 +1,8 @@
 /*
  * $Log: datetime_un.c,v $
+ * Revision 1.4  2021-06-10 10:50:03+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.3  2004-10-22 20:24:16+05:30  Cprogrammer
  * added RCS id
  *
@@ -13,8 +16,7 @@
  * roughly 100x faster than mktime() 
  */
 datetime_sec
-datetime_untai(dt)
-	struct datetime *dt;
+datetime_untai(const struct datetime *dt)
 {
 	int             year;
 	int             day;
@@ -57,7 +59,7 @@ datetime_untai(dt)
 void
 getversion_datetime_un_c()
 {
-	static char    *x = "$Id: datetime_un.c,v 1.3 2004-10-22 20:24:16+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: datetime_un.c,v 1.4 2021-06-10 10:50:03+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

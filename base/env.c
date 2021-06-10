@@ -1,5 +1,8 @@
 /*
  * $Log: env.c,v $
+ * Revision 1.8  2021-06-10 10:50:09+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.7  2020-11-22 23:51:11+05:30  Cprogrammer
  * use const keyword
  *
@@ -109,7 +112,7 @@ env_add(const char *s)
 			return 0;
 		}
 	}
-	environ[en++] = s;
+	environ[en++] = (char *) s;
 	environ[en] = 0;
 	return 1;
 }
@@ -222,7 +225,7 @@ restore_env()
 void
 getversion_env_c()
 {
-	static char    *x = "$Id: env.c,v 1.7 2020-11-22 23:51:11+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: env.c,v 1.8 2021-06-10 10:50:09+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

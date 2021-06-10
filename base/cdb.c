@@ -1,5 +1,8 @@
 /*
  * $Log: cdb.c,v $
+ * Revision 1.3  2021-06-10 10:49:51+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.2  2020-11-22 23:50:37+05:30  Cprogrammer
  * use const keyword
  *
@@ -84,7 +87,7 @@ cdb_read(struct cdb *c, char *buf, unsigned int len, uint32 pos)
 }
 
 static int
-match(struct cdb *c, char *key, unsigned int len, uint32 pos)
+match(struct cdb *c, const char *key, unsigned int len, uint32 pos)
 {
 	char            buf[32];
 	int             n;
@@ -166,7 +169,7 @@ cdb_find(struct cdb *c, const char *key, unsigned int len)
 void
 getversion_cdb_c()
 {
-	static char    *x = "$Id: cdb.c,v 1.2 2020-11-22 23:50:37+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: cdb.c,v 1.3 2021-06-10 10:49:51+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
