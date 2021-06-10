@@ -73,13 +73,14 @@ include_HEADERS = base/alloc.h base/base64.h base/builtinoflmacros.h \
 	base/fd.h base/fifo.h base/fmt.h base/gen_allocdefs.h base/gen_alloc.h \
 	base/getEnvConfig.h base/getln.h base/global.h base/hasbltnofl.h \
 	base/hmac.h base/in_crypt.h base/iopause.h base/leapsecs.h base/lock.h \
-	base/md5.h base/makesalt.h base/mess822.h base/mkpasswd.h \
-	base/ndelay.h base/now.h base/open.h base/openreadclose.h \
-	base/pathexec.h base/pw_comp.h base/qtime.h base/readclose.h \
-	base/rewritehost.h base/ripemd.h base/scan.h base/sconfig.h base/seek.h \
-	base/select.h base/setuserid.h base/sgetopt.h base/sha1.h base/sig.h \
-	base/stralloc.h base/strerr.h base/str.h base/strmsg.h base/subfd.h \
-	base/subgetopt.h base/substdio.h base/taia.h base/tai.h base/tai2.h \
+	base/makeargs.h base/makesalt.h base/md5.h base/mess822.h base/mkpasswd.h \
+	base/mktempfile.h base/ndelay.h base/now.h base/open.h \
+	base/openreadclose.h base/pathexec.h base/pw_comp.h base/qtime.h \
+	base/readclose.h base/rewritehost.h base/ripemd.h base/scan.h \
+	base/sconfig.h base/seek.h base/select.h base/setuserid.h \
+	base/sgetopt.h base/sha1.h base/sig.h base/stralloc.h base/strerr.h \
+	base/str.h base/strmsg.h base/subfd.h base/subgetopt.h \
+	base/substdio.h base/taia.h base/tai.h base/tai2.h \
 	base/timeoutread.h base/timeoutwrite.h base/timestamp.h base/typesx.h \
 	base/uint16.h base/uint32.h base/uint64.h base/wait.h base/qprintf.h \
 	array/array.h textcode/entities.h textcode/textcode.h base/likely.h \
@@ -106,12 +107,13 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
 	base/hmac_md5.c base/hmac_ripemd.c base/hmac_sha1.c base/hmac_sha256.c \
 	base/hmac_sha512.c base/in_crypt.c base/iopause.c base/leapsecs_add.c \
 	base/leapsecs_init.c base/leapsecs_read.c base/leapsecs_sub.c base/lock_ex.c \
-	base/lock_exnb.c base/lock_un.c base/makesalt.c base/md5.c \
+	base/lock_exnb.c base/lock_un.c base/makeargs.c base/makesalt.c base/md5.c \
 	base/md5_crypt.c base/mess822_addr.c base/mess822_fold.c base/mess822_line.c \
 	base/mess822_quote.c base/mess822_when.c base/mess822_date.c base/mess822.h \
-	base/mess822_ok.c base/mess822_token.c base/ndelay.c base/ndelay_off.c \
-	base/now.c base/open_append.c base/open_excl.c base/open_read.c \
-	base/open_readwrite.c base/open_trunc.c base/open_write.c base/openreadclose.c \
+	base/mess822_ok.c base/mess822_token.c base/mktempfile.c \
+	base/ndelay.c base/ndelay_off.c base/now.c base/open_append.c \
+	base/open_excl.c base/open_read.c base/open_readwrite.c \
+	base/open_trunc.c base/open_write.c base/openreadclose.c \
 	base/mkpasswd.c base/pathexec_env.c base/pathexec_run.c base/pw_comp.c \
 	base/qprintf.c base/qtime.c base/readclose.c base/rewritehost.c \
 	base/scan_8long.c base/scan_double.c base/scan_fromhex.c base/scan_int.c \
