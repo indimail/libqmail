@@ -4,13 +4,13 @@
  * changed return type of alloc() to void *
  *
  * Revision 1.6  2020-10-18 09:28:24+05:30  Cprogrammer
- * fix overwriting unallocate memory location when new_size < old_size
+ * fix overwriting unallocated memory location when new_size < old_size
  *
  * Revision 1.5  2004-10-22 20:18:06+05:30  Cprogrammer
  * added RCS id
  *
  * Revision 1.4  2004-10-11 13:48:32+05:30  Cprogrammer
- * prevent inclusing of alloc.h with prototypes
+ * prevent inclusion of alloc.h with prototypes
  *
  * Revision 1.3  2004-07-17 21:14:39+05:30  Cprogrammer
  * added RCS log
