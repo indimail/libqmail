@@ -112,7 +112,7 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
 	base/mess822_quote.c base/mess822_when.c base/mess822_date.c base/mess822.h \
 	base/mess822_ok.c base/mess822_token.c base/mktempfile.c \
 	base/ndelay.c base/ndelay_off.c base/now.c base/open_append.c \
-	base/open_excl.c base/open_read.c base/open_readwrite.c \
+	base/open_excl.c base/open_exclr.c base/open_read.c base/open_readwrite.c \
 	base/open_trunc.c base/open_write.c base/openreadclose.c \
 	base/mkpasswd.c base/pathexec_env.c base/pathexec_run.c base/pw_comp.c \
 	base/qprintf.c base/qtime.c base/readclose.c base/rewritehost.c \
@@ -377,6 +377,7 @@ base/ndelay.lo: ndelay.h
 base/ndelay_off.lo: ndelay.h
 base/open_append.lo: open.h
 base/open_excl.lo: open.h
+base/open_exclr.lo: open.h
 base/open_read.lo: open.h
 base/open_write.lo: open.h
 base/open_trunc.lo: open.h
