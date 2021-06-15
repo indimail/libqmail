@@ -186,6 +186,7 @@ necessary to develop qmail applications
 %attr(644,root,root)                    %{_prefix}/include/qmail/timeoutread.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/timeoutwrite.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/timestamp.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/token822.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/typesx.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/uint16.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/uint32.h

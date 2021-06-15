@@ -81,10 +81,10 @@ include_HEADERS = base/alloc.h base/base64.h base/builtinoflmacros.h \
 	base/setuserid.h base/sgetopt.h base/sha1.h base/sig.h base/stralloc.h \
 	base/strerr.h base/str.h base/strmsg.h base/subfd.h base/subgetopt.h \
 	base/substdio.h base/taia.h base/tai.h base/tai2.h \
-	base/timeoutread.h base/timeoutwrite.h base/timestamp.h base/typesx.h \
-	base/uint16.h base/uint32.h base/uint64.h base/wait.h base/qprintf.h \
-	array/array.h textcode/entities.h textcode/textcode.h base/likely.h \
-	base/iarray.h base/safemult.h base/rangecheck.h
+	base/timeoutread.h base/timeoutwrite.h base/timestamp.h base/token822.h \
+	base/typesx.h base/uint16.h base/uint32.h base/uint64.h base/wait.h \
+	base/qprintf.h array/array.h textcode/entities.h textcode/textcode.h \
+	base/likely.h base/iarray.h base/safemult.h base/rangecheck.h
 
 includedir=@prefix@/include/qmail
 COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
@@ -139,8 +139,8 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
 	base/tai64n_decode.c base/tai64n_encode.c base/tai_add.c base/tai_decode.c \
 	base/tai_encode.c base/tai_now.c base/tai_pack.c base/tai_sub.c \
 	base/tai_uint.c base/tai_unpack.c base/timeoutread.c base/timeoutwrite.c \
-	base/timestamp.c base/uint16_pack.c base/uint16_read.c base/uint16_unpack.c \
-	base/uint32_pack.c base/uint32_read.c base/uint32_unpack.c \
+	base/timestamp.c base/token822.c base/uint16_pack.c base/uint16_read.c \
+	base/uint16_unpack.c base/uint32_pack.c base/uint32_read.c base/uint32_unpack.c \
 	base/wait_nohang.c base/wait_pid.c \
 	textcode/base64url.c textcode/fmt_asn1derlength.c \
 	textcode/fmt_asn1dertag.c textcode/fmt_base64.c \
@@ -334,6 +334,7 @@ base/cdb_make.lo: cdb.h cdbmake.h uint32.h
 base/cdbmake_pack.lo: cdbmake.h uint32.h
 base/cdbmake_hash.lo: cdbmake.h uint32.h
 base/cdbmake_add.lo: cdbmake.h alloc.h uint32.h
+base/cdbmss.lo: cdbmss.h seek.h alloc.h
 base/digest_md5.lo: global.h md5.h
 base/fifo.lo: hasmkffo.h fifo.h
 base/fmt_str.lo: fmt.h
@@ -428,6 +429,7 @@ base/taia_half.lo: taia.h uint32.h
 base/taia_addsec.lo: taia.h
 base/timeoutread.lo: timeoutread.h select.h error.h
 base/timeoutwrite.lo: timeoutwrite.h select.h error.h
+base/token822.lo: token822.h stralloc.h alloc.h str.h gen_allocdefs.h
 base/uint32_pack.lo: uint32.h
 base/uint32_read.lo: uint32.h
 base/uint32_unpack.lo: uint32.h
