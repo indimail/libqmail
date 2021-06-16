@@ -1,5 +1,8 @@
 /*
  * $Log: pw_comp.c,v $
+ * Revision 1.3  2021-06-16 17:36:17+05:30  Cprogrammer
+ * added hmac_sha224, hmac_sha384 functions
+ *
  * Revision 1.2  2021-06-16 16:44:50+05:30  Cprogrammer
  * compile hmac_sha256, hmac_512 if HAVE_SSL is defined
  *
@@ -106,10 +109,32 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 			return (i);
 	}
 #ifdef HAVE_SSL
+	if ((!auth_method && !env_get("DISABLE_CRAM_SHA224")) || auth_method == AUTH_CRAM_SHA224) {
+		hmac_sha224(challenge, (int) str_len((char *) challenge), localpw,
+			(int) str_len((char *) localpw), digest);
+		for (i = 0, e = (char *) digascii; i < 28; i++) {
+			*e++ = hextab[digest[i]/16];
+			*e++ = hextab[digest[i]%16];
+		}
+		*e = 0;
+		if (!(i = str_diff((char *) digascii, (char *) response)))
+			return (i);
+	}
 	if ((!auth_method && !env_get("DISABLE_CRAM_SHA256")) || auth_method == AUTH_CRAM_SHA256) {
 		hmac_sha256(challenge, (int) str_len((char *) challenge), localpw,
 			(int) str_len((char *) localpw), digest);
 		for (i = 0, e = (char *) digascii; i < 32; i++) {
+			*e++ = hextab[digest[i]/16];
+			*e++ = hextab[digest[i]%16];
+		}
+		*e = 0;
+		if (!(i = str_diff((char *) digascii, (char *) response)))
+			return (i);
+	}
+	if ((!auth_method && !env_get("DISABLE_CRAM_SHA384")) || auth_method == AUTH_CRAM_SHA384) {
+		hmac_sha384(challenge, (int) str_len((char *) challenge), localpw,
+			(int) str_len((char *) localpw), digest);
+		for (i = 0, e = (char *) digascii; i < 48; i++) {
 			*e++ = hextab[digest[i]/16];
 			*e++ = hextab[digest[i]%16];
 		}
@@ -157,7 +182,7 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 void
 getversion_pw_comp_c()
 {
-	static char    *x = "$Id: pw_comp.c,v 1.2 2021-06-16 16:44:50+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: pw_comp.c,v 1.3 2021-06-16 17:36:17+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

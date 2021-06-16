@@ -104,11 +104,12 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
 	base/fmt_plusminus.c base/fmt_str.c base/fmt_strn.c base/fmt_uint0.c \
 	base/fmt_uint.c base/fmt_ulong.c base/fmt_ulonglong.c base/fmt_ushort.c \
 	base/fmt_xlong.c base/getEnvConfig.c base/getln2.c base/getln.c \
-	base/hmac_md5.c base/hmac_ripemd.c base/hmac_sha1.c base/hmac_sha256.c \
-	base/hmac_sha512.c base/in_crypt.c base/iopause.c base/leapsecs_add.c \
-	base/leapsecs_init.c base/leapsecs_read.c base/leapsecs_sub.c base/lock_ex.c \
-	base/lock_exnb.c base/lock_un.c base/makeargs.c base/makesalt.c base/md5.c \
-	base/md5_crypt.c base/mess822_addr.c base/mess822_fold.c base/mess822_line.c \
+	base/hmac_md5.c base/hmac_ripemd.c base/hmac_sha1.c base/hmac_sha224.c \
+	base/hmac_sha256.c base/hmac_sha384.c base/hmac_sha512.c base/in_crypt.c \
+	base/iopause.c base/leapsecs_add.c base/leapsecs_init.c base/leapsecs_read.c \
+	base/leapsecs_sub.c base/lock_ex.c base/lock_exnb.c base/lock_un.c \
+	base/makeargs.c base/makesalt.c base/md5.c base/md5_crypt.c \
+	base/mess822_addr.c base/mess822_fold.c base/mess822_line.c \
 	base/mess822_quote.c base/mess822_when.c base/mess822_date.c base/mess822.h \
 	base/mess822_ok.c base/mess822_token.c base/mktempfile.c \
 	base/ndelay.c base/ndelay_off.c base/now.c base/open_append.c \

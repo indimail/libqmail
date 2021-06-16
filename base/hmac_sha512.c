@@ -23,8 +23,8 @@ hmac_sha512(const unsigned char *text, /*- pointer to data stream        */
 			void *digest)
 {
 	/*- caller digest to be filled in */
-	unsigned char   k_ipad[128];	/*- inner padding - key XORd with ipad */
-	unsigned char   k_opad[128];	/*- outer padding - key XORd with opad */
+	unsigned char   k_ipad[129];	/*- inner padding - key XORd with ipad */
+	unsigned char   k_opad[129];	/*- outer padding - key XORd with opad */
 	unsigned char   tk[SHA512_DIGEST_LENGTH];
 	unsigned char   tk2[SHA512_DIGEST_LENGTH];
 	unsigned char   bufferIn[1024];
