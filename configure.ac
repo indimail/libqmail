@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.25  2021-06-16 13:24:59+05:30  Cprogrammer
+# added AC_CHECK_LIB(ssl, SSL_CTX_new, ...)
+#
 # Revision 1.24  2021-05-28 22:33:11+05:30  Cprogrammer
 # define SYSCONFDIR for leapsecs.dat
 #
@@ -73,7 +76,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.24 2021-05-28 22:33:11+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.25 2021-06-16 13:24:59+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),indimail, [https://github.com/mbhangui/libqmail])
@@ -131,6 +134,7 @@ if test "$ac_cv_func_flock" = yes ; then
 	AC_DEFINE([HAVE_FLOCK], [1], [flock function])
 fi
 
+AC_CHECK_LIB(ssl, SSL_CTX_new, [AC_SUBST([LIB_SSL], ["-lssl"]) AC_DEFINE([HAVE_SSL], [1],[OpenSSL Library])],,-lssl)
 AC_CHECK_LIB(crypto, CRYPTO_new_ex_data, [AC_SUBST([LIB_CRYPTO], ["-lcrypto"]) AC_DEFINE([HAVE_CRYPTO], [1],[Crypto Library])],,-lcrypto)
 AC_CHECK_LIB(crypt, crypt, [AC_SUBST([LIB_CRYPT], ["-lcrypt"]) AC_DEFINE([HAVE_CRYPT], [1],[crypt Library])],,)
 
@@ -153,7 +157,10 @@ fi
 
 if test " $pkgconfigdir" = " "
 then
-	if test -d $prefix/libdata/pkgconfig
+	if test -d $prefix/lib/pkgconfig
+	then
+		pkgconfigdir=$prefix/lib/pkgconfig
+	elif test -d $prefix/libdata/pkgconfig
 	then
 		pkgconfigdir=$prefix/libdata/pkgconfig
 	else
