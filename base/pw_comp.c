@@ -1,5 +1,8 @@
 /*
  * $Log: pw_comp.c,v $
+ * Revision 1.2  2021-06-16 13:58:13+05:30  Cprogrammer
+ * compile hmac_sha256, hmac_512 if HAVE_SSL is defined
+ *
  * Revision 1.1  2020-04-01 18:16:26+05:30  Cprogrammer
  * Initial revision
  *
@@ -76,6 +79,8 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 		}
 		return (i);
 	}
+	if (!challenge || (challenge && !*challenge))
+		return (1);
 	if ((!auth_method && !env_get("DISABLE_CRAM_MD5")) || auth_method == AUTH_CRAM_MD5) {
 		hmac_md5(challenge, (int) str_len((char *) challenge), localpw,
 			(int) str_len((char *) localpw), digest);
@@ -98,6 +103,7 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 		if (!(i = str_diff((char *) digascii, (char *) response)))
 			return (i);
 	}
+#ifdef HAVE_SSL
 	if ((!auth_method && !env_get("DISABLE_CRAM_SHA256")) || auth_method == AUTH_CRAM_SHA256) {
 		hmac_sha256(challenge, (int) str_len((char *) challenge), localpw,
 			(int) str_len((char *) localpw), digest);
@@ -109,6 +115,18 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 		if (!(i = str_diff((char *) digascii, (char *) response)))
 			return (i);
 	}
+	if ((!auth_method && !env_get("DISABLE_CRAM_SHA512")) || auth_method == AUTH_CRAM_SHA512) {
+		hmac_sha512(challenge, (int) str_len((char *) challenge), localpw,
+			(int) str_len((char *) localpw), digest);
+		digascii[40] = 0;
+		for (i=0, e = (char *) digascii; i<20; i++) {
+			*e = hextab[digest[i]/16]; ++e;
+			*e = hextab[digest[i]%16]; ++e;
+		} *e = 0;
+		if (!(i = str_diff((char *) digascii, (char *) response)))
+			return (i);
+	}
+#endif
 	if ((!auth_method && !env_get("DISABLE_CRAM_RIPEMD")) || auth_method == AUTH_CRAM_RIPEMD) {
 		hmac_ripemd(challenge, (int) str_len((char *) challenge), localpw,
 			(int) str_len((char *) localpw), digest);
@@ -138,7 +156,7 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 void
 getversion_pw_comp_c()
 {
-	static char    *x = "$Id: pw_comp.c,v 1.1 2020-04-01 18:16:26+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: pw_comp.c,v 1.2 2021-06-16 13:58:13+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

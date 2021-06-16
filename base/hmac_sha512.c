@@ -1,5 +1,8 @@
 /*
  * $Log: hmac_sha512.c,v $
+ * Revision 1.2  2021-06-16 13:47:56+05:30  Cprogrammer
+ * compile ssl code if HAVE_SSL is defined
+ *
  * Revision 1.1  2020-04-01 18:05:13+05:30  Cprogrammer
  * Initial revision
  *
@@ -8,6 +11,7 @@
  *
  */
 
+#ifdef HAVE_SSL
 #include <string.h>
 #include <openssl/x509.h>
 #include <openssl/hmac.h>
@@ -19,7 +23,7 @@ hmac_sha512(const unsigned char *text, /*- pointer to data stream        */
 			size_t key_len,			   /*- length of authentication key  */
 			void *digest)
 {
-/*- caller digest to be filled in */
+	/*- caller digest to be filled in */
 	unsigned char   k_ipad[128];	/*- inner padding - key XORd with ipad */
 	unsigned char   k_opad[128];	/*- outer padding - key XORd with opad */
 	unsigned char   tk[SHA512_DIGEST_LENGTH];
@@ -29,7 +33,7 @@ hmac_sha512(const unsigned char *text, /*- pointer to data stream        */
 	int             i;
 
 	/*
- 	 * if key is longer than 64 bytes reset it to key=sha256(key) 
+ 	 * if key is longer than 128 bytes reset it to key=sha512(key) 
  	 */
 	if (key_len > 128) {
 		SHA512(key, key_len, tk);
@@ -74,11 +78,14 @@ hmac_sha512(const unsigned char *text, /*- pointer to data stream        */
 
 	SHA512(bufferOut, 128 + SHA512_DIGEST_LENGTH, digest);
 }
+#else
+#warning "ssl development library missing / not compiled with -DHAVE_SSL"
+#endif
 
 void
 getversion_hmac_sha512_c()
 {
-	static char    *x = "$Id: hmac_sha512.c,v 1.1 2020-04-01 18:05:13+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: hmac_sha512.c,v 1.2 2021-06-16 13:47:56+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

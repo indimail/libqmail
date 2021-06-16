@@ -1,22 +1,26 @@
 /*
  * $Log: hmac_sha256.c,v $
+ * Revision 1.2  2021-06-16 13:26:21+05:30  Cprogrammer
+ * compile ssl code if HAVE_SSL is defined
+ *
  * Revision 1.1  2020-04-01 18:04:26+05:30  Cprogrammer
  * Initial revision
  *
  */
 
+#ifdef HAVE_SSL
 #include <string.h>
 #include <openssl/x509.h>
 #include <openssl/hmac.h>
 
 void
-hmac_sha256(const unsigned char *text, /*- pointer to data stream        */
-			size_t text_len,			   /*- length of data stream         */
-			const unsigned char *key,  /*- pointer to authentication key */
-			size_t key_len,			   /*- length of authentication key  */
+hmac_sha256(const unsigned char *text,	/*- pointer to data stream */
+			size_t text_len,			/*- length of data stream */
+			const unsigned char *key,	/*- pointer to authentication key */
+			size_t key_len,				/*- length of authentication key  */
 			void *digest)
 {
-/*- caller digest to be filled in */
+	/*- caller digest to be filled in */
 	unsigned char   k_ipad[65];	/*- inner padding - key XORd with ipad */
 	unsigned char   k_opad[65];	/*- outer padding - key XORd with opad */
 	unsigned char   tk[SHA256_DIGEST_LENGTH];
@@ -71,11 +75,14 @@ hmac_sha256(const unsigned char *text, /*- pointer to data stream        */
 
 	SHA256(bufferOut, 64 + SHA256_DIGEST_LENGTH, digest);
 }
+#else
+#warning "ssl development library missing / not compiled with -DHAVE_SSL"
+#endif
 
 void
 getversion_hmac_sha256_c()
 {
-	static char    *x = "$Id: hmac_sha256.c,v 1.1 2020-04-01 18:04:26+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: hmac_sha256.c,v 1.2 2021-06-16 13:26:21+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
