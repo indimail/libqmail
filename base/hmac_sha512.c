@@ -1,16 +1,15 @@
 /*
  * $Log: hmac_sha512.c,v $
- * Revision 1.2  2021-06-16 13:47:56+05:30  Cprogrammer
- * compile ssl code if HAVE_SSL is defined
+ * Revision 1.2  2021-06-16 14:09:06+05:30  Cprogrammer
+ * compile hmac_sha512 if HAVE_SSL is defined
  *
  * Revision 1.1  2020-04-01 18:05:13+05:30  Cprogrammer
  * Initial revision
- *
- * Revision 1.1  2019-04-18 07:52:01+05:30  Cprogrammer
- * Initial revision
- *
  */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 #ifdef HAVE_SSL
 #include <string.h>
 #include <openssl/x509.h>
@@ -85,7 +84,7 @@ hmac_sha512(const unsigned char *text, /*- pointer to data stream        */
 void
 getversion_hmac_sha512_c()
 {
-	static char    *x = "$Id: hmac_sha512.c,v 1.2 2021-06-16 13:47:56+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: hmac_sha512.c,v 1.2 2021-06-16 14:09:06+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
