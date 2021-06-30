@@ -34,6 +34,10 @@ Release 1.1 Start 14/02/2021
 - 16/06/2021
 18. configure.ac: added AC_CHECK_LIB(ssl, SSL_CTX_new, ...)
 19. added hmac_sha224, hmac_sha384 functions
+- 30/06/2021
+20. strerr.h: added STRERR2, STRERR3, STRERR_SYS2 macros
+21. envdir.c: hyperlink feature using .dir link/dir to traverse multiple
+    directories.
 
 * Sunday 14 February 2021 11:27:21 PM IST
 Release 1.0 Start 21/05/2020
