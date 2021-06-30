@@ -1,5 +1,8 @@
 /*
  * $Log: strerr.h,v $
+ * Revision 1.8  2021-06-30 14:16:15+05:30  Cprogrammer
+ * added STRERR2, STRERR3, STRERR_SYS2 macros
+ *
  * Revision 1.7  2020-11-24 13:34:28+05:30  Cprogrammer
  * added noreturn attribute for strerr_die()
  *
@@ -48,9 +51,15 @@ void            strerr_die(int, c_char *, c_char *, c_char *, c_char *,
 
 #define STRERR(r,se,a) \
 { se.who = 0; se.x = a; se.y = 0; se.z = 0; return r; }
+#define STRERR2(r,se,a,b) \
+{ se.who = 0; se.x = a; se.y = b; se.z = 0; return r; }
+#define STRERR3(r,se,a,b,c) \
+{ se.who = 0; se.x = a; se.y = b; se.z = c; return r; }
 
 #define STRERR_SYS(r,se,a) \
 { se.who = &strerr_sys; se.x = a; se.y = 0; se.z = 0; return r; }
+#define STRERR_SYS2(r,se,a,b) \
+{ se.who = &strerr_sys; se.x = a; se.y = b; se.z = 0; return r; }
 #define STRERR_SYS3(r,se,a,b,c) \
 { se.who = &strerr_sys; se.x = a; se.y = b; se.z = c; return r; }
 
