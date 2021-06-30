@@ -1,5 +1,8 @@
 /*
  * $Log: envdir.c,v $
+ * Revision 1.4  2021-06-30 14:15:59+05:30  Cprogrammer
+ * hyperlink feature using .dir link/dir to traverse multiple directories
+ *
  * Revision 1.3  2021-05-13 12:20:47+05:30  Cprogrammer
  * refactored envdir_set and renamed to envdir
  *
@@ -11,7 +14,11 @@
  *
  */
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include "alloc.h"
 #include "error.h"
+#include "str.h"
 #include "open.h"
 #include "pathexec.h"
 #include "openreadclose.h"
@@ -38,8 +45,32 @@ envdir_str(int code)
 			return "unable to switch back to original directory";
 		case -6:
 			return "out of memory";
+		case -7:
+			return "recursive loop";
 	}
 	return "unkown error";
+}
+
+int
+if_visited(ino_t inum)
+{
+	int            i;
+	static ino_t  *ino_ptr;
+	static int     ino_count;
+
+	if (ino_ptr) {
+		for (i = 0; i < ino_count; i++) {
+			if (ino_ptr[i] == inum)
+				return 1;
+		}
+		if (!alloc_re(&ino_ptr, sizeof(ino_t) * ino_count, sizeof(ino_t) * (ino_count + 1)))
+			return -6; /*- out of memory */
+	} else {
+		if (!(ino_ptr = (ino_t *) alloc(sizeof(ino_t) * (ino_count + 1))))
+			return -6; /*- out of memory */
+	}
+	ino_ptr[ino_count++] = inum;
+	return 0;
 }
 
 int
@@ -47,46 +78,61 @@ envdir(char *fn, char **e)
 {
 	DIR            *dir;
 	direntry       *d;
-	int             i, fdorigdir;
+	struct stat     st;
+	int             i, j, fdorigdir;
 
+	if (lstat(".", &st) == -1)
+		return -2;
+	if ((j = if_visited(st.st_ino)) == -6)
+		return -6;
+	else
+	if (j)
+		return -7;
 	if ((fdorigdir = open_read(".")) == -1)
 		return -2; /*- unable open current directory */
 	if (chdir(fn) == -1)
 		return -3; /*- unable to switch to directory */
 	if (!(dir = opendir(".")))
 		return -4; /*- unable to read env directory */
-	for (;;) {
+	for (j = 1;;) {
 		errno = 0;
 		if (!(d = readdir(dir))) {
 			if (errno)
 				return -4; /*- unable to read env directory */
 			break;
 		}
-		if (d->d_name[0] != '.') {
-			if (openreadclose(d->d_name, &sa, 256) == -1) {
-				if (e)
-					*e = d->d_name;
-				return -1; /*- unable to read */
-			}
-			if (sa.len) {
-				sa.len = byte_chr(sa.s, sa.len, '\n');
-				while (sa.len) {
-					if (sa.s[sa.len - 1] != ' ' && sa.s[sa.len - 1] != '\t')
-						break;
-					--sa.len;
-				}
-				for (i = 0; i < sa.len; ++i) {
-					if (!sa.s[i])
-						sa.s[i] = '\n';
-				}
-				if (!stralloc_0(&sa))
-					return -6; /*- out of memory */
-				if (!pathexec_env(d->d_name, sa.s))
-					return -6;
-			} else
-			if (!pathexec_env(d->d_name, 0))
-				return -6;
+		if (d->d_name[0] == '.') {
+			if ((j = str_diff(d->d_name, ".dir")))
+				continue;
+		} else
+			j = 1;
+		if (!j && (i = envdir(".dir", e)))
+			return (i);
+		if (!j)
+			continue;
+		if (openreadclose(d->d_name, &sa, 256) == -1) {
+			if (e)
+				*e = d->d_name;
+			return -1; /*- unable to read */
 		}
+		if (sa.len) {
+			sa.len = byte_chr(sa.s, sa.len, '\n');
+			while (sa.len) {
+				if (sa.s[sa.len - 1] != ' ' && sa.s[sa.len - 1] != '\t')
+					break;
+				--sa.len;
+			}
+			for (i = 0; i < sa.len; ++i) {
+				if (!sa.s[i])
+					sa.s[i] = '\n';
+			}
+			if (!stralloc_0(&sa))
+				return -6; /*- out of memory */
+			if (!pathexec_env(d->d_name, sa.s))
+				return -6;
+		} else
+		if (!pathexec_env(d->d_name, 0))
+			return -6;
 	}
 	closedir(dir);
 	if (fchdir(fdorigdir) == -1)
@@ -98,7 +144,7 @@ envdir(char *fn, char **e)
 void
 getversion_envdir_c()
 {
-	static char    *x = "$Id: envdir.c,v 1.3 2021-05-13 12:20:47+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: envdir.c,v 1.4 2021-06-30 14:15:59+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
