@@ -13,14 +13,12 @@ libqmaildir=@libdir@
 BUILT_SOURCES = base/uint32.h base/uint64.h base/haswaitp.h \
 	base/hasflock.h base/hassgact.h base/hassgprm.h base/select.h \
 	base/hasmkffo.h base/direntry.h base/hasbltnofl.h \
-	base/builtinoflmacros.h base/iopause.h base/haveuint128.h \
-	base/hasshsgr.h
+	base/iopause.h base/haveuint128.h base/hasshsgr.h
 
 MOSTLYCLEANFILES = base/uint32.h base/uint64.h base/haswaitp.h \
 	base/hasflock.h base/hassgact.h base/hassgprm.h base/select.h \
 	base/hasmkffo.h base/direntry.h base/hasbltnofl.h \
-	base/builtinoflmacros.h base/iopause.h base/haveuint128.h \
-	base/hasshsgr.h base/chkshsgr
+	base/iopause.h base/haveuint128.h base/hasshsgr.h base/chkshsgr
 
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libqmail.pc
