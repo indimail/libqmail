@@ -10,13 +10,17 @@ libqmail_la_LDFLAGS = -version-info @LIBVER@:0:0
 libqmail_la_CFLAGS = -fPIC
 libqmaildir=@libdir@
 
-BUILT_SOURCES = base/uint32.h base/uint64.h base/haswaitp.h base/hasflock.h \
-	base/hassgact.h base/hassgprm.h base/select.h base/hasmkffo.h base/direntry.h \
-	base/hasbltnofl.h base/builtinoflmacros.h base/iopause.h base/haveuint128.h
+BUILT_SOURCES = base/uint32.h base/uint64.h base/haswaitp.h \
+	base/hasflock.h base/hassgact.h base/hassgprm.h base/select.h \
+	base/hasmkffo.h base/direntry.h base/hasbltnofl.h \
+	base/builtinoflmacros.h base/iopause.h base/haveuint128.h \
+	base/hasshsgr.h
 
-MOSTLYCLEANFILES = base/uint32.h base/uint64.h base/haswaitp.h base/hasflock.h \
-	base/hassgact.h base/hassgprm.h base/select.h base/hasmkffo.h base/hasbltnofl.h \
-	base/iopause.h base/haveuint128.h base/direntry.h
+MOSTLYCLEANFILES = base/uint32.h base/uint64.h base/haswaitp.h \
+	base/hasflock.h base/hassgact.h base/hassgprm.h base/select.h \
+	base/hasmkffo.h base/direntry.h base/hasbltnofl.h \
+	base/builtinoflmacros.h base/iopause.h base/haveuint128.h \
+	base/hasshsgr.h
 
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libqmail.pc
@@ -76,15 +80,16 @@ include_HEADERS = base/alloc.h base/base64.h base/builtinoflmacros.h \
 	base/leapsecs.h base/lock.h base/makeargs.h base/makesalt.h base/md5.h \
 	base/mess822.h base/mkpasswd.h base/mktempfile.h base/ndelay.h \
 	base/now.h base/open.h base/openreadclose.h base/pathexec.h \
-	base/pw_comp.h base/qtime.h base/readclose.h base/rewritehost.h \
-	base/ripemd.h base/scan.h base/sconfig.h base/seek.h base/select.h \
-	base/setuserid.h base/sgetopt.h base/sha1.h base/sig.h base/stralloc.h \
-	base/strerr.h base/str.h base/strmsg.h base/subfd.h base/subgetopt.h \
-	base/substdio.h base/taia.h base/tai.h base/tai2.h \
-	base/timeoutread.h base/timeoutwrite.h base/timestamp.h base/token822.h \
-	base/typesx.h base/uint16.h base/uint32.h base/uint64.h base/wait.h \
-	base/qprintf.h array/array.h textcode/entities.h textcode/textcode.h \
-	base/likely.h base/iarray.h base/safemult.h base/rangecheck.h
+	base/prot.h base/pw_comp.h base/qtime.h base/readclose.h \
+	base/rewritehost.h base/ripemd.h base/scan.h base/sconfig.h \
+	base/seek.h base/select.h base/setuserid.h base/sgetopt.h base/sha1.h \
+	base/sig.h base/stralloc.h base/strerr.h base/str.h base/strmsg.h \
+	base/subfd.h base/subgetopt.h base/substdio.h base/taia.h base/tai.h \
+	base/tai2.h base/timeoutread.h base/timeoutwrite.h base/timestamp.h \
+	base/token822.h base/typesx.h base/uint16.h base/uint32.h \
+	base/uint64.h base/wait.h base/qprintf.h array/array.h \
+	textcode/entities.h textcode/textcode.h base/likely.h base/iarray.h \
+	base/safemult.h base/rangecheck.h
 
 includedir=@prefix@/include/qmail
 COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
@@ -115,10 +120,11 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
 	base/ndelay.c base/ndelay_off.c base/now.c base/open_append.c \
 	base/open_excl.c base/open_exclr.c base/open_read.c base/open_readwrite.c \
 	base/open_trunc.c base/open_write.c base/openreadclose.c \
-	base/mkpasswd.c base/pathexec_env.c base/pathexec_run.c base/pw_comp.c \
-	base/qprintf.c base/qtime.c base/readclose.c base/rewritehost.c \
-	base/scan_8long.c base/scan_double.c base/scan_fromhex.c base/scan_int.c \
-	base/scan_long.c base/scan_plusminus.c base/scan_uint.c base/scan_ulong.c \
+	base/mkpasswd.c base/pathexec_env.c base/pathexec_run.c base/prot.c \
+	base/pw_comp.c base/qprintf.c base/qtime.c base/readclose.c \
+	base/rewritehost.c base/scan_8long.c base/scan_double.c \
+	base/scan_fromhex.c base/scan_int.c base/scan_long.c \
+	base/scan_plusminus.c base/scan_uint.c base/scan_ulong.c \
 	base/scan_ulonglong.c base/scan_ushort.c base/scan_xlong.c base/sconfig.c \
 	base/seek_cur.c base/seek_end.c base/seek_set.c base/seek_trunc.c \
 	base/setuserid.c base/sgetopt.c base/sha256_crypt.c base/sha512_crypt.c \
@@ -189,32 +195,32 @@ conf-version conf-release doc/ChangeLog libqmail.changes
 	cat $@.in | $(edit) > $@
 
 base/hasbltnofl.h: base/trybltnoverflow.c
-	(($(COMPILE) -c base/trybltnoverflow.c && $(CC) \
+	( ( $(COMPILE) -c base/trybltnoverflow.c && $(CC) \
 		-o trybltnoverflow trybltnoverflow.o) > /dev/null 2>&1 \
 	&& echo \#define HAS_BUILTIN_OVERFLOW 1 || \
 		echo \#warning \"builtin overflow unavailable\"; exit 0 ) > base/hasbltnofl.h
 	rm -f trybltnoverflow.o trybltnoverflow
 
 base/uint32.h: base/tryulong32.c base/uint32.h1 base/uint32.h2
-	(( $(COMPILE) -c base/tryulong32.c && $(CC) -o tryulong32 tryulong32.o && \
+	( ( $(COMPILE) -c base/tryulong32.c && $(CC) -o tryulong32 tryulong32.o && \
 	./tryulong32 ) >/dev/null 2>&1 \
 	&& cat base/uint32.h2 || cat base/uint32.h1 ) > base/uint32.h
 	rm -f tryulong32.o tryulong32
 
 base/uint64.h: base/tryulong64.c base/uint64.h1 base/uint64.h2
-	(( $(COMPILE) -c base/tryulong64.c && $(CC) -o tryulong64 tryulong64.o && \
+	( ( $(COMPILE) -c base/tryulong64.c && $(CC) -o tryulong64 tryulong64.o && \
 	./tryulong64 ) >/dev/null 2>&1 \
 	&& cat base/uint64.h1 || cat base/uint64.h2 ) > base/uint64.h
 	rm -f tryulong64.o tryulong64
 
 base/direntry.h: base/trydrent.c base/direntry.h1 base/direntry.h2
-	(( $(COMPILE) -c base/trydrent.c && $(CC) -o trydrent trydrent.o && \
+	( ( $(COMPILE) -c base/trydrent.c && $(CC) -o trydrent trydrent.o && \
 	./trydrent ) >/dev/null 2>&1 \
 	&& cat base/direntry.h1 || cat base/direntry.h2 ) > base/direntry.h
 	rm -f trydrent.o trydrent
 
 base/haswaitp.h: base/trywaitp.c
-	(( $(COMPILE) -c base/trywaitp.c && $(CC) -o trywaitp trywaitp.o ) >/dev/null 2>&1 \
+	( ( $(COMPILE) -c base/trywaitp.c && $(CC) -o trywaitp trywaitp.o ) >/dev/null 2>&1 \
 	&& echo \#define HASWAITPID 1 || exit 0 ) > base/haswaitp.h
 	rm -f trywaitp.o trywaitp
 
@@ -255,6 +261,19 @@ base/iopause.h: base/trypoll.c base/iopause.h1 base/iopause.h2
 	( $(COMPILE) -c trypoll.c >/dev/null 2>&1 \
 	&& cat base/iopause.h2 || cat base/iopause.h1 ) > base/iopause.h
 	rm -f trypoll.o trypoll
+
+base/hasshsgr.h: base/chkshsgr base/warn-shsgr base/tryshsgr.c
+	./base/chkshsgr || ( cat base/warn-shsgr; exit 1 )
+	( ( $(COMPILE) -c base/tryshsgr.c && $(CC) -o tryshsgr tryshsgr.o && \
+	./tryshsgr ) >/dev/null 2>&1 \
+	&& echo \#define HASSHORTSETGROUPS 1 || exit 0 ) > base/hasshsgr.h
+	rm -f tryshsgr.o tryshsgr
+
+base/chkshsgr: base/chkshsgr.o
+	$(CC) -o base/chkshsgr base/chkshsgr.o
+
+base/chkshsgr.o: base/chkshsgr.c
+	$(COMPILE) -c base/chkshsgr.c -o base/chkshsgr.o
 
 base/base64sub.lo: base64.h stralloc.h str.h gen_alloc.h
 base/byte_copy.lo: byte.h
