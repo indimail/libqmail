@@ -1,5 +1,8 @@
 /*
  * $Log: setuserid.c,v $
+ * Revision 1.4  2021-07-03 17:57:34+05:30  Cprogrammer
+ * corrected using setgrent instead of endpwent
+ *
  * Revision 1.3  2020-06-16 16:08:56+05:30  Cprogrammer
  * added RCS id
  *
@@ -54,7 +57,7 @@ grpscan(char *user, int *ngroups)
 		return ((gid_t *) 0);
 	idx = 0;
 	gidset[idx++] = pwd->pw_gid;	/* the base gid */
-	endpwent();
+	setgrent();
 	for (;;) {
 		if (!(grp = getgrent()))
 			break;
@@ -67,7 +70,6 @@ grpscan(char *user, int *ngroups)
 	*ngroups = idx;
 	return (gidset);
 }
-
 
 int
 setuserid(char *user)
@@ -82,7 +84,7 @@ setuserid(char *user)
 		return (-1);
 	uid = pwdent->pw_uid;
 	gid = pwdent->pw_gid;
-	endpwent();
+	setgrent();
 	if (!(gidset = grpscan(user, &ngroups)))
 		return (-1);
 	if (setgroups(ngroups, gidset)) {
@@ -128,7 +130,7 @@ setuser_privileges(uid_t uid, gid_t gid, char *user)
 void
 getversion_setuserid_c()
 {
-	static char    *x = "$Id: setuserid.c,v 1.3 2020-06-16 16:08:56+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: setuserid.c,v 1.4 2021-07-03 17:57:34+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
