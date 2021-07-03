@@ -40,6 +40,7 @@ Release 1.1 Start 14/02/2021
     directories.
 - 03/07/2021
 22. added prot.c, prot.h, qgetpw functions
+23. added getpwent, getgrent routines
 
 * Sunday 14 February 2021 11:27:21 PM IST
 Release 1.0 Start 21/05/2020
