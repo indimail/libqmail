@@ -1,5 +1,8 @@
 /*
  * $Log: qgetpwgr.c,v $
+ * Revision 1.2  2021-07-03 22:05:16+05:30  Cprogrammer
+ * fixed SIGSEGV
+ *
  * Revision 1.1  2021-07-03 17:52:50+05:30  Cprogrammer
  * Initial revision
  *
@@ -203,8 +206,7 @@ qgetgrent_r(struct group *grp, char *buf, size_t buflen, struct group **result)
 				}
 				if (!alloc_re(&gr_mem_ptr, gr_mem_len, g + 1))
 					return errno;
-				if (gr_mem_len < g + 1)
-					gr_mem_len = g + 1;
+				gr_mem_len = g + 1;
 				for (x = y = cptr, i = 0; *x; x++) {
 					if (*x == ',') {
 						*x = 0;
@@ -217,6 +219,7 @@ qgetgrent_r(struct group *grp, char *buf, size_t buflen, struct group **result)
 			} else {
 				if (!alloc_re(&gr_mem_ptr, gr_mem_len, 1))
 					return errno;
+				gr_mem_len = 1;
 				gr_mem_ptr[0] = NULL;
 			}
 			grp->gr_mem = gr_mem_ptr;
@@ -547,7 +550,7 @@ qgetpwent()
 void
 getversion_qgetpwgr_c()
 {
-	static char    *x = "$Id: qgetpwgr.c,v 1.1 2021-07-03 17:52:50+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: qgetpwgr.c,v 1.2 2021-07-03 22:05:16+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
