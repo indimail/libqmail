@@ -8,7 +8,8 @@ int \fBsetuserid\fP(char* \fIuser\fR);
 .SH DESCRIPTION
 
 setuserid sets the effective user ID, effective group ID, supplementary groups of the
-user \fIuser\fR to its id in passwd(5) database. It uses setuid(2), setgid(2), setgroups, getpwnam(3), getgrent(3).
+user \fIuser\fR from uid, gid, supplementary ids from passwd(5), group(5) database.
+It uses setuid(2), setgid(2), setgroups, getpwnam(3), getgrent(3).
 
 setuserid returns -1 on failure, 0 on success
 
@@ -16,7 +17,7 @@ setuserid returns -1 on failure, 0 on success
 setuid(2),
 setgid(2),
 setgroups(2),
-getpwnam(3),
-getgrent(3),
+qgetpwnam(3),
+qgetgrent(3),
 grpscan(3),
 setuser_privileges(3)

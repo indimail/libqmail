@@ -7,10 +7,10 @@ setuser_privileges \- set user identity
 int \fBsetuser_privileges\fP(uid_t \fIuid\fR, gid_t \fIgid\fR, char* \fIuser\fR);
 .SH DESCRIPTION
 
-setuserid sets the effective user ID to \fIuid\fR, effective group
-ID to \fIgid\fR, supplementary groups of the user \fIuser\fR to its
-id in passwd(5) database. It uses setuid(2), setgid(2), setgroups(2),
-getpwnam(3), getgrent(3).
+setuserid_privileges sets the effective user ID to \fIuid\fR, effective
+group ID to \fIgid\fR, supplementary groups of the user \fIuser\fR to its
+uid, gid obtained from passwd(5) and group(5) databases. It uses setuid(2),
+setgid(2), setgroups(2), getpwnam(3), getgrent(3).
 
 setuser_privileges returns -1 on failure, 0 on success
 
@@ -18,7 +18,7 @@ setuser_privileges returns -1 on failure, 0 on success
 setuid(2),
 setgid(2),
 setgroups(2),
-getpwnam(3),
-getgrent(3),
+qgetpwnam(3),
+qgetgrent(3),
 grpscan(3),
 setuserid(3)
