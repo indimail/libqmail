@@ -1,5 +1,8 @@
 /*
  * $Log: qgetpwgr.c,v $
+ * Revision 1.3  2021-07-05 18:14:59+05:30  Cprogrammer
+ * adjusted errno when returning errors
+ *
  * Revision 1.2  2021-07-03 22:05:16+05:30  Cprogrammer
  * fixed SIGSEGV
  *
@@ -84,7 +87,7 @@ qgrinit(int flag)
 			return;
 		}
 		if (!(_grbuf = (char *) alloc(sizeof(char) * i))) {
-			errno = ERANGE;
+			errno = ENOMEM;
 			return;
 		}
 		_grbuf_len = i;
@@ -92,7 +95,7 @@ qgrinit(int flag)
 	if (!flag)
 		return;
 	if (!alloc_re(&_grbuf, _grbuf_len, _grbuf_len + 512)) {
-		errno = ERANGE;
+		errno = ENOMEM;
 		return;
 	}
 	errno = 0;
@@ -110,7 +113,7 @@ qpwinit(int flag)
 			return;
 		}
 		if (!(_pwbuf = (char *) alloc(sizeof(char) * i))) {
-			errno = ERANGE;
+			errno = ENOMEM;
 			return;
 		}
 		_pwbuf_len = i;
@@ -118,7 +121,7 @@ qpwinit(int flag)
 	if (!flag)
 		return;
 	if (!alloc_re(&_pwbuf, _pwbuf_len, _pwbuf_len + 512)) {
-		errno = ERANGE;
+		errno = ENOMEM;
 		return;
 	}
 	errno = ERANGE;
@@ -128,7 +131,7 @@ qpwinit(int flag)
 int
 qgetgrent_r(struct group *grp, char *buf, size_t buflen, struct group **result)
 {
-	int             match, field_count, sv, i, g, pos;
+	int             match, field_count, i, g, pos;
 	char           *ptr, *cptr, *x, *y;
 	static stralloc line = { 0 };
 	static int      _is_open, grfd;
@@ -154,23 +157,22 @@ qgetgrent_r(struct group *grp, char *buf, size_t buflen, struct group **result)
 	for (;;) {
 		pos = grss.p;
 		if (getln(&grss, &line, &match, '\n') == -1) {
-			sv = errno;
 			close(grfd);
 			_is_open = 0;
-			return (errno = sv);
+			return (errno = ETXTBSY);
 		}
 		if (!line.len) {
 			set_grent = 1;
+			errno = 0;
 			return 0;
 		}
 		if (!match)	  /*- partial line */
 			continue;
 		line.s[line.len - 1] = ':';
 		if (!stralloc_0(&line)) {
-			sv = errno;
 			close(grfd);
 			_is_open = 0;
-			return (errno = sv);
+			return (errno = ENOMEM);
 		}
 		line.len--;
 		if (buflen < line.len) {
@@ -346,7 +348,7 @@ qgetgrent()
 int
 qgetpwent_r(struct passwd *pwd, char *buf, size_t buflen, struct passwd **result)
 {
-	int             match, field_count, sv, pos;
+	int             match, field_count, pos;
 	char           *ptr, *cptr;
 	static stralloc line = { 0 };
 	static int      _is_open, pwfd;
@@ -372,24 +374,22 @@ qgetpwent_r(struct passwd *pwd, char *buf, size_t buflen, struct passwd **result
 	for (;;) {
 		pos = pwss.p;
 		if (getln(&pwss, &line, &match, '\n') == -1) {
-			sv = errno;
 			close(pwfd);
 			_is_open = 0;
-			return (errno = sv);
+			return (errno = ETXTBSY);
 		}
 		if (!line.len) {
 			set_pwent = 1;
-			errno = ENOENT;
+			errno = 0;
 			return 0;
 		}
 		if (!match)	  /*- partial line */
 			continue;
 		line.s[line.len - 1] = ':';
 		if (!stralloc_0(&line)) {
-			sv = errno;
 			close(pwfd);
 			_is_open = 0;
-			return (errno = sv);
+			return (errno = ENOMEM);
 		}
 		line.len--;
 		if (buflen < line.len) {
@@ -550,7 +550,7 @@ qgetpwent()
 void
 getversion_qgetpwgr_c()
 {
-	static char    *x = "$Id: qgetpwgr.c,v 1.2 2021-07-03 22:05:16+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: qgetpwgr.c,v 1.3 2021-07-05 18:14:59+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
