@@ -1,0 +1,186 @@
+.TH QGETPWNAM 3  2021-07-05
+.SH NAME
+qgetpwnam, qgetpwnam_r, qgetpwuid, qgetpwuid_r \- get password file entry
+
+.SH SYNOPSIS
+.nf
+.B #include <sys/types.h>
+.B #include <qgetpwgr.h>
+.PP
+.BI "struct passwd *qgetpwnam(const char *" name );
+.PP
+.BI "struct passwd *qgetpwuid(uid_t " uid );
+.PP
+.BI "int qgetpwnam_r(const char *" name ", struct passwd *" pwd ,
+.BI "               char *" buf ", size_t " buflen ", struct passwd **" result );
+.PP
+.BI "int qgetpwuid_r(uid_t " uid ", struct passwd *" pwd ,
+.BI "               char *" buf ", size_t " buflen ", struct passwd **" result );
+.fi
+.PP
+.ad b
+.SH DESCRIPTION
+The
+.BR qgetpwnam ()
+function returns a pointer to a structure containing
+the broken-out fields of the record in the password database,
+the local password file
+.IR /etc/passwd ,
+that matches the username
+.IR name .
+.PP
+The
+.BR qgetpwuid ()
+function returns a pointer to a structure containing
+the broken-out fields of the record in the password database
+that matches the user ID
+.IR uid .
+.PP
+The \fIpasswd\fP structure is defined in \fI<pwd.h>\fP as follows:
+.PP
+.in +4n
+.EX
+struct passwd {
+    char   *pw_name;       /* username */
+    char   *pw_passwd;     /* user password */
+    uid_t   pw_uid;        /* user ID */
+    gid_t   pw_gid;        /* group ID */
+    char   *pw_gecos;      /* user information */
+    char   *pw_dir;        /* home directory */
+    char   *pw_shell;      /* shell program */
+};
+.EE
+.in
+.PP
+See
+.BR passwd (5)
+for more information about these fields.
+.PP
+The
+.BR qgetpwnam_r ()
+and
+.BR qgetpwuid_r ()
+functions obtain the same information as
+.BR qgetpwnam ()
+and
+.BR qgetpwuid (),
+but store the retrieved
+.I passwd
+structure in the space pointed to by
+.IR pwd .
+The string fields pointed to by the members of the
+.I passwd
+structure are stored in the buffer
+.I buf
+of size
+.IR buflen .
+A pointer to the result (in case of success) or NULL (in case no entry
+was found or an error occurred) is stored in
+.IR *result .
+.PP
+The call
+.PP
+    sysconf(_SC_GETPW_R_SIZE_MAX)
+.PP
+returns either \-1, without changing
+.IR errno ,
+or an initial suggested size for
+.IR buf .
+(If this size is too small,
+the call fails with
+.BR ERANGE ,
+in which case the caller can retry with a larger buffer.)
+.SH RETURN VALUE
+The
+.BR qgetpwnam ()
+and
+.BR qgetpwuid ()
+functions return a pointer to a
+.I passwd
+structure, or NULL if the matching entry is not found or
+an error occurs.
+If an error occurs,
+.I errno
+is set appropriately.
+If one wants to check
+.I errno
+after the call, it should be set to zero before the call.
+.PP
+The return value may point to a static area, and may be overwritten
+by subsequent calls to
+.BR qgetpwent (3),
+.BR qgetpwnam (),
+or
+.BR qgetpwuid ().
+(Do not pass the returned pointer to
+.BR free (3).)
+.PP
+On success,
+.BR qgetpwnam_r ()
+and
+.BR qgetpwuid_r ()
+return zero, and set
+.IR *result
+to
+.IR pwd .
+If no matching password record was found,
+these functions return 0 and store NULL in
+.IR *result .
+In case of error, an error number is returned, and NULL is stored in
+.IR *result .
+
+.SH ERRORS
+.TP
+.BR 0 " or " ENOENT "
+The given
+.I name
+or
+.I uid
+was not found.
+
+.TP
+.B EINTR
+A signal was caught; see
+.BR signal (7).
+
+.TP
+.B ENOMEM
+Insufficient memory to allocate
+.I passwd
+structure.
+
+.TP
+.B ERANGE
+Insufficient buffer space supplied.
+
+.SH FILES
+.TP
+.I /etc/passwd
+local password database file
+
+.PP
+The
+.I pw_dir
+field contains the name of the initial working directory of the user.
+Login programs use the value of this field to initialize the
+.B HOME
+environment variable for the login shell.
+An application that wants to determine its user's home directory
+should inspect the value of
+.B HOME
+(rather than the value
+.IR getpwuid(getuid())\->pw_dir )
+since this allows the user to modify their notion of
+"the home directory" during a login session.
+To determine the (initial) home directory of another user,
+it is necessary to use
+.I getpwnam("username")\->pw_dir
+or similar.
+
+.SH SEE ALSO
+.BR qendpwent (3),
+.BR qgetgrnam (3),
+.BR qgetpwent (3),
+.BR qgetspnam (3),
+.BR qsetpwent (3),
+.BR passwd (5)
