@@ -1,5 +1,8 @@
 /*
  * $Log: setuserid.c,v $
+ * Revision 1.5  2021-07-05 23:27:42+05:30  Cprogrammer
+ * use qgepwnam, qgetgrent if USE_QPWGR is set
+ *
  * Revision 1.4  2021-07-03 17:57:34+05:30  Cprogrammer
  * corrected using setgrent instead of endpwent
  *
@@ -30,6 +33,8 @@
 #endif
 #include "alloc.h"
 #include "str.h"
+#include "env.h"
+#include "qgetpwgr.h"
 
 /*-
  * scan the group file for all supplementary groups.
@@ -43,30 +48,32 @@ grpscan(char *user, int *ngroups)
 	struct group   *grp;
 	long            maxgroups, idx;
 	gid_t          *gidset;
+	int             use_qpwgr = -1;
 	char          **ptr;
 
 	if (!user || !*user)
 		return ((gid_t *) 0);
+	if (use_qpwgr == -1)
+		use_qpwgr = env_get("USE_QPWGR") ? 1 : 0;
 	if ((maxgroups = sysconf(_SC_NGROUPS_MAX)) == -1)
 		return ((gid_t *) 0);
 	else
 	if (!(gidset = (gid_t *) alloc(maxgroups * sizeof(gid_t))))
 		return ((gid_t *) 0);
 	else
-	if (!(pwd = getpwnam(user)))
+	if (!(pwd = (use_qpwgr ? qgetpwnam : getpwnam) (user)))
 		return ((gid_t *) 0);
 	idx = 0;
 	gidset[idx++] = pwd->pw_gid;	/* the base gid */
-	setgrent();
+	(use_qpwgr ? qsetgrent : setgrent) ();
 	for (;;) {
-		if (!(grp = getgrent()))
+		if (!(grp = (use_qpwgr ? qgetgrent : getgrent) ()))
 			break;
 		for (ptr = grp->gr_mem; *ptr; ptr++) {
 			if (!str_diff(user, *ptr) && grp->gr_gid != gidset[0])
 				gidset[idx++] = grp->gr_gid;	/* supplementary group ids */
 		}
 	}
-	endgrent();
 	*ngroups = idx;
 	return (gidset);
 }
@@ -76,15 +83,17 @@ setuserid(char *user)
 {
 	struct passwd  *pwdent;
 	gid_t          *gidset;
-	int             ngroups;
+	int             ngroups, use_qpwgr = -1;
 	uid_t           uid;
 	gid_t           gid;
 
-	if (!(pwdent = getpwnam(user)))
+	if (use_qpwgr == -1)
+		use_qpwgr = env_get("USE_QPWGR") ? 1 : 0;
+	(use_qpwgr ? qsetgrent : setgrent) ();
+	if (!(pwdent = (use_qpwgr ? qgetpwnam : getpwnam) (user)))
 		return (-1);
 	uid = pwdent->pw_uid;
 	gid = pwdent->pw_gid;
-	setgrent();
 	if (!(gidset = grpscan(user, &ngroups)))
 		return (-1);
 	if (setgroups(ngroups, gidset)) {
@@ -130,7 +139,7 @@ setuser_privileges(uid_t uid, gid_t gid, char *user)
 void
 getversion_setuserid_c()
 {
-	static char    *x = "$Id: setuserid.c,v 1.4 2021-07-03 17:57:34+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: setuserid.c,v 1.5 2021-07-05 23:27:42+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
