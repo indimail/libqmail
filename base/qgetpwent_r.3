@@ -1,0 +1,91 @@
+.TH GETPWENT_R 3 2021-07-05
+.SH NAME
+qgetpwent_r \- get passwd file entry reentrantly
+.SH SYNOPSIS
+.nf
+.B #include <qgetpwgr.h>
+.PP
+.BI "int qgetpwent_r(struct passwd *" pwbuf ", char *" buf ,
+.BI "               size_t " buflen ", struct passwd **" pwbufp );
+
+.SH DESCRIPTION
+The function
+.BR qgetpwent_r ()
+is the reentrant versions of
+.BR qgetpwent (3).
+It reads the next passwd entry from the stream initialized by
+.BR setpwent (3).
+.PP
+The \fIpasswd\fP structure is defined in
+.I <pwd.h>
+as follows:
+.PP
+.in +4n
+.EX
+struct passwd {
+    char    *pw_name;      /* username */
+    char    *pw_passwd;    /* user password */
+    uid_t    pw_uid;       /* user ID */
+    gid_t    pw_gid;       /* group ID */
+    char    *pw_gecos;     /* user information */
+    char    *pw_dir;       /* home directory */
+    char    *pw_shell;     /* shell program */
+};
+.EE
+.in
+.PP
+For more information about the fields of this structure, see
+.BR passwd (5).
+.PP
+The nonreentrant function return a pointer to static storage,
+where this static storage contains further pointers to user
+name, password, gecos field, home directory and shell.
+The reentrant function described here return all of that in
+caller-provided buffers.
+First of all there is the buffer
+.I pwbuf
+that can hold a \fIstruct passwd\fP.
+And next the buffer
+.I buf
+of size
+.I buflen
+that can hold additional strings.
+The result of these functions, the \fIstruct passwd\fP read from the stream,
+is stored in the provided buffer
+.IR *pwbuf ,
+and a pointer to this \fIstruct passwd\fP is returned in
+.IR *pwbufp .
+
+.SH RETURN VALUE
+On success, this function return 0 and
+.I *pwbufp
+is a pointer to the \fIstruct passwd\fP.
+On error, these functions return an error value and
+.I *pwbufp
+is NULL.
+
+.SH ERRORS
+.TP
+.B ENOENT
+No more entries.
+
+.TP
+.B ERANGE
+Insufficient buffer space supplied.
+Try again with larger buffer.
+
+.TP
+.B ETXTBUSY
+Temporary error happened.
+
+.SH NOTES
+The function
+.BR qgetpwent_r ()
+is not really reentrant since it shares the reading position
+in the stream with all other threads.
+
+.SH SEE ALSO
+.BR qgetpwent (3),
+.BR qgetpwnam (3),
+.BR qgetpwuid (3),
+.BR passwd (5)

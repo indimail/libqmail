@@ -1,0 +1,116 @@
+.TH QGETGRENT 3  2021-07-05
+
+.SH NAME
+qgetgrent, qsetgrent, qendgrent \- get group file entry
+
+.SH SYNOPSIS
+.nf
+.B #include <sys/types.h>
+.B #include <qgetpwgr.h>
+.PP
+.B struct group *qgetgrent(void);
+.PP
+.B void qsetgrent(void);
+.PP
+.B void qendgrent(void);
+.fi
+.PD
+.ad b
+.SH DESCRIPTION
+The
+.BR qgetgrent ()
+function returns a pointer to a structure containing
+the broken-out fields of a record in the group database
+(the local group file
+.IR /etc/group ,
+).
+The first time
+.BR qgetgrent ()
+is called,
+it returns the first entry; thereafter, it returns successive entries.
+.PP
+The
+.BR qsetgrent ()
+function rewinds to the beginning
+of the group database, to allow repeated scans.
+.PP
+The
+.BR qendgrent ()
+function is used to close the group database
+after all processing has been performed.
+.PP
+The \fIgroup\fP structure is defined in \fI<grp.h>\fP as follows:
+.PP
+.in +4n
+.EX
+struct group {
+    char   *gr_name;        /* group name */
+    char   *gr_passwd;      /* group password */
+    gid_t   gr_gid;         /* group ID */
+    char  **gr_mem;         /* NULL-terminated array of pointers
+                               to names of group members */
+};
+.EE
+.in
+.PP
+For more information about the fields of this structure, see
+.BR group (5).
+
+.SH RETURN VALUE
+The
+.BR qgetgrent ()
+function returns a pointer to a
+.I group
+structure,
+or NULL if there are no more entries or an error occurs.
+.PP
+Upon error,
+.I errno
+may be set.
+If one wants to check
+.I errno
+after the call, it should be set to zero before the call.
+.PP
+The return value may point to a static area, and may be overwritten
+by subsequent calls to
+.BR qgetgrent (),
+.BR qgetgrgid (3),
+or
+.BR qgetgrnam (3).
+(Do not pass the returned pointer to
+.BR free (3).)
+
+.SH ERRORS
+.TP
+.B EINTR
+A signal was caught; see
+.BR signal (7).
+
+.TP
+.B ENOENT
+A necessary input file cannot be found
+
+.TP
+.B ENOMEM
+Insufficient memory to allocate
+.I group
+structure.
+
+.TP
+.B ERANGE
+Insufficient buffer space supplied.
+
+.TP
+.B ETXTBUSY
+Temporary error happened.
+
+.SH FILES
+.TP
+.I /etc/group
+local group database file
+
+.SH SEE ALSO
+.BR qgetgrent_r (3),
+.BR qgetgrgid (3),
+.BR qgetgrnam (3),
+.BR group (5)
