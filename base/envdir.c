@@ -1,5 +1,8 @@
 /*
  * $Log: envdir.c,v $
+ * Revision 1.5  2021-07-07 20:02:16+05:30  Cprogrammer
+ * do lstat after chdir to fix false recursive loop error
+ *
  * Revision 1.4  2021-06-30 14:15:59+05:30  Cprogrammer
  * hyperlink feature using .dir link/dir to traverse multiple directories
  *
@@ -81,6 +84,10 @@ envdir(char *fn, char **e)
 	struct stat     st;
 	int             i, j, fdorigdir;
 
+	if ((fdorigdir = open_read(".")) == -1)
+		return -2; /*- unable open current directory */
+	if (chdir(fn) == -1)
+		return -3; /*- unable to switch to directory */
 	if (lstat(".", &st) == -1)
 		return -2;
 	if ((j = if_visited(st.st_ino)) == -6)
@@ -88,10 +95,6 @@ envdir(char *fn, char **e)
 	else
 	if (j)
 		return -7;
-	if ((fdorigdir = open_read(".")) == -1)
-		return -2; /*- unable open current directory */
-	if (chdir(fn) == -1)
-		return -3; /*- unable to switch to directory */
 	if (!(dir = opendir(".")))
 		return -4; /*- unable to read env directory */
 	for (j = 1;;) {
@@ -144,7 +147,7 @@ envdir(char *fn, char **e)
 void
 getversion_envdir_c()
 {
-	static char    *x = "$Id: envdir.c,v 1.4 2021-06-30 14:15:59+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: envdir.c,v 1.5 2021-07-07 20:02:16+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
