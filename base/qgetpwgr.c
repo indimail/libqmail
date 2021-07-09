@@ -1,5 +1,8 @@
 /*
  * $Log: qgetpwgr.c,v $
+ * Revision 1.4  2021-07-09 23:58:00+05:30  Cprogrammer
+ * fixed incorrect size passed to alloc_re()
+ *
  * Revision 1.3  2021-07-05 18:14:59+05:30  Cprogrammer
  * adjusted errno when returning errors
  *
@@ -90,11 +93,11 @@ qgrinit(int flag)
 			errno = ENOMEM;
 			return;
 		}
-		_grbuf_len = i;
+		_grbuf_len = i * sizeof(char);
 	}
 	if (!flag)
 		return;
-	if (!alloc_re(&_grbuf, _grbuf_len, _grbuf_len + 512)) {
+	if (!alloc_re(&_grbuf, sizeof(char) * _grbuf_len, sizeof(char) * (_grbuf_len + 512))) {
 		errno = ENOMEM;
 		return;
 	}
@@ -116,11 +119,11 @@ qpwinit(int flag)
 			errno = ENOMEM;
 			return;
 		}
-		_pwbuf_len = i;
+		_pwbuf_len = i * sizeof(char);
 	}
 	if (!flag)
 		return;
-	if (!alloc_re(&_pwbuf, _pwbuf_len, _pwbuf_len + 512)) {
+	if (!alloc_re(&_pwbuf, sizeof(char) * _pwbuf_len, sizeof(char) * (_pwbuf_len + 512))) {
 		errno = ENOMEM;
 		return;
 	}
@@ -206,7 +209,7 @@ qgetgrent_r(struct group *grp, char *buf, size_t buflen, struct group **result)
 					if (*x == ',')
 						g++;
 				}
-				if (!alloc_re(&gr_mem_ptr, gr_mem_len, g + 1))
+				if (!alloc_re(&gr_mem_ptr, sizeof(char *) * gr_mem_len, sizeof(char *) * (g + 1)))
 					return errno;
 				gr_mem_len = g + 1;
 				for (x = y = cptr, i = 0; *x; x++) {
@@ -219,7 +222,7 @@ qgetgrent_r(struct group *grp, char *buf, size_t buflen, struct group **result)
 				gr_mem_ptr[i++] = y;
 				gr_mem_ptr[i] = NULL;
 			} else {
-				if (!alloc_re(&gr_mem_ptr, gr_mem_len, 1))
+				if (!alloc_re(&gr_mem_ptr, sizeof(char *) * gr_mem_len, sizeof(char *)))
 					return errno;
 				gr_mem_len = 1;
 				gr_mem_ptr[0] = NULL;
@@ -550,7 +553,7 @@ qgetpwent()
 void
 getversion_qgetpwgr_c()
 {
-	static char    *x = "$Id: qgetpwgr.c,v 1.3 2021-07-05 18:14:59+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: qgetpwgr.c,v 1.4 2021-07-09 23:58:00+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

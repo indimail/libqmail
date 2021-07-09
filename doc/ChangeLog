@@ -45,6 +45,8 @@ Release 1.1 Start 14/02/2021
 24. setuserid.c: use qgepwnam, qgetgrent if USE_QPWGR is set
 - 07/07/2021
 25. envdir.c: do lstat after chdir to fix false recursive loop error
+- 09/07/2021
+26. qgetpwgr.c: fixed incorrect size passed to alloc_re()
 
 * Sunday 14 February 2021 11:27:21 PM IST
 Release 1.0 Start 21/05/2020
