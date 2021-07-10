@@ -35,8 +35,9 @@ man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 \
 	base/mess822.3 base/mess822_addr.3 base/mess822_date.3 base/mess822_fold.3 \
 	base/mess822_quote.3 base/mess822_token.3 base/mess822_when.3 base/now.3 \
 	base/qerror.3 base/qgetgrent.3 base/qgetgrent_r.3 base/qgetgrnam.3 \
-	base/qgetpwent.3 base/qgetpwent_r.3 base/qgetpwnam.3 \
-	base/qtime.3 base/rewritehost.3 \
+	base/qgetpwent.3 base/qgetpwent_r.3 base/qgetpwnam.3 base/qgetservbyname.3 \
+	base/qgetservbyname_r.3 base/qgetservbyport.3 base/qgetservbyport_r.3 \
+	base/qgetservent.3 base/qgetservent_r.3 base/qtime.3 base/rewritehost.3 \
 	base/scan_double.3 base/scan_int.3 base/scan_long.3 base/scan_plusminus.3 \
 	base/scan_ulonglong.3 base/sgetopt.3 base/stralloc.3 base/subgetopt.3 \
 	base/substdio.3 base/substdio_copy.3 base/substdio_in.3 base/substdio_out.3 \

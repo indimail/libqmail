@@ -100,7 +100,7 @@ PKG_PROG_PKG_CONFIG
 PKG_INSTALLDIR
 
 dnl Checks for header files.
-AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h endian.h)
+AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h endian.h netdb.h)
 AC_CHECK_HEADERS(sys/types.h sys/wait.h sys/file.h sys/endian.h)
 
 case "$host" in
