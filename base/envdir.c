@@ -1,5 +1,8 @@
 /*
  * $Log: envdir.c,v $
+ * Revision 1.6  2021-07-11 23:20:33+05:30  Cprogrammer
+ * set variables from .dir first to prevent .dir from overriding main
+ *
  * Revision 1.5  2021-07-07 20:02:16+05:30  Cprogrammer
  * do lstat after chdir to fix false recursive loop error
  *
@@ -90,28 +93,30 @@ envdir(char *fn, char **e)
 		return -3; /*- unable to switch to directory */
 	if (lstat(".", &st) == -1)
 		return -2;
+	/*- add current directory to visited list */
 	if ((j = if_visited(st.st_ino)) == -6)
 		return -6;
 	else
 	if (j)
-		return -7;
+		return -7; /*- recursive loop detected */
+	/*- 
+	 * if .dir exists, set variables from it before
+	 * setting from current directory. This is to prevent
+	 * env variables in .dir to override existing 
+	 * variables in current directory
+	 */
+	if (!access(".dir", X_OK) && (i = envdir(".dir", e)))
+		return (i);
 	if (!(dir = opendir(".")))
 		return -4; /*- unable to read env directory */
-	for (j = 1;;) {
+	for (;;) {
 		errno = 0;
 		if (!(d = readdir(dir))) {
 			if (errno)
 				return -4; /*- unable to read env directory */
 			break;
 		}
-		if (d->d_name[0] == '.') {
-			if ((j = str_diff(d->d_name, ".dir")))
-				continue;
-		} else
-			j = 1;
-		if (!j && (i = envdir(".dir", e)))
-			return (i);
-		if (!j)
+		if (d->d_name[0] == '.')
 			continue;
 		if (openreadclose(d->d_name, &sa, 256) == -1) {
 			if (e)
@@ -131,10 +136,10 @@ envdir(char *fn, char **e)
 			}
 			if (!stralloc_0(&sa))
 				return -6; /*- out of memory */
-			if (!pathexec_env(d->d_name, sa.s))
+			if (!pathexec_env(d->d_name, sa.s)) /*- set variable */
 				return -6;
 		} else
-		if (!pathexec_env(d->d_name, 0))
+		if (!pathexec_env(d->d_name, 0)) /*- remove variable */
 			return -6;
 	}
 	closedir(dir);
@@ -147,7 +152,7 @@ envdir(char *fn, char **e)
 void
 getversion_envdir_c()
 {
-	static char    *x = "$Id: envdir.c,v 1.5 2021-07-07 20:02:16+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: envdir.c,v 1.6 2021-07-11 23:20:33+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
