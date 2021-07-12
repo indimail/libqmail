@@ -1,13 +1,16 @@
 /*
  * $Log: envdir.c,v $
+ * Revision 1.7  2021-07-12 17:30:29+05:30  Cprogrammer
+ * added feature to process .envfile and .envdir as a file containing list of directories
+ *
  * Revision 1.6  2021-07-11 23:20:33+05:30  Cprogrammer
- * set variables from .dir first to prevent .dir from overriding main
+ * set variables from .envdir first to prevent .envdir from overriding main
  *
  * Revision 1.5  2021-07-07 20:02:16+05:30  Cprogrammer
  * do lstat after chdir to fix false recursive loop error
  *
  * Revision 1.4  2021-06-30 14:15:59+05:30  Cprogrammer
- * hyperlink feature using .dir link/dir to traverse multiple directories
+ * hyperlink feature using .envdir link/dir to traverse multiple directories
  *
  * Revision 1.3  2021-05-13 12:20:47+05:30  Cprogrammer
  * refactored envdir_set and renamed to envdir
@@ -24,6 +27,7 @@
 #include <sys/stat.h>
 #include "alloc.h"
 #include "error.h"
+#include "envdir.h"
 #include "str.h"
 #include "open.h"
 #include "pathexec.h"
@@ -80,6 +84,93 @@ if_visited(ino_t inum)
 }
 
 int
+process_dot_envfile(char *fn, char **e)
+{
+	struct stat     st;
+	char           *ptr, *cptr;
+	int             i, j;
+
+	if (!lstat(fn, &st)) { /*- read file havinv env1=var1 lines */
+		switch (st.st_mode & S_IFMT)
+		{
+		case S_IFDIR: /*- ignore */
+			break;
+		case S_IFREG:
+			openreadclose(fn, &sa, st.st_size);
+			if (sa.len) {
+				sa.len = byte_chr(sa.s, sa.len, '\n');
+				for (i = 0; i < sa.len; ++i) {
+					if (!sa.s[i])
+						sa.s[i] = '\n';
+				}
+				for (cptr = ptr = sa.s; *cptr; cptr++) {
+					if (*cptr == '\n') {
+						*cptr = 0;
+						i = str_chr(ptr, '=');
+						if (ptr[i]) {
+							ptr[i] = 0;
+							j = str_rchr(ptr + i, ' ');
+							if (ptr[i + j])
+								ptr[i + j] = 0;
+							j = str_rchr(ptr + i, '\t');
+							if (ptr[i + j])
+								ptr[i + j] = 0;
+							if (!pathexec_env(ptr, ptr + i + 1)) { /*- set variable */
+								if (e)
+									*e = error_str(errno);
+								return -6;
+							}
+						} else
+						if (!pathexec_env(ptr, 0)) { /*- remove variable */
+							if (e)
+								*e = error_str(errno);
+							return -6;
+						}
+						*cptr = '\n';
+						ptr = cptr + 1;
+					}
+				}
+			}
+			break;
+		}
+	}
+	return 0;
+}
+
+int
+process_dot_envdir(char *fn, char **e)
+{
+	struct stat     st;
+	char           *ptr, *cptr;
+	int             i;
+
+	if (!lstat(fn, &st)) {
+		switch (st.st_mode & S_IFMT)
+		{
+		case S_IFDIR:
+			if ((i = envdir(fn, e)))
+				return (i);
+			break;
+		case S_IFREG:
+			openreadclose(fn, &sa, st.st_size);
+			if (sa.len) {
+				for (cptr = ptr = sa.s; *cptr; cptr++) {
+					if (*cptr == '\n') {
+						*cptr = 0;
+						if ((i = envdir(ptr, e)))
+							return i;
+						*cptr = '\n';
+						ptr = cptr + 1;
+					}
+				}
+			}
+			break;
+		}
+	}
+	return 0;
+}
+
+int
 envdir(char *fn, char **e)
 {
 	DIR            *dir;
@@ -87,26 +178,39 @@ envdir(char *fn, char **e)
 	struct stat     st;
 	int             i, j, fdorigdir;
 
-	if ((fdorigdir = open_read(".")) == -1)
+	if ((fdorigdir = open_read(".")) == -1) {
+		if (e)
+			*e = fn;
 		return -2; /*- unable open current directory */
-	if (chdir(fn) == -1)
+	}
+	if (chdir(fn) == -1) {
+		if (e)
+			*e = fn;
 		return -3; /*- unable to switch to directory */
-	if (lstat(".", &st) == -1)
+	}
+	if (lstat(".", &st) == -1) {
+		if (e)
+			*e = fn;
 		return -2;
+	}
 	/*- add current directory to visited list */
-	if ((j = if_visited(st.st_ino)) == -6)
+	if ((j = if_visited(st.st_ino)) == -6) {
+		if (e)
+			*e = error_str(errno);
 		return -6;
-	else
-	if (j)
-		return -7; /*- recursive loop detected */
+	} else
+	if (j) /*- recursive loop detected. Ignore and return */
+		return 0;
+	if ((j = process_dot_envfile(".envfile", e)))
+		return j;
 	/*- 
-	 * if .dir exists, set variables from it before
+	 * if .envdir exists, set variables from it before
 	 * setting from current directory. This is to prevent
-	 * env variables in .dir to override existing 
+	 * env variables in .envdir to override existing 
 	 * variables in current directory
 	 */
-	if (!access(".dir", X_OK) && (i = envdir(".dir", e)))
-		return (i);
+	if ((j = process_dot_envdir(".envdir", e)))
+		return j;
 	if (!(dir = opendir(".")))
 		return -4; /*- unable to read env directory */
 	for (;;) {
@@ -134,17 +238,29 @@ envdir(char *fn, char **e)
 				if (!sa.s[i])
 					sa.s[i] = '\n';
 			}
-			if (!stralloc_0(&sa))
+			if (!stralloc_0(&sa)) {
+				if (e)
+					*e = error_str(errno);
 				return -6; /*- out of memory */
-			if (!pathexec_env(d->d_name, sa.s)) /*- set variable */
+			}
+			if (!pathexec_env(d->d_name, sa.s)) { /*- set variable */
+				if (e)
+					*e = error_str(errno);
 				return -6;
+			}
 		} else
-		if (!pathexec_env(d->d_name, 0)) /*- remove variable */
+		if (!pathexec_env(d->d_name, 0)) { /*- remove variable */
+			if (e)
+				*e = error_str(errno);
 			return -6;
+		}
 	}
 	closedir(dir);
-	if (fchdir(fdorigdir) == -1)
+	if (fchdir(fdorigdir) == -1) {
+		if (e)
+			*e = ".";
 		return -5; /*- unable to switch back to original directory */
+	}
 	close(fdorigdir);
 	return 0;
 }
@@ -152,7 +268,7 @@ envdir(char *fn, char **e)
 void
 getversion_envdir_c()
 {
-	static char    *x = "$Id: envdir.c,v 1.6 2021-07-11 23:20:33+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: envdir.c,v 1.7 2021-07-12 17:30:29+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
