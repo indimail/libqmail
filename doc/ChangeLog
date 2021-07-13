@@ -52,9 +52,11 @@ Release 1.1 Start 14/02/2021
 11/07/2021
 28. envdir.c: set variables from .envdir first to prevent .envdir from overriding
     main
-12/07/2021
+- 12/07/2021
 21. envdir.c: added feature to process .envfile and .envdir as a file
     containing list of directories
+- 13/07/2021
+22. envdir.c: return directory/filenames in error
 
 * Sunday 14 February 2021 11:27:21 PM IST
 Release 1.0 Start 21/05/2020

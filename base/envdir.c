@@ -1,5 +1,8 @@
 /*
  * $Log: envdir.c,v $
+ * Revision 1.8  2021-07-13 23:19:59+05:30  Cprogrammer
+ * return directory/file names in error
+ *
  * Revision 1.7  2021-07-12 17:30:29+05:30  Cprogrammer
  * added feature to process .envfile and .envdir as a file containing list of directories
  *
@@ -37,6 +40,7 @@
 #include "stralloc.h"
 
 static stralloc sa;
+static char     buf[256];
 
 char *
 envdir_str(int code)
@@ -179,8 +183,12 @@ envdir(char *fn, char **e)
 	int             i, j, fdorigdir;
 
 	if ((fdorigdir = open_read(".")) == -1) {
+		if (!getcwd(buf, sizeof(buf) - 1)) {
+			if (e)
+				*e = fn;
+		} else
 		if (e)
-			*e = fn;
+			*e = buf;
 		return -2; /*- unable open current directory */
 	}
 	if (chdir(fn) == -1) {
@@ -189,8 +197,12 @@ envdir(char *fn, char **e)
 		return -3; /*- unable to switch to directory */
 	}
 	if (lstat(".", &st) == -1) {
+		if (!getcwd(buf, sizeof(buf) - 1)) {
+			if (e)
+				*e = fn;
+		} else
 		if (e)
-			*e = fn;
+			*e = buf;
 		return -2;
 	}
 	/*- add current directory to visited list */
@@ -211,8 +223,15 @@ envdir(char *fn, char **e)
 	 */
 	if ((j = process_dot_envdir(".envdir", e)))
 		return j;
-	if (!(dir = opendir(".")))
+	if (!(dir = opendir("."))) {
+		if (!getcwd(buf, sizeof(buf) - 1)) {
+			if (e)
+				*e = fn;
+		} else
+		if (e)
+			*e = buf;
 		return -4; /*- unable to read env directory */
+	}
 	for (;;) {
 		errno = 0;
 		if (!(d = readdir(dir))) {
@@ -223,8 +242,15 @@ envdir(char *fn, char **e)
 		if (d->d_name[0] == '.')
 			continue;
 		if (openreadclose(d->d_name, &sa, 256) == -1) {
+			if (!stralloc_copys(&sa, fn) ||
+					!stralloc_append(&sa, "/") ||
+					!stralloc_cats(&sa, d->d_name) ||
+					!stralloc_0(&sa)) {
+				if (e)
+					*e = d->d_name;
+			} else
 			if (e)
-				*e = d->d_name;
+				*e = sa.s;
 			return -1; /*- unable to read */
 		}
 		if (sa.len) {
@@ -268,7 +294,7 @@ envdir(char *fn, char **e)
 void
 getversion_envdir_c()
 {
-	static char    *x = "$Id: envdir.c,v 1.7 2021-07-12 17:30:29+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: envdir.c,v 1.8 2021-07-13 23:19:59+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
