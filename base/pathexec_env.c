@@ -1,5 +1,8 @@
 /*
  * $Log: pathexec_env.c,v $
+ * Revision 1.6  2021-07-14 09:38:47+05:30  Cprogrammer
+ * added pathexec_clear() to clear new env variables added
+ *
  * Revision 1.5  2020-04-04 09:46:18+05:30  Cprogrammer
  * added code documentation
  *
@@ -43,6 +46,12 @@ pathexec_env(char *s, char *t)
 		return 0;
 	/*- append value to plus with null as separator */
 	return stralloc_cat(&plus, &tmp);
+}
+
+void
+pathexec_clear()
+{
+	plus.len = 0;
 }
 
 /*- execute command with a new environ */
@@ -100,7 +109,7 @@ pathexec(char **argv)
 void
 getversion_pathexec_env_c()
 {
-	static char    *x = "$Id: pathexec_env.c,v 1.5 2020-04-04 09:46:18+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: pathexec_env.c,v 1.6 2021-07-14 09:38:47+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
