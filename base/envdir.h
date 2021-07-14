@@ -1,5 +1,8 @@
 /*
  * $Log: envdir.h,v $
+ * Revision 1.5  2021-07-14 13:16:38+05:30  Cprogrammer
+ * added arguments ignore_unreadable, unreadable_count
+ *
  * Revision 1.4  2021-05-13 14:59:22+05:30  Cprogrammer
  * added envdir_str() function
  *
@@ -13,7 +16,7 @@
 #ifndef ENVDIR_H
 #define ENVDIR_H
 
-int             envdir(char *, char **);
+int             envdir(char *, char **, int, int *);
 char           *envdir_str(int);
 
 #endif

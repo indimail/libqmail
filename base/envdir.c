@@ -1,5 +1,8 @@
 /*
  * $Log: envdir.c,v $
+ * Revision 1.9  2021-07-14 13:13:59+05:30  Cprogrammer
+ * added option to ignore read errors and eliminate use of chdir
+ *
  * Revision 1.8  2021-07-13 23:19:59+05:30  Cprogrammer
  * return directory/file names in error
  *
@@ -40,7 +43,6 @@
 #include "stralloc.h"
 
 static stralloc sa;
-static char     buf[256];
 
 char *
 envdir_str(int code)
@@ -50,13 +52,13 @@ envdir_str(int code)
 		case -1:
 			return "unable to open environment file";
 		case -2:
-			return "unable to open current directory";
+			return "unable to open environment directory";
 		case -3:
-			return "unable to switch to environment directory";
-		case -4:
 			return "unable to read environment directory";
+		case -4:
+			return "unable to open .envdir";
 		case -5:
-			return "unable to switch back to original directory";
+			return "unable to open .envfile";
 		case -6:
 			return "out of memory";
 		case -7:
@@ -88,121 +90,135 @@ if_visited(ino_t inum)
 }
 
 int
-process_dot_envfile(char *fn, char **e)
+process_dot_envfile(char *fn, char **e, int ignore_unreadable, int *unreadable)
 {
 	struct stat     st;
 	char           *ptr, *cptr;
 	int             i, j;
 
-	if (!lstat(fn, &st)) { /*- read file havinv env1=var1 lines */
-		switch (st.st_mode & S_IFMT)
-		{
-		case S_IFDIR: /*- ignore */
-			break;
-		case S_IFREG:
-			openreadclose(fn, &sa, st.st_size);
-			if (sa.len) {
-				sa.len = byte_chr(sa.s, sa.len, '\n');
-				for (i = 0; i < sa.len; ++i) {
-					if (!sa.s[i])
-						sa.s[i] = '\n';
-				}
-				for (cptr = ptr = sa.s; *cptr; cptr++) {
-					if (*cptr == '\n') {
-						*cptr = 0;
-						i = str_chr(ptr, '=');
-						if (ptr[i]) {
-							ptr[i] = 0;
-							j = str_rchr(ptr + i, ' ');
-							if (ptr[i + j])
-								ptr[i + j] = 0;
-							j = str_rchr(ptr + i, '\t');
-							if (ptr[i + j])
-								ptr[i + j] = 0;
-							if (!pathexec_env(ptr, ptr + i + 1)) { /*- set variable */
-								if (e)
-									*e = error_str(errno);
-								return -6;
-							}
-						} else
-						if (!pathexec_env(ptr, 0)) { /*- remove variable */
-							if (e)
-								*e = error_str(errno);
-							return -6;
-						}
-						*cptr = '\n';
-						ptr = cptr + 1;
-					}
-				}
-			}
+	if (lstat(fn, &st)) { /*- read file having env1=var1 lines */
+		if (errno == error_noent)
+			return 0;
+		(*unreadable)++;
+		if (e)
+			*e = fn;
+		return (ignore_unreadable ? 0 : -5);
+	}
+	switch (st.st_mode & S_IFMT)
+	{
+	case S_IFDIR: /*- ignore */
+		break;
+	case S_IFREG:
+		if (openreadclose(fn, &sa, st.st_size) == -1) {
+			(*unreadable)++;
 			break;
 		}
+		if (!sa.len)
+			break;
+		sa.len = byte_chr(sa.s, sa.len, '\n');
+		for (i = 0; i < sa.len; ++i) {
+			if (!sa.s[i])
+				sa.s[i] = '\n';
+		}
+		for (cptr = ptr = sa.s; *cptr; cptr++) {
+			if (*cptr != '\n')
+				continue;
+			*cptr = 0;
+			i = str_chr(ptr, '=');
+			if (ptr[i]) {
+				ptr[i] = 0;
+				j = str_rchr(ptr + i, ' ');
+				if (ptr[i + j])
+					ptr[i + j] = 0;
+				j = str_rchr(ptr + i, '\t');
+				if (ptr[i + j])
+					ptr[i + j] = 0;
+				if (!pathexec_env(ptr, ptr + i + 1)) { /*- set variable */
+					if (e)
+						*e = error_str(errno);
+					return -6;
+				}
+			} else
+			if (!pathexec_env(ptr, 0)) { /*- remove variable */
+				if (e)
+					*e = error_str(errno);
+				return -6;
+			}
+			*cptr = '\n';
+			ptr = cptr + 1;
+		} /* for (cptr = ptr = sa.s; *cptr; cptr++) */
+		break;
 	}
 	return 0;
 }
 
 int
-process_dot_envdir(char *fn, char **e)
+process_dot_envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
 {
 	struct stat     st;
 	char           *ptr, *cptr;
 	int             i;
 
-	if (!lstat(fn, &st)) {
-		switch (st.st_mode & S_IFMT)
-		{
-		case S_IFDIR:
-			if ((i = envdir(fn, e)))
-				return (i);
-			break;
-		case S_IFREG:
-			openreadclose(fn, &sa, st.st_size);
-			if (sa.len) {
-				for (cptr = ptr = sa.s; *cptr; cptr++) {
-					if (*cptr == '\n') {
-						*cptr = 0;
-						if ((i = envdir(ptr, e)))
-							return i;
-						*cptr = '\n';
-						ptr = cptr + 1;
-					}
-				}
-			}
+	if (lstat(fn, &st)) {
+		if (errno == error_noent)
+			return 0;
+		(*unreadable)++;
+		if (e)
+			*e = fn;
+		return (ignore_unreadable ? 0 : -4);
+	}
+	switch (st.st_mode & S_IFMT)
+	{
+	case S_IFDIR:
+		if ((i = envdir(fn, e, ignore_unreadable, unreadable)))
+			return (i);
+		break;
+	case S_IFREG:
+		if (openreadclose(fn, &sa, st.st_size) == -1) {
+			(*unreadable)++;
 			break;
 		}
+		if (!sa.len)
+			break;
+		for (cptr = ptr = sa.s; *cptr; cptr++) {
+			if (*cptr != '\n')
+				continue;
+			*cptr = 0;
+			if ((i = envdir(ptr, e, ignore_unreadable, unreadable)))
+				return i;
+			*cptr = '\n';
+			ptr = cptr + 1;
+		}
+		break;
 	}
 	return 0;
 }
 
+void
+exit_nicely(char *d, DIR *dir)
+{
+	int             i;
+
+	i = errno;
+	alloc_free(d);
+	pathexec_clear();
+	if (dir)
+		closedir(dir);
+	errno = i;
+}
+
 int
-envdir(char *fn, char **e)
+envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
 {
 	DIR            *dir;
-	direntry       *d;
+	direntry       *dt;
 	struct stat     st;
-	int             i, j, fdorigdir;
+	int             i, j, alen, len;
+	char           *d;
 
-	if ((fdorigdir = open_read(".")) == -1) {
-		if (!getcwd(buf, sizeof(buf) - 1)) {
-			if (e)
-				*e = fn;
-		} else
-		if (e)
-			*e = buf;
-		return -2; /*- unable open current directory */
-	}
-	if (chdir(fn) == -1) {
+	if (lstat(fn, &st) == -1) {
 		if (e)
 			*e = fn;
-		return -3; /*- unable to switch to directory */
-	}
-	if (lstat(".", &st) == -1) {
-		if (!getcwd(buf, sizeof(buf) - 1)) {
-			if (e)
-				*e = fn;
-		} else
-		if (e)
-			*e = buf;
 		return -2;
 	}
 	/*- add current directory to visited list */
@@ -213,45 +229,74 @@ envdir(char *fn, char **e)
 	} else
 	if (j) /*- recursive loop detected. Ignore and return */
 		return 0;
-	if ((j = process_dot_envfile(".envfile", e)))
+	alen = (len = str_len(fn)) + 10; /*- str_len(fn) + str_len("/.envfile") + 1 */
+	if (!(d = alloc(alen))) {
+		if (e)
+			*e = error_str(errno);
+		return -6;
+	}
+	str_copy(d, fn);
+	str_copy(d + len, "/.envfile");
+	if ((j = process_dot_envfile(d, e, ignore_unreadable, unreadable))) {
+		exit_nicely(d, 0);
 		return j;
+	}
 	/*- 
 	 * if .envdir exists, set variables from it before
 	 * setting from current directory. This is to prevent
 	 * env variables in .envdir to override existing 
 	 * variables in current directory
 	 */
-	if ((j = process_dot_envdir(".envdir", e)))
+	str_copy(d, fn);
+	str_copy(d + len, "/.envdir");
+	if ((j = process_dot_envdir(d, e, ignore_unreadable, unreadable))) {
+		exit_nicely(d, 0);
 		return j;
-	if (!(dir = opendir("."))) {
-		if (!getcwd(buf, sizeof(buf) - 1)) {
-			if (e)
-				*e = fn;
-		} else
+	}
+	d[len] = 0; /*- fn */
+	if (!(dir = opendir(d))) {
 		if (e)
-			*e = buf;
-		return -4; /*- unable to read env directory */
+			*e = fn;
+		exit_nicely(d, 0);
+		return -2; /*- unable to read env directory */
 	}
 	for (;;) {
 		errno = 0;
-		if (!(d = readdir(dir))) {
-			if (errno)
-				return -4; /*- unable to read env directory */
-			break;
-		}
-		if (d->d_name[0] == '.')
-			continue;
-		if (openreadclose(d->d_name, &sa, 256) == -1) {
-			if (!stralloc_copys(&sa, fn) ||
-					!stralloc_append(&sa, "/") ||
-					!stralloc_cats(&sa, d->d_name) ||
-					!stralloc_0(&sa)) {
+		if (!(dt = readdir(dir))) {
+			if (errno) { /*- error occured */
 				if (e)
-					*e = d->d_name;
+					*e = fn;
+				exit_nicely(d, dir);
+				return -3; /*- unable to read env directory */
+			}
+			break; /*- no more dir entries */
+		}
+		if (dt->d_name[0] == '.')
+			continue;
+		if (!alloc_re(&d, alen, len + str_len(dt->d_name) + 2)) {
+			if (e)
+				*e = error_str(errno);
+			exit_nicely(d, dir);
+			return -6; /*- out of memory */
+		}
+		alen = len + str_len(dt->d_name) + 2;
+		str_copy(d + len, "/");
+		str_copy(d + len + 1, dt->d_name);
+		if (openreadclose(d, &sa, 256) == -1) {
+			(*unreadable)++;
+			if (ignore_unreadable)
+				continue;
+			i = errno;
+			if (!stralloc_copyb(&sa, d, alen)) {
+				errno = i;
+				if (e)
+					*e = "unreadable fild found";
 			} else
 			if (e)
 				*e = sa.s;
-			return -1; /*- unable to read */
+			errno = i;
+			exit_nicely(d, dir);
+			return -1;
 		}
 		if (sa.len) {
 			sa.len = byte_chr(sa.s, sa.len, '\n');
@@ -267,34 +312,32 @@ envdir(char *fn, char **e)
 			if (!stralloc_0(&sa)) {
 				if (e)
 					*e = error_str(errno);
+				exit_nicely(d, dir);
 				return -6; /*- out of memory */
 			}
-			if (!pathexec_env(d->d_name, sa.s)) { /*- set variable */
+			if (!pathexec_env(dt->d_name, sa.s)) { /*- set variable */
 				if (e)
 					*e = error_str(errno);
+				exit_nicely(d, dir);
 				return -6;
 			}
 		} else
-		if (!pathexec_env(d->d_name, 0)) { /*- remove variable */
+		if (!pathexec_env(dt->d_name, 0)) { /*- remove variable */
 			if (e)
 				*e = error_str(errno);
+			exit_nicely(d, dir);
 			return -6;
 		}
 	}
+	alloc_free(d);
 	closedir(dir);
-	if (fchdir(fdorigdir) == -1) {
-		if (e)
-			*e = ".";
-		return -5; /*- unable to switch back to original directory */
-	}
-	close(fdorigdir);
 	return 0;
 }
 
 void
 getversion_envdir_c()
 {
-	static char    *x = "$Id: envdir.c,v 1.8 2021-07-13 23:19:59+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: envdir.c,v 1.9 2021-07-14 13:13:59+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
