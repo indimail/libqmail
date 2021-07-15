@@ -1,5 +1,8 @@
 /*
  * $Log: str.h,v $
+ * Revision 1.11  2021-07-15 09:49:20+05:30  Cprogrammer
+ * fixed prototypes for str_chr, str_chrn, str_rchr - use const char *
+ *
  * Revision 1.10  2021-06-10 10:50:30+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -36,9 +39,9 @@ unsigned int    str_copyb(char *, const char *, unsigned int);
 int             str_diff(const char *, const char *);
 int             str_diffn(const char *, const char *, unsigned int);
 unsigned int    str_len(const char *);
-unsigned int    str_chr(char *, int);
-char           *str_chrn(char *, int, int);
-unsigned int    str_rchr(char *, int);
+unsigned int    str_chr(const char *, int);
+char           *str_chrn(const char *, int, int);
+unsigned int    str_rchr(const char *, int);
 int             str_start(const char *, const char *);
 int             str_end(const char *, const char *);
 char           *str_str(const char *, const char *);
