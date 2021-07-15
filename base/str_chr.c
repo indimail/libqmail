@@ -1,5 +1,8 @@
 /*
  * $Log: str_chr.c,v $
+ * Revision 1.6  2021-07-15 09:54:02+05:30  Cprogrammer
+ * use const char * for str
+ *
  * Revision 1.5  2021-06-10 10:50:18+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -16,7 +19,7 @@
 #include "str.h"
 
 unsigned int
-str_chr(register char *s, int c)
+str_chr(register const char *s, int c)
 {
 	register char   ch;
 	register char  *t;
@@ -51,7 +54,7 @@ str_chr(register char *s, int c)
 void
 getversion_str_chr_c()
 {
-	static char    *x = "$Id: str_chr.c,v 1.5 2021-06-10 10:50:18+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: str_chr.c,v 1.6 2021-07-15 09:54:02+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
