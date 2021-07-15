@@ -60,6 +60,8 @@ Release 1.1 Start 14/02/2021
 - 14/07/2021
 23. patheec.[c,h]: added pathexec_clear() to clear new env variables added
 24. envdir.c: refactored to remove use of chdir to traverse directories.
+- 15/07/2021
+25. str.h: fixed prototypes (str_chr, str_chrn, str_rchr) use const char *
 
 * Sunday 14 February 2021 11:27:21 PM IST
 Release 1.0 Start 21/05/2020
