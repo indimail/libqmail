@@ -1,5 +1,8 @@
 /*
  * $Log: envdir.c,v $
+ * Revision 1.10  2021-07-16 16:21:26+05:30  Cprogrammer
+ * treat openreadclose returning 0 as an error
+ *
  * Revision 1.9  2021-07-14 13:13:59+05:30  Cprogrammer
  * added option to ignore read errors and eliminate use of chdir
  *
@@ -109,9 +112,12 @@ process_dot_envfile(char *fn, char **e, int ignore_unreadable, int *unreadable)
 	case S_IFDIR: /*- ignore */
 		break;
 	case S_IFREG:
-		if (openreadclose(fn, &sa, st.st_size) == -1) {
+		i = openreadclose(fn, &sa, st.st_size);
+		if (i == -1 || !i) {
 			(*unreadable)++;
-			break;
+			if (e)
+				*e = fn;
+			return (ignore_unreadable ? 0 : -4);
 		}
 		if (!sa.len)
 			break;
@@ -174,9 +180,12 @@ process_dot_envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
 			return (i);
 		break;
 	case S_IFREG:
-		if (openreadclose(fn, &sa, st.st_size) == -1) {
+		i = openreadclose(fn, &sa, st.st_size);
+		if (i == -1 || !i) {
 			(*unreadable)++;
-			break;
+			if (e)
+				*e = fn;
+			return (ignore_unreadable ? 0 : -4);
 		}
 		if (!sa.len)
 			break;
@@ -282,7 +291,8 @@ envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
 		alen = len + str_len(dt->d_name) + 2;
 		str_copy(d + len, "/");
 		str_copy(d + len + 1, dt->d_name);
-		if (openreadclose(d, &sa, 256) == -1) {
+		i = openreadclose(d, &sa, 256);
+		if (i == -1 || !i) {
 			(*unreadable)++;
 			if (ignore_unreadable)
 				continue;
@@ -290,7 +300,7 @@ envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
 			if (!stralloc_copyb(&sa, d, alen)) {
 				errno = i;
 				if (e)
-					*e = "unreadable fild found";
+					*e = "unreadable file found";
 			} else
 			if (e)
 				*e = sa.s;
@@ -337,7 +347,7 @@ envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
 void
 getversion_envdir_c()
 {
-	static char    *x = "$Id: envdir.c,v 1.9 2021-07-14 13:13:59+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: envdir.c,v 1.10 2021-07-16 16:21:26+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

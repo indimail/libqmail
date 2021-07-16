@@ -74,6 +74,8 @@ o envdir: complete recode. Added hyperlink feature to link another directory
 24. envdir.c: refactored to remove use of chdir to traverse directories.
 - 15/07/2021
 25. str.h: fixed prototypes (str_chr, str_chrn, str_rchr) use const char '*'
+- 16/07/2021
+26. envdir.c: treat openreadclose returning 0 as an error
 
 * Sunday 14 February 2021 11:27:21 PM IST
 Release 1.0 Start 21/05/2020
