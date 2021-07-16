@@ -214,12 +214,16 @@ do
 		if [ $highlights -eq 1 ] ; then
 			if [ $bullet -eq 1 ] ; then
 				if [ $nonewline -eq 1 ] ; then
-					echo
+					echo ""
 					nonewline=0
 				fi
 				echo "$line"
 				bullet=0
 			else
+				if [ $nonewline -eq 1 ] ; then
+					echo ""
+					nonewline=0
+				fi
 				echo -n "  $line"
 				nonewline=1
 			fi
@@ -240,5 +244,7 @@ if [ $option -eq 2 ] ; then
 	echo
 	echo " -- $email  `date -u +'%a, %d %b %Y %H:%M:%S %z'`"
 elif [ $option -eq 3 ] ; then
-	echo
+	if [ $nonewline -eq 1 ] ; then
+		echo
+	fi
 fi

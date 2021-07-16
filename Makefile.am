@@ -191,7 +191,8 @@ edit = sed \
 
 libqmail.spec: libqmail.spec.in catChangeLog doc/ChangeLog conf-version conf-release conf-email
 	(cat $@.in;./catChangeLog) | $(edit) > $@
-libqmail.changes: doc/ChangeLog conf-version conf-release conf-email
+libqmail.changes: doc/ChangeLog conf-version conf-release conf-email \
+catChangeLog
 	./catChangeLog --changes doc/ChangeLog > $@
 PKGBUILD: PKGBUILD.in catChangeLog Makefile conf-email \
 conf-version conf-release doc/ChangeLog libqmail.changes

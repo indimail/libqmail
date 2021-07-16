@@ -1,5 +1,17 @@
 *
 Release 1.1 Start 14/02/2021
+======= Release Highlights ================================================
+o added date822fmt, pathexec_run, pathexec_env, envdir, makeargs, mktempfile
+  cdbmss, token822, openreadclose, prot_uid, prot_gid functions to libqmail
+o added glibc wrappers for qgetpwent, setpwent, endpwent, qgetpwent_r,
+  qgetpwnam, qgetpwuid, qgetpwnam_r, qgetpwuid_r, qgetgrent, qsetgrent,
+  qendgrent, qgetgrnam, qgetgrgid, qgetgrnam_r, qgetgrgid_r,
+  qgetservent, qgetservbyname, qgetservbyport, qsetservent, qendservent,
+  qgetservent_r, qgetservbyname_r, qgetservbyport_r
+o envdir: complete recode. Added hyperlink feature to link another directory
+  to the main directory. Added ability to read multiple directories using
+  .envdir and key=value pairs from .envfile 
+===========================================================================
 - 03/03/2021
 01. timeoutread, timeoutwrite - fix data types
 - 17/03/2021
