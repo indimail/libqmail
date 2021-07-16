@@ -49,7 +49,7 @@ Release 1.1 Start 14/02/2021
 26. qgetpwgr.c: fixed incorrect size passed to alloc_re()
 - 10/07/2021
 27. qgetpwgr.c: added qgetserv.. functions to read /etc/services
-11/07/2021
+- 11/07/2021
 28. envdir.c: set variables from .envdir first to prevent .envdir from overriding
     main
 - 12/07/2021
@@ -61,7 +61,7 @@ Release 1.1 Start 14/02/2021
 23. patheec.[c,h]: added pathexec_clear() to clear new env variables added
 24. envdir.c: refactored to remove use of chdir to traverse directories.
 - 15/07/2021
-25. str.h: fixed prototypes (str_chr, str_chrn, str_rchr) use const char *
+25. str.h: fixed prototypes (str_chr, str_chrn, str_rchr) use const char '*'
 
 * Sunday 14 February 2021 11:27:21 PM IST
 Release 1.0 Start 21/05/2020
