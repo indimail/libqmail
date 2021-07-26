@@ -36,6 +36,10 @@ FreeBSD
 Darwin
 # port install autoconf libtool automake pkgconfig openssl
 # port update outdated
+
+alpine Linux
+
+# apk add gcc g++ make git autoconf automake libtool m4 sed openssl-dev
 ```
 
 * NOTE: For Darwin (Mac OSX), install [MacPorts](https://www.macports.org/) or [Homebrew](https://brew.sh/). You can look at this [document](https://paolozaino.wordpress.com/2015/05/05/how-to-install-and-use-autotools-on-mac-os-x/) for installing MacPorts.
