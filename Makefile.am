@@ -82,8 +82,8 @@ include_HEADERS = base/alloc.h base/base64.h base/builtinoflmacros.h \
 	base/mess822.h base/mkpasswd.h base/mktempfile.h base/ndelay.h \
 	base/now.h base/open.h base/openreadclose.h base/pathexec.h \
 	base/prot.h base/pw_comp.h base/qgetpwgr.h base/qtime.h \
-	base/readclose.h base/rewritehost.h base/ripemd.h base/scan.h \
-	base/sconfig.h base/seek.h base/select.h base/setuserid.h \
+	base/readclose.h base/rewritehost.h base/ripemd.h base/r_mkdir.h \
+	base/scan.h base/sconfig.h base/seek.h base/select.h base/setuserid.h \
 	base/sgetopt.h base/sha1.h base/sig.h base/stralloc.h base/strerr.h \
 	base/str.h base/strmsg.h base/subfd.h base/subgetopt.h \
 	base/substdio.h base/taia.h base/tai.h base/tai2.h base/timeoutread.h \
@@ -123,7 +123,7 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
 	base/open_trunc.c base/open_write.c base/openreadclose.c \
 	base/mkpasswd.c base/pathexec_env.c base/pathexec_run.c base/prot.c \
 	base/pw_comp.c base/qgetpwgr.c base/qprintf.c base/qtime.c \
-	base/readclose.c base/rewritehost.c base/scan_8long.c \
+	base/readclose.c base/rewritehost.c base/r_mkdir.c base/scan_8long.c \
 	base/scan_double.c base/scan_fromhex.c base/scan_int.c \
 	base/scan_long.c base/scan_plusminus.c base/scan_uint.c \
 	base/scan_ulong.c base/scan_ulonglong.c base/scan_ushort.c \

@@ -167,6 +167,7 @@ necessary to develop qmail applications
 %attr(644,root,root)                    %{_prefix}/include/qmail/qtime.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/readclose.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/ripemd.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/r_mkdir.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/scan.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/sconfig.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/seek.h
