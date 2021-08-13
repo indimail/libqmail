@@ -82,7 +82,7 @@
 # $Id: configure.ac,v 1.26 2021-07-16 12:37:54+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
-AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),indimail, [https://github.com/mbhangui/libqmail])
+AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/mbhangui/libqmail])
 AC_CANONICAL_TARGET
 PACKAGE=$PACKAGE_NAME
 VERSION=$PACKAGE_VERSION
