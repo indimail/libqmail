@@ -104,7 +104,7 @@ PKG_INSTALLDIR
 
 dnl Checks for header files.
 AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h endian.h netdb.h)
-AC_CHECK_HEADERS(sys/types.h sys/wait.h sys/file.h sys/endian.h)
+AC_CHECK_HEADERS(sys/types.h sys/wait.h sys/file.h sys/endian.h arpa/inet.h)
 
 case "$host" in
 *-*-sunos4.1.1*)

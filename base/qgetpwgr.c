@@ -1,5 +1,8 @@
 /*
  * $Log: qgetpwgr.c,v $
+ * Revision 1.6  2021-08-17 20:30:08+05:30  Cprogrammer
+ * added arpa/inet.h
+ *
  * Revision 1.5  2021-07-10 22:19:17+05:30  Cprogrammer
  * added getservent functions to read /etc/services
  *
@@ -42,6 +45,9 @@
 #endif
 #ifdef HAVE_NETDB_H
 #include <netdb.h>
+#endif
+#ifdef HAVE_ARPA_INET_H
+#include <arpa/inet.h>
 #endif
 #include <stralloc.h>
 #include <substdio.h>
@@ -926,7 +932,7 @@ qgetservent()
 void
 getversion_qgetpwgr_c()
 {
-	static char    *x = "$Id: qgetpwgr.c,v 1.5 2021-07-10 22:19:17+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: qgetpwgr.c,v 1.6 2021-08-17 20:30:08+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
