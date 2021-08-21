@@ -80,8 +80,8 @@ include_HEADERS = base/alloc.h base/base64.h base/builtinoflmacros.h \
 	base/hasbltnofl.h base/hmac.h base/in_crypt.h base/iopause.h \
 	base/leapsecs.h base/lock.h base/makeargs.h base/makesalt.h base/md5.h \
 	base/mess822.h base/mkpasswd.h base/mktempfile.h base/ndelay.h \
-	base/now.h base/open.h base/openreadclose.h base/pathexec.h \
-	base/prot.h base/pw_comp.h base/qgetpwgr.h base/qtime.h \
+	base/now.h base/no_of_days.h base/open.h base/openreadclose.h \
+	base/pathexec.h base/prot.h base/pw_comp.h base/qgetpwgr.h base/qtime.h \
 	base/readclose.h base/rewritehost.h base/ripemd.h base/r_mkdir.h \
 	base/scan.h base/sconfig.h base/seek.h base/select.h base/setuserid.h \
 	base/sgetopt.h base/sha1.h base/sig.h base/stralloc.h base/strerr.h \
@@ -118,16 +118,17 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
 	base/mess822_addr.c base/mess822_fold.c base/mess822_line.c \
 	base/mess822_quote.c base/mess822_when.c base/mess822_date.c base/mess822.h \
 	base/mess822_ok.c base/mess822_token.c base/mktempfile.c \
-	base/ndelay.c base/ndelay_off.c base/now.c base/open_append.c \
-	base/open_excl.c base/open_exclr.c base/open_read.c base/open_readwrite.c \
-	base/open_trunc.c base/open_write.c base/openreadclose.c \
-	base/mkpasswd.c base/pathexec_env.c base/pathexec_run.c base/prot.c \
-	base/pw_comp.c base/qgetpwgr.c base/qprintf.c base/qtime.c \
-	base/readclose.c base/rewritehost.c base/r_mkdir.c base/scan_8long.c \
-	base/scan_double.c base/scan_fromhex.c base/scan_int.c \
-	base/scan_long.c base/scan_plusminus.c base/scan_uint.c \
-	base/scan_ulong.c base/scan_ulonglong.c base/scan_ushort.c \
-	base/scan_xlong.c base/sconfig.c base/seek_cur.c base/seek_end.c \
+	base/ndelay.c base/ndelay_off.c base/no_of_days.c base/now.c \
+	base/open_append.c base/open_excl.c base/open_exclr.c base/open_read.c \
+	base/open_readwrite.c base/open_trunc.c base/open_write.c \
+	base/openreadclose.c base/mkpasswd.c base/pathexec_env.c \
+	base/pathexec_run.c base/prot.c base/pw_comp.c base/qgetpwgr.c \
+	base/qprintf.c base/qtime.c base/readclose.c base/rewritehost.c \
+	base/r_mkdir.c base/scan_8long.c base/scan_double.c \
+	base/scan_fromhex.c base/scan_int.c base/scan_long.c \
+	base/scan_plusminus.c base/scan_uint.c base/scan_ulong.c \
+	base/scan_ulonglong.c base/scan_ushort.c base/scan_xlong.c \
+	base/sconfig.c base/seek_cur.c base/seek_end.c \
 	base/seek_set.c base/seek_trunc.c base/setuserid.c base/sgetopt.c \
 	base/sha256_crypt.c base/sha512_crypt.c base/sig.c base/sig_alarm.c \
 	base/sig_block.c base/sig_bug.c base/sig_catch.c base/sig_child.c \
@@ -399,6 +400,7 @@ base/md5.lo: global.h md5.h
 base/md5_crypt.lo: config.h global.h md5.h
 base/ndelay.lo: ndelay.h
 base/ndelay_off.lo: ndelay.h
+base/no_of_days.lo: no_of_days.h
 base/open_append.lo: open.h
 base/open_excl.lo: open.h
 base/open_exclr.lo: open.h
