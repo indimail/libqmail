@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.27  2021-08-21 12:11:22+05:30  Cprogrammer
+# added arpa/inet.h
+#
 # Revision 1.26  2021-07-16 12:37:54+05:30  Cprogrammer
 # added netdb.h
 #
@@ -79,7 +82,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.26 2021-07-16 12:37:54+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.27 2021-08-21 12:11:22+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/mbhangui/libqmail])
