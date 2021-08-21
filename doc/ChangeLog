@@ -85,6 +85,8 @@ o envdir: complete recode. Added hyperlink feature to link another directory
 26. envdir.c: treat openreadclose returning 0 as an error
 - 17/08/2021
 27. configure.ac, qgetpwgr.c: added arpa/inet.h for htons()
+- 21/08/2021
+28. added no_of_days() function
 
 * Sunday 14 February 2021 11:27:21 PM IST
 Release 1.0 Start 21/05/2020
