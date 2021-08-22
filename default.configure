@@ -58,6 +58,12 @@ case "$SYSTEM" in
   extra=""
   ;;
 esac
+if [ -f Makefile ] ; then
+	if [ $(stat --format %Y configure.ac) -le $(stat --format %Y Makefile) ] ; then
+		echo "Already configured"
+		exit 0
+	fi
+fi
 ./configure --prefix=$prefix --mandir=$mandir \
   --libdir=$libdir --with-pkgconfigdir=$pkgconfigdir \
   --sysconfdir=/etc/indimail $extra
