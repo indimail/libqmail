@@ -13,11 +13,15 @@ source=("libqmail-${pkgver}.tar.gz")
 sha256sums=('SKIP')
 provides=('libqmail')
 options=('strip' '!libtool' 'docs' 'staticlibs' 'zipman' 'debug')
+_prefix=@prefix@
+_libdir=@prefix@/lib
 changelog=$pkgname.changes
 
 build() {
   cd $srcdir/libqmail-${pkgver}
-  ./default.configure
+  ./configure --prefix=${_prefix} --mandir=${_prefix}/share/man \
+  --libdir=${_libdir} --with-pkgconfigdir=${_libdir}/pkgconfig \
+  --sysconfdir=/etc/indimail $extra
   make -s
   cd $srcdir
 }
