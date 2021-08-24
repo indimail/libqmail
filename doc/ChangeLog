@@ -87,6 +87,10 @@ o envdir: complete recode. Added hyperlink feature to link another directory
 27. configure.ac, qgetpwgr.c: added arpa/inet.h for htons()
 - 21/08/2021
 28. added no_of_days() function
+- 24/08/2021
+29. strerr.h, strerr_die.c, strerr_sys.c: added addtional members to struct
+    strerr
+30. added check_domain() function
 
 * Sunday 14 February 2021 11:27:21 PM IST
 Release 1.0 Start 21/05/2020

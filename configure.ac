@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.28  2021-08-24 11:21:12+05:30  Cprogrammer
+# added check for regex.h
+#
 # Revision 1.27  2021-08-21 12:11:22+05:30  Cprogrammer
 # added arpa/inet.h
 #
@@ -82,7 +85,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.27 2021-08-21 12:11:22+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.28 2021-08-24 11:21:12+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/mbhangui/libqmail])
@@ -107,7 +110,7 @@ PKG_INSTALLDIR
 
 dnl Checks for header files.
 AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h endian.h netdb.h)
-AC_CHECK_HEADERS(sys/types.h sys/wait.h sys/file.h sys/endian.h arpa/inet.h)
+AC_CHECK_HEADERS(regex.h sys/types.h sys/wait.h sys/file.h sys/endian.h arpa/inet.h)
 
 case "$host" in
 *-*-sunos4.1.1*)

@@ -123,6 +123,7 @@ necessary to develop qmail applications
 %attr(644,root,root)                    %{_prefix}/include/qmail/cdb_make.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/cdbmake.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/cdbmss.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/check_domain.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/coe.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/constmap.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/date822fmt.h
