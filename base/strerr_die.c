@@ -1,5 +1,9 @@
 /*
  * $Log: strerr_die.c,v $
+ * Revision 1.8  2021-08-24 11:16:41+05:30  Cprogrammer
+ * added additional members to struct strerr
+ * converted to ansic function prototypes
+ *
  * Revision 1.7  2020-11-24 13:34:20+05:30  Cprogrammer
  * removed exit.h
  *
@@ -25,24 +29,11 @@
 #include "strerr.h"
 
 void
-strerr_warn(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, se)
-	const char     *x1;
-	const char     *x2;
-	const char     *x3;
-	const char     *x4;
-	const char     *x5;
-	const char     *x6;
-	const char     *x7;
-	const char     *x8;
-	const char     *x9;
-	const char     *x10;
-	const char     *x11;
-	const char     *x12;
-	const char     *x13;
-	const char     *x14;
-	const char     *x15;
-	const char     *x16;
-	struct strerr  *se;
+strerr_warn(const char *x1, const char *x2, const char *x3, const char *x4,
+		const char *x5, const char *x6, const char *x7, const char *x8,
+		const char *x9, const char *x10, const char *x11, const char *x12,
+		const char *x13, const char *x14, const char *x15, const char *x16,
+		struct strerr *se)
 {
 	strerr_sysinit();
 
@@ -77,6 +68,10 @@ strerr_warn(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x1
 	if (x15)
 		substdio_puts(subfderr, x15);
 	while (se) {
+		if (se->v)
+			substdio_puts(subfderr, se->v);
+		if (se->w)
+			substdio_puts(subfderr, se->w);
 		if (se->x)
 			substdio_puts(subfderr, se->x);
 		if (se->y)
@@ -90,25 +85,11 @@ strerr_warn(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x1
 }
 
 void
-strerr_die(e, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, se)
-	int             e;
-	const char     *x1;
-	const char     *x2;
-	const char     *x3;
-	const char     *x4;
-	const char     *x5;
-	const char     *x6;
-	const char     *x7;
-	const char     *x8;
-	const char     *x9;
-	const char     *x10;
-	const char     *x11;
-	const char     *x12;
-	const char     *x13;
-	const char     *x14;
-	const char     *x15;
-	const char     *x16;
-	struct strerr  *se;
+strerr_die(int e, const char *x1, const char *x2, const char *x3, 
+		const char *x4, const char *x5, const char *x6, const char *x7,
+		const char *x8, const char *x9, const char *x10, const char *x11,
+		const char *x12, const char *x13, const char *x14, const char *x15,
+		const char *x16, struct strerr *se)
 {
 	strerr_warn(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, se);
 	_exit(e);
@@ -117,7 +98,7 @@ strerr_die(e, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, 
 void
 getversion_strerr_die_c()
 {
-	static char    *x = "$Id: strerr_die.c,v 1.7 2020-11-24 13:34:20+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: strerr_die.c,v 1.8 2021-08-24 11:16:41+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

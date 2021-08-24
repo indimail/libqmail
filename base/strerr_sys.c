@@ -1,5 +1,8 @@
 /*
  * $Log: strerr_sys.c,v $
+ * Revision 1.5  2021-08-24 11:17:43+05:30  Cprogrammer
+ * added additional members to struct strerr
+ *
  * Revision 1.4  2008-07-14 20:58:18+05:30  Cprogrammer
  * initialize strerr_sys
  *
@@ -13,13 +16,15 @@
 #include "error.h"
 #include "strerr.h"
 
-struct strerr   strerr_sys = {0, 0, 0, 0};
+struct strerr   strerr_sys = {0, 0, 0, 0, 0, 0};
 
 void
 strerr_sysinit()
 {
 	strerr_sys.who = 0;
-	strerr_sys.x = error_str(errno);
+	strerr_sys.v = error_str(errno);
+	strerr_sys.w = "";
+	strerr_sys.x = "";
 	strerr_sys.y = "";
 	strerr_sys.z = "";
 }
@@ -27,7 +32,7 @@ strerr_sysinit()
 void
 getversion_strerr_sys_c()
 {
-	static char    *x = "$Id: strerr_sys.c,v 1.4 2008-07-14 20:58:18+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: strerr_sys.c,v 1.5 2021-08-24 11:17:43+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

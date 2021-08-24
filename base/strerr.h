@@ -1,5 +1,8 @@
 /*
  * $Log: strerr.h,v $
+ * Revision 1.9  2021-08-24 11:17:28+05:30  Cprogrammer
+ * added additional members to struct strerr
+ *
  * Revision 1.8  2021-06-30 14:16:15+05:30  Cprogrammer
  * added STRERR2, STRERR3, STRERR_SYS2 macros
  *
@@ -29,6 +32,8 @@
 struct strerr
 {
 	struct strerr  *who;
+	char           *v;
+	char           *w;
 	char           *x;
 	char           *y;
 	char           *z;
@@ -50,18 +55,26 @@ void            strerr_die(int, c_char *, c_char *, c_char *, c_char *,
 					__attribute__((noreturn));
 
 #define STRERR(r,se,a) \
-{ se.who = 0; se.x = a; se.y = 0; se.z = 0; return r; }
+{ se.who = 0; se.v = a; se.w = 0; se.x = 0; se.y = 0; se.z = 0; return r; }
 #define STRERR2(r,se,a,b) \
-{ se.who = 0; se.x = a; se.y = b; se.z = 0; return r; }
+{ se.who = 0; se.v = a; se.w = b; se.x = 0; se.y = 0; se.z = 0; return r; }
 #define STRERR3(r,se,a,b,c) \
-{ se.who = 0; se.x = a; se.y = b; se.z = c; return r; }
+{ se.who = 0; se.v = a; se.w = b; se.x = c; se.y = 0; se.z = 0; return r; }
+#define STRERR4(r,se,a,b,c,d) \
+{ se.who = 0; se.v = a; se.w = b; se.x = c; se.y = d; se.z = 0; return r; }
+#define STRERR5(r,se,a,b,c,d,e) \
+{ se.who = 0; se.v = a; se.w = b; se.x = c; se.y = d; se.z = e; return r; }
 
 #define STRERR_SYS(r,se,a) \
-{ se.who = &strerr_sys; se.x = a; se.y = 0; se.z = 0; return r; }
+{ se.who = &strerr_sys; se.v = a; se.w = 0; se.x = 0; se.y = 0; se.z = 0; return r; }
 #define STRERR_SYS2(r,se,a,b) \
-{ se.who = &strerr_sys; se.x = a; se.y = b; se.z = 0; return r; }
+{ se.who = &strerr_sys; se.v = a; se.w = b; se.x = 0; se.y = 0; se.z = 0; return r; }
 #define STRERR_SYS3(r,se,a,b,c) \
-{ se.who = &strerr_sys; se.x = a; se.y = b; se.z = c; return r; }
+{ se.who = &strerr_sys; se.v = a; se.w = b; se.x = c; se.y = 0; se.z = 0; return r; }
+#define STRERR_SYS4(r,se,a,b,c,d) \
+{ se.who = &strerr_sys; se.v = a; se.w = b; se.x = c; se.y = d; se.z = 0; return r; }
+#define STRERR_SYS5(r,se,a,b,c,d,e) \
+{ se.who = &strerr_sys; se.v = a; se.w = b; se.x = c; se.y = d; se.z = e; return r; }
 
 #define strerr_warn16(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15,x16,se) \
 strerr_warn((x1),(x2),(x3),(x4),(x5),(x6),(x7),(x8),(x9),(x10),(x11),(x12),(x13),(x14),(x15),(x16),(struct strerr *) (se))
