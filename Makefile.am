@@ -79,8 +79,8 @@ include_HEADERS = base/alloc.h base/base64.h base/builtinoflmacros.h \
 	base/fmt.h base/gen_allocdefs.h base/gen_alloc.h base/getEnvConfig.h \
 	base/getln.h base/global.h base/hasbltnofl.h base/hmac.h \
 	base/in_crypt.h base/iopause.h base/leapsecs.h base/lock.h \
-	base/makeargs.h base/makesalt.h base/md5.h \
-	base/mess822.h base/mkpasswd.h base/mktempfile.h base/ndelay.h \
+	base/makeargs.h base/makesalt.h base/md5.h base/mess822.h \
+	base/mkpasswd.h base/mktempfile.h base/ndelay.h base/noreturn.h \
 	base/now.h base/no_of_days.h base/open.h base/openreadclose.h \
 	base/pathexec.h base/prot.h base/pw_comp.h base/qgetpwgr.h base/qtime.h \
 	base/readclose.h base/rewritehost.h base/ripemd.h base/r_mkdir.h \

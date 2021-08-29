@@ -157,6 +157,7 @@ necessary to develop qmail applications
 %attr(644,root,root)                    %{_prefix}/include/qmail/mkpasswd.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/mktempfile.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/ndelay.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/noreturn.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/now.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/no_of_days.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/open.h
