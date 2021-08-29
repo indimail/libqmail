@@ -91,6 +91,9 @@ o envdir: complete recode. Added hyperlink feature to link another directory
 29. strerr.h, strerr_die.c, strerr_sys.c: added addtional members to struct
     strerr
 30. added check_domain() function
+- 29/08/2021
+31. added noreturn.h for defining noreturn
+32. strerr.h: use noreturn instead of __attribute__((noreturn))
 
 * Sunday 14 February 2021 11:27:21 PM IST
 Release 1.0 Start 21/05/2020

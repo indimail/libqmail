@@ -1,5 +1,8 @@
 /*
  * $Log: strerr.h,v $
+ * Revision 1.10  2021-08-29 21:41:59+05:30  Cprogrammer
+ * use noreturn.h header
+ *
  * Revision 1.9  2021-08-24 11:17:28+05:30  Cprogrammer
  * added additional members to struct strerr
  *
@@ -28,6 +31,7 @@
  */
 #ifndef STRERR_H
 #define STRERR_H
+#include "noreturn.h"
 
 struct strerr
 {
@@ -48,11 +52,10 @@ void            strerr_warn(c_char *, c_char *, c_char *, c_char *, c_char *,
 					c_char *, c_char *, c_char *, c_char *, c_char *,
 					c_char *, c_char *, c_char *, c_char *, c_char *,
 					c_char *, struct strerr *);
-void            strerr_die(int, c_char *, c_char *, c_char *, c_char *,
+noreturn void   strerr_die(int, c_char *, c_char *, c_char *, c_char *,
 					c_char *, c_char *, c_char *, c_char *, c_char *,
 					c_char *, c_char *, c_char *, c_char *, c_char *,
-					c_char *, c_char *, struct strerr *)
-					__attribute__((noreturn));
+					c_char *, c_char *, struct strerr *);
 
 #define STRERR(r,se,a) \
 { se.who = 0; se.v = a; se.w = 0; se.x = 0; se.y = 0; se.z = 0; return r; }
