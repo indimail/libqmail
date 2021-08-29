@@ -52,7 +52,7 @@ void            strerr_warn(c_char *, c_char *, c_char *, c_char *, c_char *,
 					c_char *, c_char *, c_char *, c_char *, c_char *,
 					c_char *, c_char *, c_char *, c_char *, c_char *,
 					c_char *, struct strerr *);
-noreturn void   strerr_die(int, c_char *, c_char *, c_char *, c_char *,
+no_return void  strerr_die(int, c_char *, c_char *, c_char *, c_char *,
 					c_char *, c_char *, c_char *, c_char *, c_char *,
 					c_char *, c_char *, c_char *, c_char *, c_char *,
 					c_char *, c_char *, struct strerr *);
