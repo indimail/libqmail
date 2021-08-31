@@ -4,6 +4,34 @@ Release 1.2 Start 18/07/2021
 ===========================================================================
 - 05/08/2021
 01. added r_mkdir function
+- 10/07/2021
+02. qgetpwgr.c: added qgetserv.. functions to read /etc/services
+- 11/07/2021
+03. envdir.c: set variables from .envdir first to prevent .envdir from overriding
+    main
+- 12/07/2021
+04. envdir.c: added feature to process .envfile and .envdir as a file
+    containing list of directories
+- 13/07/2021
+05. envdir.c: return directory/filenames in error
+- 14/07/2021
+06. pathexec.[c,h]: added pathexec_clear() to clear env variables
+07. envdir.c: refactored to remove use of chdir to traverse directories.
+- 15/07/2021
+08. str.h: fixed prototypes (str_chr, str_chrn, str_rchr) use const char '*'
+- 16/07/2021
+09. envdir.c: treat openreadclose returning 0 as an error
+- 17/08/2021
+10. configure.ac, qgetpwgr.c: added arpa/inet.h for htons()
+- 21/08/2021
+11. added no_of_days() function
+- 24/08/2021
+12. strerr.h, strerr_die.c, strerr_sys.c: added addtional members to struct
+    strerr
+13. added check_domain() function
+- 29/08/2021
+14. added noreturn.h for defining noreturn
+15. strerr.h: use noreturn instead of __attribute__((noreturn))
 
 * Sat Jul 17 2021 18:14:37 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1-1.1%{?dist}
 Release 1.1 Start 14/02/2021
@@ -66,34 +94,6 @@ o envdir: complete recode. Added hyperlink feature to link another directory
 25. envdir.c: do lstat after chdir to fix false recursive loop error
 - 09/07/2021
 26. qgetpwgr.c: fixed incorrect size passed to alloc_re()
-- 10/07/2021
-27. qgetpwgr.c: added qgetserv.. functions to read /etc/services
-- 11/07/2021
-28. envdir.c: set variables from .envdir first to prevent .envdir from overriding
-    main
-- 12/07/2021
-21. envdir.c: added feature to process .envfile and .envdir as a file
-    containing list of directories
-- 13/07/2021
-22. envdir.c: return directory/filenames in error
-- 14/07/2021
-23. patheec.[c,h]: added pathexec_clear() to clear new env variables added
-24. envdir.c: refactored to remove use of chdir to traverse directories.
-- 15/07/2021
-25. str.h: fixed prototypes (str_chr, str_chrn, str_rchr) use const char '*'
-- 16/07/2021
-26. envdir.c: treat openreadclose returning 0 as an error
-- 17/08/2021
-27. configure.ac, qgetpwgr.c: added arpa/inet.h for htons()
-- 21/08/2021
-28. added no_of_days() function
-- 24/08/2021
-29. strerr.h, strerr_die.c, strerr_sys.c: added addtional members to struct
-    strerr
-30. added check_domain() function
-- 29/08/2021
-31. added noreturn.h for defining noreturn
-32. strerr.h: use noreturn instead of __attribute__((noreturn))
 
 * Sunday 14 February 2021 11:27:21 PM IST
 Release 1.0 Start 21/05/2020
