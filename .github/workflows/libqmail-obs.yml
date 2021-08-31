@@ -10,6 +10,7 @@ on:
       - '!**/obs/*'
       - '!**/libqmail-freebsd.yml'
       - '!**/libqmail-c-cpp.yml'
+  workflow_dispatch:
 
 jobs:
   build:
