@@ -1,5 +1,8 @@
 /*
  * $Log: strerr.h,v $
+ * Revision 1.11  2021-09-12 18:41:20+05:30  Cprogrammer
+ * renamed noreturn to no_return
+ *
  * Revision 1.10  2021-08-29 21:41:59+05:30  Cprogrammer
  * use noreturn.h header
  *

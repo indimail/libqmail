@@ -1,5 +1,8 @@
 /*
  * $Log: noreturn.h,v $
+ * Revision 1.2  2021-09-12 18:41:08+05:30  Cprogrammer
+ * renamed noreturn to no_return
+ *
  * Revision 1.1  2021-08-29 21:41:52+05:30  Cprogrammer
  * Initial revision
  *
