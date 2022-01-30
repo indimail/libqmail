@@ -1,5 +1,8 @@
 /*
  * $Log: cdb_seek.c,v $
+ * Revision 1.8  2022-01-30 19:35:15+05:30  Cprogrammer
+ * fixed compiler warnings
+ *
  * Revision 1.7  2020-11-22 23:51:08+05:30  Cprogrammer
  * use const keyword
  *
@@ -43,7 +46,7 @@ cdb_bread(int fd, char *buf, int len)
 }
 
 static int
-match(int fd, char *key, unsigned int len)
+match(int fd, const char *key, unsigned int len)
 {
 	char            buf[32];
 	int             n;
@@ -118,7 +121,7 @@ cdb_seek(int fd, const char *key, unsigned int len, uint32 *dlen)
 void
 getversion_cdb_seek_c()
 {
-	static char    *x = "$Id: cdb_seek.c,v 1.7 2020-11-22 23:51:08+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: cdb_seek.c,v 1.8 2022-01-30 19:35:15+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

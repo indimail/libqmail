@@ -1,5 +1,8 @@
 /*
  * $Log: str_len.c,v $
+ * Revision 1.5  2022-01-30 19:36:27+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.4  2020-11-22 23:53:47+05:30  Cprogrammer
  * use const keyword
  *
@@ -15,7 +18,7 @@
 unsigned int
 str_len(register const char *s)
 {
-	register char  *t;
+	register const char *t;
 
 	t = s;
 	for (;;) {
@@ -37,7 +40,7 @@ str_len(register const char *s)
 void
 getversion_str_len_c()
 {
-	static char    *x = "$Id: str_len.c,v 1.4 2020-11-22 23:53:47+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: str_len.c,v 1.5 2022-01-30 19:36:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

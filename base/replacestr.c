@@ -1,5 +1,8 @@
 /*
  * $Log: replacestr.c,v $
+ * Revision 1.4  2022-01-30 19:37:31+05:30  Cprogrammer
+ * removed #ifdef HAVE_QMAIL
+ *
  * Revision 1.3  2020-07-23 11:19:26+05:30  Cprogrammer
  * added comments as code is complicated
  *
@@ -18,7 +21,7 @@
 #include <str.h>
 
 #ifndef	lint
-static char     sccsid[] = "$Id: replacestr.c,v 1.3 2020-07-23 11:19:26+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: replacestr.c,v 1.4 2022-01-30 19:37:31+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 /*-

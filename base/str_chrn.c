@@ -1,5 +1,8 @@
 /*
  * $Log: str_chrn.c,v $
+ * Revision 1.5  2022-01-30 19:36:14+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.4  2021-07-15 09:54:25+05:30  Cprogrammer
  * use const char * for str
  *
@@ -28,9 +31,8 @@ str_chrn(register const char *s, int c, int len)
 	register char  *t;
 
 	ch = c;
-	t = s;
-	while (len > 0)
-	{
+	t = (char *) s;
+	while (len > 0) {
 		if (!*t)
 			return ((char *) 0);
 		if (*t == ch)
@@ -41,13 +43,13 @@ str_chrn(register const char *s, int c, int len)
 	if (!len)
 		return ((char *) 0);
 	else
-		return (s + (t - s));
+		return ((char *) (s + (t - s)));
 }
 
 void
 getversion_str_chrn_c()
 {
-	static char    *x = "$Id: str_chrn.c,v 1.4 2021-07-15 09:54:25+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: str_chrn.c,v 1.5 2022-01-30 19:36:14+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

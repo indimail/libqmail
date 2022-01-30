@@ -1,5 +1,8 @@
 /*
  * $Log: envread.c,v $
+ * Revision 1.7  2022-01-30 19:35:50+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.6  2020-11-22 23:51:16+05:30  Cprogrammer
  * use const keyword
  *
@@ -32,13 +35,13 @@ env_get(const char *s)
 	return 0;
 }
 
-char    *
+char       *
 env_pick()
 {
 	return environ[0];
 }
 
-char    *
+const char *
 env_findeq(const char *s)
 {
 	for (; *s; ++s)
@@ -50,7 +53,7 @@ env_findeq(const char *s)
 void
 getversion_envread_c()
 {
-	static char    *x = "$Id: envread.c,v 1.6 2020-11-22 23:51:16+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: envread.c,v 1.7 2022-01-30 19:35:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

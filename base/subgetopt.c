@@ -1,5 +1,8 @@
 /*
  * $Log: subgetopt.c,v $
+ * Revision 1.5  2022-01-30 19:36:39+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.4  2020-11-23 18:05:20+05:30  Cprogrammer
  * use const keyword for opts argument
  *
@@ -41,7 +44,7 @@ int
 sgopt(int argc, char **argv, const char *opts)
 {
 	int             c;
-	char           *s;
+	const char     *s;
 
 	optarg = 0;
 	if (!argv || (optind >= argc) || !argv[optind])
@@ -98,7 +101,7 @@ sgopt(int argc, char **argv, const char *opts)
 void
 getversion_subgetopt_c()
 {
-	static char    *x = "$Id: subgetopt.c,v 1.4 2020-11-23 18:05:20+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: subgetopt.c,v 1.5 2022-01-30 19:36:39+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

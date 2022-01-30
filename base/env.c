@@ -1,5 +1,8 @@
 /*
  * $Log: env.c,v $
+ * Revision 1.9  2022-01-30 19:35:38+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.8  2021-06-10 10:50:09+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -88,7 +91,7 @@ env_unset(const char *s)
 static int
 env_add(const char *s)
 {
-	char           *t;
+	const char     *t;
 	unsigned int    i;
 
 	if ((t = env_findeq(s)))
@@ -225,7 +228,7 @@ restore_env()
 void
 getversion_env_c()
 {
-	static char    *x = "$Id: env.c,v 1.8 2021-06-10 10:50:09+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: env.c,v 1.9 2022-01-30 19:35:38+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

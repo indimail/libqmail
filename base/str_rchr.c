@@ -1,5 +1,8 @@
 /*
  * $Log: str_rchr.c,v $
+ * Revision 1.7  2022-01-30 19:36:34+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.6  2021-07-15 09:54:32+05:30  Cprogrammer
  * use const char * for str
  *
@@ -22,8 +25,7 @@ unsigned int
 str_rchr(register const char *s, int c)
 {
 	register char   ch;
-	register char  *t;
-	register char  *u;
+	register const char  *t, *u;
 
 	ch = c;
 	t = s;
@@ -59,7 +61,7 @@ str_rchr(register const char *s, int c)
 void
 getversion_str_rchr_c()
 {
-	static char    *x = "$Id: str_rchr.c,v 1.6 2021-07-15 09:54:32+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: str_rchr.c,v 1.7 2022-01-30 19:36:34+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

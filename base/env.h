@@ -1,5 +1,8 @@
 /*
  * $Log: env.h,v $
+ * Revision 1.9  2022-01-30 19:35:43+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.8  2020-11-22 23:51:14+05:30  Cprogrammer
  * use const keyword
  *
@@ -36,6 +39,6 @@ extern void     restore_env(void);
 extern char    *env_get(const char *);
 extern char    *env_pick(void);
 extern void     env_clear(void);
-extern char    *env_findeq(const char *);
+extern const char *env_findeq(const char *);
 
 #endif

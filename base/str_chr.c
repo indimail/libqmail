@@ -1,5 +1,8 @@
 /*
  * $Log: str_chr.c,v $
+ * Revision 1.7  2022-01-30 19:36:04+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.6  2021-07-15 09:54:02+05:30  Cprogrammer
  * use const char * for str
  *
@@ -25,7 +28,7 @@ str_chr(register const char *s, int c)
 	register char  *t;
 
 	ch = c;
-	t = s;
+	t = (char *) s;
 	for (;;) {
 		if (!*t)
 			break;
@@ -54,7 +57,7 @@ str_chr(register const char *s, int c)
 void
 getversion_str_chr_c()
 {
-	static char    *x = "$Id: str_chr.c,v 1.6 2021-07-15 09:54:02+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: str_chr.c,v 1.7 2022-01-30 19:36:04+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

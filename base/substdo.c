@@ -1,5 +1,8 @@
 /*
  * $Log: substdo.c,v $
+ * Revision 1.11  2022-01-30 19:36:45+05:30  Cprogrammer
+ * fixed compiler warning
+ *
  * Revision 1.10  2020-12-04 12:28:19+05:30  Cprogrammer
  * changed unsigned int to size_t
  *
@@ -35,7 +38,7 @@
 #include "error.h"
 
 static int
-allwrite(register ssize_t (*op)(), register int fd, register char *buf, register size_t len)
+allwrite(register ssize_t (*op)(), register int fd, register const char *buf, register size_t len)
 {
 	register int    w;
 
@@ -171,7 +174,7 @@ substdio_putsflush(register substdio *s, register const char *buf)
 void
 getversion_substdo_c()
 {
-	static char    *x = "$Id: substdo.c,v 1.10 2020-12-04 12:28:19+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: substdo.c,v 1.11 2022-01-30 19:36:45+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
