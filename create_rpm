@@ -36,6 +36,7 @@ if [ -f /etc/debian_version ] ; then
 fi
 
 verbose=0
+clean=""
 while test $# -gt 0; do
     case "$1" in
     -*=*) optarg=`echo "$1" | sed 's/[-_a-zA-Z0-9]*=//'`
@@ -51,10 +52,12 @@ while test $# -gt 0; do
     --verbose)
 	verbose=1
     ;;
+    --clean)
+	clean="--clean"
+    ;;
     *)
     echo "invalid option [$1]"
     read key
-    usage 1
     ;;
     esac
 
@@ -136,11 +139,11 @@ if [ " $key" = " Y" -o " $key" = " y" ] ; then
 		fi
 	fi
 	if [ $verbose -eq 0 ] ; then
-		echo "rpmbuild -ba --clean --quiet /tmp/libqmail.spec"
-		rpmbuild -ba --clean --quiet /tmp/libqmail.spec
+		echo "rpmbuild -ba $clean --quiet /tmp/libqmail.spec"
+		rpmbuild -ba $clean --quiet /tmp/libqmail.spec
 	else
-		echo "rpmbuild -ba --clean /tmp/libqmail.spec"
-		rpmbuild -ba --clean /tmp/libqmail.spec
+		echo "rpmbuild -ba $clean /tmp/libqmail.spec"
+		rpmbuild -ba $clean /tmp/libqmail.spec
 	fi
 	if [ $? -eq 0 ] ; then
 		/bin/rm /tmp/libqmail.spec
