@@ -1,5 +1,8 @@
 /*
  * $Log: envdir.c,v $
+ * Revision 1.11  2022-03-05 21:18:12+05:30  Cprogrammer
+ * fixed variable sa getting overwritten by openreadclose()
+ *
  * Revision 1.10  2021-07-16 16:21:26+05:30  Cprogrammer
  * treat openreadclose returning 0 as an error
  *
@@ -44,8 +47,6 @@
 #include "byte.h"
 #include "direntry.h"
 #include "stralloc.h"
-
-static stralloc sa;
 
 char *
 envdir_str(int code)
@@ -98,6 +99,7 @@ process_dot_envfile(char *fn, char **e, int ignore_unreadable, int *unreadable)
 	struct stat     st;
 	char           *ptr, *cptr;
 	int             i, j;
+	static stralloc sa;
 
 	if (lstat(fn, &st)) { /*- read file having env1=var1 lines */
 		if (errno == error_noent)
@@ -164,6 +166,7 @@ process_dot_envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
 	struct stat     st;
 	char           *ptr, *cptr;
 	int             i;
+	static stralloc sa;
 
 	if (lstat(fn, &st)) {
 		if (errno == error_noent)
@@ -224,6 +227,7 @@ envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
 	struct stat     st;
 	int             i, j, alen, len;
 	char           *d;
+	static stralloc sa;
 
 	if (lstat(fn, &st) == -1) {
 		if (e)
@@ -347,7 +351,7 @@ envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
 void
 getversion_envdir_c()
 {
-	static char    *x = "$Id: envdir.c,v 1.10 2021-07-16 16:21:26+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: envdir.c,v 1.11 2022-03-05 21:18:12+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
