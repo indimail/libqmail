@@ -39,6 +39,7 @@ o added libc replacements qgetservent, qgetservbyname, qgetservbyport along
 16. added replacestr function
 - 05/03/2022
 17. base/envdir.c: fixed variable sa getting overwritten by openreadclose()
+- 09/03/2022
 18. base/use_getpwgr.c: use 4096 as default buffer size on FreeBSD
    sysconf _SC_GETPW_R_SIZE_MAX returns -1.
 
