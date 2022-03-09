@@ -1,5 +1,8 @@
 /*
  * $Log: qgetpwgr.c,v $
+ * Revision 1.7  2022-03-09 12:27:21+05:30  Cprogrammer
+ * use 4096 as default buffer size on FreeBSD (sysconf _SC_GETPW_R_SIZE_MAX returns -1)
+ *
  * Revision 1.6  2021-08-17 20:30:08+05:30  Cprogrammer
  * added arpa/inet.h
  *
@@ -91,10 +94,14 @@ qpwinit(int flag)
 	int             i;
 
 	if (!_pwbuf_len) {
+#ifdef LINUX
 		if ((i = sysconf(_SC_GETPW_R_SIZE_MAX)) == -1) {
 			errno = ERANGE;
 			return;
 		}
+#else
+		i = 4096;
+#endif
 		if (!(_pwbuf = (char *) alloc(sizeof(char) * i))) {
 			errno = ENOMEM;
 			return;
@@ -131,9 +138,8 @@ qgetpwent_r(struct passwd *pwd, char *buf, size_t buflen, struct passwd **result
 		substdio_fdbuf(&pwss, read, pwfd, _pw_inbuf, sizeof (_pw_inbuf));
 	}
 	if (set_pwent) {
-		if (pwss.p) {
+		if (pwss.p)
 			pwss.p = 0;
-		}
 		lseek(pwfd, 0, SEEK_SET);
 		set_pwent = 0;
 	}
@@ -151,13 +157,16 @@ qgetpwent_r(struct passwd *pwd, char *buf, size_t buflen, struct passwd **result
 		}
 		if (!match)	  /*- partial line */
 			continue;
-		line.s[line.len - 1] = ':';
 		if (!stralloc_0(&line)) {
 			close(pwfd);
 			_is_open = 0;
 			return (errno = ENOMEM);
 		}
 		line.len--;
+		for (cptr = line.s;*cptr && isspace(*cptr); cptr++);
+		if (!*cptr || *cptr == '#') /*- comment or blank line */
+			continue;
+		line.s[line.len - 1] = ':';
 		if (buflen < line.len) {
 			pwss.p = pos;
 			errno = ERANGE;
@@ -346,10 +355,14 @@ qgrinit(int flag)
 	int             i;
 
 	if (!_grbuf_len) {
+#ifdef LINUX
 		if ((i = sysconf(_SC_GETPW_R_SIZE_MAX)) == -1) {
 			errno = ERANGE;
 			return;
 		}
+#else
+		i = 4096;
+#endif
 		if (!(_grbuf = (char *) alloc(sizeof(char) * i))) {
 			errno = ENOMEM;
 			return;
@@ -406,13 +419,16 @@ qgetgrent_r(struct group *grp, char *buf, size_t buflen, struct group **result)
 		}
 		if (!match)	  /*- partial line */
 			continue;
-		line.s[line.len - 1] = ':';
 		if (!stralloc_0(&line)) {
 			close(grfd);
 			_is_open = 0;
 			return (errno = ENOMEM);
 		}
 		line.len--;
+		for (cptr = line.s;*cptr && isspace(*cptr); cptr++);
+		if (!*cptr || *cptr == '#') /*- comment or blank line */
+			continue;
+		line.s[line.len - 1] = ':';
 		if (buflen < line.len) {
 			errno = ERANGE;
 			grss.p = pos;
@@ -660,9 +676,8 @@ qgetservent_r(struct servent *svc, char *buf, size_t buflen, struct servent **re
 		substdio_fdbuf(&svss, read, svfd, _sv_inbuf, sizeof (_sv_inbuf));
 	}
 	if (set_svent) {
-		if (svss.p) {
+		if (svss.p)
 			svss.p = 0;
-		}
 		lseek(svfd, 0, SEEK_SET);
 		set_svent = 0;
 	}
@@ -932,7 +947,7 @@ qgetservent()
 void
 getversion_qgetpwgr_c()
 {
-	static char    *x = "$Id: qgetpwgr.c,v 1.6 2021-08-17 20:30:08+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: qgetpwgr.c,v 1.7 2022-03-09 12:27:21+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
