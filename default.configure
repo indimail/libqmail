@@ -60,7 +60,7 @@ case "$SYSTEM" in
 esac
 if [ -f Makefile ] ; then
 	case "$SYSTEM" in
-		Darwin)
+		Darwin|FreeBSD)
 		if [ $(stat -f %m configure.ac) -le $(stat -f %m Makefile) ] ; then
 			echo "Already configured"
 			exit 0
