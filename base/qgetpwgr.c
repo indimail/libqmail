@@ -1,5 +1,8 @@
 /*
  * $Log: qgetpwgr.c,v $
+ * Revision 1.8  2022-03-18 13:37:33+05:30  Cprogrammer
+ * fixed SIGSEGV caused by byte_copy of extra bytes
+ *
  * Revision 1.7  2022-03-09 12:27:21+05:30  Cprogrammer
  * use 4096 as default buffer size on FreeBSD (sysconf _SC_GETPW_R_SIZE_MAX returns -1)
  *
@@ -166,13 +169,13 @@ qgetpwent_r(struct passwd *pwd, char *buf, size_t buflen, struct passwd **result
 		for (cptr = line.s;*cptr && isspace(*cptr); cptr++);
 		if (!*cptr || *cptr == '#') /*- comment or blank line */
 			continue;
-		line.s[line.len - 1] = ':';
+		line.s[line.len - 1] = ':'; /*- replace newline with : */
 		if (buflen < line.len) {
 			pwss.p = pos;
 			errno = ERANGE;
 			return errno;
 		}
-		byte_copy(buf, buflen, line.s);
+		byte_copy(buf, line.len + 1, line.s);
 		break;
 	}
 	/*- root:x:0:0:root:/root:/bin/bash: */
@@ -430,11 +433,11 @@ qgetgrent_r(struct group *grp, char *buf, size_t buflen, struct group **result)
 			continue;
 		line.s[line.len - 1] = ':';
 		if (buflen < line.len) {
-			errno = ERANGE;
 			grss.p = pos;
+			errno = ERANGE;
 			return errno;
 		}
-		byte_copy(buf, buflen, line.s);
+		byte_copy(buf, line.len + 1, line.s);
 		break;
 	}
 	/*- qmail:x:1015:apache,mbhangui,qscand */
@@ -947,7 +950,7 @@ qgetservent()
 void
 getversion_qgetpwgr_c()
 {
-	static char    *x = "$Id: qgetpwgr.c,v 1.7 2022-03-09 12:27:21+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: qgetpwgr.c,v 1.8 2022-03-18 13:37:33+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
