@@ -113,6 +113,7 @@ necessary to develop qmail applications
 %doc %attr(644,root,root)               %{mandir}/man3/*
 
 %attr(644,root,root)                    %{_prefix}/include/qmail/alloc.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/arc4random.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/base64.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/builtinoflmacros.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/byte.h
