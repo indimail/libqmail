@@ -70,15 +70,15 @@ man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 \
 docs = README doc/ChangeLog COPYING AUTHORS
 docdir=@docdir@
 
-include_HEADERS = base/alloc.h base/base64.h base/builtinoflmacros.h \
-	base/byte.h base/caldate.h base/caltime.h base/case.h base/cdb.h \
-	base/cdb_make.h base/cdbmake.h base/cdbmss.h base/check_domain.h \
-	base/coe.h base/commands.h base/constmap.h base/date822fmt.h \
-	base/datetime.h base/digest_md5.h base/direntry.h base/env.h \
-	base/error.h base/envdir.h base/evaluate.h base/fd.h base/fifo.h \
-	base/fmt.h base/gen_allocdefs.h base/gen_alloc.h base/getEnvConfig.h \
-	base/getln.h base/global.h base/hasbltnofl.h base/hmac.h \
-	base/in_crypt.h base/iopause.h base/leapsecs.h base/lock.h \
+include_HEADERS = base/alloc.h base/arc4random.h base/base64.h \
+	base/builtinoflmacros.h base/byte.h base/caldate.h base/caltime.h \
+	base/case.h base/cdb.h base/cdb_make.h base/cdbmake.h base/cdbmss.h \
+	base/check_domain.h base/coe.h base/commands.h base/constmap.h \
+	base/date822fmt.h base/datetime.h base/digest_md5.h base/direntry.h \
+	base/env.h base/error.h base/envdir.h base/evaluate.h base/fd.h \
+	base/fifo.h base/fmt.h base/gen_allocdefs.h base/gen_alloc.h \
+	base/getEnvConfig.h base/getln.h base/global.h base/hasbltnofl.h \
+	base/hmac.h base/in_crypt.h base/iopause.h base/leapsecs.h base/lock.h \
 	base/makeargs.h base/makesalt.h base/md5.h base/mess822.h \
 	base/mkpasswd.h base/mktempfile.h base/ndelay.h base/noreturn.h \
 	base/now.h base/no_of_days.h base/open.h base/openreadclose.h \
@@ -94,10 +94,10 @@ include_HEADERS = base/alloc.h base/base64.h base/builtinoflmacros.h \
 	base/iarray.h base/safemult.h base/rangecheck.h
 
 includedir=@prefix@/include/qmail
-COMMONSOURCES = base/alloc.c base/alloc_re.c base/base64sub.c base/byte_chr.c \
-	base/byte_copy.c base/byte_cr.c base/byte_cspn.c base/byte_diff.c \
-	base/byte_rchr.c base/byte_rcspn.c base/byte_zero.c base/caldate_fmjd.c \
-	base/caldate_fmt.c base/caldate_mjd.c base/caldate_scan.c \
+COMMONSOURCES = base/alloc.c base/alloc_re.c base/arc4random.c base/base64sub.c \
+	base/byte_chr.c base/byte_copy.c base/byte_cr.c base/byte_cspn.c \
+	base/byte_diff.c base/byte_rchr.c base/byte_rcspn.c base/byte_zero.c \
+	base/caldate_fmjd.c base/caldate_fmt.c base/caldate_mjd.c base/caldate_scan.c \
 	base/caltime_fmt.c base/caltime_tai.c base/caltime_utc.c base/case_diffb.c \
 	base/case_diffs.c base/case_lowerb.c base/case_lowers.c base/case_startb.c \
 	base/case_starts.c base/cdb.c base/cdb_hash.c base/cdb_make.c \

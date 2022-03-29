@@ -22,8 +22,9 @@
 #include "str.h"
 #include "alloc.h"
 #include "getEnvConfig.h"
-
-int        Arc4random(int, int);
+#ifndef HAVE_ARC4RANDOM
+#include "arc4random.h"
+#endif
 
 static char     itoa64[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz./";
 
@@ -32,50 +33,33 @@ genpass(int len)
 {
 	int             i, slen;
 	char           *pwtmp;
+	uint32_t        u;
 
 	if (!(pwtmp = alloc(len + 1)))
 		return ((char *) 0);
-	slen = str_len(itoa64) - 1;
-	for (i = 0; i < len; i++)
-		pwtmp[i] = itoa64[Arc4random(0, slen)];
+	slen = str_len(itoa64);
+	for (i = 0; i < len; i++) {
+#ifndef HAVE_ARC4RANDOM
+		if (!(u = arc4random()))
+			return ((char *) 0);
+#else
+		u = arc4random();
+#endif
+		pwtmp[i] = itoa64[u % slen];
+	}
 	pwtmp[i] = '\0';
 	return (pwtmp);
-}
-
-int
-Arc4random(int start_num, int end_num)
-{
-	int             j;
-	float           fnum;
-	static int      seeded;
-
-	if (!seeded) {
-		seeded = 1;
-		srand(time(0)^(getpid()<<15));
-	}
-	fnum = (float) end_num;
-	j = start_num + (int) (fnum * rand() / (RAND_MAX + 1.0));
-	return (j);
 }
 
 /*
  * Salt suitable for traditional DES and MD5 
  */
-void
+int
 makesalt(char *salt, int n)
 {
 	int             i, len, passwd_hash;
-	static int      seeded; /* 0 ... 63 => ascii - 64 */
+	uint32_t        u;
 
-	/*
-	 * These are not really random numbers, they are just
-	 * numbers that change to thwart construction of a
-	 * dictionary. This is exposed to the public.
-	 */
-	if (!seeded) {
-		seeded = 1;
-		srand(time(0)^(getpid()<<15));
-	}
 	getEnvConfigInt(&passwd_hash, "PASSWORD_HASH", PASSWORD_HASH);
 	i = 0;
 	switch (passwd_hash)
@@ -103,9 +87,17 @@ makesalt(char *salt, int n)
 		i = 3;
 		break;
 	}
-	for (len = str_len(itoa64); i < n; i++)
-		salt[i] = itoa64[Arc4random(0, len - 1)]; /* generate random no from 0 to len */
+	for (len = str_len(itoa64); i < n; i++) {
+#ifndef HAVE_ARC4RANDOM
+		if (!(u = arc4random()))
+			return -1;
+#else
+		u = arc4random();
+#endif
+		salt[i] = itoa64[u % len]; /* generate random no from 0 to len */
+	}
 	salt[i] = '\0';
+	return 0;
 }
 
 void

@@ -36,16 +36,11 @@ mkpasswd(char *newpasswd, stralloc *crypted, int encrypt_flag)
 {
 	char           *tmpstr;
 	char            salt[SALTSIZE + 1];
-	static int      seeded;
 
 	crypted->len = 0;
 	if (encrypt_flag)
 		tmpstr = newpasswd;
 	else {
-		if (!seeded) {
-			seeded = 1;
-			srandom(time(0)^(getpid()<<15));
-		}
 		makesalt(salt, SALTSIZE);
 		if (!(tmpstr = in_crypt(newpasswd, salt)))
 			return (-1);

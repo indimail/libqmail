@@ -9,7 +9,7 @@
 
 #define SALTSIZE 32
 
-void            makesalt(char *, int);
+int             makesalt(char *, int);
 char           *genpass(int);
 
 #endif

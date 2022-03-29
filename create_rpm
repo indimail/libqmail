@@ -1,5 +1,8 @@
 #!/bin/sh
 # $Log: create_rpm,v $
+# Revision 1.13  2022-03-29 21:03:30+05:30  Cprogrammer
+# added --clean option
+#
 # Revision 1.12  2020-10-13 22:26:44+05:30  Cprogrammer
 # sign rpm package
 #
@@ -25,7 +28,7 @@
 # rpm creation script for libqmail
 #
 #
-# $Id: create_rpm,v 1.12 2020-10-13 22:26:44+05:30 Cprogrammer Exp mbhangui $
+# $Id: create_rpm,v 1.13 2022-03-29 21:03:30+05:30 Cprogrammer Exp mbhangui $
 #
 curdir=`pwd`
 version=$(cat conf-version)
