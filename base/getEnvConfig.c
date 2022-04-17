@@ -1,5 +1,8 @@
 /*
  * $Log: getEnvConfig.c,v $
+ * Revision 1.2  2022-04-17 08:19:24+05:30  Cprogrammer
+ * added getEnvConfigDouble()
+ *
  * Revision 1.1  2020-04-01 17:59:06+05:30  Cprogrammer
  * Initial revision
  *
@@ -53,9 +56,21 @@ getEnvConfiguLong(unsigned long *source, char *envname, unsigned long defaultVal
 }
 
 void
+getEnvConfigDouble(double *source, char *envname, double defaultValue)
+{
+	char           *value;
+
+	if (!(value = env_get(envname)))
+		*source = defaultValue;
+	else
+		scan_double(value, source);
+	return;
+}
+
+void
 getversion_getEnvConfig_c()
 {
-	static char    *x = "$Id: getEnvConfig.c,v 1.1 2020-04-01 17:59:06+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: getEnvConfig.c,v 1.2 2022-04-17 08:19:24+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
