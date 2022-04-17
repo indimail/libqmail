@@ -46,6 +46,8 @@ o added libc replacements qgetservent, qgetservbyname, qgetservbyport along
 19. base/use_qgetpwgr.c: Fixed SIGSEG caused by extra copy in byte_copy
 - 29/03/2022
 20. added arc4random() function for linux
+- 17/04/2022
+31. added getEnvConfigDouble() function
 
 * Sat Jul 17 2021 18:14:37 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1-1.1%{?dist}
 Release 1.1 Start 14/02/2021
