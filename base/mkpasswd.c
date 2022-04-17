@@ -1,5 +1,8 @@
 /*
  * $Log: mkpasswd.c,v $
+ * Revision 1.2  2022-04-17 08:21:17+05:30  Cprogrammer
+ * removed setting 'seeded' variable
+ *
  * Revision 1.1  2020-04-01 18:15:20+05:30  Cprogrammer
  * Initial revision
  *
@@ -54,7 +57,7 @@ mkpasswd(char *newpasswd, stralloc *crypted, int encrypt_flag)
 void
 getversion_mkpasswd_c()
 {
-	static char    *x = "$Id: mkpasswd.c,v 1.1 2020-04-01 18:15:20+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: mkpasswd.c,v 1.2 2022-04-17 08:21:17+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

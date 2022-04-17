@@ -1,5 +1,8 @@
 /*
  * $Log: makesalt.c,v $
+ * Revision 1.3  2022-04-17 08:25:32+05:30  Cprogrammer
+ * added arc4random() functions for systems missing it
+ *
  * Revision 1.2  2020-10-04 16:47:47+05:30  Cprogrammer
  * combined duplicate cases in switch
  *
@@ -103,7 +106,7 @@ makesalt(char *salt, int n)
 void
 getversion_makesalt_c()
 {
-	static char    *x = "$Id: makesalt.c,v 1.2 2020-10-04 16:47:47+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: makesalt.c,v 1.3 2022-04-17 08:25:32+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
