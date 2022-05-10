@@ -1,7 +1,7 @@
 COFLAGS=-z+05:30
 ACLOCAL_AMFLAGS=-I m4
 
-DEFS=@DEFS@ -I. -Ibase -Iarray -Itextcode
+DEFS=@DEFS@ -I. -Ibase -Iarray -Itextcode -Isocket
 
 libqmail_LTLIBRARIES = libqmail.la
 libqmail_la_SOURCES = $(COMMONSOURCES)
@@ -61,7 +61,7 @@ man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 \
 	array/array_fail.3 array/array_truncate.3 array/array_bytes.3 \
 	array/array_cat.3 array/array_start.3 array/iarray_allocate.3 \
 	array/iarray_get.3 array/array_cat0.3 array/iarray_free.3 \
-	array/array_allocate.3 
+	array/array_allocate.3 \
 	mult/add_of.3 mult/assign.3 mult/imult16.3 mult/imult32.3 \
 	mult/imult64.3 mult/range_ptrinbuf.3 mult/range_str2inbuf.3 \
 	mult/range_str4inbuf.3 mult/range_strinbuf.3 mult/range_validbuf.3 \
@@ -78,8 +78,8 @@ include_HEADERS = base/alloc.h base/arc4random.h base/base64.h \
 	base/env.h base/error.h base/envdir.h base/evaluate.h base/fd.h \
 	base/fifo.h base/fmt.h base/gen_allocdefs.h base/gen_alloc.h \
 	base/getEnvConfig.h base/getln.h base/global.h base/hasbltnofl.h \
-	base/hmac.h base/in_crypt.h base/iopause.h base/leapsecs.h base/lock.h \
-	base/makeargs.h base/makesalt.h base/md5.h base/mess822.h \
+	base/hmac.h base/in_crypt.h base/iopause.h base/isnum.h base/leapsecs.h \
+	base/lock.h base/makeargs.h base/makesalt.h base/md5.h base/mess822.h \
 	base/mkpasswd.h base/mktempfile.h base/ndelay.h base/noreturn.h \
 	base/now.h base/no_of_days.h base/open.h base/openreadclose.h \
 	base/pathexec.h base/prot.h base/pw_comp.h base/qgetpwgr.h base/qtime.h \
@@ -91,7 +91,8 @@ include_HEADERS = base/alloc.h base/arc4random.h base/base64.h \
 	base/timeoutwrite.h base/timestamp.h base/token822.h base/typesx.h \
 	base/uint16.h base/uint32.h base/uint64.h base/wait.h base/qprintf.h \
 	array/array.h textcode/entities.h textcode/textcode.h base/likely.h \
-	base/iarray.h base/safemult.h base/rangecheck.h
+	base/iarray.h base/safemult.h base/rangecheck.h socket/tcpbind.h \
+	socket/tcpopen.h socket/udpopen.h base/qdirname.h
 
 includedir=@prefix@/include/qmail
 COMMONSOURCES = base/alloc.c base/alloc_re.c base/arc4random.c base/base64sub.c \
@@ -105,8 +106,8 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/arc4random.c base/base64sub.c 
 	base/cdb_seek.c base/cdb_unpack.c base/check_domain.c base/coe.c \
 	base/commands.c base/constmap.c base/date822fmt.c base/datetime.c \
 	base/datetime_un.c base/digest_md5.c base/env.c base/envdir.c \
-	base/envread.c base/error.c base/error_str.c \
-	base/error_temp.c base/evaluate.c base/fd_copy.c base/fd_move.c base/fifo.c \
+	base/envread.c base/error.c base/error_str.c base/error_temp.c \
+	base/evaluate.c base/fd_copy.c base/fd_move.c base/fifo.c \
 	base/fmt_8long.c base/fmt_double.c base/fmt_fill.c base/fmt_hexbytes.c \
 	base/fmt_int.c base/fmt_long.c base/fmt_minus.c base/fmt_pad.c \
 	base/fmt_plusminus.c base/fmt_str.c base/fmt_strn.c base/fmt_uint0.c \
@@ -114,9 +115,9 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/arc4random.c base/base64sub.c 
 	base/fmt_xlong.c base/getEnvConfig.c base/getln2.c base/getln.c \
 	base/hmac_md5.c base/hmac_ripemd.c base/hmac_sha1.c base/hmac_sha224.c \
 	base/hmac_sha256.c base/hmac_sha384.c base/hmac_sha512.c base/in_crypt.c \
-	base/iopause.c base/leapsecs_add.c base/leapsecs_init.c base/leapsecs_read.c \
-	base/leapsecs_sub.c base/lock_ex.c base/lock_exnb.c base/lock_un.c \
-	base/makeargs.c base/makesalt.c base/md5.c base/md5_crypt.c \
+	base/iopause.c base/isnum.c base/leapsecs_add.c base/leapsecs_init.c \
+	base/leapsecs_read.c base/leapsecs_sub.c base/lock_ex.c base/lock_exnb.c \
+	base/lock_un.c base/makeargs.c base/makesalt.c base/md5.c base/md5_crypt.c \
 	base/mess822_addr.c base/mess822_fold.c base/mess822_line.c \
 	base/mess822_quote.c base/mess822_when.c base/mess822_date.c base/mess822.h \
 	base/mess822_ok.c base/mess822_token.c base/mktempfile.c \
@@ -124,10 +125,10 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/arc4random.c base/base64sub.c 
 	base/open_append.c base/open_excl.c base/open_exclr.c base/open_read.c \
 	base/open_readwrite.c base/open_trunc.c base/open_write.c \
 	base/openreadclose.c base/mkpasswd.c base/pathexec_env.c \
-	base/pathexec_run.c base/prot.c base/pw_comp.c base/qgetpwgr.c \
-	base/qprintf.c base/qtime.c base/readclose.c base/replacestr.c \
-	base/rewritehost.c base/r_mkdir.c base/scan_8long.c base/scan_double.c \
-	base/scan_fromhex.c base/scan_int.c base/scan_long.c \
+	base/pathexec_run.c base/prot.c base/pw_comp.c base/qdirname.c \
+	base/qgetpwgr.c base/qprintf.c base/qtime.c base/readclose.c \
+	base/replacestr.c base/rewritehost.c base/r_mkdir.c base/scan_8long.c \
+	base/scan_double.c base/scan_fromhex.c base/scan_int.c base/scan_long.c \
 	base/scan_plusminus.c base/scan_uint.c base/scan_ulong.c \
 	base/scan_ulonglong.c base/scan_ushort.c base/scan_xlong.c \
 	base/sconfig.c base/seek_cur.c base/seek_end.c \
@@ -154,8 +155,7 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/arc4random.c base/base64sub.c 
 	base/tai_uint.c base/tai_unpack.c base/timeoutread.c base/timeoutwrite.c \
 	base/timestamp.c base/token822.c base/uint16_pack.c base/uint16_read.c \
 	base/uint16_unpack.c base/uint32_pack.c base/uint32_read.c base/uint32_unpack.c \
-	base/wait_nohang.c base/wait_pid.c \
-	textcode/base64url.c textcode/fmt_asn1derlength.c \
+	base/wait_nohang.c base/wait_pid.c textcode/base64url.c textcode/fmt_asn1derlength.c \
 	textcode/fmt_asn1dertag.c textcode/fmt_base64.c \
 	textcode/fmt_base64url.c textcode/fmt_cescape.c \
 	textcode/fmt_foldwhitespace.c textcode/fmt_html.c \
@@ -180,7 +180,8 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/arc4random.c base/base64sub.c 
 	array/array_allocate.c array/array_equal.c array/array_length.c \
 	mult/imult16.c mult/imult32.c mult/imult64.c mult/range_arrayinbuf.c \
 	mult/range_str2inbuf.c mult/range_str4inbuf.c mult/range_strinbuf.c \
-	mult/umult16.c mult/umult32.c mult/umult64.c
+	mult/umult16.c mult/umult32.c mult/umult64.c \
+	socket/tcpbind.c socket/tcpopen.c socket/udpopen.c
 
 edit = sed \
 	-e 's}@PACKAGE\@}$(PACKAGE)}g' \
@@ -465,6 +466,8 @@ base/uint32_unpack.lo: uint32.h
 base/uint16_pack.lo: uint16.h
 base/uint16_read.lo: uint16.h
 base/uint16_unpack.lo: uint16.h
+base/qdirname.lo: base/qdirname.c base/stralloc.h base/strerr.h base/str.h
+base/isnum.lo: base/isnum.c base/isnum.h
 ### textcode comes from libowfat, http://www.fefe.de/libowfat
 textcode/base64url.o: textcode/base64url.c
 textcode/fmt_base64.o: textcode/fmt_base64.c fmt.h byte.h textcode.h haveinline.h
@@ -509,6 +512,16 @@ range_strinbuf.o: mult/range_strinbuf.c rangecheck.h
 umult16.o: mult/umult16.c uint16.h
 umult32.o: mult/umult32.c uint32.h
 umult64.o: mult/umult64.c uint64.h
+
+socket/tcpbind.lo: socket/tcpbind.c base/byte.h base/error.h base/strerr.h \
+base/scan.h base/qdirname.h
+
+socket/tcpopen.lo: socket/tcpopen.c socket/hassresvport.h base/fmt.h \
+socket/haveip6.h base/env.h base/scan.h base/str.h base/byte.h \
+base/subfd.h base/strerr.h
+
+socket/udpopen.o: socket/udpopen.c socket/haveip6.h base/subfd.h \
+base/strerr.h base/fmt.h base/byte.h
 
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 libtool: $(LIBTOOL_DEPS)

@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.30  2022-05-10 20:15:22+05:30  Cprogrammer
+# configure IPV6 settings
+#
 # Revision 1.29  2022-03-29 21:03:16+05:30  Cprogrammer
 # added arc4random() function for linux
 #
@@ -88,7 +91,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.29 2022-03-29 21:03:16+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.30 2022-05-10 20:15:22+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/mbhangui/libqmail])
@@ -113,7 +116,7 @@ PKG_INSTALLDIR
 
 dnl Checks for header files.
 AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h endian.h netdb.h)
-AC_CHECK_HEADERS(regex.h sys/types.h sys/wait.h sys/file.h sys/time.h sys/endian.h arpa/inet.h)
+AC_CHECK_HEADERS(regex.h sys/types.h sys/wait.h sys/file.h sys/time.h sys/endian.h arpa/inet.h sys/socket.h sys/un.h)
 
 case "$host" in
 *-*-sunos4.1.1*)
@@ -225,6 +228,79 @@ AC_DEFINE_UNQUOTED(SHA256_HASH,2,Enable SHA256 Encryption)
 AC_DEFINE_UNQUOTED(SHA512_HASH,3,Enable SHA512 Encryption)
 AC_DEFINE_UNQUOTED(SYSCONFDIR,"$sysconfdir", Directory for leapsecs.dat)
 
+dnl **********************************************************************
+dnl Checks for IPv6
+dnl **********************************************************************
+dnl
+dnl We test for IPv6 by checking, in turn, for availability of
+dnl getaddrinfo, presence of the INET6 address/protocol family, and
+dnl the existence of struct sockaddr_in6.  If any of them is missing,
+dnl IPv6 is disabled, and the code reverts to old-style gethostbyname.
+dnl
+dnl If --enable-ipv6 is explicitly specified on the configure command
+dnl line, we check for IPv6 and abort if not found.  If --disable-ipv6
+dnl is specified, we disable IPv6 and don't check for it.  The default
+dnl is to autodetect IPv6 and use it where available.
+dnl
+
+AC_ARG_ENABLE(ipv6,
+  AS_HELP_STRING([--disable-ipv6],[disable IPv6 support]),
+  [case "${enable_ipv6}" in
+    n|no)
+      AC_MSG_RESULT([disabling IPv6 at user request])
+      dnl Disable IPv6 checking
+      ipv6=no
+      ;;
+    y|yes)
+      dnl IPv6 explicitly enabled: force its use (abort if unavailable).
+      ipv6=yes
+      force_ipv6=yes
+      ;;
+    auto)
+      dnl Auto-detect IPv6, i.e. check for IPv6, but don't force it.
+      ipv6=yes
+      ;;
+    *)
+      AC_MSG_ERROR([Invalid --enable-ipv6 argument '$enable_ipv6'])
+      ;;
+    esac
+  ], [
+    dnl If nothing is specified, assume auto-detection.
+    ipv6=yes
+  ]
+)
+
+if test "X$ipv6" = "Xyes"; then
+  AC_CHECK_FUNCS(getaddrinfo, [], [
+    AC_MSG_RESULT([Disabling IPv6 support: your system does not support getaddrinfo(3)])
+    ipv6=no
+  ])
+fi
+
+if test "X$ipv6" = "Xyes"; then
+  PROTO_INET6([], [
+    AC_MSG_RESULT([Disabling IPv6 support: your system does not support the PF_INET6 protocol family])
+    ipv6=no
+  ])
+fi
+
+if test "X$ipv6" = "Xyes"; then
+  TYPE_STRUCT_SOCKADDR_IN6([],[
+    AC_MSG_RESULT([Disabling IPv6 support: your system does not support 'struct sockaddr_in6'])
+    ipv6=no
+  ])
+  if test "X$ipv6" = "Xyes"; then
+    INDIMAIL_STRUCT_SOCKADDR_STORAGE
+    MEMBER_SIN6_SCOPE_ID
+  fi
+fi
+if test "X$ipv6" = "Xyes"; then
+  AC_DEFINE([ENABLE_IPV6], 1, [Define if IPv6 support is enabled.])
+  AC_MSG_RESULT([Enabling support for IPv6.])
+elif test "x$force_ipv6" = "xyes"; then
+  AC_MSG_ERROR([IPv6 support requested but not found; aborting])
+fi
+
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
 
@@ -270,5 +346,13 @@ echo "      SHA512 Crypt = ON  --enable-sha512-crypt=y"
 ;;
 *)
 echo "      SHA512 Crypt = OFF --enable-sha512-crypt=n default"
+;;
+esac
+case $ipv6 in
+1*|y*|Y*)
+echo "      IPV6 Support = ON  --enable-ipv6=y default"
+;;
+*)
+echo "      IPV6 Support = OFF --enable-ipv6=n"
 ;;
 esac
