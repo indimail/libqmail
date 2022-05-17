@@ -1,5 +1,8 @@
 /*
  * $Log: cdb.c,v $
+ * Revision 1.4  2022-05-17 18:12:00+05:30  Cprogrammer
+ * added comment on mmap return value
+ *
  * Revision 1.3  2021-06-10 10:49:51+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -50,6 +53,7 @@ cdb_init(struct cdb *c, int fd)
 		if (st.st_size <= 0xffffffff) {
 			x = mmap(0, st.st_size, PROT_READ, MAP_SHARED, fd, 0);
 			if (x + 1) {
+				/*- on error, the value MAP_FAILED (that is, (void *) -1) is returned */
 				c->size = st.st_size;
 				c->map = x;
 			}
@@ -169,7 +173,7 @@ cdb_find(struct cdb *c, const char *key, unsigned int len)
 void
 getversion_cdb_c()
 {
-	static char    *x = "$Id: cdb.c,v 1.3 2021-06-10 10:49:51+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: cdb.c,v 1.4 2022-05-17 18:12:00+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
