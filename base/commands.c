@@ -1,5 +1,8 @@
 /*
  * $Log: commands.c,v $
+ * Revision 1.8  2022-06-20 00:57:33+05:30  Cprogrammer
+ * set errno=0 for EOF
+ *
  * Revision 1.7  2020-09-15 10:00:56+05:30  Cprogrammer
  * added ctl_maxcmdlen variable
  *
@@ -16,6 +19,7 @@
 #ifndef COMMANDS_C
 #define COMMANDS_C
 #endif
+#include <errno.h>
 #include "commands.h"
 #include "substdio.h"
 #include "stralloc.h"
@@ -26,9 +30,7 @@ static stralloc cmd = { 0 };
 unsigned int    ctl_maxcmdlen;
 
 int
-commands(ss, c)
-	substdio       *ss;
-	struct commands *c;
+commands(substdio *ss, struct commands *c)
 {
 	unsigned int    i;
 	char           *arg;
@@ -39,7 +41,10 @@ commands(ss, c)
 		for (;;) {
 			if (!stralloc_readyplus(&cmd, 1))
 				return -1;
-			i = substdio_get(ss, cmd.s + cmd.len, 1);
+			if (!(i = substdio_get(ss, cmd.s + cmd.len, 1))) {
+				errno = 0;
+				return 0;
+			} else
 			if (i != 1)
 				return i;
 			if (cmd.s[cmd.len] == '\n')
@@ -74,7 +79,7 @@ commands(ss, c)
 void
 getversion_commands_c()
 {
-	static char    *x = "$Id: commands.c,v 1.7 2020-09-15 10:00:56+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: commands.c,v 1.8 2022-06-20 00:57:33+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
