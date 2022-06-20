@@ -1,4 +1,4 @@
-all: debian.tar.gz
+all: debian.tar.gz libqmail.dsc
 version=$(shell cat ../conf-version)
 arch=$(shell uname -m)
 email=$(shell cat ../conf-email)
@@ -32,10 +32,10 @@ clean:
 	/bin/rm -f changelog libqmail.dsc libqmail.install libqmail-dev.install
 
 debian.tar.gz: changelog compat control copyright libqmail-dev.dirs \
-libqmail-dev.docs libqmail.dirs libqmail.docs \
-libqmail.dsc README rules libqmail.install \
-libqmail-dev.install
-	tar cf - changelog compat control copyright libqmail-dev.dirs \
-		libqmail-dev.docs libqmail.dirs libqmail.docs \
-		libqmail.dsc README rules libqmail.install \
-		libqmail-dev.install |gzip -c >$@
+libqmail-dev.docs libqmail.dirs libqmail.docs source/format \
+README rules libqmail.install libqmail-dev.install
+	cd .. && tar cf - debian/changelog debian/compat debian/control \
+		debian/source debian/copyright debian/libqmail-dev.dirs \
+		debian/libqmail-dev.docs debian/libqmail.dirs debian/rules \
+		debian/libqmail.docs debian/README debian/libqmail.install \
+		debian/libqmail-dev.install | gzip -c >debian/$@
