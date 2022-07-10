@@ -1,11 +1,13 @@
-# Introduction
-
-libqmail is a library of general purpose APIs extracted from Dan Bernstein's [qmail](http://cr.yp.to/qmail.html), reimplemented and covered by the GNU General Public License Version. Many of the functions implemented here have since been placed in the public domain. Many of the functions have been generously borrowed from [libowfat](http://www.fefe.de/libowfat/). libqmail is used by [indimail-mta](https://github.com/mbhangui/indimail-mta) and it's subpackages daemontools and ucspi-tcp, [indimail-virtualdomains](https://github.com/mbhangui/indimail-virtualdomains), [ezmlm](https://github.com/mbhangui/ezmlm), [ezmlm-idx](https://github.com/mbhangui/ezmlm-idx), [tinydnssec](https://github.com/mbhangui/tinydnssec). It is also used by [mpdev](https://github.com/mbhangui/mpdev) - An event watcher for [Music Player Daemon (mpd)](https://www.musicpd.org/). The library comes with a set of man pages, though few are missing. Another thing that is missing are the DNS, ipv4 and ipv6 functions. They are in the todo list.
+[![Matrix](https://img.shields.io/matrix/indimail:matrix.org.svg)](https://matrix.to/#/#indimail:matrix.org)
 
 **Complation Status (from Github Actions)**
 
 [![libqmail Ubuntu, Mac OSX](https://github.com/mbhangui/libqmail/actions/workflows/libqmail-c-cpp.yml/badge.svg)](https://github.com/mbhangui/libqmail/actions/workflows/libqmail-c-cpp.yml)
 [![libqmail FreeBSD](https://github.com/mbhangui/libqmail/actions/workflows/libqmail-freebsd.yml/badge.svg)](https://github.com/mbhangui/libqmail/actions/workflows/libqmail-freebsd.yml)
+
+# Introduction
+
+libqmail is a library of general purpose APIs extracted from Dan Bernstein's [qmail](http://cr.yp.to/qmail.html), reimplemented and covered by the GNU General Public License Version. Many of the functions implemented here have since been placed in the public domain. Many of the functions have been generously borrowed from [libowfat](http://www.fefe.de/libowfat/). libqmail is used by [indimail-mta](https://github.com/mbhangui/indimail-mta) and it's subpackages daemontools and ucspi-tcp, [indimail-virtualdomains](https://github.com/mbhangui/indimail-virtualdomains), [ezmlm](https://github.com/mbhangui/ezmlm), [ezmlm-idx](https://github.com/mbhangui/ezmlm-idx), [tinydnssec](https://github.com/mbhangui/tinydnssec). It is also used by [mpdev](https://github.com/mbhangui/mpdev) - An event watcher for [Music Player Daemon (mpd)](https://www.musicpd.org/). The library comes with a set of man pages, though few are missing. Another thing that is missing are the DNS, ipv4 and ipv6 functions. They are in the todo list.
 
 # Compilation
 
@@ -129,14 +131,16 @@ NOTE: You can also build local binary packages. To generate RPM packages locally
 
 # SUPPORT INFORMATION
 
-libqmail is supported at IndiMail
+libqmail is supported at IndiMail and you can contact on IRC or mailing list
 
 ## IRC / Matrix
 
-![Matrix](https://img.shields.io/matrix/indimail:matrix.org)
+[![Matrix](https://img.shields.io/matrix/indimail:matrix.org.svg)](https://matrix.to/#/#indimail:matrix.org)
 
 * Join me [#indimail:matrix.org](https://matrix.to/#/#indimail:matrix.org)
 * IndiMail has an IRC channel #indimail-mta
+
+The matrix room and libera.chat channel have been bridged so joining either one should be sufficient.
 
 ## Mailing list
 
