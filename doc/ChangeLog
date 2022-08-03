@@ -54,6 +54,9 @@ o added libc replacements qgetservent, qgetservbyname, qgetservbyport along
 33. base/cdb.c: added comment on mmap return value
 - 20/06/2022
 34. base/commands.c: set errno=0 for EOF
+- 03/08/2022
+35. added base/hexdump.c
+36. r_mkdir: skip chown if running as non-root
 
 * Sat Jul 17 2021 18:14:37 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1-1.1%{?dist}
 Release 1.1 Start 14/02/2021
