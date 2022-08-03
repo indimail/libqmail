@@ -1,5 +1,8 @@
 /*
  * $Log: makesalt.c,v $
+ * Revision 1.4  2022-08-03 17:08:46+05:30  Cprogrammer
+ * include stdint.h for uint32_t
+ *
  * Revision 1.3  2022-04-17 08:25:32+05:30  Cprogrammer
  * added arc4random() functions for systems missing it
  *
@@ -18,6 +21,9 @@
 #endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#endif
+#ifdef HAVE_STDINT_H
+#include <stdint.h>
 #endif
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
@@ -106,7 +112,7 @@ makesalt(char *salt, int n)
 void
 getversion_makesalt_c()
 {
-	static char    *x = "$Id: makesalt.c,v 1.3 2022-04-17 08:25:32+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: makesalt.c,v 1.4 2022-08-03 17:08:46+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
