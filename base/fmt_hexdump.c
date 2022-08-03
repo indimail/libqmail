@@ -1,5 +1,8 @@
 /*
  * $Log: fmt_hexdump.c,v $
+ * Revision 1.3  2022-08-03 13:43:50+05:30  Cprogrammer
+ * removed uneeded header files
+ *
  * Revision 1.2  2020-10-10 21:17:56+05:30  Cprogrammer
  * replaced fmt_tohex() with tohex()
  *
@@ -8,8 +11,6 @@
  *
  */
 #include "fmt.h"
-#include "textcode.h"
-#include "str.h"
 
 size_t
 fmt_hexdump(char *dest, const char *src, size_t len)
@@ -30,7 +31,7 @@ fmt_hexdump(char *dest, const char *src, size_t len)
 void
 getversion_fmt_hexdump_c()
 {
-	static char    *x = "$Id: fmt_hexdump.c,v 1.2 2020-10-10 21:17:56+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: fmt_hexdump.c,v 1.3 2022-08-03 13:43:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

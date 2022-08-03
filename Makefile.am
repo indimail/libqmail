@@ -109,6 +109,7 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/arc4random.c base/base64sub.c 
 	base/envread.c base/error.c base/error_str.c base/error_temp.c \
 	base/evaluate.c base/fd_copy.c base/fd_move.c base/fifo.c \
 	base/fmt_8long.c base/fmt_double.c base/fmt_fill.c base/fmt_hexbytes.c \
+	base/fmt_hexdump.c \
 	base/fmt_int.c base/fmt_long.c base/fmt_minus.c base/fmt_pad.c \
 	base/fmt_plusminus.c base/fmt_str.c base/fmt_strn.c base/fmt_uint0.c \
 	base/fmt_uint.c base/fmt_ulong.c base/fmt_ulonglong.c base/fmt_ushort.c \
@@ -371,6 +372,7 @@ base/fmt_uint.lo: fmt.h
 base/fmt_uint0.lo: fmt.h
 base/fmt_ulong.lo: fmt.h
 base/fmt_hexbytes.lo: fmt.h
+base/fmt_hexdump.lo: fmt.h
 base/fmt_xlong.lo: fmt.h
 base/fmt_ushort.lo: fmt.h
 base/fmt_double.lo: fmt.h uint64.h
@@ -474,7 +476,6 @@ textcode/fmt_base64.o: textcode/fmt_base64.c fmt.h byte.h textcode.h haveinline.
 textcode/fmt_base64url.o: textcode/fmt_base64url.c fmt.h byte.h textcode.h haveinline.h
 textcode/fmt_cescape.o: textcode/fmt_cescape.c fmt.h byte.h textcode.h str.h haveinline.h
 textcode/fmt_foldwhitespace.o: textcode/fmt_foldwhitespace.c fmt.h byte.h textcode.h str.h haveinline.h
-textcode/fmt_hexdump.o: textcode/fmt_hexdump.c fmt.h byte.h textcode.h str.h haveinline.h
 textcode/fmt_html.o: textcode/fmt_html.c fmt.h byte.h textcode.h str.h haveinline.h
 textcode/fmt_html_tagarg.o: textcode/fmt_html_tagarg.c fmt.h byte.h textcode.h str.h haveinline.h
 textcode/fmt_jsonescape.o: textcode/fmt_jsonescape.c fmt.h byte.h textcode.h str.h haveinline.h
