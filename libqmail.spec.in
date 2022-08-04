@@ -114,6 +114,7 @@ necessary to develop qmail applications
 
 %attr(644,root,root)                    %{_prefix}/include/qmail/alloc.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/arc4random.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/authmethods.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/base64.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/builtinoflmacros.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/byte.h
@@ -145,6 +146,7 @@ necessary to develop qmail applications
 %attr(644,root,root)                    %{_prefix}/include/qmail/gen_allocdefs.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/gen_alloc.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/getEnvConfig.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/get_scram_secrets.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/getln.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/global.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/commands.h
