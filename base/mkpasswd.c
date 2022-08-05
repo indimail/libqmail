@@ -1,5 +1,8 @@
 /*
  * $Log: mkpasswd.c,v $
+ * Revision 1.3  2022-08-05 17:27:25+05:30  Cprogrammer
+ * encrypt when encrypt_flag is non-zero
+ *
  * Revision 1.2  2022-04-17 08:21:17+05:30  Cprogrammer
  * removed setting 'seeded' variable
  *
@@ -41,13 +44,12 @@ mkpasswd(char *newpasswd, stralloc *crypted, int encrypt_flag)
 	char            salt[SALTSIZE + 1];
 
 	crypted->len = 0;
-	if (encrypt_flag)
-		tmpstr = newpasswd;
-	else {
+	if (encrypt_flag) {
 		makesalt(salt, SALTSIZE);
 		if (!(tmpstr = in_crypt(newpasswd, salt)))
 			return (-1);
-	}
+	} else
+		tmpstr = newpasswd;
 	if (!stralloc_copys(crypted, tmpstr) || !stralloc_0(crypted))
 		die_nomem();
 	crypted->len--;
@@ -57,7 +59,7 @@ mkpasswd(char *newpasswd, stralloc *crypted, int encrypt_flag)
 void
 getversion_mkpasswd_c()
 {
-	static char    *x = "$Id: mkpasswd.c,v 1.2 2022-04-17 08:21:17+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: mkpasswd.c,v 1.3 2022-08-05 17:27:25+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
