@@ -183,6 +183,7 @@ necessary to develop qmail applications
 %attr(644,root,root)                    %{_prefix}/include/qmail/sgetopt.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/sha1.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/sig.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/sodium_random.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/stralloc.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/strerr.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/strmsg.h

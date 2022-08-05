@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.31  2022-08-05 09:00:14+05:30  Cprogrammer
+# added sodium_random() function
+#
 # Revision 1.30  2022-05-10 20:15:22+05:30  Cprogrammer
 # configure IPV6 settings
 #
@@ -91,7 +94,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.30 2022-05-10 20:15:22+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.31 2022-08-05 09:00:14+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/mbhangui/libqmail])
@@ -100,14 +103,13 @@ PACKAGE=$PACKAGE_NAME
 VERSION=$PACKAGE_VERSION
 LT_INIT
 AM_INIT_AUTOMAKE([subdir-objects silent-rules])
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_HEADER(config.h)
 
 dnl Checks for programs.
 LT_INIT
 AC_PROG_LN_S
 AC_PROG_AWK
 AC_PROG_CC
-AC_PROG_CC_C99
 AC_PROG_INSTALL
 AC_CONFIG_MACRO_DIR([m4])
 AC_PROG_MAKE_SET
@@ -116,7 +118,7 @@ PKG_INSTALLDIR
 
 dnl Checks for header files.
 AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h endian.h netdb.h)
-AC_CHECK_HEADERS(regex.h sys/types.h sys/wait.h sys/file.h sys/time.h sys/endian.h arpa/inet.h sys/socket.h sys/un.h)
+AC_CHECK_HEADERS(regex.h sys/types.h sys/wait.h sys/file.h sys/time.h sys/endian.h arpa/inet.h sys/socket.h sys/un.h sodium.h)
 
 case "$host" in
 *-*-sunos4.1.1*)
@@ -149,6 +151,7 @@ AC_CHECK_FUNCS(flock arc4random)
 AC_CHECK_LIB(ssl, SSL_CTX_new, [AC_SUBST([LIB_SSL], ["-lssl"]) AC_DEFINE([HAVE_SSL], [1],[OpenSSL Library])],,-lssl)
 AC_CHECK_LIB(crypto, CRYPTO_new_ex_data, [AC_SUBST([LIB_CRYPTO], ["-lcrypto"]) AC_DEFINE([HAVE_CRYPTO], [1],[Crypto Library])],,-lcrypto)
 AC_CHECK_LIB(crypt, crypt, [AC_SUBST([LIB_CRYPT], ["-lcrypt"]) AC_DEFINE([HAVE_CRYPT], [1],[crypt Library])],,)
+AC_CHECK_LIB(sodium, sodium_init, [AC_SUBST([LIB_SODIUM], ["-lsodium"]) AC_DEFINE([HAVE_SODIUM], [1],[Sodium Library])],,-lsodium)
 
 dnl Does not work on RHEL 5, CentOS 5 64 bit systems
 RPATH_LIB="$acl_libdirstem"

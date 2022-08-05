@@ -5,7 +5,7 @@ DEFS=@DEFS@ -I. -Ibase -Iarray -Itextcode -Isocket
 
 libqmail_LTLIBRARIES = libqmail.la
 libqmail_la_SOURCES = $(COMMONSOURCES)
-libqmail_la_LIBADD = @LIB_CRYPT@ @LIB_CRYPTO@ -lm
+libqmail_la_LIBADD = @LIB_CRYPT@ @LIB_CRYPTO@ @LIB_SODIUM@ -lm
 libqmail_la_LDFLAGS = -version-info @LIBVER@:0:0
 libqmail_la_CFLAGS = -fPIC
 libqmaildir=@libdir@
@@ -70,24 +70,26 @@ man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 \
 docs = README doc/ChangeLog COPYING AUTHORS
 docdir=@docdir@
 
-include_HEADERS = base/alloc.h base/arc4random.h base/authmethods.h base/base64.h \
-	base/builtinoflmacros.h base/byte.h base/caldate.h base/caltime.h \
-	base/case.h base/cdb.h base/cdb_make.h base/cdbmake.h base/cdbmss.h \
-	base/check_domain.h base/coe.h base/commands.h base/constmap.h \
-	base/date822fmt.h base/datetime.h base/digest_md5.h base/direntry.h \
-	base/env.h base/error.h base/envdir.h base/evaluate.h base/fd.h \
-	base/fifo.h base/fmt.h base/gen_allocdefs.h base/gen_alloc.h \
-	base/get_scram_secrets.h base/getEnvConfig.h base/getln.h base/global.h \
-	base/hasbltnofl.h base/hmac.h base/in_crypt.h base/iopause.h base/isnum.h \
-	base/leapsecs.h base/lock.h base/makeargs.h base/makesalt.h base/md5.h \
-	base/mess822.h base/mkpasswd.h base/mktempfile.h base/ndelay.h base/noreturn.h \
+include_HEADERS = base/alloc.h base/arc4random.h base/authmethods.h \
+	base/base64.h base/builtinoflmacros.h base/byte.h base/caldate.h \
+	base/caltime.h base/case.h base/cdb.h base/cdb_make.h base/cdbmake.h \
+	base/cdbmss.h base/check_domain.h base/coe.h base/commands.h \
+	base/constmap.h base/date822fmt.h base/datetime.h base/digest_md5.h \
+	base/direntry.h base/env.h base/error.h base/envdir.h base/evaluate.h \
+	base/fd.h base/fifo.h base/fmt.h base/gen_allocdefs.h \
+	base/gen_alloc.h base/get_scram_secrets.h base/getEnvConfig.h \
+	base/getln.h base/global.h base/hasbltnofl.h base/hmac.h \
+	base/in_crypt.h base/iopause.h base/isnum.h base/leapsecs.h \
+	base/lock.h base/makeargs.h base/makesalt.h base/md5.h base/mess822.h \
+	base/mkpasswd.h base/mktempfile.h base/ndelay.h base/noreturn.h \
 	base/now.h base/no_of_days.h base/open.h base/openreadclose.h \
-	base/pathexec.h base/prot.h base/pw_comp.h base/qgetpwgr.h base/qtime.h \
-	base/readclose.h base/replacestr.h base/rewritehost.h base/ripemd.h \
-	base/r_mkdir.h base/scan.h base/sconfig.h base/seek.h base/select.h \
-	base/setuserid.h base/sgetopt.h base/sha1.h base/sig.h base/stralloc.h \
-	base/strerr.h base/str.h base/strmsg.h base/subfd.h base/subgetopt.h \
-	base/substdio.h base/taia.h base/tai.h base/tai2.h base/timeoutread.h \
+	base/pathexec.h base/prot.h base/pw_comp.h base/qgetpwgr.h \
+	base/qtime.h base/readclose.h base/replacestr.h base/rewritehost.h \
+	base/ripemd.h base/r_mkdir.h base/scan.h base/sconfig.h base/seek.h \
+	base/select.h base/setuserid.h base/sgetopt.h base/sha1.h base/sig.h \
+	base/sodium_random.h base/stralloc.h base/strerr.h base/str.h \
+	base/strmsg.h base/subfd.h base/subgetopt.h base/substdio.h \
+	base/taia.h base/tai.h base/tai2.h base/timeoutread.h \
 	base/timeoutwrite.h base/timestamp.h base/token822.h base/typesx.h \
 	base/uint16.h base/uint32.h base/uint64.h base/wait.h base/qprintf.h \
 	array/array.h textcode/entities.h textcode/textcode.h base/likely.h \
@@ -136,7 +138,7 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/arc4random.c base/base64sub.c 
 	base/sha256_crypt.c base/sha512_crypt.c base/sig.c base/sig_alarm.c \
 	base/sig_block.c base/sig_bug.c base/sig_catch.c base/sig_child.c \
 	base/sig_hup.c base/sig_int.c base/sig_misc.c base/sig_pause.c \
-	base/sig_pipe.c base/sig_term.c base/stralloc_arts.c \
+	base/sig_pipe.c base/sig_term.c base/sodium_random.c base/stralloc_arts.c \
 	base/stralloc_catb.c base/stralloc_cat.c base/stralloc_cats.c \
 	base/stralloc_copy.c base/stralloc_eady.c base/stralloc_num.c \
 	base/stralloc_opyb.c base/stralloc_opys.c base/stralloc_pend.c \
