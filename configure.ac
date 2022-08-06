@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.32  2022-08-06 10:00:05+05:30  Cprogrammer
+# add -I/usr/local/include -L/usr/local/lib for FreeBSD
+#
 # Revision 1.31  2022-08-05 09:00:14+05:30  Cprogrammer
 # added sodium_random() function
 #
@@ -94,7 +97,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.31 2022-08-05 09:00:14+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.32 2022-08-06 10:00:05+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/mbhangui/libqmail])
@@ -116,10 +119,6 @@ AC_PROG_MAKE_SET
 PKG_PROG_PKG_CONFIG
 PKG_INSTALLDIR
 
-dnl Checks for header files.
-AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h endian.h netdb.h)
-AC_CHECK_HEADERS(regex.h sys/types.h sys/wait.h sys/file.h sys/time.h sys/endian.h arpa/inet.h sys/socket.h sys/un.h sodium.h)
-
 case "$host" in
 *-*-sunos4.1.1*)
 	CPPFLAGS="$CPPFLAGS -DSUNOS4"
@@ -134,17 +133,22 @@ case "$host" in
 	CFLAGS="$CFLAGS -Wshadow -Wcast-align -Wwrite-strings -Wno-discarded-qualifiers"
 	;;
 *-*-freebsd*)
-	CPPFLAGS="$CPPFLAGS -Dlint -DFREEBSD -Wall"
+	CPPFLAGS="$CPPFLAGS -I/usr/local/include -Dlint -DFREEBSD -Wall"
 	CFLAGS="$CFLAGS -O3 -Wall -Wimplicit -fPIC -fno-strict-aliasing -Wunused"
 	CFLAGS="$CFLAGS -Wcomment -Wchar-subscripts"
 	CFLAGS="$CFLAGS -Wuninitialized -Wshadow -Wwrite-strings -Wno-ignored-qualifiers"
 	CFLAGS="$CFLAGS -Wno-incompatible-pointer-types-discards-qualifiers -Wno-cast-align"
+	LDFLAGS="$LDFLAGS -L/opt/local/lib -L/usr/local/lib"
 	;;
 *-*-darwin*)
 	CPPFLAGS="$CPPFLAGS -Dlint -I/opt/local/include -DDARWIN -I/usr/local/include"
 	LDFLAGS="$LDFLAGS -L/opt/local/lib -L/usr/local/lib"
 	;;
 esac
+
+dnl Checks for header files.
+AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h endian.h netdb.h)
+AC_CHECK_HEADERS(regex.h sys/types.h sys/wait.h sys/file.h sys/time.h sys/endian.h arpa/inet.h sys/socket.h sys/un.h sodium.h)
 
 AC_CHECK_FUNCS(flock arc4random)
 
