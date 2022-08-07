@@ -15,33 +15,34 @@ You will need to have the compiler, make, autoconf, automake, libtool, m4 instal
 
 ```
 Linux (RPM based)
-# yum/dnf install gcc gcc-c++ autoconf automake libtool pkgconfig m4 sed findutils diffutils openssl-devel
+# yum/dnf install gcc gcc-c++ autoconf automake libtool pkgconfig m4 sed findutils diffutils openssl-devel libsodium-devel
 
 Linux (Debian based)
-# apt-get install build-essential gcc g++ autoconf automake libtool pkg-config m4 libssl-dev
+# apt-get install build-essential gcc g++ autoconf automake libtool pkg-config m4 libssl-dev libsodium-dev
 
 Linux (Arch Linux)
 # pacman -S --needed archlinux-keyring
 # pacman -S --refresh --sysupgrade
-# pacman -S base-devel diffutils coreutils openssl
+# pacman -S base-devel diffutils coreutils openssl libsodium
 
 Gentoo Linux
 # emaint -a sync
 # emerge-webrsync
 # emerge -a app-portage/eix
+# emerge -a dev-libs/libsodium
 # eix-sync
 # etc-update
 
 FreeBSD
-# pkg install automake autoconf libtool pkgconf
+# pkg install automake autoconf libtool pkgconf libsodium
 
 Darwin
-# port install autoconf libtool automake pkgconfig openssl
+# port install autoconf libtool automake pkgconfig openssl libsodium
 # port update outdated
 
 alpine Linux
 
-# apk add gcc g++ make git autoconf automake libtool m4 sed openssl-dev
+# apk add gcc g++ make git autoconf automake libtool m4 sed openssl-dev libsodium-dev
 ```
 
 * NOTE: For Darwin (Mac OSX), install [MacPorts](https://www.macports.org/) or [Homebrew](https://brew.sh/). You can look at this [document](https://paolozaino.wordpress.com/2015/05/05/how-to-install-and-use-autotools-on-mac-os-x/) for installing MacPorts.

@@ -29,7 +29,9 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Darwin
-      run: if [ "${OS}" = "macos-latest" ]; then brew install automake autoconf libtool pkgconfig openssl; fi
+      run: |
+        if [ "${OS}" = "macos-latest" ]; then brew install automake autoconf libtool pkgconfig openssl; fi
+        if [ "${OS}" = "ubuntu-latest" ] ; then sudo apt-get install gcc g++ automake autoconf libtool libssl-dev libsodium-dev; fi
       env:
         OS: ${{ matrix.host }}
 
