@@ -66,6 +66,9 @@ o added libc replacements qgetservent, qgetservbyname, qgetservbyport along
 - 06/08/2022
 41. configure.ac: add -I/usr/local/include -L/usr/local/lib for FreeBSD
     libsodium
+- 14/08/2022
+42. base/authmethods.h: added AUTH_SCRAM_SHA1_PLUS, AUTH_SCRAM_SHA256_PLUS,
+    AUTH_SCRAM_SHA512_PLUS auth methods
 
 * Sat Jul 17 2021 18:14:37 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1-1.1%{?dist}
 Release 1.1 Start 14/02/2021
