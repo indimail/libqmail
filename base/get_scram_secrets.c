@@ -1,5 +1,5 @@
 #ifndef	lint
-static char     sccsid[] = "$Id: get_scram_secrets.c,v 1.1 2022-08-04 10:01:50+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: get_scram_secrets.c,v 1.2 2022-08-16 08:19:55+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #include <str.h>
@@ -8,13 +8,16 @@ static char     sccsid[] = "$Id: get_scram_secrets.c,v 1.1 2022-08-04 10:01:50+0
 #include <authmethods.h>
 
 /*-
- * The output is a string of the form
+ * The input is a string of the form
  *  "{mech}count,salt,stored-key,server-key[,salted-password]"
+ * The function extracts details in mech, iter, salt, stored_key
+ * server_key and salted_pass, total of 6 fields.
  *  "mech" is the mechanism, "count" is *  the number of times password
  * was hashed,
+ *  "iter" is the iteration cound to be used.
  *  "salt" is the provided/generated base64-encoded salt,
  *  "stored-key" and "server-key" are the two derived and base64-encoded
- * server-side keys.
+ * server-side keys. It returns the number of fields extracted.
  *  "salted-password" is the non-scram derived encrypted password that can
  * be used with non-scram methods
  * {SCRAM-SHA-256}4096,GppkE9F92zRciuyk,n9boN+EV/P7i+Uxn063JLcppQnyOrIktX81FCy8iibk=,cVjrqEdR7DuGDAwKMLrn6YOp5Z4w7zOBjrxo+1mGmfE=,$1$GsamfuEK$eSxzR6dswY.kaNTtPNi5c1 (SCRAM-SHA-256)
@@ -89,5 +92,8 @@ get_scram_secrets(char *pass_str, int *mech, int *iter, char **salt, char **stor
 	return 6;
 }
 /*
- * Log: $
+ * $Log: get_scram_secrets.c,v $
+ * Revision 1.2  2022-08-16 08:19:55+05:30  Cprogrammer
+ * updated function documentation
+ *
  */
