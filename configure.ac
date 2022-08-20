@@ -147,8 +147,8 @@ case "$host" in
 esac
 
 dnl Checks for header files.
-AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h endian.h netdb.h)
-AC_CHECK_HEADERS(regex.h sys/types.h sys/wait.h sys/file.h sys/time.h sys/endian.h arpa/inet.h sys/socket.h sys/un.h sodium.h)
+AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h endian.h netdb.h sodium.h)
+AC_CHECK_HEADERS(regex.h sys/types.h sys/stat.h sys/wait.h sys/file.h sys/time.h sys/endian.h arpa/inet.h sys/socket.h sys/un.h)
 
 AC_CHECK_FUNCS(flock arc4random)
 
