@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.33  2022-08-20 17:57:11+05:30  Cprogrammer
+# added AC_CHECK_HEADERS sys/stat.h
+#
 # Revision 1.32  2022-08-06 10:00:05+05:30  Cprogrammer
 # add -I/usr/local/include -L/usr/local/lib for FreeBSD
 #
@@ -97,7 +100,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.32 2022-08-06 10:00:05+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.33 2022-08-20 17:57:11+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/mbhangui/libqmail])
