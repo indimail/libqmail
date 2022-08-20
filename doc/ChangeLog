@@ -69,6 +69,8 @@ o added libc replacements qgetservent, qgetservbyname, qgetservbyport along
 - 14/08/2022
 42. base/authmethods.h: added AUTH_SCRAM_SHA1_PLUS, AUTH_SCRAM_SHA256_PLUS,
     AUTH_SCRAM_SHA512_PLUS auth methods
+- 20/08/2022
+43. base/envdir.c: skip leading spaces, blank lines and comments in envfile
 
 * Sat Jul 17 2021 18:14:37 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1-1.1%{?dist}
 Release 1.1 Start 14/02/2021

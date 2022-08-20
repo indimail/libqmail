@@ -1,5 +1,8 @@
 /*
  * $Log: envdir.c,v $
+ * Revision 1.12  2022-08-20 12:20:51+05:30  Cprogrammer
+ * skip leading spaces, blank lines and comments in envfile
+ *
  * Revision 1.11  2022-03-05 21:18:12+05:30  Cprogrammer
  * fixed variable sa getting overwritten by openreadclose()
  *
@@ -34,9 +37,21 @@
  * Initial revision
  *
  */
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+#ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#endif
+#ifdef SYS_TYPES_H
 #include <sys/types.h>
+#endif
+#ifdef HAVE_SYS_STAT_H
 #include <sys/stat.h>
+#endif
+#ifdef HAVE_CTYPE_H
+#include <ctype.h>
+#endif
 #include "alloc.h"
 #include "error.h"
 #include "envdir.h"
@@ -98,7 +113,7 @@ process_dot_envfile(char *fn, char **e, int ignore_unreadable, int *unreadable)
 {
 	struct stat     st;
 	char           *ptr, *cptr;
-	int             i, j;
+	int             i;
 	static stralloc sa;
 
 	if (lstat(fn, &st)) { /*- read file having env1=var1 lines */
@@ -114,6 +129,11 @@ process_dot_envfile(char *fn, char **e, int ignore_unreadable, int *unreadable)
 	case S_IFDIR: /*- ignore */
 		break;
 	case S_IFREG:
+		/*- 
+		 * openreadclose reads fn into stralloc and has
+		 * last byte as newline and all lines have newlines
+		 * converted to \0
+		 */
 		i = openreadclose(fn, &sa, st.st_size);
 		if (i == -1 || !i) {
 			(*unreadable)++;
@@ -124,6 +144,7 @@ process_dot_envfile(char *fn, char **e, int ignore_unreadable, int *unreadable)
 		if (!sa.len)
 			break;
 		sa.len = byte_chr(sa.s, sa.len, '\n');
+		/*- replace all \0 to \n */
 		for (i = 0; i < sa.len; ++i) {
 			if (!sa.s[i])
 				sa.s[i] = '\n';
@@ -132,15 +153,19 @@ process_dot_envfile(char *fn, char **e, int ignore_unreadable, int *unreadable)
 			if (*cptr != '\n')
 				continue;
 			*cptr = 0;
+			/*- skip leading whitespace */
+			for (i = 0; *cptr; i++) {
+				if (!isspace(ptr[i]))
+					break;
+			}
+			if (i)
+				ptr += i;
+			/*- skip blank lines and comments */
+			if (!ptr[0] || ptr[0] == '#')
+				continue;
 			i = str_chr(ptr, '=');
 			if (ptr[i]) {
 				ptr[i] = 0;
-				j = str_rchr(ptr + i, ' ');
-				if (ptr[i + j])
-					ptr[i + j] = 0;
-				j = str_rchr(ptr + i, '\t');
-				if (ptr[i + j])
-					ptr[i + j] = 0;
 				if (!pathexec_env(ptr, ptr + i + 1)) { /*- set variable */
 					if (e)
 						*e = error_str(errno);
@@ -351,7 +376,7 @@ envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
 void
 getversion_envdir_c()
 {
-	static char    *x = "$Id: envdir.c,v 1.11 2022-03-05 21:18:12+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: envdir.c,v 1.12 2022-08-20 12:20:51+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
