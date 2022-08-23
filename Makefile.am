@@ -97,8 +97,8 @@ include_HEADERS = base/alloc.h base/arc4random.h base/authmethods.h \
 	socket/tcpopen.h socket/udpopen.h base/qdirname.h
 
 includedir=@prefix@/include/qmail
-COMMONSOURCES = base/alloc.c base/alloc_re.c base/arc4random.c base/base64sub.c \
-	base/byte_chr.c base/byte_copy.c base/byte_cr.c base/byte_cspn.c \
+COMMONSOURCES = base/alloc.c base/alloc_re.c base/arc4random.c base/authmethods.c \
+	base/base64sub.c base/byte_chr.c base/byte_copy.c base/byte_cr.c base/byte_cspn.c \
 	base/byte_diff.c base/byte_rchr.c base/byte_rcspn.c base/byte_zero.c \
 	base/caldate_fmjd.c base/caldate_fmt.c base/caldate_mjd.c base/caldate_scan.c \
 	base/caltime_fmt.c base/caltime_tai.c base/caltime_utc.c base/case_diffb.c \

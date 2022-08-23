@@ -1,5 +1,8 @@
 /*
  * $Log: authmethods.h,v $
+ * Revision 1.3  2022-08-23 07:50:03+05:30  Cprogrammer
+ * added get_authmethod() function
+ *
  * Revision 1.2  2022-08-14 17:19:34+05:30  Cprogrammer
  * added AUTH_SCRAM_SHA1_PLUS, AUTH_SCRAM_SHA256_PLUS, AUTH_SCRAM_SHA512_PLUS auth methods
  *
@@ -26,5 +29,7 @@
 #define AUTH_SCRAM_SHA1_PLUS   14
 #define AUTH_SCRAM_SHA256_PLUS 15
 #define AUTH_SCRAM_SHA512_PLUS 16
+
+char           *get_authmethod(int);
 
 #endif
