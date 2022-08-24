@@ -1,5 +1,8 @@
 /*
  * $Log: makesalt.c,v $
+ * Revision 1.5  2022-08-24 15:34:52+05:30  Cprogrammer
+ * changed default hash method to SHA256
+ *
  * Revision 1.4  2022-08-03 17:08:46+05:30  Cprogrammer
  * include stdint.h for uint32_t
  *
@@ -88,10 +91,15 @@ makesalt(char *salt, int n)
 		salt[2] = '$';
 		i = 3;
 		break;
-	default:
 	case MD5_HASH:
 		salt[0] = '$';
 		salt[1] = '1';
+		salt[2] = '$';
+		i = 3;
+		break;
+	default:
+		salt[0] = '$';
+		salt[1] = '5';
 		salt[2] = '$';
 		i = 3;
 		break;
@@ -112,7 +120,7 @@ makesalt(char *salt, int n)
 void
 getversion_makesalt_c()
 {
-	static char    *x = "$Id: makesalt.c,v 1.4 2022-08-03 17:08:46+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: makesalt.c,v 1.5 2022-08-24 15:34:52+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

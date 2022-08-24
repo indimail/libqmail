@@ -1,0 +1,16 @@
+/*
+ * $Log: hashmethods.h.in,v $
+ * Revision 1.1  2022-08-24 15:39:19+05:30  Cprogrammer
+ * Initial revision
+ *
+ */
+#ifndef _HASHMETHODS_H
+#define _HASHMETHODS_H
+
+#define DES_HASH       @des_hash@
+#define MD5_HASH       @md5_hash@
+#define SHA256_HASH    @sha256_hash@
+#define SHA512_HASH    @sha512_hash@
+#define PASSWORD_HASH  @PASSWORD_HASH@
+
+#endif

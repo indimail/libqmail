@@ -1,6 +1,7 @@
 #!/bin/sh
-if [ ! -f ./configure -o ! -f Makefile -o ! -f Makefile.in ] ; then
+if [ ! -f ./configure -o ! -f Makefile -o ! -f Makefile.in -o "$1" = "--force" ] ; then
   echo "reconfiguring"
+  touch configure.ac
   mkdir -p m4
   autoreconf -fi
 fi
@@ -76,4 +77,5 @@ if [ -f Makefile ] ; then
 fi
 ./configure --prefix=$prefix --mandir=$mandir \
   --libdir=$libdir --with-pkgconfigdir=$pkgconfigdir \
-  --sysconfdir=/etc/indimail $extra
+  --sysconfdir=/etc/indimail $extra \
+  --enable-passwd-hash=sha256

@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.34  2022-08-24 18:57:19+05:30  Cprogrammer
+# added hashmethods.h
+#
 # Revision 1.33  2022-08-20 17:57:11+05:30  Cprogrammer
 # added AC_CHECK_HEADERS sys/stat.h
 #
@@ -100,7 +103,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.33 2022-08-20 17:57:11+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.34 2022-08-24 18:57:19+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/mbhangui/libqmail])
@@ -208,35 +211,43 @@ AC_ARG_ENABLE(ENABLE_SHA512_CRYPT, [  --enable-sha512-crypt         if your syst
 test "$with_sha512crypt" = "no" && AC_DEFINE(ENABLE_SHA512_CRYPT,1,Define if you want sha512 crypt support compiled in)
 AM_CONDITIONAL(ENABLE_SHA512_CRYPT, test "$with_sha512crypt" = yes)
 
-pwdhash=system
+AC_SUBST(des_hash, 0)
+AC_SUBST(md5_hash, 1)
+AC_SUBST(sha256_hash, 2)
+AC_SUBST(sha512_hash, 3)
 AC_ARG_ENABLE(passwd-hash,
 	[--enable-passwd-hash=des|md5|sha256|sha512|system Passwd Hash (des - DES, md5 - MD5, sha256 - SHA256, sha512 - SHA512, system)],
 	pwdhash=$enableval,
 	[
-	 pwdhash=system
+	 pwdhash=sha256
 	])
 case $pwdhash in
 	des)
-	AC_DEFINE_UNQUOTED(PASSWORD_HASH,0,Enable DES Encryption)
+	AC_SUBST(PASSWORD_HASH, $des_hash)
+	AC_DEFINE_UNQUOTED(PASSWORD_HASH, [$des_hash],    Default DES Encryption for makesalt)
 	;;
 	md5)
-	AC_DEFINE_UNQUOTED(PASSWORD_HASH,1,Enable MD5 Encryption)
+	AC_SUBST(PASSWORD_HASH, $md5_hash)
+	AC_DEFINE_UNQUOTED(PASSWORD_HASH, [$md5_hash],    Default MD5 Encryption for makesalt)
 	;;
 	sha256)
-	AC_DEFINE_UNQUOTED(PASSWORD_HASH,2,Enable SHA256 Encryption)
+	AC_SUBST(PASSWORD_HASH, $sha256_hash)
+	AC_DEFINE_UNQUOTED(PASSWORD_HASH, [$sha256_hash], Default SHA256 Encryption for makesalt)
 	;;
 	sha512)
-	AC_DEFINE_UNQUOTED(PASSWORD_HASH,3,Enable SHA512 Encryption)
+	AC_SUBST(PASSWORD_HASH, $sha512_hash)
+	AC_DEFINE_UNQUOTED(PASSWORD_HASH, [$sha512_hash], Default SHA512 Encryption for makesalt)
 	;;
 	system)
-	AC_DEFINE_UNQUOTED(PASSWORD_HASH,-1,Use System Crypt Encryption)
+	AC_SUBST(PASSWORD_HASH, -1)
+	AC_DEFINE_UNQUOTED(PASSWORD_HASH, [-1], default makesalt crypt encryption)
 	;;
 esac
-AC_DEFINE_UNQUOTED(DES_HASH,0,Enable DES Encryption)
-AC_DEFINE_UNQUOTED(MD5_HASH,1,Enable MD5 Encryption)
-AC_DEFINE_UNQUOTED(SHA256_HASH,2,Enable SHA256 Encryption)
-AC_DEFINE_UNQUOTED(SHA512_HASH,3,Enable SHA512 Encryption)
-AC_DEFINE_UNQUOTED(SYSCONFDIR,"$sysconfdir", Directory for leapsecs.dat)
+AC_DEFINE_UNQUOTED([DES_HASH],    [$des_hash],    hash method identifier for DES_HASH)
+AC_DEFINE_UNQUOTED([MD5_HASH],    [$md5_hash],    hash method identifier for MD5_HASH)
+AC_DEFINE_UNQUOTED([SHA256_HASH], [$sha256_hash], hash method identifier for SHA256_HASH)
+AC_DEFINE_UNQUOTED([SHA512_HASH], [$sha512_hash], hash method identifier for SHA512_HASH)
+AC_DEFINE_UNQUOTED([SYSCONFDIR]," $sysconfdir", Directory for leapsecs.dat)
 
 dnl **********************************************************************
 dnl Checks for IPv6
@@ -311,7 +322,7 @@ elif test "x$force_ipv6" = "xyes"; then
   AC_MSG_ERROR([IPv6 support requested but not found; aborting])
 fi
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES(base/hashmethods.h Makefile)
 AC_OUTPUT
 
 case $pwdhash in

@@ -13,7 +13,7 @@ libqmaildir=@libdir@
 BUILT_SOURCES = base/uint32.h base/uint64.h base/haswaitp.h \
 	base/hasflock.h base/hassgact.h base/hassgprm.h base/select.h \
 	base/hasmkffo.h base/direntry.h base/hasbltnofl.h \
-	base/iopause.h base/haveuint128.h base/hasshsgr.h
+	base/iopause.h base/haveuint128.h base/hasshsgr.h base/hashmethods.h
 
 MOSTLYCLEANFILES = base/uint32.h base/uint64.h base/haswaitp.h \
 	base/hasflock.h base/hassgact.h base/hassgprm.h base/select.h \
@@ -78,7 +78,7 @@ include_HEADERS = base/alloc.h base/arc4random.h base/authmethods.h \
 	base/direntry.h base/env.h base/error.h base/envdir.h base/evaluate.h \
 	base/fd.h base/fifo.h base/fmt.h base/gen_allocdefs.h \
 	base/gen_alloc.h base/get_scram_secrets.h base/getEnvConfig.h \
-	base/getln.h base/global.h base/hasbltnofl.h base/hmac.h \
+	base/getln.h base/global.h base/hasbltnofl.h base/hashmethods.h base/hmac.h \
 	base/in_crypt.h base/iopause.h base/isnum.h base/leapsecs.h \
 	base/lock.h base/makeargs.h base/makesalt.h base/md5.h base/mess822.h \
 	base/mkpasswd.h base/mktempfile.h base/ndelay.h base/noreturn.h \
@@ -302,6 +302,7 @@ direntry.h stralloc.h
 base/error_str.lo: error.h
 base/error_temp.lo: error.h
 base/evaluate.lo: evaluate.h str.h alloc.h
+base/makesalt.lo: makesalt.h config.h
 base/mkpasswd.lo: gen_alloc.h str.h strerr.h stralloc.h in_crypt.h makesalt.h
 base/pw_comp.lo: gen_alloc.h stralloc.h strerr.h env.h error.h str.h subfd.h \
 	in_crypt.h hmac.h digest_md5.h mkpasswd.h pw_comp.h
@@ -399,7 +400,7 @@ base/hmac_ripemd.lo: typesx.h ripemd.h
 base/hmac_sha1.lo: typesx.h sha1.h
 base/hmac_sha256.lo: typesx.h sha1.h
 base/hmac_sha512.lo: typesx.h sha1.h
-base/in_crypt.lo: getEnvConfig.h in_crypt.h
+base/in_crypt.lo: getEnvConfig.h in_crypt.h config.h
 base/lock_ex.lo: lock.h hasflock.h
 base/lock_exnb.lo: lock.h
 base/lock_un.lo: lock.h

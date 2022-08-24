@@ -28,7 +28,9 @@ build-stamp:
 	./configure $(shell dpkg-buildflags --export=cmdline) \
 		--prefix=$(prefix) --libdir=$(prefix)/$(libd) \
 		--sysconfdir=/etc/indimail \
-		--with-pkgconfigdir=/usr/lib/pkgconfig --mandir=$(mandir)
+		--with-pkgconfigdir=/usr/lib/pkgconfig --mandir=$(mandir) \
+		--enable-passwd-hash=sha256
+
 	$(MAKE) -s DESTDIR=$(DESTDIR)
 	${rm} -rf $(DESTDIR)$(prefix)/$(libd)/*.la
 	touch build-stamp

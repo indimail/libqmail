@@ -63,3 +63,4 @@ config.h.in
 PKGBUILD
 base/chkshsgr
 base/hasshsgr.h
+base/hashmethods.h

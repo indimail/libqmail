@@ -93,7 +93,8 @@ necessary to develop qmail applications
 %setup -q
 
 %build
-%configure --prefix=/usr --sysconfdir=/etc/indimail
+%configure --prefix=/usr --sysconfdir=/etc/indimail \
+  --enable-passwd-hash=sha256
 
 %install
 %{__make} -s %{?_smp_mflags}
@@ -134,6 +135,7 @@ necessary to develop qmail applications
 %attr(644,root,root)                    %{_prefix}/include/qmail/cdbmss.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/check_domain.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/coe.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/commands.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/constmap.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/date822fmt.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/datetime.h
@@ -156,7 +158,7 @@ necessary to develop qmail applications
 %attr(644,root,root)                    %{_prefix}/include/qmail/get_scram_secrets.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/getln.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/global.h
-%attr(644,root,root)                    %{_prefix}/include/qmail/commands.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/hashmethods.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/rewritehost.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/leapsecs.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/lock.h

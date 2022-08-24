@@ -73,6 +73,9 @@ o added libc replacements qgetservent, qgetservbyname, qgetservbyport along
 43. base/envdir.c: skip leading spaces, blank lines and comments in envfile
 - 23/08/2022
 44. base/authmethods.c: added get_authmethod function
+- 24/08/2022
+45. base/makesalt.c: changed default hash method to SHA256
+46. configure.ac: generate base/hashmethods.h header file
 
 * Sat Jul 17 2021 18:14:37 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1-1.1%{?dist}
 Release 1.1 Start 14/02/2021
