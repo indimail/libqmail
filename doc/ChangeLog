@@ -76,6 +76,9 @@ o added libc replacements qgetservent, qgetservbyname, qgetservbyport along
 - 24/08/2022
 45. base/makesalt.c: changed default hash method to SHA256
 46. configure.ac: generate base/hashmethods.h header file
+- 25/08/2022
+47. base/get_scram_secrets.c: handle additional CRAM-* formats if set in
+    password field
 
 * Sat Jul 17 2021 18:14:37 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1-1.1%{?dist}
 Release 1.1 Start 14/02/2021
