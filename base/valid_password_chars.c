@@ -19,9 +19,9 @@ valid_password_chars(char *password)
 	for (ptr = password; *ptr; ptr++) {
 		i = str_chr(pchars, *ptr);
 		if (!pchars[i])
-			return 1;
+			return 0;
 	}
-	return 0;	
+	return 1;
 }
 
 void
