@@ -1,5 +1,8 @@
 /*
  * $Log: makesalt.h,v $
+ * Revision 1.3  2022-08-26 18:43:30+05:30  Cprogrammer
+ * added additional characters to random generated passwords
+ *
  * Revision 1.2  2022-04-17 08:20:52+05:30  Cprogrammer
  * change in return type of makesalt()
  *
@@ -11,6 +14,7 @@
 #define HAVE_MAKESALT_H
 
 #define SALTSIZE 32
+extern char     pchars[];
 
 int             makesalt(char *, int);
 char           *genpass(int);

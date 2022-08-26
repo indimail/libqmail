@@ -1,5 +1,8 @@
 /*
  * $Log: makesalt.c,v $
+ * Revision 1.6  2022-08-26 18:25:51+05:30  Cprogrammer
+ * added additional characters to random generated passwords
+ *
  * Revision 1.5  2022-08-24 15:34:52+05:30  Cprogrammer
  * changed default hash method to SHA256
  *
@@ -39,6 +42,7 @@
 #endif
 
 static char     itoa64[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz./";
+char            pchars[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@#$%^&*_-+=`|\(){}[]:;\"'<>,.?/)";
 
 char           *
 genpass(int len)
@@ -49,15 +53,24 @@ genpass(int len)
 
 	if (!(pwtmp = alloc(len + 1)))
 		return ((char *) 0);
-	slen = str_len(itoa64);
-	for (i = 0; i < len; i++) {
+	/*- generate an alpha-numeric character as the first char */
 #ifndef HAVE_ARC4RANDOM
 		if (!(u = arc4random()))
 			return ((char *) 0);
 #else
 		u = arc4random();
 #endif
-		pwtmp[i] = itoa64[u % slen];
+	pwtmp[0] = pchars[u % 62]; /*- alphanumeric chars from pchars */
+
+	slen = str_len(pchars);
+	for (i = 1; i < len; i++) {
+#ifndef HAVE_ARC4RANDOM
+		if (!(u = arc4random()))
+			return ((char *) 0);
+#else
+		u = arc4random();
+#endif
+		pwtmp[i] = pchars[u % slen];
 	}
 	pwtmp[i] = '\0';
 	return (pwtmp);
@@ -120,7 +133,7 @@ makesalt(char *salt, int n)
 void
 getversion_makesalt_c()
 {
-	static char    *x = "$Id: makesalt.c,v 1.5 2022-08-24 15:34:52+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: makesalt.c,v 1.6 2022-08-26 18:25:51+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
