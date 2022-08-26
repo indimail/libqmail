@@ -94,7 +94,7 @@ include_HEADERS = base/alloc.h base/arc4random.h base/authmethods.h \
 	base/uint16.h base/uint32.h base/uint64.h base/wait.h base/qprintf.h \
 	array/array.h textcode/entities.h textcode/textcode.h base/likely.h \
 	base/iarray.h base/safemult.h base/rangecheck.h socket/tcpbind.h \
-	socket/tcpopen.h socket/udpopen.h base/qdirname.h
+	base/valid_password_chars.h socket/tcpopen.h socket/udpopen.h base/qdirname.h
 
 includedir=@prefix@/include/qmail
 COMMONSOURCES = base/alloc.c base/alloc_re.c base/arc4random.c base/authmethods.c \
@@ -156,8 +156,9 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/arc4random.c base/authmethods.
 	base/tai_encode.c base/tai_now.c base/tai_pack.c base/tai_sub.c \
 	base/tai_uint.c base/tai_unpack.c base/timeoutread.c base/timeoutwrite.c \
 	base/timestamp.c base/token822.c base/uint16_pack.c base/uint16_read.c \
-	base/uint16_unpack.c base/uint32_pack.c base/uint32_read.c base/uint32_unpack.c \
-	base/wait_nohang.c base/wait_pid.c textcode/base64url.c textcode/fmt_asn1derlength.c \
+	base/uint16_unpack.c base/uint32_pack.c base/uint32_read.c \
+	base/uint32_unpack.c base/valid_password_chars.c base/wait_nohang.c \
+	base/wait_pid.c textcode/base64url.c textcode/fmt_asn1derlength.c \
 	textcode/fmt_asn1dertag.c textcode/fmt_base64.c \
 	textcode/fmt_base64url.c textcode/fmt_cescape.c \
 	textcode/fmt_foldwhitespace.c textcode/fmt_html.c \
