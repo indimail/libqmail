@@ -80,7 +80,7 @@ o added libc replacements qgetservent, qgetservbyname, qgetservbyport along
 47. base/get_scram_secrets.c: handle additional CRAM-* formats if set in
     password field
 - 25/08/2022
-48. base/in_crypt.c: disregard PASSWORD_HASH if salt contains crypt(3) prefix
+48. base/in_crypt.c: use crypt(3) if first char is '$'
 49. base/valid_passwd_chars.c: added valid_passwd_chars function
 50. base/makesalt.c: added additional characters to random generated passwords
 
