@@ -1,5 +1,5 @@
 #ifndef	lint
-static char     sccsid[] = "$Id: get_scram_secrets.c,v 1.2 2022-08-16 08:19:55+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: get_scram_secrets.c,v 1.3 2022-08-26 11:51:26+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #include <str.h>
@@ -111,10 +111,10 @@ get_scram_secrets(char *pass_str, int *mech, int *iter, char **salt,
 	/*- get server_key,saltedpw or server_key:hexsaltpw:cleartxt,saltedpw*/
 	for (p2 = p1 + 1; *p2 && *p2 != ','; p2++);
 	if (*p2 == ',') {
-		if (server_key) {
-			*p2 = 0;
+		if (server_key)
 			*server_key = p1;
-		}
+		if (server_key || hexsaltpw || cleartxt)
+			*p2 = 0;
 		if (!*(p2 + 1))
 			return 5;
 		if (saltedpw)
@@ -147,6 +147,9 @@ get_scram_secrets(char *pass_str, int *mech, int *iter, char **salt,
 }
 /*
  * $Log: get_scram_secrets.c,v $
+ * Revision 1.3  2022-08-26 11:51:26+05:30  Cprogrammer
+ * handle additional CRAM-* formats if set in password field
+ *
  * Revision 1.2  2022-08-16 08:19:55+05:30  Cprogrammer
  * updated function documentation
  *
