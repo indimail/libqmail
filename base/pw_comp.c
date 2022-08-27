@@ -1,5 +1,8 @@
 /*
  * $Log: pw_comp.c,v $
+ * Revision 1.4  2022-08-27 09:03:54+05:30  Cprogrammer
+ * use AUTH methods definition from authmethods.h
+ *
  * Revision 1.3  2021-06-16 17:36:17+05:30  Cprogrammer
  * added hmac_sha224, hmac_sha384 functions
  *
@@ -28,6 +31,7 @@
 #include "digest_md5.h"
 #include "mkpasswd.h"
 #include "pw_comp.h"
+#include "authmethods.h"
 
 static char     hextab[] = "0123456789abcdef";
 
@@ -182,7 +186,7 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 void
 getversion_pw_comp_c()
 {
-	static char    *x = "$Id: pw_comp.c,v 1.3 2021-06-16 17:36:17+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: pw_comp.c,v 1.4 2022-08-27 09:03:54+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
