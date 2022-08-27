@@ -1,5 +1,8 @@
 /*
  * $Log: strerr_die.c,v $
+ * Revision 1.9  2022-08-27 09:07:02+05:30  Cprogrammer
+ * BUG: added missing substdio output for argument 16
+ *
  * Revision 1.8  2021-08-24 11:16:41+05:30  Cprogrammer
  * added additional members to struct strerr
  * converted to ansic function prototypes
@@ -67,6 +70,8 @@ strerr_warn(const char *x1, const char *x2, const char *x3, const char *x4,
 		substdio_puts(subfderr, x14);
 	if (x15)
 		substdio_puts(subfderr, x15);
+	if (x16)
+		substdio_puts(subfderr, x16);
 	while (se) {
 		if (se->v)
 			substdio_puts(subfderr, se->v);
@@ -98,7 +103,7 @@ strerr_die(int e, const char *x1, const char *x2, const char *x3,
 void
 getversion_strerr_die_c()
 {
-	static char    *x = "$Id: strerr_die.c,v 1.8 2021-08-24 11:16:41+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: strerr_die.c,v 1.9 2022-08-27 09:07:02+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
