@@ -1,5 +1,8 @@
 /*
  * $Log: mkpasswd.c,v $
+ * Revision 1.4  2022-08-28 10:57:10+05:30  Cprogrammer
+ * allow variable salt size using environment variable SALTSIZE
+ *
  * Revision 1.3  2022-08-05 17:27:25+05:30  Cprogrammer
  * encrypt when encrypt_flag is non-zero
  *
@@ -28,6 +31,7 @@
 #include "stralloc.h"
 #include "in_crypt.h"
 #include "makesalt.h"
+#include "getEnvConfig.h"
 
 static void
 die_nomem()
@@ -42,10 +46,12 @@ mkpasswd(char *newpasswd, stralloc *crypted, int encrypt_flag)
 {
 	char           *tmpstr;
 	char            salt[SALTSIZE + 1];
+	int             saltsize;
 
+	getEnvConfigInt(&saltsize, "SALTSIZE", SALTSIZE);
 	crypted->len = 0;
 	if (encrypt_flag) {
-		makesalt(salt, SALTSIZE);
+		makesalt(salt, saltsize);
 		if (!(tmpstr = in_crypt(newpasswd, salt)))
 			return (-1);
 	} else
@@ -59,7 +65,7 @@ mkpasswd(char *newpasswd, stralloc *crypted, int encrypt_flag)
 void
 getversion_mkpasswd_c()
 {
-	static char    *x = "$Id: mkpasswd.c,v 1.3 2022-08-05 17:27:25+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: mkpasswd.c,v 1.4 2022-08-28 10:57:10+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
