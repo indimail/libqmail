@@ -1,5 +1,8 @@
 /*
  * $Log: makesalt.c,v $
+ * Revision 1.7  2022-08-28 10:56:39+05:30  Cprogrammer
+ * add missing terminating '$' character for salt
+ *
  * Revision 1.6  2022-08-26 18:25:51+05:30  Cprogrammer
  * added additional characters to random generated passwords
  *
@@ -76,48 +79,50 @@ genpass(int len)
 	return (pwtmp);
 }
 
-/*
- * Salt suitable for traditional DES and MD5 
+/*-
+ * Salt suitable for traditional DES or MD5, SHA256, SHA512
  */
 int
 makesalt(char *salt, int n)
 {
-	int             i, len, passwd_hash;
+	int             i, len, new, passwd_hash;
 	uint32_t        u;
 
 	getEnvConfigInt(&passwd_hash, "PASSWORD_HASH", PASSWORD_HASH);
 	i = 0;
+	new = n;
 	switch (passwd_hash)
 	{
-	case DES_HASH:
+	case DES_HASH: /*- 2 bytes salt */
 		i = 0;
+		new = 2;
 		break;
-	case SHA256_HASH:
-		salt[0] = '$';
-		salt[1] = '5';
-		salt[2] = '$';
-		i = 3;
+	case MD5_HASH: /*- 8 bytes salt */
+		salt[i++] = '$';
+		salt[i++] = '1';
+		salt[i++] = '$';
+		new = 8 + i;
 		break;
-	case SHA512_HASH:
-		salt[0] = '$';
-		salt[1] = '6';
-		salt[2] = '$';
-		i = 3;
+	case SHA256_HASH: /*- 16 bytes salt */
+		salt[i++] = '$';
+		salt[i++] = '5';
+		salt[i++] = '$';
+		new = 16 + i;
 		break;
-	case MD5_HASH:
-		salt[0] = '$';
-		salt[1] = '1';
-		salt[2] = '$';
-		i = 3;
+	case SHA512_HASH: /*- 16 bytes salt */
+		salt[i++] = '$';
+		salt[i++] = '6';
+		salt[i++] = '$';
+		new = 16 + i;
 		break;
 	default:
-		salt[0] = '$';
-		salt[1] = '5';
-		salt[2] = '$';
-		i = 3;
+		salt[i++] = '$'; /*- 16 bytes salt */
+		salt[i++] = '5';
+		salt[i++] = '$';
+		new = 16 + i;
 		break;
 	}
-	for (len = str_len(itoa64); i < n; i++) {
+	for (len = str_len(itoa64); i < new; i++) {
 #ifndef HAVE_ARC4RANDOM
 		if (!(u = arc4random()))
 			return -1;
@@ -126,6 +131,8 @@ makesalt(char *salt, int n)
 #endif
 		salt[i] = itoa64[u % len]; /* generate random no from 0 to len */
 	}
+	if (salt[0] == '$')
+		salt[i++] = '$';
 	salt[i] = '\0';
 	return 0;
 }
@@ -133,7 +140,7 @@ makesalt(char *salt, int n)
 void
 getversion_makesalt_c()
 {
-	static char    *x = "$Id: makesalt.c,v 1.6 2022-08-26 18:25:51+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: makesalt.c,v 1.7 2022-08-28 10:56:39+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
