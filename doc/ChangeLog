@@ -86,6 +86,10 @@ o added libc replacements qgetservent, qgetservbyname, qgetservbyport along
 - 27/08/2022
 51. base/pw_comp.c: use AUTH methods definition from authmethods.h
 52. base/strerr_die.c: BUG: added missing substdio output for argument 16
+- 28/08/2022
+53. base/makesalt.c: add missing terminating '$' character for salt
+54. base/mkpasswd.c: allow variable salt size using environment variable
+    SALTSIZE
 
 * Sat Jul 17 2021 18:14:37 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1-1.1%{?dist}
 Release 1.1 Start 14/02/2021
