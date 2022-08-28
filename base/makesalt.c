@@ -1,5 +1,8 @@
 /*
  * $Log: makesalt.c,v $
+ * Revision 1.8  2022-08-28 17:28:31+05:30  Cprogrammer
+ * return -1 for insufficient length
+ *
  * Revision 1.7  2022-08-28 10:56:39+05:30  Cprogrammer
  * add missing terminating '$' character for salt
  *
@@ -96,30 +99,40 @@ makesalt(char *salt, int n)
 	case DES_HASH: /*- 2 bytes salt */
 		i = 0;
 		new = 2;
+		if (n < new + 1)
+			return -1;
 		break;
 	case MD5_HASH: /*- 8 bytes salt */
 		salt[i++] = '$';
 		salt[i++] = '1';
 		salt[i++] = '$';
 		new = 8 + i;
+		if (n < new + 2)
+			return -1;
 		break;
 	case SHA256_HASH: /*- 16 bytes salt */
 		salt[i++] = '$';
 		salt[i++] = '5';
 		salt[i++] = '$';
 		new = 16 + i;
+		if (n < new + 2)
+			return -1;
 		break;
 	case SHA512_HASH: /*- 16 bytes salt */
 		salt[i++] = '$';
 		salt[i++] = '6';
 		salt[i++] = '$';
 		new = 16 + i;
+		if (n < new + 2)
+			return -1;
 		break;
-	default:
-		salt[i++] = '$'; /*- 16 bytes salt */
+	default: /*- 16 bytes salt */
+		salt[i++] = '$';
 		salt[i++] = '5';
 		salt[i++] = '$';
 		new = 16 + i;
+		if (n < new + 2)
+			return -1;
 		break;
 	}
 	for (len = str_len(itoa64); i < new; i++) {
@@ -140,7 +153,7 @@ makesalt(char *salt, int n)
 void
 getversion_makesalt_c()
 {
-	static char    *x = "$Id: makesalt.c,v 1.7 2022-08-28 10:56:39+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: makesalt.c,v 1.8 2022-08-28 17:28:31+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
