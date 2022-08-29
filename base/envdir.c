@@ -1,5 +1,8 @@
 /*
  * $Log: envdir.c,v $
+ * Revision 1.13  2022-08-29 08:33:30+05:30  Cprogrammer
+ * BUG: advance to next line for blank lines/comments
+ *
  * Revision 1.12  2022-08-20 12:20:51+05:30  Cprogrammer
  * skip leading spaces, blank lines and comments in envfile
  *
@@ -154,15 +157,18 @@ process_dot_envfile(char *fn, char **e, int ignore_unreadable, int *unreadable)
 				continue;
 			*cptr = 0;
 			/*- skip leading whitespace */
-			for (i = 0; *cptr; i++) {
+			for (i = 0; ptr[i]; i++) {
 				if (!isspace(ptr[i]))
 					break;
 			}
 			if (i)
 				ptr += i;
 			/*- skip blank lines and comments */
-			if (!ptr[0] || ptr[0] == '#')
+			if (!ptr[0] || ptr[0] == '#') {
+				*cptr = '\n'; /*- put back the newline removed earlier */
+				ptr = cptr + 1; /*- move to the next line */
 				continue;
+			}
 			i = str_chr(ptr, '=');
 			if (ptr[i]) {
 				ptr[i] = 0;
@@ -177,8 +183,8 @@ process_dot_envfile(char *fn, char **e, int ignore_unreadable, int *unreadable)
 					*e = error_str(errno);
 				return -6;
 			}
-			*cptr = '\n';
-			ptr = cptr + 1;
+			*cptr = '\n'; /*- put back the newline removed earlier */
+			ptr = cptr + 1; /*- move to the next line */
 		} /* for (cptr = ptr = sa.s; *cptr; cptr++) */
 		break;
 	}
@@ -376,7 +382,7 @@ envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
 void
 getversion_envdir_c()
 {
-	static char    *x = "$Id: envdir.c,v 1.12 2022-08-20 12:20:51+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: envdir.c,v 1.13 2022-08-29 08:33:30+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
