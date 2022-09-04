@@ -3,6 +3,9 @@ Release 1.1.1 Start 18/07/2021
 ======= Release Highlights ================================================
 o added libc replacements qgetservent, qgetservbyname, qgetservbyport along
   with re-entrant versions
+o Support SCRAM-SHA1, SCRAM-SHA-256, SCRAM-SHA1-PLUS, SCRAM-SHA256-PLUS,
+  auth methods
+o Converted man pages to markdown for indimail wiki
 ===========================================================================
 - 05/08/2021
 01. added r_mkdir function
