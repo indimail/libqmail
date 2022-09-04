@@ -7,22 +7,17 @@ qgetgrent_r \- get group file entry reentrantly
 .nf
 .B #include <qgetpwgr.h>
 .PP
-.BI "int qgetgrent_r(struct group *" gbuf ", char *" buf ,
-.BI "               size_t " buflen ", struct group **" gbufp );
+.B int qgetgrent_r(struct group *gbuf, char *buf, size_t buflen, struct group **gbufp);
 .fi
-.PP
+.PD
+.ad b
 
 .SH DESCRIPTION
-The function
-.BR qgetgrent_r ()
-is the reentrant versions of
-.BR qgetgrent (3).
-It reads the next group entry from the stream initialized by
-.BR qsetgrent (3).
+The function \fBqgetgrent_r\fR() is the reentrant versions of
+\fBqgetgrent\fR(3). It reads the next group entry from the stream
+initialized by \fBqsetgrent\fR(3).
 .PP
-The \fIgroup\fP structure is defined in
-.I <grp.h>
-as follows:
+The \fIgroup\fR structure is defined in \fI<grp.h>\fR as follows:
 .PP
 .in +4n
 .EX
@@ -37,34 +32,23 @@ struct group {
 .in
 .PP
 For more information about the fields of this structure, see
-.BR group (5).
+\fBgroup\fR(5).
 .PP
-The nonreentrant function return a pointer to static storage,
-where this static storage contains further pointers to group
-name, password and members.
-The reentrant function described here return all of that in
+The nonreentrant function return a pointer to static storage, where this
+static storage contains further pointers to group name, password and
+members. The reentrant function described here return all of that in
 caller-provided buffers.
-First of all there is the buffer
-.I gbuf
-that can hold a \fIstruct group\fP.
-And next the buffer
-.I buf
-of size
-.I buflen
-that can hold additional strings.
-The result of these functions, the \fIstruct group\fP read from the stream,
-is stored in the provided buffer
-.IR *gbuf ,
-and a pointer to this \fIstruct group\fP is returned in
-.IR *gbufp .
+First of all there is the buffer \fIgbuf\fR that can hold a \fIstruct
+group\fR. And next the buffer \fIbuf\fR of size \fIbuflen\fR that can hold
+additional strings. The result of these functions, the \fIstruct group\fR
+read from the stream, is stored in the provided buffer *\fIgbuf\fR, and a
+pointer to this \fIstruct group\fR is returned in *\fIgbufp\fR.
 
 .SH RETURN VALUE
-On success, this function return 0 and
-.I *gbufp
-is a pointer to the \fIstruct group\fP.
+On success, this function return 0 and *\fIgbufp\fR
+is a pointer to the \fIstruct group\fR.
 On error, these functions return an error value and
-.I *gbufp
-is NULL.
+*\fIgbufp\fR is NULL.
 
 .SH ERRORS
 .TP
@@ -81,16 +65,14 @@ Try again with larger buffer.
 Temporary error happened.
 
 .SH NOTES
-The function
-.BR qgetgrent_r ()
-is not really reentrant since it shares the reading position
-in the stream with all other threads.
+The function \fBqgetgrent_r\fR() is not really reentrant since it shares
+the reading position in the stream with all other threads.
 
 .SH SEE ALSO
-.BR qgetgrent (3),
-.BR qgetgrnam (3),
-.BR qgetgrgid (3),
-.BR qgetgrnam_r(3),
-.BR qgetgrgid_r(3),
-.BR grpscan (3),
-.BR group (5)
+qgetgrent(3),
+qgetgrnam(3),
+qgetgrgid(3),
+qgetgrnam_r(3),
+qgetgrgid_r(3),
+grpscan(3),
+group(5)

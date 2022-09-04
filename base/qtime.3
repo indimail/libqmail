@@ -6,7 +6,7 @@ qtime - transform date and time to ASCII
 .nf
 .B #include <datetime.h>
 .PP
-.BI "char *qtime(const datetime_sec dts );
+char *\fBqtime\fR(\fBconst datetime_sec\fR \fIdts\fR);
 .fi
 .PP
 .ad
@@ -18,7 +18,7 @@ represents calendar time. When interpreted as an absolute time value, it
 represents number of real-time seconds that have elapsed since the end of
 1969 TAI.
 .PP
-.BI qtime( dts )
+\fBqtime\fR(\fIdts\fR)
 converts the calendar time \fIt\fP into a
 null-terminated string of the form
 .PP
@@ -43,17 +43,17 @@ On success,
 return a pointer to a string.
 
 .SH SEE ALSO
-.BR date (1),
-.BR gettimeofday (2),
-.BR time (2),
-.BR utime (2),
-.BR clock (3),
-.BR difftime (3),
-.BR strftime (3),
-.BR strptime (3),
-.BR datetime (3),
-.BR caltime (3),
-.BR caltime_tai (3),
-.BR timegm (3),
-.BR tzset (3),
-.BR time (7)
+date(1),
+gettimeofday(2),
+time(2),
+utime(2),
+clock(3),
+difftime(3),
+strftime(3),
+strptime(3),
+datetime(3),
+caltime(3),
+caltime_tai(3),
+timegm(3),
+tzset(3),
+time(7)
