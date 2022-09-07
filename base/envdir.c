@@ -1,5 +1,8 @@
 /*
  * $Log: envdir.c,v $
+ * Revision 1.14  2022-09-07 09:54:10+05:30  Cprogrammer
+ * allow .envfile, .envdir to be softlinks
+ *
  * Revision 1.13  2022-08-29 08:33:30+05:30  Cprogrammer
  * BUG: advance to next line for blank lines/comments
  *
@@ -132,6 +135,7 @@ process_dot_envfile(char *fn, char **e, int ignore_unreadable, int *unreadable)
 	case S_IFDIR: /*- ignore */
 		break;
 	case S_IFREG:
+	case S_IFLNK:
 		/*- 
 		 * openreadclose reads fn into stralloc and has
 		 * last byte as newline and all lines have newlines
@@ -214,6 +218,7 @@ process_dot_envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
 			return (i);
 		break;
 	case S_IFREG:
+	case S_IFLNK:
 		i = openreadclose(fn, &sa, st.st_size);
 		if (i == -1 || !i) {
 			(*unreadable)++;
@@ -382,7 +387,7 @@ envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
 void
 getversion_envdir_c()
 {
-	static char    *x = "$Id: envdir.c,v 1.13 2022-08-29 08:33:30+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: envdir.c,v 1.14 2022-09-07 09:54:10+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
