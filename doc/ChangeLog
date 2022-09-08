@@ -96,6 +96,8 @@ o Converted man pages to markdown for indimail wiki
 55. base/makesalt.c: return -1 for insufficient length
 - 29/08/2022
 56. base/envdir.c: BUG: advance to next line for blank lines/comments
+- 07/09/2022
+57. base/envdir.c: allow .envfile, .envdir to be softlinks
 
 * Sat Jul 17 2021 18:14:37 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1-1.1%{?dist}
 Release 1.1 Start 14/02/2021
