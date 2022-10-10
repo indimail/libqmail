@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.35  2022-10-10 08:29:18+05:30  Cprogrammer
+# fixed leapsecs.dat path
+#
 # Revision 1.34  2022-08-24 18:57:19+05:30  Cprogrammer
 # added hashmethods.h
 #
@@ -103,7 +106,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.34 2022-08-24 18:57:19+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.35 2022-10-10 08:29:18+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/mbhangui/libqmail])
@@ -247,7 +250,7 @@ AC_DEFINE_UNQUOTED([DES_HASH],    [$des_hash],    hash method identifier for DES
 AC_DEFINE_UNQUOTED([MD5_HASH],    [$md5_hash],    hash method identifier for MD5_HASH)
 AC_DEFINE_UNQUOTED([SHA256_HASH], [$sha256_hash], hash method identifier for SHA256_HASH)
 AC_DEFINE_UNQUOTED([SHA512_HASH], [$sha512_hash], hash method identifier for SHA512_HASH)
-AC_DEFINE_UNQUOTED([SYSCONFDIR]," $sysconfdir", Directory for leapsecs.dat)
+AC_DEFINE_UNQUOTED([SYSCONFDIR], "$sysconfdir", Directory for leapsecs.dat)
 
 dnl **********************************************************************
 dnl Checks for IPv6
