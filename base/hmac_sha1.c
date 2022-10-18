@@ -1,5 +1,8 @@
 /*
  * $Log: hmac_sha1.c,v $
+ * Revision 1.3  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.2  2021-05-04 14:18:57+05:30  Cprogrammer
  * fixed indentation of comments
  *
@@ -20,12 +23,11 @@
 #define TK  20
 
 void
-hmac_sha1(text, text_len, key, key_len, digest)
-	u8             *text;		/* pointer to data stream */
-	size_t          text_len;
-	u8             *key;		/* pointer to authentication key */
-	size_t          key_len;
-	u8             *digest;		/* caller digest to be filled in */
+hmac_sha1(u8 *text,      /*- pointer to data stream */
+		size_t text_len, /*- length of data stream */
+		u8 *key,         /*- pointer to authentication key */
+		size_t key_len,  /*- length of authentication key */
+		u8 *digest       /*- caller digest to be filled in */)
 {
 	SHA1_CTX        ctx;
 	u8              k_ipad[PAD + 1];	/* inner padding - key XORd with ipad */
@@ -70,7 +72,7 @@ hmac_sha1(text, text_len, key, key_len, digest)
 void
 getversion_hmac_sha1_c()
 {
-	static char    *x = "$Id: hmac_sha1.c,v 1.2 2021-05-04 14:18:57+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: hmac_sha1.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: leapsecs_sub.c,v $
+ * Revision 1.3  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.2  2004-10-22 20:26:05+05:30  Cprogrammer
  * added RCS id
  *
@@ -18,8 +21,7 @@ extern struct tai *leapsecs;
 extern int      leapsecs_num;
 
 int
-leapsecs_sub(t)
-	struct tai     *t;
+leapsecs_sub(struct tai *t)
 {
 	int             i;
 	uint64          u;
@@ -31,13 +33,11 @@ leapsecs_sub(t)
 	u = t->x;
 	s = 0;
 
-	for (i = 0; i < leapsecs_num; ++i)
-	{
+	for (i = 0; i < leapsecs_num; ++i) {
 		if (u < leapsecs[i].x)
 			break;
 		++s;
-		if (u == leapsecs[i].x)
-		{
+		if (u == leapsecs[i].x) {
 			t->x = u - s;
 			return 1;
 		}
@@ -50,7 +50,7 @@ leapsecs_sub(t)
 void
 getversion_leapsecs_sub_c()
 {
-	static char    *x = "$Id: leapsecs_sub.c,v 1.2 2004-10-22 20:26:05+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: leapsecs_sub.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

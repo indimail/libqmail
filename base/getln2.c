@@ -1,5 +1,8 @@
 /*
  * $Log: getln2.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2004-10-22 20:25:35+05:30  Cprogrammer
  * added RCS id
  *
@@ -13,12 +16,7 @@
 #include "getln.h"
 
 int
-getln2(ss, sa, cont, clen, sep)
-	register substdio *ss;
-	register stralloc *sa;
-	char      **cont; /* @out@ */
-	unsigned int *clen; /* @out@ */
-	int             sep;
+getln2(register substdio *ss, register stralloc *sa, char **cont, unsigned int *clen, int sep)
 {
 	register char  *x;
 	register unsigned int i;
@@ -27,20 +25,17 @@ getln2(ss, sa, cont, clen, sep)
 	if (!stralloc_ready(sa, 0))
 		return -1;
 	sa->len = 0;
-	for (;;)
-	{
+	for (;;) {
 		n = substdio_feed(ss);
 		if (n < 0)
 			return -1;
-		if (n == 0)
-		{
+		if (n == 0) {
 			*clen = 0;
 			return 0;
 		}
 		x = substdio_PEEK(ss);
 		i = byte_chr(x, n, sep);
-		if (i < n)
-		{
+		if (i < n) {
 			substdio_SEEK(ss, *clen = i + 1);
 			*cont = x;
 			return 0;
@@ -55,7 +50,7 @@ getln2(ss, sa, cont, clen, sep)
 void
 getversion_getln2_c()
 {
-	static char    *x = "$Id: getln2.c,v 1.3 2004-10-22 20:25:35+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: getln2.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: caltime_utc.c,v $
+ * Revision 1.3  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.2  2004-10-22 20:23:13+05:30  Cprogrammer
  * added RCS id
  *
@@ -17,11 +20,7 @@
  */
 
 void
-caltime_utc(ct, t, pwday, pyday)
-	struct caltime *ct;
-	struct tai     *t;
-	int            *pwday;
-	int            *pyday;
+caltime_utc(struct caltime *ct, struct tai *t, int *pwday, int *pyday)
 {
 	struct tai      t2 = *t;
 	uint64          u;
@@ -53,7 +52,7 @@ caltime_utc(ct, t, pwday, pyday)
 void
 getversion_caltime_utc_c()
 {
-	static char    *x = "$Id: caltime_utc.c,v 1.2 2004-10-22 20:23:13+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: caltime_utc.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

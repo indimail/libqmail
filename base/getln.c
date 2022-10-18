@@ -1,5 +1,8 @@
 /*
  * $Log: getln.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2004-10-22 20:25:38+05:30  Cprogrammer
  * added RCS id
  *
@@ -13,19 +16,14 @@
 #include "getln.h"
 
 int
-getln(ss, sa, match, sep)
-	register substdio *ss;
-	register stralloc *sa;
-	int            *match;
-	int             sep;
+getln(register substdio *ss, register stralloc *sa, int *match, int sep)
 {
 	char           *cont;
 	unsigned int    clen;
 
 	if (getln2(ss, sa, &cont, &clen, sep) == -1)
 		return -1;
-	if (!clen)
-	{
+	if (!clen) {
 		*match = 0;
 		return 0;
 	}
@@ -38,7 +36,7 @@ getln(ss, sa, match, sep)
 void
 getversion_getln_c()
 {
-	static char    *x = "$Id: getln.c,v 1.3 2004-10-22 20:25:38+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: getln.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

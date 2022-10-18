@@ -1,5 +1,8 @@
 /*
  * $Log: rewritehost.c,v $
+ * Revision 1.3  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.2  2004-10-22 20:30:00+05:30  Cprogrammer
  * added RCS id
  *
@@ -16,8 +19,7 @@
 static stralloc work = { 0 };
 
 static int
-doit(rule)
-	char           *rule;
+doit(char *rule)
 {
 	int             colon;
 	char            ch;
@@ -38,8 +40,7 @@ doit(rule)
 	if (case_diffb(rule, colon, work.s + prefixlen))
 		return 1;
 
-	if (ch == '?')
-	{
+	if (ch == '?') {
 		if (byte_chr(work.s, prefixlen, '.') < prefixlen)
 			return 1;
 		if (byte_chr(work.s, prefixlen, '/') < prefixlen)
@@ -58,16 +59,13 @@ doit(rule)
 }
 
 static int
-appendwork(out, rules)
-	stralloc       *out;
-	stralloc       *rules;
+appendwork(stralloc *out, stralloc *rules)
 {
 	int             i;
 	int             j;
 
 	for (j = i = 0; j < rules->len; ++j)
-		if (!rules->s[j])
-		{
+		if (!rules->s[j]) {
 			if (!doit(rules->s + i))
 				return 0;
 			i = j + 1;
@@ -76,11 +74,7 @@ appendwork(out, rules)
 }
 
 static int
-appendaddr(out, in, len, rules)
-	stralloc       *out;
-	char           *in;
-	unsigned int    len;
-	stralloc       *rules;
+appendaddr(stralloc *out, char *in, unsigned int len, stralloc *rules)
 {
 	int             at;
 
@@ -100,11 +94,7 @@ appendaddr(out, in, len, rules)
 }
 
 int
-rewritehost(out, in, len, rules)
-	stralloc       *out;
-	char           *in;
-	unsigned int    len;
-	stralloc       *rules;
+rewritehost(stralloc *out, char *in, unsigned int len, stralloc *rules)
 {
 	if (!stralloc_copys(out, ""))
 		return 0;
@@ -114,11 +104,7 @@ rewritehost(out, in, len, rules)
 }
 
 int
-rewritehost_addr(out, in, len, rules)
-	stralloc       *out;
-	char           *in;
-	unsigned int    len;
-	stralloc       *rules;
+rewritehost_addr(stralloc *out, char *in, unsigned int len, stralloc *rules)
 {
 	if (!stralloc_copys(out, ""))
 		return 0;
@@ -126,11 +112,7 @@ rewritehost_addr(out, in, len, rules)
 }
 
 int
-rewritehost_list(out, in, len, rules)
-	stralloc       *out;
-	char           *in;
-	unsigned int    len;
-	stralloc       *rules;
+rewritehost_list(stralloc *out, char *in, unsigned int len, stralloc *rules)
 {
 	int             i;
 	int             j;
@@ -138,10 +120,8 @@ rewritehost_list(out, in, len, rules)
 	if (!stralloc_copys(out, ""))
 		return 0;
 	for (j = i = 0; j < len; ++j)
-		if (!in[j])
-		{
-			if (in[i] == '+')
-			{
+		if (!in[j]) {
+			if (in[i] == '+') {
 				if (!stralloc_append(out, "+"))
 					return 0;
 				if (!appendaddr(out, in + i + 1, j - i - 1, rules))
@@ -159,7 +139,7 @@ rewritehost_list(out, in, len, rules)
 void
 getversion_rewritehost_c()
 {
-	static char    *x = "$Id: rewritehost.c,v 1.2 2004-10-22 20:30:00+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: rewritehost.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

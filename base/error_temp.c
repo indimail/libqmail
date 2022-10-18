@@ -1,5 +1,8 @@
 /*
  * $Log: error_temp.c,v $
+ * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.4  2004-10-22 20:24:54+05:30  Cprogrammer
  * added RCS id
  *
@@ -11,8 +14,7 @@
 
 #define X(n) if (e == n) return 1;
 
-int error_temp(e)
-int e;
+int error_temp(int e)
 {
   X(error_intr)
   X(error_nomem)
@@ -90,7 +92,7 @@ int e;
 void
 getversion_error_temp_c()
 {
-	static char    *x = "$Id: error_temp.c,v 1.4 2004-10-22 20:24:54+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: error_temp.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

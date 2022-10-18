@@ -1,5 +1,8 @@
 /*
  * $Log: wait_nohang.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2004-10-22 20:32:10+05:30  Cprogrammer
  * added RCS id
  *
@@ -12,8 +15,7 @@
 #include "haswaitp.h"
 
 int
-wait_nohang(wstat)
-	int            *wstat;
+wait_nohang(int *wstat)
 {
 #ifdef HASWAITPID
 	return waitpid(-1, wstat, WNOHANG);
@@ -25,7 +27,7 @@ wait_nohang(wstat)
 void
 getversion_wait_nohang_c()
 {
-	static char    *x = "$Id: wait_nohang.c,v 1.3 2004-10-22 20:32:10+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: wait_nohang.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

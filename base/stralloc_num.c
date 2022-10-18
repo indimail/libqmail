@@ -1,5 +1,8 @@
 /*
  * $Log: stralloc_num.c,v $
+ * Revision 1.3  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.2  2004-10-22 20:30:50+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,10 +13,7 @@
 #include "stralloc.h"
 
 int
-stralloc_catulong0(sa, u, n)
-	stralloc       *sa;
-	unsigned long   u;
-	unsigned int    n;
+stralloc_catulong0(stralloc *sa, unsigned long u, unsigned int n)
 {
 	unsigned int    len;
 	unsigned long   q;
@@ -21,8 +21,7 @@ stralloc_catulong0(sa, u, n)
 
 	len = 1;
 	q = u;
-	while (q > 9)
-	{
+	while (q > 9) {
 		++len;
 		q /= 10;
 	}
@@ -33,8 +32,7 @@ stralloc_catulong0(sa, u, n)
 		return 0;
 	s = sa->s + sa->len;
 	sa->len += len;
-	while (len)
-	{
+	while (len) {
 		s[--len] = '0' + (u % 10);
 		u /= 10;
 	}
@@ -43,13 +41,9 @@ stralloc_catulong0(sa, u, n)
 }
 
 int
-stralloc_catlong0(sa, l, n)
-	stralloc       *sa;
-	long            l;
-	unsigned int    n;
+stralloc_catlong0(stralloc *sa, long l, unsigned int n)
 {
-	if (l < 0)
-	{
+	if (l < 0) {
 		if (!stralloc_append(sa, "-"))
 			return 0;
 		l = -l;
@@ -60,7 +54,7 @@ stralloc_catlong0(sa, l, n)
 void
 getversion_stralloc_num_c()
 {
-	static char    *x = "$Id: stralloc_num.c,v 1.2 2004-10-22 20:30:50+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: stralloc_num.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

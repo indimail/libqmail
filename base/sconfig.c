@@ -1,5 +1,8 @@
 /*
  * $Log: sconfig.c,v $
+ * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.4  2010-07-21 09:17:58+05:30  Cprogrammer
  * minor coding style change
  *
@@ -23,9 +26,7 @@
 #include <unistd.h>
 
 int
-config_default(c, s)
-	config_str     *c;
-	char           *s;
+config_default(config_str *c, char *s)
 {
 	if (c->flagconf || !s)
 		return 0;
@@ -36,9 +37,7 @@ config_default(c, s)
 }
 
 int
-config_copy(c, d)
-	config_str     *c;
-	config_str     *d;
+config_copy(config_str *c, config_str *d)
 {
 	if (c->flagconf || !d->flagconf)
 		return 0;
@@ -49,9 +48,7 @@ config_copy(c, d)
 }
 
 int
-config_env(c, s)
-	config_str     *c;
-	char           *s;
+config_env(config_str *c, char *s)
 {
 	if (c->flagconf || !(s = env_get(s)))
 		return 0;
@@ -62,13 +59,11 @@ config_env(c, s)
 }
 
 static void
-process(sa)
-	stralloc       *sa;
+process(stralloc *sa)
 {
 	int             i;
 
-	while (sa->len > 0)
-	{
+	while (sa->len > 0) {
 		switch (sa->s[sa->len - 1])
 		{
 		case '\n':
@@ -89,9 +84,7 @@ static char     inbuf[128];
 static stralloc line = { 0 };
 
 int
-config_readline(c, fn)
-	config_str     *c;
-	char           *fn;
+config_readline(config_str *c, char *fn)
 {
 	substdio        ss;
 	int             fd;
@@ -99,15 +92,13 @@ config_readline(c, fn)
 
 	if (c->flagconf)
 		return 0;
-	if ((fd = open_read(fn)) == -1)
-	{
+	if ((fd = open_read(fn)) == -1) {
 		if (errno == error_noent)
 			return 0;
 		return -1;
 	}
 	substdio_fdbuf(&ss, read, fd, inbuf, sizeof inbuf);
-	if (getln(&ss, &line, &match, '\n') == -1)
-	{
+	if (getln(&ss, &line, &match, '\n') == -1) {
 		close(fd);
 		return -1;
 	}
@@ -120,9 +111,7 @@ config_readline(c, fn)
 }
 
 int
-config_readfile(c, fn)
-	config_str     *c;
-	char           *fn;
+config_readfile(config_str *c, char *fn)
 {
 	substdio        ss;
 	int             fd;
@@ -132,28 +121,23 @@ config_readfile(c, fn)
 		return 0;
 	if (!stralloc_copys(&c->sa, ""))
 		return -1;
-	if ((fd = open_read(fn)) == -1)
-	{
+	if ((fd = open_read(fn)) == -1) {
 		if (errno == error_noent)
 			return 0;
 		return -1;
 	}
 	substdio_fdbuf(&ss, read, fd, inbuf, sizeof inbuf);
-	for (;;)
-	{
-		if (getln(&ss, &line, &match, '\n') == -1)
-		{
+	for (;;) {
+		if (getln(&ss, &line, &match, '\n') == -1) {
 			close(fd);
 			return -1;
 		}
 		process(&line);
-		if (!stralloc_0(&line))
-		{
+		if (!stralloc_0(&line)) {
 			close(fd);
 			return -1;
 		}
-		if (line.s[0] && line.s[0] != '#' && !stralloc_cat(&c->sa, &line))
-		{
+		if (line.s[0] && line.s[0] != '#' && !stralloc_cat(&c->sa, &line)) {
 			close(fd);
 			return -1;
 		}
@@ -168,7 +152,7 @@ config_readfile(c, fn)
 void
 getversion_sconfig_c()
 {
-	static char    *x = "$Id: sconfig.c,v 1.4 2010-07-21 09:17:58+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: sconfig.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

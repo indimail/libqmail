@@ -1,5 +1,8 @@
 /*
  * $Log: hmac_ripemd.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2021-03-11 18:17:19+05:30  Cprogrammer
  * removed undefined variables
  *
@@ -26,12 +29,11 @@
 #define PAD 64
 #define TK  20
 
-void hmac_ripemd(text, text_len, key, key_len, digest)
-	u8 *text;   /* pointer to data stream */
-	size_t text_len;
-	u8 *key;    /* pointer to authentication key */
-	size_t key_len;
-	u8 *digest; /* caller digest to be filled in */
+void hmac_ripemd(u8 *text, /*- pointer to data stream */
+		size_t text_len,   /*- length of data stream */
+		u8 *key,           /*- pointer to authentication key */
+		size_t key_len,    /*- length of authentication key */
+		u8 *digest         /*- caller digest to be filled in */)
 {
 	RIPEMD160_CTX ctx;
 	u8 k_ipad[PAD+1]; /* inner padding - key XORd with ipad */
@@ -76,6 +78,6 @@ void hmac_ripemd(text, text_len, key, key_len, digest)
 void
 getversion_hmac_ripemd_c()
 {
-	static char    *x = "$Id: hmac_ripemd.c,v 1.3 2021-03-11 18:17:19+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: hmac_ripemd.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 	x++;
 }

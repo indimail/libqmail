@@ -1,5 +1,8 @@
 /*
  * $Log: md5.c,v $
+ * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.4  2020-10-10 21:18:53+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -118,8 +121,7 @@ static unsigned char PADDING[64] = {
 
 /* MD5 initialization. Begins an MD5 operation, writing a new context.
  */
-void MD5Init (context)
-MD5_CTX *context;                                        /* context */
+void MD5Init(MD5_CTX *context)
 {
   context->count[0] = context->count[1] = 0;
 
@@ -135,10 +137,9 @@ MD5_CTX *context;                                        /* context */
      operation, processing another message block, and updating the
      context.
  */
-void MD5Update (context, input, inputLen)
-MD5_CTX *context;                                        /* context */
-unsigned char *input;                                /* input block */
-unsigned int inputLen;                     /* length of input block */
+void MD5Update (MD5_CTX *context, /* context */
+		unsigned char *input,     /* input block */
+		unsigned int inputLen     /* length of input block */)
 {
   unsigned int i, index, partLen;
 
@@ -177,9 +178,8 @@ unsigned int inputLen;                     /* length of input block */
 /* MD5 finalization. Ends an MD5 message-digest operation, writing the
      the message digest and zeroizing the context.
  */
-void MD5Final (digest, context)
-unsigned char digest[16];                         /* message digest */
-MD5_CTX *context;                                       /* context */
+void MD5Final (unsigned char digest[16], /* message digest */
+		MD5_CTX *context                 /* context */)
 {
   unsigned char bits[8];
   unsigned int index, padLen;
@@ -206,9 +206,7 @@ MD5_CTX *context;                                       /* context */
 
 /* MD5 basic transformation. Transforms state based on block.
  */
-static void MD5Transform (state, block)
-uint32 state[4];
-unsigned char block[64];
+static void MD5Transform (uint32 state[4], unsigned char block[64])
 {
   uint32 a = state[0], b = state[1], c = state[2], d = state[3], x[16];
   
@@ -296,13 +294,11 @@ unsigned char block[64];
   MD5_memset ((POINTER)x, 0, sizeof (x));
 }
 
-/* Encodes input (uint32) into output (unsigned char). Assumes len is
-     a multiple of 4.
+/* 
+ * Encodes input (uint32) into output (unsigned char).
+ * Assumes len is a multiple of 4.
  */
-static void Encode (output, input, len)
-unsigned char *output;
-uint32 *input;
-unsigned int len;
+static void Encode (unsigned char *output, uint32 *input, unsigned int len)
 {
   unsigned int i, j;
 
@@ -314,13 +310,11 @@ unsigned int len;
   }
 }
 
-/* Decodes input (unsigned char) into output (uint32). Assumes len is
-     a multiple of 4.
+/* 
+ * Decodes input (unsigned char) into output (uint32).
+ * Assumes len is a multiple of 4.
  */
-static void Decode (output, input, len)
-uint32 *output;
-unsigned char *input;
-unsigned int len;
+static void Decode (uint32 *output, unsigned char *input, unsigned int len)
 {
   unsigned int i, j;
 
@@ -331,10 +325,7 @@ unsigned int len;
 
 /* Note: Replace "for loop" with standard memcpy if possible.
  */
-static void MD5_memcpy (output, input, len)
-POINTER output;
-POINTER input;
-unsigned int len;
+static void MD5_memcpy(POINTER output, POINTER input, unsigned int len)
 {
   unsigned int i;
   
@@ -344,10 +335,7 @@ unsigned int len;
 
 /* Note: Replace "for loop" with standard memset if possible.
  */
-static void MD5_memset (output, value, len)
-POINTER output;
-int value;
-unsigned int len;
+static void MD5_memset (POINTER output, int value, unsigned int len)
 {
   unsigned int i;
   
@@ -358,7 +346,7 @@ unsigned int len;
 void
 getversion_md5_c()
 {
-	static char    *x = "$Id: md5.c,v 1.4 2020-10-10 21:18:53+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: md5.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 #ifndef lint
 	x=sccsidmd5h;
 	x=sccsidglobalh;

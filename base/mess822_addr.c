@@ -1,5 +1,8 @@
 /*
  * $Log: mess822_addr.c,v $
+ * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.4  2011-05-07 15:58:45+05:30  Cprogrammer
  * removed unused variable
  *
@@ -27,18 +30,15 @@ static stralloc addr = { 0 };
 static int      state;
 
 static int
-docomment(out)
-	stralloc       *out;
+docomment(stralloc *out)
 {
 	int             i;
 	int             j;
 	char            ch;
 
-	for (j = i = 0; j < comment.len; ++j)
-	{
+	for (j = i = 0; j < comment.len; ++j) {
 		ch = comment.s[j];
-		if (ch == ' ')
-		{
+		if (ch == ' ') {
 			if (!i || (comment.s[i - 1] == ' '))
 				continue;
 		}
@@ -47,8 +47,7 @@ docomment(out)
 	while (i && (comment.s[i - 1] == ' '))
 		--i;
 	comment.len = 0;
-	if (i)
-	{
+	if (i) {
 		if (!stralloc_0(out))
 			return 0;
 		if (!stralloc_catb(out, comment.s, i))
@@ -60,15 +59,13 @@ docomment(out)
 }
 
 static int
-doit(out)
-	stralloc       *out;
+doit(stralloc *out)
 {
 	if (!state)
 		return 1;
 	if (!stralloc_0(out))
 		return 0;
-	if (state == 1)
-	{
+	if (state == 1) {
 		if (!stralloc_append(out, "@"))
 			return 0;
 	}
@@ -84,8 +81,7 @@ doit(out)
 }
 
 static int
-addcomment(tok)
-	char           *tok;
+addcomment(char *tok)
 {
 	int             i;
 
@@ -109,8 +105,7 @@ addcomment(tok)
 }
 
 static int
-addaddr(tok)
-	char           *tok;
+addaddr(char *tok)
 {
 	int             i;
 
@@ -123,8 +118,7 @@ addaddr(tok)
 	if (*tok == '=')
 		++tok;
 	i = str_len(tok);
-	while (i--)
-	{
+	while (i--) {
 		if (!stralloc_append(&addr, tok + i))
 			return 0;
 	}
@@ -132,9 +126,7 @@ addaddr(tok)
 }
 
 int
-mess822_addrlist(out, in)
-	stralloc       *out;
-	char           *in;
+mess822_addrlist(stralloc *out, char *in)
 {
 	int             flagwordok = 1;
 	int             flagphrase = 0;
@@ -152,18 +144,14 @@ mess822_addrlist(out, in)
 		return 0;
 	state = 0;
 	j = tokens.len;
-	while (j)
-	{
-		while (j--)
-		{
+	while (j) {
+		while (j--) {
 			if (!j || !tokens.s[j - 1])
 				break;
 		}
 		ch = tokens.s[j];
-		if (flagphrase)
-		{
-			if ((ch != ',') && (ch != ';') && (ch != ':') && (ch != '>'))
-			{
+		if (flagphrase) {
+			if ((ch != ',') && (ch != ';') && (ch != ':') && (ch != '>')) {
 				if (!addcomment(tokens.s + j))
 					return 0;
 				continue;
@@ -210,14 +198,12 @@ mess822_addrlist(out, in)
 				return 0;
 			if (!state)
 				state = 1;		/*- <> is an address */
-			for (;;)
-			{
+			for (;;) {
 				if (!addaddr(tokens.s + j))
 					return 0;
 				if (!j)
 					break;
-				while (j--)
-				{
+				while (j--) {
 					if (!j || !tokens.s[j - 1])
 						break;
 				}
@@ -226,16 +212,13 @@ mess822_addrlist(out, in)
 				if (tokens.s[j] == '<')
 					break;
 			}
-			if (tokens.s[j] == ':')
-			{
-				for (;;)
-				{
+			if (tokens.s[j] == ':') {
+				for (;;) {
 					if (!addcomment(tokens.s + j))
 						return 0;
 					if (!j)
 						break;
-					while (j--)
-					{
+					while (j--) {
 						if (!j || !tokens.s[j - 1])
 							break;
 					}
@@ -259,8 +242,7 @@ mess822_addrlist(out, in)
 		return 0;
 	i = 0;
 	j = out->len - 1;
-	while (i < j)
-	{
+	while (i < j) {
 		ch = out->s[i];
 		out->s[i] = out->s[j];
 		out->s[j] = ch;
@@ -273,7 +255,7 @@ mess822_addrlist(out, in)
 void
 getversion_mess822_addr_c()
 {
-	static char    *x = "$Id: mess822_addr.c,v 1.4 2011-05-07 15:58:45+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: mess822_addr.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: fmt_xlong.c,v $
+ * Revision 1.2  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.1  2015-08-24 19:03:07+05:30  Cprogrammer
  * Initial revision
  *
@@ -9,9 +12,7 @@
  * writes ulong u in hex to char *s, does not NULL-terminate 
  */
 unsigned int
-fmt_xlong(s, u)
-	char           *s;
-	unsigned long   u;
+fmt_xlong(char *s, unsigned long u)
 {
 	unsigned int    len;
 	unsigned long   q;
@@ -19,13 +20,11 @@ fmt_xlong(s, u)
 
 	len = 1;
 	q = u;
-	while (q > 15)
-	{
+	while (q > 15) {
 		++len;
 		q /= 16;
 	}
-	if (s)
-	{
+	if (s) {
 		s += len;
 		do
 		{
@@ -40,7 +39,7 @@ fmt_xlong(s, u)
 void
 getversion_fmt_xlong_c()
 {
-	static char    *x = "$Id: fmt_xlong.c,v 1.1 2015-08-24 19:03:07+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: fmt_xlong.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

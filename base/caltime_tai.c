@@ -1,5 +1,8 @@
 /*
  * $Log: caltime_tai.c,v $
+ * Revision 1.3  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.2  2004-10-22 20:23:12+05:30  Cprogrammer
  * added RCS id
  *
@@ -17,9 +20,7 @@
  */
 
 void
-caltime_tai(ct, t)
-	struct caltime *ct;
-	struct tai     *t;
+caltime_tai(struct caltime *ct, struct tai *t)
 {
 	long            day;
 	long            s;
@@ -41,7 +42,7 @@ caltime_tai(ct, t)
 void
 getversion_caltime_tai_c()
 {
-	static char    *x = "$Id: caltime_tai.c,v 1.2 2004-10-22 20:23:12+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: caltime_tai.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

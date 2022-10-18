@@ -1,5 +1,8 @@
 /*
  * $Log: mess822_ok.c,v $
+ * Revision 1.3  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.2  2004-10-22 20:27:30+05:30  Cprogrammer
  * added RCS id
  *
@@ -11,8 +14,7 @@
 #include "byte.h"
 
 int
-mess822_ok(sa)
-	stralloc       *sa;
+mess822_ok(stralloc *sa)
 {
 	int             i;
 	int             len;
@@ -49,7 +51,7 @@ mess822_ok(sa)
 void
 getversion_mess822_ok_c()
 {
-	static char    *x = "$Id: mess822_ok.c,v 1.2 2004-10-22 20:27:30+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: mess822_ok.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

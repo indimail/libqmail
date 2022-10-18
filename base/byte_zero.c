@@ -1,5 +1,8 @@
 /*
  * $Log: byte_zero.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2004-10-22 20:23:04+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,12 +13,9 @@
 #include "byte.h"
 
 void
-byte_zero(s, n)
-	char           *s;
-	register unsigned int n;
+byte_zero(char *s, register unsigned int n)
 {
-	for (;;)
-	{
+	for (;;) {
 		if (!n)
 			break;
 		*s++ = 0;
@@ -38,7 +38,7 @@ byte_zero(s, n)
 void
 getversion_byte_zero_c()
 {
-	static char    *x = "$Id: byte_zero.c,v 1.3 2004-10-22 20:23:04+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: byte_zero.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

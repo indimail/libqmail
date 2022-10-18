@@ -1,5 +1,8 @@
 /*
  * $Log: seek_trunc.c,v $
+ * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.4  2004-10-22 20:30:11+05:30  Cprogrammer
  * added RCS id
  *
@@ -12,9 +15,7 @@
 #include "seek.h"
 
 int
-seek_trunc(fd, pos)
-	int             fd;
-	seek_pos        pos;
+seek_trunc(int fd, seek_pos pos)
 {
 	return ftruncate(fd, (off_t) pos);
 }
@@ -22,7 +23,7 @@ seek_trunc(fd, pos)
 void
 getversion_seek_trunc_c()
 {
-	static char    *x = "$Id: seek_trunc.c,v 1.4 2004-10-22 20:30:11+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: seek_trunc.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

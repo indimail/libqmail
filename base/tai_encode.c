@@ -7,7 +7,7 @@
 #include "tai2.h"
 
 int
-tai_encode(tai * t, char *buf)
+tai_encode(tai *t, char *buf)
 {
 	unsigned long   s = t->seconds;
 	unsigned long   n = t->nanoseconds;

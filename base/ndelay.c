@@ -1,5 +1,8 @@
 /*
  * $Log: ndelay.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2004-10-22 20:27:39+05:30  Cprogrammer
  * added RCS id
  *
@@ -16,8 +19,7 @@
 #endif
 
 int
-ndelay_on(fd)
-	int             fd;
+ndelay_on(int fd)
 {
 	return fcntl(fd, F_SETFL, fcntl(fd, F_GETFL, 0) | O_NONBLOCK);
 }
@@ -25,7 +27,7 @@ ndelay_on(fd)
 void
 getversion_ndelay_c()
 {
-	static char    *x = "$Id: ndelay.c,v 1.3 2004-10-22 20:27:39+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: ndelay.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

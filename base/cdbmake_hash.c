@@ -1,5 +1,8 @@
 /*
  * $Log: cdbmake_hash.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2004-10-22 20:23:22+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,9 +13,7 @@
 #include "cdbmake.h"
 
 uint32
-cdbmake_hashadd(h, c)
-	uint32          h;
-	unsigned int    c;
+cdbmake_hashadd(uint32 h, unsigned int c)
 {
 	h += (h << 5);
 	h ^= (uint32) (unsigned char) c;
@@ -22,7 +23,7 @@ cdbmake_hashadd(h, c)
 void
 getversion_cdbmake_hash_c()
 {
-	static char    *x = "$Id: cdbmake_hash.c,v 1.3 2004-10-22 20:23:22+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: cdbmake_hash.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

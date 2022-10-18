@@ -1,5 +1,8 @@
 /*
  * $Log: hmac_sha384.c,v $
+ * Revision 1.2  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.1  2021-06-16 17:38:51+05:30  Cprogrammer
  * Initial revision
  *
@@ -17,10 +20,10 @@
 
 void
 hmac_sha384(const unsigned char *text, /*- pointer to data stream        */
-			size_t text_len,		   /*- length of data stream         */
+			size_t text_len,           /*- length of data stream         */
 			const unsigned char *key,  /*- pointer to authentication key */
-			size_t key_len,			   /*- length of authentication key  */
-			void *digest)
+			size_t key_len,            /*- length of authentication key  */
+			void *digest               /*- caller digest to be filled in */)
 {
 	/*- caller digest to be filled in */
 	unsigned char   k_ipad[KLEN + 1];	/*- inner padding - key XORd with ipad */
@@ -84,7 +87,7 @@ hmac_sha384(const unsigned char *text, /*- pointer to data stream        */
 void
 getversion_hmac_sha384_c()
 {
-	static char    *x = "$Id: hmac_sha384.c,v 1.1 2021-06-16 17:38:51+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: hmac_sha384.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

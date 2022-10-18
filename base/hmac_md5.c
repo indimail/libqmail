@@ -1,5 +1,8 @@
 /*
  * $Log: hmac_md5.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2020-10-10 21:18:42+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -16,15 +19,12 @@
 /*
  * Function: hmac_md5
  */
-
 void
-hmac_md5(text, text_len, key, key_len, digest)
-	unsigned char  *text;		/* pointer to data stream */
-	int             text_len;	/* length of data stream */
-	unsigned char  *key;		/* pointer to authentication key */
-	int             key_len;	/* length of authentication key */
-	unsigned char  *digest;		/* caller digest to be filled in */
-
+hmac_md5(unsigned char *text, /*- pointer to data stream */
+		int text_len,         /*- length of data stream */
+		unsigned char *key,   /*- pointer to authentication key */
+		int key_len,          /*- length of authentication key */
+		unsigned char *digest /*- caller digest to be filled in */)
 {
 	MD5_CTX         context;
 	unsigned char   k_ipad[65];	/* inner padding - key XORd with ipad */
@@ -82,7 +82,7 @@ hmac_md5(text, text_len, key, key_len, digest)
 void
 getversion_hmac_md5_c()
 {
-	static char    *x = "$Id: hmac_md5.c,v 1.3 2020-10-10 21:18:42+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: hmac_md5.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 #ifndef lint
 	x=sccsidmd5h;
 	x=sccsidglobalh;

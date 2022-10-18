@@ -1,5 +1,8 @@
 /*
  * $Log: sig_child.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2004-10-22 20:30:23+05:30  Cprogrammer
  * added RCS id
  *
@@ -23,8 +26,7 @@ sig_childunblock()
 }
 
 void
-sig_childcatch(f)
-	void            (*f) ();
+sig_childcatch(void (*f) ())
 {
 	sig_catch(SIGCHLD, f);
 }
@@ -38,7 +40,7 @@ sig_childdefault()
 void
 getversion_sig_child_c()
 {
-	static char    *x = "$Id: sig_child.c,v 1.3 2004-10-22 20:30:23+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: sig_child.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

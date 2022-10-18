@@ -1,5 +1,8 @@
 /*
  * $Log: tai_now.c,v $
+ * Revision 1.3  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.2  2004-10-22 20:31:33+05:30  Cprogrammer
  * added RCS id
  *
@@ -11,8 +14,7 @@
 #include "tai.h"
 
 void
-tai_now(t)
-	struct tai     *t;
+tai_now(struct tai *t)
 {
 	t->x = 4611686018427387914ULL + (uint64) time((long *) 0);
 }
@@ -20,7 +22,7 @@ tai_now(t)
 void
 getversion_tai_now_c()
 {
-	static char    *x = "$Id: tai_now.c,v 1.2 2004-10-22 20:31:33+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: tai_now.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: caldate_fmt.c,v $
+ * Revision 1.3  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.2  2004-10-22 20:23:08+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,9 +13,7 @@
 #include "caldate.h"
 
 unsigned int
-caldate_fmt(s, cd)
-	char           *s;
-	struct caldate *cd;
+caldate_fmt(char *s, struct caldate *cd)
 {
 	long            x;
 	int             i = 0;
@@ -24,13 +25,10 @@ caldate_fmt(s, cd)
 	{
 		++i;
 		x /= 10;
-	}
-	while (x);
-	if (s)
-	{
+	} while (x);
+	if (s) {
 		x = cd->year;
-		if (x < 0)
-		{
+		if (x < 0) {
 			x = -x;
 			*s++ = '-';
 		}
@@ -39,8 +37,7 @@ caldate_fmt(s, cd)
 		{
 			*--s = '0' + (x % 10);
 			x /= 10;
-		}
-		while (x);
+		} while (x);
 		s += i;
 
 		x = cd->month;
@@ -61,7 +58,7 @@ caldate_fmt(s, cd)
 void
 getversion_caldate_fmt_c()
 {
-	static char    *x = "$Id: caldate_fmt.c,v 1.2 2004-10-22 20:23:08+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: caldate_fmt.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: sig_hup.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2004-10-22 20:30:24+05:30  Cprogrammer
  * added RCS id
  *
@@ -23,8 +26,7 @@ sig_hangupunblock()
 }
 
 void
-sig_hangupcatch(f)
-	void            (*f) ();
+sig_hangupcatch(void (*f) ())
 {
 	sig_catch(SIGHUP, f);
 }
@@ -38,7 +40,7 @@ sig_hangupdefault()
 void
 getversion_sig_hup_c()
 {
-	static char    *x = "$Id: sig_hup.c,v 1.3 2004-10-22 20:30:24+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: sig_hup.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: mess822_quote.c,v $
+ * Revision 1.3  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.2  2004-10-22 20:27:31+05:30  Cprogrammer
  * added RCS id
  *
@@ -11,9 +14,7 @@
 #include "str.h"
 
 static int
-needquote(buf, len)
-	char           *buf;
-	int             len;
+needquote(char *buf, int len)
 {
 	int             i;
 	char            ch;
@@ -24,13 +25,11 @@ needquote(buf, len)
 		return 1;
 	if (buf[len - 1] == '.')
 		return 1;
-	for (i = 0; i < len - 1; ++i)
-	{
+	for (i = 0; i < len - 1; ++i) {
 		if ((buf[i] == '.') && (buf[i + 1] == '.'))
 			return 1;
 	}
-	for (i = 0; i < len; ++i)
-	{
+	for (i = 0; i < len; ++i) {
 		ch = buf[i];
 		if (ch < 33)
 			return 1;
@@ -65,19 +64,13 @@ needquote(buf, len)
 }
 
 static int
-doit(out, buf, len, pre, post)
-	stralloc       *out;
-	char           *buf;
-	int             len;
-	char           *pre;
-	char           *post;
+doit(stralloc *out, char *buf, int len, char *pre, char *post)
 {
 	char            ch;
 
 	if (!stralloc_cats(out, pre))
 		return 0;
-	while (len--)
-	{
+	while (len--) {
 		ch = *buf++;
 		if (ch == '\n')
 			ch = 0;
@@ -93,10 +86,7 @@ doit(out, buf, len, pre, post)
 }
 
 int
-mess822_quoteplus(out, addr, comment)
-	stralloc       *out;
-	char           *addr;
-	char           *comment;
+mess822_quoteplus(stralloc *out, char *addr, char *comment)
 {
 	int             i;
 	char           *quote;
@@ -109,8 +99,7 @@ mess822_quoteplus(out, addr, comment)
 	if (str_equal(addr, "@"))
 		flagempty = 1;
 	flagbracket = flagempty;
-	if (comment)
-	{
+	if (comment) {
 		if (!doit(out, comment, str_len(comment), "\"", "\" "))
 			return 0;
 		flagbracket = 1;
@@ -118,8 +107,7 @@ mess822_quoteplus(out, addr, comment)
 	if (flagbracket)
 		if (!stralloc_cats(out, "<"))
 			return 0;
-	if (!flagempty)
-	{
+	if (!flagempty) {
 		i = str_rchr(addr, '@');
 		quote = needquote(addr, i) ? "\"" : "";
 		if (!doit(out, addr, i, quote, quote))
@@ -128,13 +116,11 @@ mess822_quoteplus(out, addr, comment)
 		if (*addr == '@')
 			++addr;
 		i = str_len(addr);
-		if (i)
-		{
+		if (i) {
 			if (!stralloc_append(out, "@"))
 				return 0;
 			quote = needquote(addr, i) ? "\"" : "";
-			if (*quote && (i >= 2) && (addr[0] == '[') && (addr[i - 1] == ']'))
-			{
+			if (*quote && (i >= 2) && (addr[0] == '[') && (addr[i - 1] == ']')) {
 				if (!doit(out, addr + 1, i - 2, "[", "]"))
 					return 0;
 			} else
@@ -149,10 +135,7 @@ mess822_quoteplus(out, addr, comment)
 }
 
 int
-mess822_quote(out, addr, comment)
-	stralloc       *out;
-	char           *addr;
-	char           *comment;
+mess822_quote(stralloc *out, char *addr, char *comment)
 {
 	if (!stralloc_copys(out, ""))
 		return 0;
@@ -160,9 +143,7 @@ mess822_quote(out, addr, comment)
 }
 
 int
-mess822_quotelist(out, in)
-	stralloc       *out;
-	stralloc       *in;
+mess822_quotelist(stralloc *out, stralloc *in)
 {
 	int             i;
 	int             j;
@@ -171,19 +152,15 @@ mess822_quotelist(out, in)
 	if (!stralloc_copys(out, ""))
 		return 0;
 	comment = 0;
-	for (j = i = 0; j < in->len; ++j)
-	{
-		if (!in->s[j])
-		{
-			if (in->s[i] == '(')
-			{
+	for (j = i = 0; j < in->len; ++j) {
+		if (!in->s[j]) {
+			if (in->s[i] == '(') {
 				if (comment)
 					if (!doit(out, in->s + comment, str_len(in->s + comment), "\"", "\": ;,\n  "))
 						return 0;
 				comment = i + 1;
 			} else
-			if (in->s[i] == '+')
-			{
+			if (in->s[i] == '+') {
 				if (!mess822_quoteplus(out, in->s + i + 1, comment ? in->s + comment : (char *) 0))
 					return 0;
 				if (!stralloc_cats(out, ",\n  "))
@@ -210,7 +187,7 @@ mess822_quotelist(out, in)
 void
 getversion_mess822_quote_c()
 {
-	static char    *x = "$Id: mess822_quote.c,v 1.2 2004-10-22 20:27:31+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: mess822_quote.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

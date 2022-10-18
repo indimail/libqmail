@@ -1,5 +1,8 @@
 /*
  * $Log: taia_fmtfrac.c,v $
+ * Revision 1.2  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.1  2016-01-28 23:43:09+05:30  Cprogrammer
  * Initial revision
  *
@@ -7,9 +10,7 @@
 #include "taia.h"
 
 unsigned int
-taia_fmtfrac(s, t)
-	char           *s;
-	const struct taia *t;
+taia_fmtfrac(char *s, const struct taia *t)
 {
 	unsigned long   x;
 
@@ -57,7 +58,7 @@ taia_fmtfrac(s, t)
 void
 getversion_taia_fmtfrac_c()
 {
-	static char    *x = "$Id: taia_fmtfrac.c,v 1.1 2016-01-28 23:43:09+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: taia_fmtfrac.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

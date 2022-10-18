@@ -1,5 +1,8 @@
 /* 
  * $Log: str_tok.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2019-07-18 10:09:28+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -59,9 +62,8 @@ local_strchr (register const char *s, int c)
  */
 
 char *
-str_tok(s, delim)
-    char *s;            /* string to search for tokens */
-    const char *delim;  /* delimiting characters */
+str_tok(char *s,      /* string to search for tokens */
+    const char *delim /* delimiting characters */)
 {
     static char *lasts;
     register int ch;
@@ -82,7 +84,7 @@ str_tok(s, delim)
 void
 getversion_str_tok_c()
 {
-	static char    *x = "$Id: str_tok.c,v 1.3 2019-07-18 10:09:28+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: str_tok.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
