@@ -1,5 +1,8 @@
 /*
  * $Log: sig_block.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2004-10-22 20:30:20+05:30  Cprogrammer
  * added RCS id
  *
@@ -12,8 +15,7 @@
 #include "hassgprm.h"
 
 void
-sig_block(sig)
-	int             sig;
+sig_block(int sig)
 {
 #ifdef HASSIGPROCMASK
 	sigset_t        ss;
@@ -26,8 +28,7 @@ sig_block(sig)
 }
 
 void
-sig_unblock(sig)
-	int             sig;
+sig_unblock(int sig)
 {
 #ifdef HASSIGPROCMASK
 	sigset_t        ss;
@@ -54,7 +55,7 @@ sig_blocknone()
 void
 getversion_sig_block_c()
 {
-	static char    *x = "$Id: sig_block.c,v 1.3 2004-10-22 20:30:20+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: sig_block.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

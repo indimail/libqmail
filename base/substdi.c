@@ -1,5 +1,8 @@
 /*
  * $Log: substdi.c,v $
+ * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.4  2014-01-29 14:04:20+05:30  Cprogrammer
  * fixed compilation warnings
  *
@@ -15,16 +18,12 @@
 #include "error.h"
 
 static int
-oneread(op, fd, buf, len)
-	register ssize_t (*op) ();
-	register int    fd;
-	register char  *buf;
-	register int    len;
+oneread(register ssize_t (*op) (), register int fd, register char *buf,
+		register int len)
 {
 	register int    r;
 
-	for (;;)
-	{
+	for (;;) {
 		r = op(fd, buf, len);
 		if (r == -1)
 			if (errno == error_intr)
@@ -34,18 +33,14 @@ oneread(op, fd, buf, len)
 }
 
 static int
-getthis(s, buf, len)
-	register substdio *s;
-	register char  *buf;
-	register int    len;
+getthis(register substdio *s, register char *buf, register int len)
 {
 	register int    r;
 	register int    q;
 
 	r = s->p;
 	q = r - len;
-	if (q > 0)
-	{
+	if (q > 0) {
 		r = len;
 		s->p = q;
 	} else
@@ -56,8 +51,7 @@ getthis(s, buf, len)
 }
 
 int
-substdio_feed(s)
-	register substdio *s;
+substdio_feed(register substdio *s)
 {
 	register int    r;
 	register int    q;
@@ -77,10 +71,7 @@ substdio_feed(s)
 }
 
 int
-substdio_bget(s, buf, len)
-	register substdio *s;
-	register char  *buf;
-	register int    len;
+substdio_bget(register substdio *s, register char *buf, register int len)
 {
 	register int    r;
 
@@ -96,10 +87,7 @@ substdio_bget(s, buf, len)
 }
 
 int
-substdio_get(s, buf, len)
-	register substdio *s;
-	register char  *buf;
-	register int    len;
+substdio_get(register substdio *s, register char *buf, register int len)
 {
 	register int    r;
 
@@ -114,16 +102,13 @@ substdio_get(s, buf, len)
 }
 
 char           *
-substdio_peek(s)
-	register substdio *s;
+substdio_peek(register substdio *s)
 {
 	return s->x + s->n;
 }
 
 void
-substdio_seek(s, len)
-	register substdio *s;
-	register int    len;
+substdio_seek(register substdio *s, register int len)
 {
 	s->n += len;
 	s->p -= len;
@@ -132,7 +117,7 @@ substdio_seek(s, len)
 void
 getversion_substdi_c()
 {
-	static char    *x = "$Id: substdi.c,v 1.4 2014-01-29 14:04:20+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: substdi.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

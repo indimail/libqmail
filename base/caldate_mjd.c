@@ -1,5 +1,8 @@
 /*
  * $Log: caldate_mjd.c,v $
+ * Revision 1.3  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.2  2004-10-22 20:23:10+05:30  Cprogrammer
  * added RCS id
  *
@@ -15,8 +18,7 @@ static unsigned long montab[12] = { 0, 31, 61, 92, 122, 153, 184, 214, 245, 275,
 /*- month length after february is (306 * m + 5) / 10 */
 
 long
-caldate_mjd(cd)
-	struct caldate *cd;
+caldate_mjd(struct caldate *cd)
 {
 	long            y;
 	long            m;
@@ -31,16 +33,14 @@ caldate_mjd(cd)
 
 	if (m >= 2)
 		m -= 2;
-	else
-	{
+	else {
 		m += 10;
 		--y;
 	}
 
 	y += (m / 12);
 	m %= 12;
-	if (m < 0)
-	{
+	if (m < 0) {
 		m += 12;
 		--y;
 	}
@@ -49,8 +49,7 @@ caldate_mjd(cd)
 
 	d += 146097L * (y / 400);
 	y %= 400;
-	if (y < 0)
-	{
+	if (y < 0) {
 		y += 400;
 		d -= 146097L;
 	}
@@ -69,7 +68,7 @@ caldate_mjd(cd)
 void
 getversion_caldate_mjd_c()
 {
-	static char    *x = "$Id: caldate_mjd.c,v 1.2 2004-10-22 20:23:10+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: caldate_mjd.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

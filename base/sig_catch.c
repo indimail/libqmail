@@ -1,5 +1,8 @@
 /*
  * $Log: sig_catch.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2004-10-22 20:30:22+05:30  Cprogrammer
  * added RCS id
  *
@@ -12,9 +15,7 @@
 #include "hassgact.h"
 
 void
-sig_catch(sig, f)
-	int             sig;
-	void            (*f) ();
+sig_catch(int sig, void (*f) ())
 {
 #ifdef HASSIGACTION
 	struct sigaction sa;
@@ -30,7 +31,7 @@ sig_catch(sig, f)
 void
 getversion_sig_catch_c()
 {
-	static char    *x = "$Id: sig_catch.c,v 1.3 2004-10-22 20:30:22+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: sig_catch.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

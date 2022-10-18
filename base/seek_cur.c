@@ -1,5 +1,8 @@
 /*
  * $Log: seek_cur.c,v $
+ * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.4  2004-10-22 20:30:09+05:30  Cprogrammer
  * added RCS id
  *
@@ -14,8 +17,7 @@
 #define CUR 1	/*- sigh */
 
 seek_pos
-seek_cur(fd)
-	int             fd;
+seek_cur(int fd)
 {
 	return lseek(fd, (off_t) 0, SEEK_CUR);
 }
@@ -23,7 +25,7 @@ seek_cur(fd)
 void
 getversion_seek_cur_c()
 {
-	static char    *x = "$Id: seek_cur.c,v 1.4 2004-10-22 20:30:09+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: seek_cur.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

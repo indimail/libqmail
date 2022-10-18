@@ -1,5 +1,8 @@
 /*
  * $Log: fmt_ulong.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2004-10-22 20:25:23+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,28 +13,24 @@
 #include "fmt.h"
 
 unsigned int
-fmt_ulong(s, u)
-	register char  *s;
-	register unsigned long u;
+fmt_ulong(register char *s, register unsigned long u)
 {
 	register unsigned int len;
 	register unsigned long q;
+
 	len = 1;
 	q = u;
-	while (q > 9)
-	{
+	while (q > 9) {
 		++len;
 		q /= 10;
 	}
-	if (s)
-	{
+	if (s) {
 		s += len;
 		do
 		{
 			*--s = '0' + (u % 10);
 			u /= 10;
-		}
-		while (u); /*- handles u == 0 */
+		} while (u); /*- handles u == 0 */
 	}
 	return len;
 }
@@ -39,7 +38,7 @@ fmt_ulong(s, u)
 void
 getversion_fmt_ulong_c()
 {
-	static char    *x = "$Id: fmt_ulong.c,v 1.3 2004-10-22 20:25:23+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: fmt_ulong.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

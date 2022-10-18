@@ -1,5 +1,8 @@
 /*
  * $Log: alloc_re.c,v $
+ * Revision 1.8  2022-10-18 19:53:00+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.7  2020-12-02 14:50:48+05:30  Cprogrammer
  * changed return type of alloc() to void *
  *
@@ -22,10 +25,7 @@
 #include "byte.h"
 
 int
-alloc_re(x, old_size, new_size)
-	void          **x;
-	unsigned int    old_size;
-	unsigned int    new_size;
+alloc_re(void **x, unsigned int old_size, unsigned int new_size)
 {
 	void           *y;
 
@@ -43,7 +43,7 @@ alloc_re(x, old_size, new_size)
 void
 getversion_alloc_re_c()
 {
-	static char    *x = "$Id: alloc_re.c,v 1.7 2020-12-02 14:50:48+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: alloc_re.c,v 1.8 2022-10-18 19:53:00+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

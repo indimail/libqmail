@@ -1,5 +1,8 @@
 /*
  * $Log: subfdins.c,v $
+ * Revision 1.6  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.5  2008-07-14 20:59:14+05:30  Cprogrammer
  * fixed compilation warning on 64 bit os
  *
@@ -18,10 +21,7 @@
 #include "subfd.h"
 
 ssize_t
-subfd_readsmall(fd, buf, len)
-	int             fd;
-	char           *buf;
-	int             len;
+subfd_readsmall(int fd, char *buf, int len)
 {
 	if (substdio_flush(subfdoutsmall) == -1)
 		return -1;
@@ -35,7 +35,7 @@ substdio       *subfdinsmall = &it;
 void
 getversion_subfdins_c()
 {
-	static char    *x = "$Id: subfdins.c,v 1.5 2008-07-14 20:59:14+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: subfdins.c,v 1.6 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: fd_move.c,v $
+ * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.4  2004-10-22 20:25:03+05:30  Cprogrammer
  * added RCS id
  *
@@ -11,9 +14,7 @@
 #include <unistd.h>
 
 int
-fd_move(to, from)
-	int             to;
-	int             from;
+fd_move(int to, int from)
 {
 	if (to == from)
 		return 0;
@@ -26,7 +27,7 @@ fd_move(to, from)
 void
 getversion_fd_move_c()
 {
-	static char    *x = "$Id: fd_move.c,v 1.4 2004-10-22 20:25:03+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: fd_move.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

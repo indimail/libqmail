@@ -1,5 +1,8 @@
 /*
  * $Log: sig_int.c,v $
+ * Revision 1.2  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.1  2016-03-31 16:13:57+05:30  Cprogrammer
  * Initial revision
  *
@@ -21,8 +24,7 @@ sig_intunblock()
 }
 
 void
-sig_intcatch(f)
-	void            (*f) ();
+sig_intcatch(void (*f) ())
 {
 	sig_catch(SIGINT, f);
 }
@@ -36,7 +38,7 @@ sig_intdefault()
 void
 getversion_sig_int_c()
 {
-	static char    *x = "$Id: sig_int.c,v 1.1 2016-03-31 16:13:57+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: sig_int.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

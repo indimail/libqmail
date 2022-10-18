@@ -1,5 +1,8 @@
 /*
  * $Log: lock_ex.c,v $
+ * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.4  2004-10-22 20:26:06+05:30  Cprogrammer
  * added RCS id
  *
@@ -15,16 +18,14 @@
 
 #ifdef HASFLOCK
 int
-lock_ex(fd)
-	int             fd;
+lock_ex(int fd)
 {
 	return flock(fd, LOCK_EX);
 }
 #else
 #include <unistd.h>
 int
-lock_ex(fd)
-	int             fd;
+lock_ex(int fd)
 {
 	return lockf(fd, 1, 0);
 }
@@ -33,7 +34,7 @@ lock_ex(fd)
 void
 getversion_lock_ex_c()
 {
-	static char    *x = "$Id: lock_ex.c,v 1.4 2004-10-22 20:26:06+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: lock_ex.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

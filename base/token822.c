@@ -1,5 +1,8 @@
 /*
  * $Log: token822.c,v $
+ * Revision 1.7  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.6  2020-11-22 23:12:20+05:30  Cprogrammer
  * removed supression of ANSI C proto
  *
@@ -25,8 +28,7 @@
 static struct token822 comma = { TOKEN822_COMMA };
 
 void
-token822_reverse(ta)
-	token822_alloc *ta;
+token822_reverse(token822_alloc *ta)
 {
 	int             i;
 	int             n;
@@ -46,9 +48,7 @@ GEN_ALLOC_ready(token822_alloc, struct token822, t, len, a, 30, token822_ready)
 GEN_ALLOC_append(token822_alloc, struct token822, t, len, a, 30, token822_readyplus, token822_append)
 
 static int
-needspace(t1, t2)
-	int             t1;
-	int             t2;
+needspace(int t1, int t2)
 {
 	if (!t1)
 		return 0;
@@ -77,8 +77,7 @@ needspace(t1, t2)
 }
 
 static int
-atomok(ch)
-	char            ch;
+atomok(char ch)
 {
 	switch (ch)
 	{
@@ -102,8 +101,7 @@ atomok(ch)
 }
 
 static void
-atomcheck(t)
-	struct token822 *t;
+atomcheck(struct token822 *t)
 {
 	int             i;
 	char            ch;
@@ -119,10 +117,7 @@ atomcheck(t)
 }
 
 int
-token822_unparse(sa, ta, linelen)
-	stralloc       *sa;
-	token822_alloc *ta;
-	unsigned int    linelen;
+token822_unparse(stralloc *sa, token822_alloc *ta, unsigned int linelen)
 {
 	struct token822 *t;
 	int             len;
@@ -263,9 +258,7 @@ token822_unparse(sa, ta, linelen)
 }
 
 int
-token822_unquote(sa, ta)
-	stralloc       *sa;
-	token822_alloc *ta;
+token822_unquote(stralloc       *sa, token822_alloc *ta)
 {
 	struct token822 *t;
 	int             len;
@@ -343,10 +336,7 @@ token822_unquote(sa, ta)
 }
 
 int
-token822_parse(ta, sa, buf)
-	token822_alloc *ta;
-	stralloc       *sa;
-	stralloc       *buf;
+token822_parse(token822_alloc *ta, stralloc *sa, stralloc *buf)
 {
 	int             i;
 	int             salen;
@@ -597,10 +587,7 @@ token822_parse(ta, sa, buf)
 }
 
 static int
-gotaddr(taout, taaddr, callback)
-	token822_alloc *taout;
-	token822_alloc *taaddr;
-	int             (*callback) ();
+gotaddr(token822_alloc *taout, token822_alloc *taaddr, int (*callback) ())
 {
 	int             i;
 
@@ -615,11 +602,7 @@ gotaddr(taout, taaddr, callback)
 }
 
 int
-token822_addrlist(taout, taaddr, ta, callback)
-	token822_alloc *taout;
-	token822_alloc *taaddr;
-	token822_alloc *ta;
-	int             (*callback) ();
+token822_addrlist(token822_alloc *taout, token822_alloc *taaddr, token822_alloc *ta, int (*callback) ())
 {
 	struct token822 *t;
 	struct token822 *beginning;
@@ -723,7 +706,7 @@ if (!token822_append(taout,&comma)) return -1; }
 void
 getversion_token822_c()
 {
-	static char    *x = "$Id: token822.c,v 1.6 2020-11-22 23:12:20+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: token822.c,v 1.7 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

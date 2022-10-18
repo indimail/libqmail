@@ -1,5 +1,8 @@
 /*
  * $Log: hmac_sha224.c,v $
+ * Revision 1.2  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.1  2021-06-16 17:38:44+05:30  Cprogrammer
  * Initial revision
  *
@@ -20,7 +23,7 @@ hmac_sha224(const unsigned char *text, /*- pointer to data stream        */
 			size_t text_len,		   /*- length of data stream         */
 			const unsigned char *key,  /*- pointer to authentication key */
 			size_t key_len,			   /*- length of authentication key  */
-			void *digest)
+			void *digest               /*- caller digest to be filled in */)
 {
 	/*- caller digest to be filled in */
 	unsigned char   k_ipad[KLEN + 1];	/*- inner padding - key XORd with ipad */
@@ -84,7 +87,7 @@ hmac_sha224(const unsigned char *text, /*- pointer to data stream        */
 void
 getversion_hmac_sha224_c()
 {
-	static char    *x = "$Id: hmac_sha224.c,v 1.1 2021-06-16 17:38:44+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: hmac_sha224.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

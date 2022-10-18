@@ -1,5 +1,8 @@
 /*
  * $Log: mess822_token.c,v $
+ * Revision 1.3  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.2  2004-10-22 20:27:32+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,9 +13,7 @@
 #include "mess822.h"
 
 int
-mess822_token(out, in)
-	stralloc       *out;
-	char           *in;
+mess822_token(stralloc *out, char *in)
 {
 	char            ch;
 	int             level;
@@ -165,7 +166,7 @@ mess822_token(out, in)
 void
 getversion_mess822_token_c()
 {
-	static char    *x = "$Id: mess822_token.c,v 1.2 2004-10-22 20:27:32+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: mess822_token.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: lock_un.c,v $
+ * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.4  2004-10-22 20:26:08+05:30  Cprogrammer
  * added RCS id
  *
@@ -15,16 +18,14 @@
 
 #ifdef HASFLOCK
 int
-lock_un(fd)
-	int             fd;
+lock_un(int fd)
 {
 	return flock(fd, LOCK_UN);
 }
 #else
 #include <unistd.h>
 int
-lock_un(fd)
-	int             fd;
+lock_un(int fd)
 {
 	return lockf(fd, 0, 0);
 }
@@ -33,7 +34,7 @@ lock_un(fd)
 void
 getversion_lock_un_c()
 {
-	static char    *x = "$Id: lock_un.c,v 1.4 2004-10-22 20:26:08+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: lock_un.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: caltime_fmt.c,v $
+ * Revision 1.3  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.2  2004-10-22 20:23:11+05:30  Cprogrammer
  * added RCS id
  *
@@ -11,17 +14,14 @@
 #include "caltime.h"
 
 unsigned int
-caltime_fmt(s, ct)
-	char           *s;
-	struct caltime *ct;
+caltime_fmt(char *s, struct caltime *ct)
 {
 	unsigned int    result;
 	long            x;
 
 	result = caldate_fmt(s, &ct->date);
 
-	if (s)
-	{
+	if (s) {
 		s += result;
 
 		x = ct->hour;
@@ -47,8 +47,7 @@ caltime_fmt(s, ct)
 
 		s[0] = ' ';
 		x = ct->offset;
-		if (x < 0)
-		{
+		if (x < 0) {
 			s[1] = '-';
 			x = -x;
 		} else
@@ -69,7 +68,7 @@ caltime_fmt(s, ct)
 void
 getversion_caltime_fmt_c()
 {
-	static char    *x = "$Id: caltime_fmt.c,v 1.2 2004-10-22 20:23:11+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: caltime_fmt.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

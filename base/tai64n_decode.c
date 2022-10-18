@@ -1,5 +1,8 @@
 /*-
  * $Log: tai64n_decode.c,v $
+ * Revision 1.2  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.1  2016-01-02 19:22:04+05:30  Cprogrammer
  * Initial revision
  *
@@ -29,9 +32,7 @@ tai64n_decode(stralloc *str, char **endptr)
 		return 0;
 	if (str->len < 25)
 		return 0;
-/*
- * Check if the line is within range 
- */
+	/* Check if the line is within range */
 	if (ptr[0] != '4' || ptr[1] != '0' || ptr[2] != '0' || ptr[3] != '0' || ptr[4] != '0' || ptr[5] != '0' || ptr[6] != '0'
 		|| ptr[7] != '0')
 		return 0;
@@ -49,7 +50,7 @@ tai64n_decode(stralloc *str, char **endptr)
 void
 getversion_tai64n_decode_c()
 {
-	static char    *x = "$Id: tai64n_decode.c,v 1.1 2016-01-02 19:22:04+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: tai64n_decode.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: error_str.c,v $
+ * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.4  2004-10-22 20:24:53+05:30  Cprogrammer
  * added RCS id
  *
@@ -11,8 +14,7 @@
 
 #define X(e,s) if (i == e) return s;
 
-char *error_str(i)
-int i;
+char *error_str(int i)
 {
   X(0,"no error")
   X(error_intr,"interrupted system call")
@@ -286,7 +288,7 @@ int i;
 void
 getversion_error_str_c()
 {
-	static char    *x = "$Id: error_str.c,v 1.4 2004-10-22 20:24:53+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: error_str.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

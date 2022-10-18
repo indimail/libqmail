@@ -1,5 +1,8 @@
 /*
  * $Log: wait_pid.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2004-10-22 20:32:12+05:30  Cprogrammer
  * added RCS id
  *
@@ -15,9 +18,7 @@
 #ifdef HASWAITPID
 
 int
-wait_pid(wstat, pid)
-	int            *wstat;
-	int             pid;
+wait_pid(int *wstat, int pid)
 {
 	int             r;
 
@@ -37,9 +38,7 @@ static int      oldpid = 0;
 static int      oldwstat;		/*- defined if(oldpid) */
 
 int
-wait_pid(wstat, pid)
-	int            *wstat;
-	int             pid;
+wait_pid(int *wstat, int pid)
 {
 	int             r;
 
@@ -69,7 +68,7 @@ wait_pid(wstat, pid)
 void
 getversion_wait_pid_c()
 {
-	static char    *x = "$Id: wait_pid.c,v 1.3 2004-10-22 20:32:12+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: wait_pid.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

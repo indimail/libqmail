@@ -1,5 +1,8 @@
 /*
  * $Log: fd_copy.c,v $
+ * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.4  2004-10-22 20:25:02+05:30  Cprogrammer
  * added RCS id
  *
@@ -12,9 +15,7 @@
 #include "fd.h"
 
 int
-fd_copy(to, from)
-	int             to;
-	int             from;
+fd_copy(int to, int from)
 {
 	if (to == from)
 		return 0;
@@ -29,7 +30,7 @@ fd_copy(to, from)
 void
 getversion_fd_copy_c()
 {
-	static char    *x = "$Id: fd_copy.c,v 1.4 2004-10-22 20:25:02+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: fd_copy.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

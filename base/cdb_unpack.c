@@ -1,5 +1,8 @@
 /*
  * $Log: cdb_unpack.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2004-10-22 20:23:49+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,8 +13,7 @@
 #include "cdb.h"
 
 uint32
-cdb_unpack(buf)
-	unsigned char  *buf;
+cdb_unpack(unsigned char *buf)
 {
 	uint32          num;
 	num = buf[3];
@@ -27,7 +29,7 @@ cdb_unpack(buf)
 void
 getversion_cdb_unpack_c()
 {
-	static char    *x = "$Id: cdb_unpack.c,v 1.3 2004-10-22 20:23:49+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: cdb_unpack.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

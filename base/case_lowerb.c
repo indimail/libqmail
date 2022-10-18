@@ -1,5 +1,8 @@
 /*
  * $Log: case_lowerb.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2004-10-22 20:23:17+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,13 +13,11 @@
 #include "case.h"
 
 void
-case_lowerb(s, len)
-	char           *s;
-	unsigned int    len;
+case_lowerb(char *s, unsigned int len)
 {
 	unsigned char   x;
-	while (len > 0)
-	{
+
+	while (len > 0) {
 		--len;
 		x = *s - 'A';
 		if (x <= 'Z' - 'A')
@@ -28,7 +29,7 @@ case_lowerb(s, len)
 void
 getversion_case_lowerb_c()
 {
-	static char    *x = "$Id: case_lowerb.c,v 1.3 2004-10-22 20:23:17+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: case_lowerb.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

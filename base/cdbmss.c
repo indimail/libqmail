@@ -1,5 +1,8 @@
 /*
  * $Log: cdbmss.c,v $
+ * Revision 1.6  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.5  2005-08-23 17:14:46+05:30  Cprogrammer
  * gcc 4 compliance
  *
@@ -19,9 +22,7 @@
 #include "cdbmss.h"
 
 int
-cdbmss_start(c, fd)
-	struct cdbmss  *c;
-	int             fd;
+cdbmss_start(struct cdbmss *c, int fd)
 {
 	cdbmake_init(&c->cdbm);
 	c->fd = fd;
@@ -31,12 +32,7 @@ cdbmss_start(c, fd)
 }
 
 int
-cdbmss_add(c, key, keylen, data, datalen)
-	struct cdbmss  *c;
-	unsigned char  *key;
-	unsigned int    keylen;
-	unsigned char  *data;
-	unsigned int    datalen;
+cdbmss_add(struct cdbmss *c, unsigned char *key, unsigned int keylen, unsigned char *data, unsigned int datalen)
 {
 	uint32          h;
 	int             i;
@@ -59,8 +55,7 @@ cdbmss_add(c, key, keylen, data, datalen)
 }
 
 int
-cdbmss_finish(c)
-	struct cdbmss  *c;
+cdbmss_finish(struct cdbmss *c)
 {
 	int             i;
 	uint32          len;
@@ -68,21 +63,18 @@ cdbmss_finish(c)
 
 	if (!cdbmake_split(&c->cdbm, alloc))
 		return -1;
-	for (i = 0; i < 256; ++i)
-	{
+	for (i = 0; i < 256; ++i) {
 		len = cdbmake_throw(&c->cdbm, c->pos, i);
-		for (u = 0; u < len; ++u)
-		{
+		for (u = 0; u < len; ++u) {
 			cdbmake_pack((unsigned char *) c->packbuf, c->cdbm.hash[u].h);
 			cdbmake_pack((unsigned char *) c->packbuf + 4, c->cdbm.hash[u].p);
 			if (substdio_put(&c->ss, c->packbuf, 8) == -1)
 				return -1;
-			c->pos += 8;		/*- XXX: overflow?  */
+			c->pos += 8; /*- XXX: overflow?  */
 		}
 	}
-	if (substdio_flush(&c->ss) == -1)
-		return -1;
-	if (seek_begin(c->fd) == -1)
+	if (substdio_flush(&c->ss) == -1 ||
+			seek_begin(c->fd) == -1)
 		return -1;
 	return substdio_putflush(&c->ss, c->cdbm.final, sizeof(c->cdbm.final));
 }
@@ -90,7 +82,7 @@ cdbmss_finish(c)
 void
 getversion_cdbmss_c()
 {
-	static char    *x = "$Id: cdbmss.c,v 1.5 2005-08-23 17:14:46+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: cdbmss.c,v 1.6 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

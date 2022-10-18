@@ -1,5 +1,8 @@
 /*
  * $Log: base64sub.c,v $
+ * Revision 1.9  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.8  2020-07-01 12:13:24+05:30  Cprogrammer
  * define b64alpha as const
  *
@@ -32,14 +35,11 @@
 const char     *b64alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 /*
- * returns 0 ok, 1 illegal, -1 problem 
+ * returns 0 ok, 1 illegal, -1 out of memory 
+ * out is not null terminated
  */
-
 int
-b64decode(in, l, out)
-	const unsigned char *in;
-	int             l;
-	stralloc       *out;		/*- not null terminated */
+b64decode(const unsigned char *in, int l, stralloc *out)
 {
 	int             p = 0;
 	int             n;
@@ -48,14 +48,12 @@ b64decode(in, l, out)
 	char           *s;
 	unsigned char   b[3];
 
-	if (l == 0)
-	{
+	if (l == 0) {
 		if (!stralloc_copys(out, ""))
 			return -1;
 		return 0;
 	}
-	while (in[l - 1] == B64PAD)
-	{
+	while (in[l - 1] == B64PAD) {
 		p++;
 		l--;
 	}
@@ -64,11 +62,9 @@ b64decode(in, l, out)
 	if (!stralloc_ready(out, out->len))
 		return -1;
 	s = out->s;
-	for (i = 0; i < n - 1; i++)
-	{
+	for (i = 0; i < n - 1; i++) {
 		x = 0;
-		for (j = 0; j < 4; j++)
-		{
+		for (j = 0; j < 4; j++) {
 			if (in[j] >= 'A' && in[j] <= 'Z')
 				x = (x << 6) + (unsigned int) (in[j] - 'A' + 0);
 			else
@@ -97,8 +93,7 @@ b64decode(in, l, out)
 		in += 4;
 	}
 	x = 0;
-	for (j = 0; j < 4; j++)
-	{
+	for (j = 0; j < 4; j++) {
 		if (in[j] >= 'A' && in[j] <= 'Z')
 			x = (x << 6) + (unsigned int) (in[j] - 'A' + 0);
 		else
@@ -129,17 +124,18 @@ b64decode(in, l, out)
 	return 0;
 }
 
+/*
+ * returns 0 ok, -1 out of memory 
+ * out is not null terminated
+ */
 int
-b64encode(in, out)
-	stralloc       *in;
-	stralloc       *out;		/*- not null terminated */
+b64encode(stralloc *in, stralloc *out)
 {
 	unsigned char   a, b, c;
 	int             i;
 	char           *s;
 
-	if (in->len == 0)
-	{
+	if (in->len == 0) {
 		if (!stralloc_copys(out, ""))
 			return -1;
 		return 0;
@@ -147,8 +143,7 @@ b64encode(in, out)
 	if (!stralloc_ready(out, in->len / 3 * 4 + 4))
 		return -1;
 	s = out->s;
-	for (i = 0; i < in->len; i += 3)
-	{
+	for (i = 0; i < in->len; i += 3) {
 		a = in->s[i];
 		b = i + 1 < in->len ? in->s[i + 1] : 0;
 		c = i + 2 < in->len ? in->s[i + 2] : 0;
@@ -171,7 +166,7 @@ b64encode(in, out)
 void
 getversion_base64sub_c()
 {
-	static char    *x = "$Id: base64sub.c,v 1.8 2020-07-01 12:13:24+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: base64sub.c,v 1.9 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

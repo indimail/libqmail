@@ -1,5 +1,8 @@
 /*
  * $Log: sig_bug.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2004-10-22 20:30:21+05:30  Cprogrammer
  * added RCS id
  *
@@ -11,8 +14,7 @@
 #include "sig.h"
 
 void
-sig_bugcatch(f)
-	void            (*f) ();
+sig_bugcatch(void (*f) ())
 {
 	sig_catch(SIGILL, f);
 	sig_catch(SIGABRT, f);
@@ -30,7 +32,7 @@ sig_bugcatch(f)
 void
 getversion_sig_bug_c()
 {
-	static char    *x = "$Id: sig_bug.c,v 1.3 2004-10-22 20:30:21+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: sig_bug.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: cdbmake_add.c,v $
+ * Revision 1.8  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.7  2020-12-02 14:50:59+05:30  Cprogrammer
  * changed return type of alloc() to void *
  *
@@ -19,8 +22,7 @@
 #include "cdbmake.h"
 
 void
-cdbmake_init(cdbm)
-	struct cdbmake *cdbm;
+cdbmake_init(struct cdbmake *cdbm)
 {
 	cdbm->head = 0;
 	cdbm->split = 0;
@@ -91,10 +93,7 @@ cdbmake_split(struct cdbmake *cdbm, void *(*alloc)())
 }
 
 uint32
-cdbmake_throw(cdbm, pos, b)
-	struct cdbmake *cdbm;
-	uint32          pos;
-	int             b;
+cdbmake_throw(struct cdbmake *cdbm, uint32 pos, int b)
 {
 	uint32          len, j, count;
 	struct cdbmake_hp *hp;
@@ -122,7 +121,7 @@ cdbmake_throw(cdbm, pos, b)
 void
 getversion_cdbmake_add_c()
 {
-	static char    *x = "$Id: cdbmake_add.c,v 1.7 2020-12-02 14:50:59+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: cdbmake_add.c,v 1.8 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

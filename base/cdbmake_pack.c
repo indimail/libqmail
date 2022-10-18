@@ -1,5 +1,8 @@
 /*
  * $Log: cdbmake_pack.c,v $
+ * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.3  2004-10-22 20:23:23+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,9 +13,7 @@
 #include "cdbmake.h"
 
 void
-cdbmake_pack(buf, num)
-	unsigned char  *buf;
-	uint32          num;
+cdbmake_pack(unsigned char *buf, uint32 num)
 {
 	*buf++ = num;
 	num >>= 8;
@@ -26,7 +27,7 @@ cdbmake_pack(buf, num)
 void
 getversion_cdbmake_pack_c()
 {
-	static char    *x = "$Id: cdbmake_pack.c,v 1.3 2004-10-22 20:23:23+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: cdbmake_pack.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

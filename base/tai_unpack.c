@@ -1,5 +1,8 @@
 /*
  * $Log: tai_unpack.c,v $
+ * Revision 1.3  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.2  2004-10-22 20:31:36+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,9 +13,7 @@
 #include "tai.h"
 
 void
-tai_unpack(s, t)
-	char           *s;
-	struct tai     *t;
+tai_unpack(char *s, struct tai *t)
 {
 	uint64          x;
 
@@ -37,7 +38,7 @@ tai_unpack(s, t)
 void
 getversion_tai_unpack_c()
 {
-	static char    *x = "$Id: tai_unpack.c,v 1.2 2004-10-22 20:31:36+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: tai_unpack.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

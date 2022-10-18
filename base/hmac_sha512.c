@@ -1,5 +1,8 @@
 /*
  * $Log: hmac_sha512.c,v $
+ * Revision 1.3  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.2  2021-06-16 14:09:06+05:30  Cprogrammer
  * compile hmac_sha512 if HAVE_SSL is defined
  *
@@ -17,10 +20,10 @@
 
 void
 hmac_sha512(const unsigned char *text, /*- pointer to data stream        */
-			size_t text_len,		   /*- length of data stream         */
+			size_t text_len,           /*- length of data stream         */
 			const unsigned char *key,  /*- pointer to authentication key */
-			size_t key_len,			   /*- length of authentication key  */
-			void *digest)
+			size_t key_len,            /*- length of authentication key  */
+			void *digest               /*- caller digest to be filled in */)
 {
 	/*- caller digest to be filled in */
 	unsigned char   k_ipad[129];	/*- inner padding - key XORd with ipad */
@@ -84,7 +87,7 @@ hmac_sha512(const unsigned char *text, /*- pointer to data stream        */
 void
 getversion_hmac_sha512_c()
 {
-	static char    *x = "$Id: hmac_sha512.c,v 1.2 2021-06-16 14:09:06+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: hmac_sha512.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

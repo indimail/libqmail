@@ -1,5 +1,8 @@
 /*
  * $Log: seek_end.c,v $
+ * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.4  2004-10-22 20:30:10+05:30  Cprogrammer
  * added RCS id
  *
@@ -14,8 +17,7 @@
 #define END 2	/*- sigh */
 
 int
-seek_end(fd)
-	int             fd;
+seek_end(int fd)
 {
 	if (lseek(fd, (off_t) 0, SEEK_END) == -1)
 		return -1;
@@ -25,7 +27,7 @@ seek_end(fd)
 void
 getversion_seek_end_c()
 {
-	static char    *x = "$Id: seek_end.c,v 1.4 2004-10-22 20:30:10+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: seek_end.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

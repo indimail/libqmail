@@ -1,5 +1,8 @@
 /*
  * $Log: alloc.c,v $
+ * Revision 1.9  2022-10-18 19:47:27+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.8  2020-12-02 14:50:28+05:30  Cprogrammer
  * changed return type to void *
  *
@@ -40,8 +43,7 @@ static aligned  realspace[SPACE / ALIGNMENT];
 #define space ((char *) realspace)
 static unsigned int avail = SPACE;	/*- multiple of ALIGNMENT; 0<=avail<=SPACE */
 
-/*@null@*//*@out@*/void *alloc(n)
-	unsigned int    n;
+/*@null@*//*@out@*/void *alloc(unsigned int n)
 {
 	char           *x;
 
@@ -61,8 +63,7 @@ static unsigned int avail = SPACE;	/*- multiple of ALIGNMENT; 0<=avail<=SPACE */
 }
 
 void
-alloc_free(x)
-	char           *x;
+alloc_free(char *x)
 {
 	if (x >= space && (x < space + SPACE))
 		return; /*- XXX: assuming that pointers are flat */
@@ -72,7 +73,7 @@ alloc_free(x)
 void
 getversion_alloc_c()
 {
-	static char    *x = "$Id: alloc.c,v 1.8 2020-12-02 14:50:28+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: alloc.c,v 1.9 2022-10-18 19:47:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: seek_set.c,v $
+ * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
  * Revision 1.4  2004-10-22 19:39:26+05:30  Cprogrammer
  * added RCS id
  *
@@ -14,9 +17,7 @@
 #define SET 0	/*- sigh */
 
 int
-seek_set(fd, pos)
-	int             fd;
-	seek_pos        pos;
+seek_set(int fd, seek_pos pos)
 {
 	if (lseek(fd, (off_t) pos, SEEK_SET) == -1)
 		return -1;
@@ -25,7 +26,7 @@ seek_set(fd, pos)
 void
 getversion_seek_set_c()
 {
-	static char    *x = "$Id: seek_set.c,v 1.4 2004-10-22 19:39:26+05:30 Cprogrammer Stab mbhangui $";
+	static char    *x = "$Id: seek_set.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
