@@ -1,5 +1,5 @@
 #ifndef	lint
-static char     sccsid[] = "$Id: get_scram_secrets.c,v 1.3 2022-08-26 11:51:26+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: get_scram_secrets.c,v 1.4 2022-10-29 21:22:06+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #include <str.h>
@@ -31,7 +31,7 @@ static char     sccsid[] = "$Id: get_scram_secrets.c,v 1.3 2022-08-26 11:51:26+0
  *  "iter" is the iteration cound to be used.
  *  "salt" is the provided/generated base64-encoded salt,
  *  "stored-key" and "server-key" are the two derived and base64-encoded
- * server-side keys. It returns the number of fields extracted.
+ * server-side keys.
  *  "salted-password" is the non-scram derived encrypted password from
  * crypt(3) that can be used with non-scram methods
  *  "hexsaltpw" is the scram salted passwd that can be used instead of
@@ -39,13 +39,17 @@ static char     sccsid[] = "$Id: get_scram_secrets.c,v 1.3 2022-08-26 11:51:26+0
  *  "cleartxt" is the user's password in clear text. This is used for
  *  cram methods
  *
+ * function returns the number of fields extracted (6 or 8)
+ *
  * Examples
  *
  * case 1
  * {SCRAM-SHA-256}4096,GppkE9F92zRciuyk,n9boN+EV/P7i+Uxn063JLcppQnyOrIktX81FCy8iibk=,cVjrqEdR7DuGDAwKMLrn6YOp5Z4w7zOBjrxo+1mGmfE=,$1$GsamfuEK$eSxzR6dswY.kaNTtPNi5c1 (SCRAM-SHA-256)
+ * returns 6
  *
  * case 1
  * {SCRAM-SHA-256}4096,GppkE9F92zRciuyk,n9boN+EV/P7i+Uxn063JLcppQnyOrIktX81FCy8iibk=,cVjrqEdR7DuGDAwKMLrn6YOp5Z4w7zOBjrxo+1mGmfE=:86e346545877b822f8d904ae90595f3f7050d453b33eaf6b78dc95b4a3bfde3b:pass,$1$GsamfuEK$eSxzR6dswY.kaNTtPNi5c1
+ * returns 8
  *
  * This function is used by qmail-smtpd. vpasswd and vmoduser from the indimail
  * package sets passwords in this form. This form allows flexibility for clients
@@ -147,6 +151,9 @@ get_scram_secrets(char *pass_str, int *mech, int *iter, char **salt,
 }
 /*
  * $Log: get_scram_secrets.c,v $
+ * Revision 1.4  2022-10-29 21:22:06+05:30  Cprogrammer
+ * updated comments
+ *
  * Revision 1.3  2022-08-26 11:51:26+05:30  Cprogrammer
  * handle additional CRAM-* formats if set in password field
  *
