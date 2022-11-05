@@ -1,5 +1,8 @@
 /*
  * $Log: pw_comp.c,v $
+ * Revision 1.5  2022-11-05 22:29:02+05:30  Cprogrammer
+ * added documentary comments
+ *
  * Revision 1.4  2022-08-27 09:03:54+05:30  Cprogrammer
  * use AUTH methods definition from authmethods.h
  *
@@ -52,6 +55,17 @@ flush()
 		strerr_die1sys(111, "write: ");
 }
 
+/*
+ * testlogin   - usernamae
+ * localpw     - password from db
+ * challenge   - CRAM (challenge = challenge from server). For non-CRAM challenge = NULL
+ * response    - CRAM (response  = response  from client). For non-CRAM challenge = password input from user
+ * auth_method - See authmethods.h
+ * Returns
+ *  0 - password correct
+ *  1 - password incorrect
+ * -1 - system failure
+ */
 int
 pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challenge,
 	unsigned char *response, int auth_method)
@@ -61,10 +75,11 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 	char           *crypt_pass, *e;
 	int             i, len;
 
+	errno = 0;
 	if (!env_get("DISABLE_CRYPT") && (!challenge || (challenge && !*challenge))) {
 		if (!(crypt_pass = in_crypt((char *) response, (char *) localpw))) {
 			out("454-CRYPT: ");
-			out(error_str(errno));
+			out(errno ? error_str(errno) : "unknown error");
 			out(" (#4.3.0)\r\n");
 			flush();
 			_exit (111);
@@ -76,7 +91,7 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 			mkpasswd((char *) localpw, &Crypted, 0);
 			if (!(crypt_pass = in_crypt((char *) response, Crypted.s))) {
 				out("454-CRYPT: ");
-				out(error_str(errno));
+				out(errno ? error_str(errno) : "unknown error");
 				out(" (#4.3.0)\r\n");
 				flush();
 				_exit (111);
@@ -84,10 +99,10 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 			len = str_len(crypt_pass);
 			i = str_diffn(crypt_pass, Crypted.s, (size_t) len + 1);
 		}
-		return (i);
+		return (i); /* either success or incorrect password */
 	}
 	if (!challenge || (challenge && !*challenge))
-		return (1);
+		return (1); /*- password incorrect */
 	if ((!auth_method && !env_get("DISABLE_CRAM_MD5")) || auth_method == AUTH_CRAM_MD5) {
 		hmac_md5(challenge, (int) str_len((char *) challenge), localpw,
 			(int) str_len((char *) localpw), digest);
@@ -98,7 +113,7 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 		}
 		*e = 0;
 		if (!(i = str_diff((char *) digascii, (char *) response)))
-			return (i);
+			return (i); /*- success */
 	}
 	if ((!auth_method && !env_get("DISABLE_CRAM_SHA1")) || auth_method == AUTH_CRAM_SHA1) {
 		hmac_sha1(challenge, (int) str_len((char *) challenge), localpw,
@@ -110,7 +125,7 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 		}
 		*e = 0;
 		if (!(i = str_diff((char *) digascii, (char *) response)))
-			return (i);
+			return (i); /*- success */
 	}
 #ifdef HAVE_SSL
 	if ((!auth_method && !env_get("DISABLE_CRAM_SHA224")) || auth_method == AUTH_CRAM_SHA224) {
@@ -122,7 +137,7 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 		}
 		*e = 0;
 		if (!(i = str_diff((char *) digascii, (char *) response)))
-			return (i);
+			return (i); /*- success */
 	}
 	if ((!auth_method && !env_get("DISABLE_CRAM_SHA256")) || auth_method == AUTH_CRAM_SHA256) {
 		hmac_sha256(challenge, (int) str_len((char *) challenge), localpw,
@@ -133,7 +148,7 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 		}
 		*e = 0;
 		if (!(i = str_diff((char *) digascii, (char *) response)))
-			return (i);
+			return (i); /*- success */
 	}
 	if ((!auth_method && !env_get("DISABLE_CRAM_SHA384")) || auth_method == AUTH_CRAM_SHA384) {
 		hmac_sha384(challenge, (int) str_len((char *) challenge), localpw,
@@ -144,7 +159,7 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 		}
 		*e = 0;
 		if (!(i = str_diff((char *) digascii, (char *) response)))
-			return (i);
+			return (i); /*- success */
 	}
 	if ((!auth_method && !env_get("DISABLE_CRAM_SHA512")) || auth_method == AUTH_CRAM_SHA512) {
 		hmac_sha512(challenge, (int) str_len((char *) challenge), localpw,
@@ -155,7 +170,7 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 		}
 		*e = 0;
 		if (!(i = str_diff((char *) digascii, (char *) response)))
-			return (i);
+			return (i); /*- success */
 	}
 #endif
 	if ((!auth_method && !env_get("DISABLE_CRAM_RIPEMD")) || auth_method == AUTH_CRAM_RIPEMD) {
@@ -167,26 +182,26 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 		}
 		*e = 0;
 		if (!(i = str_diff((char *) digascii, (char *) response)))
-			return (i);
+			return (i); /*- success */
 	}
 	if ((!auth_method && !env_get("DISABLE_DIGEST_MD5")) || auth_method == AUTH_DIGEST_MD5) {
 		if ((i = digest_md5((char *) response, testlogin, challenge, localpw)) == -1) {
 			out("454-DIGEST-MD5: ");
-			out(error_str(errno));
+			out(errno ? error_str(errno) : "unknown error");
 			out(" (#4.3.0)\r\n");
 			flush();
 			_exit (111);
 		} else
 		if (!i)
-			return (i);
+			return (i); /*- success */
 	}
-	return (1);
+	return (1); /*- incorrect password */
 }
 
 void
 getversion_pw_comp_c()
 {
-	static char    *x = "$Id: pw_comp.c,v 1.4 2022-08-27 09:03:54+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: pw_comp.c,v 1.5 2022-11-05 22:29:02+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
