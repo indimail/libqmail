@@ -1,5 +1,8 @@
 /*
  * $Log: digest_md5.c,v $
+ * Revision 1.2  2022-11-05 22:31:38+05:30  Cprogrammer
+ * return failure for invalid arguments
+ *
  * Revision 1.1  2020-04-01 17:57:33+05:30  Cprogrammer
  * Initial revision
  *
@@ -56,7 +59,7 @@ digest_md5(char *greeting, unsigned char *r_user, unsigned char *r_pass,
 			digesturi = x + 11;
 	}
 	if (!nc || !qop || !realm || !nonce || !cnonce || !digesturi || !r_pass)
-		return (-1);
+		return (1);
 	MD5Init(&md5);
 	MD5Update(&md5, r_user, strlen((char *) r_user));
 	MD5Update(&md5, (unsigned char *) ":", 1);
@@ -161,14 +164,14 @@ digest_md5(char *greeting, unsigned char *r_user, unsigned char *r_pass,
 		if ((len = write(6, encrypted, 32)) == -1)
 			return (-1);
 		return (0);
-	}	/* if correct password */
+	} /* if correct password */
 	return (1);
 }
 
 void
 getversion_digest_md5_c()
 {
-	static char    *x = "$Id: digest_md5.c,v 1.1 2020-04-01 17:57:33+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: digest_md5.c,v 1.2 2022-11-05 22:31:38+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
