@@ -1,12 +1,15 @@
 /*
  * $Log: tcpbind.c,v $
+ * Revision 1.2  2022-12-06 08:31:31+05:30  Cprogrammer
+ * display servicename, hostname in getaddrinfo error
+ *
  * Revision 1.1  2022-05-10 19:49:51+05:30  Cprogrammer
  * Initial revision
  *
  */
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tcpbind.c,v 1.1 2022-05-10 19:49:51+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: tcpbind.c,v 1.2 2022-12-06 08:31:31+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #ifdef HAVE_CONFIG_H
@@ -100,7 +103,7 @@ tcpbind(char *hostname, char *servicename, int backlog)
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_flags = AI_PASSIVE;
 	if ((idx = getaddrinfo(hostname, servicename, &hints, &res0))) {
-		strerr_warn2("tcpbind: getaddrinfo: ", (char *) gai_strerror(idx), 0);
+		strerr_warn6("tcpbind: getaddrinfo: [", servicename, "@", hostname, "]: ", (char *) gai_strerror(idx), 0);
 		return (-1);
 	}
 	listenfd = -1;
@@ -179,7 +182,7 @@ tcpbind(char *hostname, char *servicename, int backlog)
 void
 getversion_tcpbind_c()
 {
-	static char    *x = "$Id: tcpbind.c,v 1.1 2022-05-10 19:49:51+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: tcpbind.c,v 1.2 2022-12-06 08:31:31+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
