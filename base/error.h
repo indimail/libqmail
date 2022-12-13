@@ -1,5 +1,8 @@
 /*
  * $Log: error.h,v $
+ * Revision 1.11  2022-12-13 15:49:10+05:30  Cprogrammer
+ * added error_child
+ *
  * Revision 1.10  2020-11-24 13:33:59+05:30  Cprogrammer
  * added error_notdir
  *
@@ -28,6 +31,7 @@
 #include <errno.h>
 
 extern int      error_ebadf;
+extern int      error_child;
 extern int      error_intr;
 extern int      error_nomem;
 extern int      error_noent;

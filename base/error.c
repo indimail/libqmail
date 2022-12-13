@@ -1,5 +1,8 @@
 /*
  * $Log: error.c,v $
+ * Revision 1.10  2022-12-13 15:48:57+05:30  Cprogrammer
+ * added error_child for ECHILD
+ *
  * Revision 1.9  2020-11-24 13:33:44+05:30  Cprogrammer
  * added error_notdir
  *
@@ -26,6 +29,13 @@
 int error_ebadf =
 #ifdef EBADF
 EBADF;
+#else
+-1;
+#endif
+
+int error_child =
+#ifdef ECHILD
+ECHILD;
 #else
 -1;
 #endif
@@ -201,7 +211,7 @@ ERESTART;
 void
 getversion_error_c()
 {
-	static char    *x = "$Id: error.c,v 1.9 2020-11-24 13:33:44+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: error.c,v 1.10 2022-12-13 15:48:57+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
