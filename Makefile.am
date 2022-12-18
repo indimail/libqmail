@@ -160,10 +160,10 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/arc4random.c base/authmethods.
 	base/tai_uint.c base/tai_unpack.c base/timeoutread.c base/timeoutwrite.c \
 	base/timestamp.c base/token822.c base/uint16_pack.c base/uint16_read.c \
 	base/uint16_unpack.c base/uint32_pack.c base/uint32_read.c \
-	base/uint32_unpack.c base/valid_password_chars.c base/wait_nohang.c \
-	base/wait_pid.c textcode/base64url.c textcode/fmt_asn1derlength.c \
-	textcode/fmt_asn1dertag.c textcode/fmt_base64.c \
-	textcode/fmt_base64url.c textcode/fmt_cescape.c \
+	base/uint32_unpack.c base/valid_password_chars.c base/wait_handler.c \
+	base/wait_nohang.c base/wait_pid.c textcode/base64url.c \
+	textcode/fmt_asn1derlength.c textcode/fmt_asn1dertag.c \
+	textcode/fmt_base64.c textcode/fmt_base64url.c textcode/fmt_cescape.c \
 	textcode/fmt_foldwhitespace.c textcode/fmt_html.c \
 	textcode/fmt_html_tagarg.c textcode/fmt_jsonescape.c \
 	textcode/fmt_ldapescape2.c textcode/fmt_ldapescape.c \

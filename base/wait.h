@@ -1,5 +1,8 @@
 /*
  * $Log: wait.h,v $
+ * Revision 1.5  2022-12-17 00:43:54+05:30  Cprogrammer
+ * added wait_handler() and wait_exited macro
+ *
  * Revision 1.4  2022-12-13 19:47:18+05:30  Cprogrammer
  * use system defined wait macros
  *
@@ -16,6 +19,7 @@
 
 int             wait_pid(int *, int);
 int             wait_nohang(int *);
+int             wait_handler(int, int *);
 
 /*
  * If the child stopped, wait_stopped is nonzero; wait_stopsig is the signal that caused the child to stop.
@@ -26,6 +30,7 @@ int             wait_nohang(int *);
  */
 #define wait_crashed(w)   WTERMSIG((w))
 #define wait_exitcode(w)  WEXITSTATUS((w))
+#define wait_exited(w)    WIFEXITED((w))
 #define wait_stopsig(w)   WSTOPSIG((w))
 #define wait_stopped(w)   WIFSTOPPED((w))
 #define wait_continued(w) WIFCONTINUED((w))
