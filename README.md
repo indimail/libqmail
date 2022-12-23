@@ -70,6 +70,8 @@ $ sudo make install
 
 [![libqmail obs CI](https://github.com/mbhangui/libqmail/actions/workflows/libqmail-obs.yml/badge.svg)](https://github.com/mbhangui/libqmail/actions/workflows/libqmail-obs.yml)
 
+[![libqmail](https://build.opensuse.org/projects/home:mbhangui/packages/libqmail/badge.svg?type=percent)](https://build.opensuse.org/package/show/home:mbhangui/libqmail)
+
 You can get binary RPM / Debian packages at
 
 * [Stable Releases](http://download.opensuse.org/repositories/home:/indimail/)
