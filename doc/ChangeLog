@@ -16,6 +16,12 @@ Release 1.1.2 Start 10/10/2021 End --/--/20--
 07. wait.h: added wait_handler() and wait_exited macro
 08. wait_handler.c: added wait_handler() function wrapper for handling wait
     status
+- 02/01/2023
+09. tls.c, tls.h: added tls/ssl functions
+10. allwrite.c: added allwrite() function
+11. commands.c: return -2 for command too long
+12. ndelay.c: added ndelay() function to get value of DELAY flag for
+    descriptor
 
 * Thu 08 Sep 2022 03:42:16 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1.1-1.1%{?dist}
 Release 1.1.1 Start 18/07/2021 End 08/09/2022
