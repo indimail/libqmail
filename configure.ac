@@ -162,6 +162,12 @@ AC_CHECK_HEADERS(regex.h sys/types.h sys/stat.h sys/wait.h sys/file.h sys/time.h
 AC_CHECK_FUNCS(flock arc4random)
 
 AC_CHECK_LIB(ssl, SSL_CTX_new, [AC_SUBST([LIB_SSL], ["-lssl"]) AC_DEFINE([HAVE_SSL], [1],[OpenSSL Library])],,-lssl)
+AC_CHECK_LIB(ssl, TLSv1_client_method, [AC_DEFINE([TLSV1_CLIENT_METHOD], [1],[TLSV1 Client Method])],)
+AC_CHECK_LIB(ssl, TLSv1_server_method, [AC_DEFINE([TLSV1_SERVER_METHOD], [1],[TLSV1 Server Method])],)
+AC_CHECK_LIB(ssl, TLSv1_1_client_method, [AC_DEFINE([TLSV1_1_CLIENT_METHOD], [1],[TLSV1_1 Client Method])],)
+AC_CHECK_LIB(ssl, TLSv1_1_server_method, [AC_DEFINE([TLSV1_1_SERVER_METHOD], [1],[TLSV1_1 Server Method])],)
+AC_CHECK_LIB(ssl, TLSv1_2_client_method, [AC_DEFINE([TLSV1_2_CLIENT_METHOD], [1],[TLSV1_2 Client Method])],)
+AC_CHECK_LIB(ssl, TLSv1_2_server_method, [AC_DEFINE([TLSV1_2_SERVER_METHOD], [1],[TLSV1_2 Server Method])],)
 AC_CHECK_LIB(crypto, CRYPTO_new_ex_data, [AC_SUBST([LIB_CRYPTO], ["-lcrypto"]) AC_DEFINE([HAVE_CRYPTO], [1],[Crypto Library])],,-lcrypto)
 AC_CHECK_LIB(crypt, crypt, [AC_SUBST([LIB_CRYPT], ["-lcrypt"]) AC_DEFINE([HAVE_CRYPT], [1],[crypt Library])],,)
 AC_CHECK_LIB(sodium, sodium_init, [AC_SUBST([LIB_SODIUM], ["-lsodium"]) AC_DEFINE([HAVE_SODIUM], [1],[Sodium Library])],,-lsodium)

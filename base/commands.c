@@ -1,5 +1,8 @@
 /*
  * $Log: commands.c,v $
+ * Revision 1.9  2023-01-02 20:31:53+05:30  Cprogrammer
+ * return -2 for command too long
+ *
  * Revision 1.8  2022-06-20 00:57:33+05:30  Cprogrammer
  * set errno=0 for EOF
  *
@@ -53,7 +56,7 @@ commands(substdio *ss, struct commands *c)
 				cmd.s[cmd.len] = '\n';
 			++cmd.len;
 			if (ctl_maxcmdlen && cmd.len > ctl_maxcmdlen)
-				return -1;
+				return -2;
 		}
 		if (cmd.len > 0 && cmd.s[cmd.len - 1] == '\r')
 			--cmd.len;
@@ -79,7 +82,7 @@ commands(substdio *ss, struct commands *c)
 void
 getversion_commands_c()
 {
-	static char    *x = "$Id: commands.c,v 1.8 2022-06-20 00:57:33+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: commands.c,v 1.9 2023-01-02 20:31:53+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

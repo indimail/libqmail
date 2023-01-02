@@ -4,6 +4,8 @@ commands \- read and obey \en-terminated commands
 .SH SYNTAX
 .B #include <commands.h>
 
+int \fIctl_maxcmdlen\fR;
+.br
 int \fBcommands\fP(&\fIss\fR,\fIc\fR);
 
 substdio \fIss\fR;
@@ -23,6 +25,8 @@ It returns \-1, setting
 appropriately,
 if it runs out of memory or has trouble reading
 .IR ss .
+It returns \-2 if the command length is too long. You can set the max
+command length by setting ctl_maxcmdlen.
 
 Each command is terminated by \en.
 Partial final lines are ignored.

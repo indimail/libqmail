@@ -1,11 +1,11 @@
 COFLAGS=-z+05:30
 ACLOCAL_AMFLAGS=-I m4
 
-DEFS=@DEFS@ -I. -Ibase -Iarray -Itextcode -Isocket
+DEFS=@DEFS@ -I. -Ibase -Iarray -Itextcode -Isocket -Issl
 
 libqmail_LTLIBRARIES = libqmail.la
 libqmail_la_SOURCES = $(COMMONSOURCES)
-libqmail_la_LIBADD = @LIB_CRYPT@ @LIB_CRYPTO@ @LIB_SODIUM@ -lm
+libqmail_la_LIBADD = @LIB_CRYPT@ @LIB_SSL@ @LIB_CRYPTO@ @LIB_SODIUM@ -lm
 libqmail_la_LDFLAGS = -version-info @LIBVER@:0:0
 libqmail_la_CFLAGS = -fPIC
 libqmaildir=@libdir@
@@ -73,10 +73,11 @@ man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 \
 docs = README doc/ChangeLog COPYING AUTHORS
 docdir=@docdir@
 
-include_HEADERS = base/alloc.h base/arc4random.h base/authmethods.h \
-	base/base64.h base/builtinoflmacros.h base/byte.h base/caldate.h \
-	base/caltime.h base/case.h base/cdb.h base/cdb_make.h base/cdbmake.h \
-	base/cdbmss.h base/check_domain.h base/coe.h base/commands.h \
+include_HEADERS = base/alloc.h base/allwrite.h base/arc4random.h \
+	base/authmethods.h base/base64.h base/builtinoflmacros.h \
+	base/byte.h base/caldate.h base/caltime.h base/case.h \
+	base/cdb.h base/cdb_make.h base/cdbmake.h base/cdbmss.h \
+	base/check_domain.h base/coe.h base/commands.h \
 	base/constmap.h base/date822fmt.h base/datetime.h base/digest_md5.h \
 	base/direntry.h base/env.h base/error.h base/envdir.h base/evaluate.h \
 	base/fd.h base/fifo.h base/fmt.h base/gen_allocdefs.h \
@@ -97,14 +98,16 @@ include_HEADERS = base/alloc.h base/arc4random.h base/authmethods.h \
 	base/uint16.h base/uint32.h base/uint64.h base/wait.h base/qprintf.h \
 	array/array.h textcode/entities.h textcode/textcode.h base/likely.h \
 	base/iarray.h base/safemult.h base/rangecheck.h socket/tcpbind.h \
-	base/valid_password_chars.h socket/tcpopen.h socket/udpopen.h base/qdirname.h
+	base/valid_password_chars.h socket/tcpopen.h socket/udpopen.h base/qdirname.h \
+	ssl/tls.h
 
 includedir=@prefix@/include/qmail
-COMMONSOURCES = base/alloc.c base/alloc_re.c base/arc4random.c base/authmethods.c \
-	base/base64sub.c base/byte_chr.c base/byte_copy.c base/byte_cr.c base/byte_cspn.c \
-	base/byte_diff.c base/byte_rchr.c base/byte_rcspn.c base/byte_zero.c \
-	base/caldate_fmjd.c base/caldate_fmt.c base/caldate_mjd.c base/caldate_scan.c \
-	base/caltime_fmt.c base/caltime_tai.c base/caltime_utc.c base/case_diffb.c \
+COMMONSOURCES = base/alloc.c base/alloc_re.c base/allwrite.c base/arc4random.c \
+	base/authmethods.c base/base64sub.c base/byte_chr.c base/byte_copy.c \
+	base/byte_cr.c base/byte_cspn.c base/byte_diff.c base/byte_rchr.c \
+	base/byte_rcspn.c base/byte_zero.c base/caldate_fmjd.c base/caldate_fmt.c \
+	base/caldate_mjd.c base/caldate_scan.c base/caltime_fmt.c \
+	base/caltime_tai.c base/caltime_utc.c base/case_diffb.c \
 	base/case_diffs.c base/case_lowerb.c base/case_lowers.c base/case_startb.c \
 	base/case_starts.c base/cdb.c base/cdb_hash.c base/cdb_make.c \
 	base/cdbmake_add.c base/cdbmake_hash.c base/cdbmss.c base/cdbmake_pack.c \
@@ -187,7 +190,8 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/arc4random.c base/authmethods.
 	mult/imult16.c mult/imult32.c mult/imult64.c mult/range_arrayinbuf.c \
 	mult/range_str2inbuf.c mult/range_str4inbuf.c mult/range_strinbuf.c \
 	mult/umult16.c mult/umult32.c mult/umult64.c \
-	socket/tcpbind.c socket/tcpopen.c socket/udpopen.c
+	socket/tcpbind.c socket/tcpopen.c socket/udpopen.c \
+	ssl/tls.c
 
 edit = sed \
 	-e 's}@PACKAGE\@}$(PACKAGE)}g' \
@@ -289,6 +293,7 @@ base/chkshsgr: base/chkshsgr.o
 base/chkshsgr.o: base/chkshsgr.c
 	$(COMPILE) -c base/chkshsgr.c -o base/chkshsgr.o
 
+base/allwrite.lo: allwrite.h
 base/base64sub.lo: base64.h stralloc.h str.h gen_alloc.h
 base/byte_copy.lo: byte.h
 base/byte_chr.lo: byte.h
@@ -530,6 +535,8 @@ base/subfd.h base/strerr.h
 
 socket/udpopen.o: socket/udpopen.c socket/haveip6.h base/subfd.h \
 base/strerr.h base/fmt.h base/byte.h
+
+ssl/tls.lo: ssl/tls.h
 
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 libtool: $(LIBTOOL_DEPS)
