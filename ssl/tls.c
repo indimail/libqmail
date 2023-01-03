@@ -1,5 +1,5 @@
 /*
- * $Id: tls.c,v 1.1 2023-01-02 22:41:21+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tls.c,v 1.2 2023-01-03 15:50:15+05:30 Cprogrammer Exp mbhangui $
  *
  * ssl_timeoutio functions froms from Frederik Vermeulen's
  * tls patch for qmail
@@ -34,7 +34,7 @@
 #include "tls.h"
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tls.c,v 1.1 2023-01-02 22:41:21+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: tls.c,v 1.2 2023-01-03 15:50:15+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #ifdef HAVE_SSL
@@ -587,6 +587,8 @@ tls_init(char *tls_method, char *cert, char *cafile, char *crlfile,
 	/*- set the callback here; SSL_set_verify didn't work before 0.9.6c */
 	SSL_CTX_set_verify(ctx, SSL_VERIFY_PEER, verify_cb);
 	/*- Set our cipher list */
+	if (!ciphers)
+		ciphers = "PROFILE=SYSTEM";
 	if (ciphers && !SSL_CTX_set_cipher_list(ctx, ciphers)) {
 		sslerr_str = (char *) myssl_error_str();
 		strerr_warn4("tls_init: unable to set ciphers: ", ciphers, ": ", sslerr_str, 0);
@@ -1092,6 +1094,9 @@ getversion_tls_c()
 
 /*
  * $Log: tls.c,v $
+ * Revision 1.2  2023-01-03 15:50:15+05:30  Cprogrammer
+ * set default ciphers to "PROFILE=SYSTEM" to quell rpmlint warning
+ *
  * Revision 1.1  2023-01-02 22:41:21+05:30  Cprogrammer
  * Initial revision
  *

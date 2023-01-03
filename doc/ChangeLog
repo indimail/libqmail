@@ -22,6 +22,8 @@ Release 1.1.2 Start 10/10/2021 End --/--/20--
 11. commands.c: return -2 for command too long
 12. ndelay.c: added ndelay() function to get value of DELAY flag for
     descriptor
+- 03/01/2023
+13. tls.c: set default ciphers to "PROFILE=SYSTEM" to quell rpmlint warning
 
 * Thu 08 Sep 2022 03:42:16 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1.1-1.1%{?dist}
 Release 1.1.1 Start 18/07/2021 End 08/09/2022
