@@ -24,6 +24,7 @@ Release 1.1.2 Start 10/10/2021 End --/--/20--
     descriptor
 - 03/01/2023
 13. tls.c: set default ciphers to "PROFILE=SYSTEM" to quell rpmlint warning
+14. tls.c: SSL_CTX_set_ecdh_auto supported only on openssl 1.0.2 and above
 
 * Thu 08 Sep 2022 03:42:16 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1.1-1.1%{?dist}
 Release 1.1.1 Start 18/07/2021 End 08/09/2022

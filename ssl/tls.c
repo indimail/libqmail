@@ -1,5 +1,5 @@
 /*
- * $Id: tls.c,v 1.2 2023-01-03 15:50:15+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tls.c,v 1.3 2023-01-03 23:00:17+05:30 Cprogrammer Exp mbhangui $
  *
  * ssl_timeoutio functions froms from Frederik Vermeulen's
  * tls patch for qmail
@@ -34,7 +34,7 @@
 #include "tls.h"
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tls.c,v 1.2 2023-01-03 15:50:15+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: tls.c,v 1.3 2023-01-03 23:00:17+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #ifdef HAVE_SSL
@@ -559,9 +559,10 @@ tls_init(char *tls_method, char *cert, char *cafile, char *crlfile,
 #endif
 #if OPENSSL_VERSION_NUMBER >= 0x30000000L
 	SSL_CTX_set1_groups_list(ctx, "P-256:P-384:P-521:X25519:X448:ffdhe2048:ffdhe3072:ffdhe4096:ffdhe6144:ffdhe8192");
-#else
+#endif
+#if OPENSSL_VERSION_NUMBER >= 0x10002000L
 	/* support ECDH */
-	SSL_CTX_set_ecdh_auto(ctx,1);
+	SSL_CTX_set_ecdh_auto(ctx, 1);
 #endif
 	if (tmode == server) {
 		if (1 != SSL_CTX_load_verify_locations(ctx, cert, certdir)) {
@@ -1094,6 +1095,9 @@ getversion_tls_c()
 
 /*
  * $Log: tls.c,v $
+ * Revision 1.3  2023-01-03 23:00:17+05:30  Cprogrammer
+ * SSL_CTX_set_ecdh_auto supported only on openssl 1.0.2 and above
+ *
  * Revision 1.2  2023-01-03 15:50:15+05:30  Cprogrammer
  * set default ciphers to "PROFILE=SYSTEM" to quell rpmlint warning
  *
