@@ -1,5 +1,5 @@
 /*
- * $Id: tls.c,v 1.3 2023-01-03 23:00:17+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tls.c,v 1.4 2023-01-07 12:53:05+05:30 Cprogrammer Exp mbhangui $
  *
  * ssl_timeoutio functions froms from Frederik Vermeulen's
  * tls patch for qmail
@@ -34,7 +34,7 @@
 #include "tls.h"
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tls.c,v 1.3 2023-01-03 23:00:17+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: tls.c,v 1.4 2023-01-07 12:53:05+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #ifdef HAVE_SSL
@@ -42,7 +42,7 @@ static enum tlsmode usessl = none;
 static char    *sslerr_str;
 static SSL     *ssl_t;
 static int      efd = -1, ssl_rfd = -1, ssl_wfd = -1; /*- SSL_get_fd() are broken */
-static char     do_shutdown = 1;
+static char     do_shutdown;
 static char    *certdir;
 
 void
@@ -77,7 +77,7 @@ ssl_free()
 	if (usessl != none)
 		usessl = none;
 	efd = ssl_rfd = ssl_wfd = -1;
-	ssl_t = NULL;
+	ssl_t = (SSL *) NULL;
 }
 
 void
@@ -651,6 +651,7 @@ tls_session(SSL_CTX *ctx, int fd)
 		return ((SSL *) NULL);
 	}
 	SSL_set_bio(myssl, sbio, sbio); /*- cannot fail */
+	do_shutdown = 1;
 	return (ssl_t = myssl);
 }
 
@@ -719,11 +720,8 @@ tls_connect(int timeout, int rfd, int wfd, SSL *myssl, char *host)
 	errno = 0;
 	while (1) {
 		if ((i = ssl_timeoutconn(timeout, rfd, wfd, myssl)) == 1) {
-			usessl = client;
 			if (host && check_cert(myssl, host)) {
-				while (SSL_shutdown(myssl) == 0)
-					usleep(100);
-				SSL_free(myssl);
+				ssl_free();
 				return -1;
 			}
 			if (ssl_rfd == -1) {
@@ -734,6 +732,7 @@ tls_connect(int timeout, int rfd, int wfd, SSL *myssl, char *host)
 				ssl_wfd = wfd;
 				SSL_set_wfd(myssl, ssl_wfd);
 			}
+			usessl = client;
 			return 0;
 		}
 		if ((err = SSL_get_error(myssl, i)) != SSL_ERROR_WANT_CONNECT)
@@ -753,10 +752,7 @@ tls_connect(int timeout, int rfd, int wfd, SSL *myssl, char *host)
 	/*- clear error stack */
 	while ((err = ERR_get_error()))
 		strerr_warn2("SSL_connect: TLS/SSL err: ", ERR_error_string(err, 0), 0);
-	if (do_shutdown)
-		while (SSL_shutdown(myssl) == 0)
-			usleep(100);
-	SSL_free(myssl);
+	ssl_free();
 	return i == 0 ? 1 : i;
 }
 
@@ -796,10 +792,7 @@ tls_accept(int timeout, int rfd, int wfd, SSL *myssl)
 	/*- clear error stack */
 	while ((err = ERR_get_error()))
 		strerr_warn2("SSL_accept: TLS/SSL err: ", ERR_error_string(err, 0), 0);
-	if (do_shutdown)
-		while (SSL_shutdown(myssl) == 0)
-			usleep(100);
-	SSL_free(myssl);
+	ssl_free();
 	return i == 0 ? 1 : i;
 }
 
@@ -1095,6 +1088,9 @@ getversion_tls_c()
 
 /*
  * $Log: tls.c,v $
+ * Revision 1.4  2023-01-07 12:53:05+05:30  Cprogrammer
+ * replaced SSH_shutdown + SSL_free with ssl_free function
+ *
  * Revision 1.3  2023-01-03 23:00:17+05:30  Cprogrammer
  * SSL_CTX_set_ecdh_auto supported only on openssl 1.0.2 and above
  *
