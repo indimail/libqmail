@@ -1,10 +1,10 @@
-.TH qlibs: iopause 3
+.TH iopause 3
 .SH NAME
 iopause \- stateful handling of events based on the poll interface or file descriptors
 .SH SYNTAX
 .B #include \(dqioause.h\(dq
 
-int \fBiopause\fP(iopause_fd *\fIx\fR,unsigned int \fIlen\fR,struct taia *\fIdeadline\f$,struct taia *\fIstamp\fR);
+int \fBiopause\fP(iopause_fd *\fIx\fR,unsigned int \fIlen\fR,struct taia *\fIdeadline\fR,struct taia *\fIstamp\fR);
 .SH DESCRIPTION
 .B iopause 
 checks for file descriptor readability or writeability as specified
