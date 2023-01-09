@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.36  2023-01-09 18:25:00+05:30  Cprogrammer
+# added check for TLS client/server methods
+#
 # Revision 1.35  2022-10-10 08:29:18+05:30  Cprogrammer
 # fixed leapsecs.dat path
 #
@@ -106,7 +109,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.35 2022-10-10 08:29:18+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.36 2023-01-09 18:25:00+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/mbhangui/libqmail])
