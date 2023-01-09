@@ -1,0 +1,87 @@
+.TH qlibs: iopause 3
+.SH NAME
+iopause \- stateful handling of events based on the poll interface or file descriptors
+.SH SYNTAX
+.B #include \(dqioause.h\(dq
+
+int \fBiopause\fP(iopause_fd *\fIx\fR,unsigned int \fIlen\fR,struct taia *\fIdeadline\f$,struct taia *\fIstamp\fR);
+.SH DESCRIPTION
+.B iopause 
+checks for file descriptor readability or writeability as specified
+by \fIx\fR[0].fd, \fIx\fR[0].events, \fIx\fR[1].fd, \fIx\fR[1].events, ..., \fIx\fR[\fIlen\fR-1].fd,
+\fIx\fR[\fIlen\fR-1].events. If \fIx\fR[i].events includes the bit IOPAUSE_READ, 
+.B iopause
+checks for readability of the descriptor \fIx\fR[i].fd; 
+if \fIx\fR[i].events includes the bit IOPAUSE_WRITE, 
+.B iopause 
+checks for writability of the descriptor
+\fIx\fR[i].fd; other bits in \fIx\fR[i].events have undefined effects.
+
+.B iopause 
+sets the IOPAUSE_READ bit in \fIx\fR[i].revents if it finds that \fIx\fR[i].fd
+is readabled and it sets the IOPAUSE_WRITE bit in \fIx\fR[i].revents if it finds
+that \fIx\fR[i].fd is writable. 
+Beware that readability and writeability may be destroyed at any moment 
+by other processes with access to the same file \fIx\fR[i].fd refers to.
+
+If there is no readability or writeability to report, 
+.B iopause 
+waits until \fIdeadline\fR for something to happen. 
+.B iopause 
+will return before \fIdeadline\fR if a
+descriptor becomes readable or writeable, or an interrupting signal
+arrives, or some system-defined amount of time passes. 
+.B iopause 
+sets
+.I revents 
+in any case.
+
+You must put a current timestamp into \fIstamp\fR before calling 
+.BR iopause .
+In case the the current timestamp is older than the previous one (ie. due to daylight-saving)
+negative values are omitted. 
+
+.SH "IMPLEMENTATION NOTES"
+The current implementation of 
+.B iopause 
+uses the \fBpoll\fR interface if that is available. 
+On some systems, \fBpoll\fR needs to dynamically allocate kernel
+memory. In case not enough memory is available, 
+.B iopause 
+will return immediately and will report (often incorrectly) that no descriptors are
+readable or writeable. 
+
+If the \fBpoll\fR interface is not available, 
+.B iopause 
+uses the \fBselect\fR function. This function
+cannot see descriptor numbers past a system-defined limit, typically 256
+or 1024; 
+.I iopause 
+will artificially pretend that those descriptors are never readable or writeable.
+
+Future implementations of 
+.B iopause 
+may work around these problems on some
+systems, at the expense of chewing up all available CPU time.
+
+Both \fBpoll\fR and \fBselect\fR use relative timeouts rather than absolute deadlines.
+Some kernels round the timeout down to a multiple of 10 milliseconds; this
+can burn quite a bit of CPU time as the deadline approaches. 
+.B iopause
+compensates for this by adding 20 milliseconds to the timeout.
+In case the current timestamp is older than the previous one (ie. due to daylight-saving)
+the timeout is set to 20 milliseconds.
+.SH "RETURN CODES"
+.B iopause 
+reads and deploys the return codes of the
+.I poll 
+and 
+.I select 
+call. Only positive return values shall be considered by the calling routines for a succcessful 
+invocation.
+.SH CREDITS
+Parts of the description are taken from the 'libowfat' man page.
+.SH "SEE ALSO"
+select(2), 
+poll(3), 
+taia(3)

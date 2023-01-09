@@ -31,11 +31,11 @@ man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 \
 	base/env.3 base/error_str.3 base/error_temp.3 base/fd_copy.3 \
 	base/fd_move.3 base/fifo_make.3 base/fmt_8long.3 base/fmt_double.3 \
 	base/fmt_fill.3 base/fmt_minus.3 base/fmt_pad.3 base/fmt_plusminus.3 \
-	base/fmt_ulonglong.3 base/getln2.3 base/getln.3 base/leapsecs.3 \
-	base/mess822.3 base/mess822_addr.3 base/mess822_date.3 base/mess822_fold.3 \
-	base/mess822_quote.3 base/mess822_token.3 base/mess822_when.3 base/now.3 \
-	base/qgetgrnam_r.3 base/qgetpwuid.3 base/qgetpwuid_r.3 \
-	base/qerror.3 base/qendgrent.3 base/qendpwent.3 base/qgetgrent.3 \
+	base/fmt_ulonglong.3 base/getln2.3 base/getln.3 base/iopause.3 \
+	base/leapsecs.3 base/mess822.3 base/mess822_addr.3 base/mess822_date.3 \
+	base/mess822_fold.3 base/mess822_quote.3 base/mess822_token.3 \
+	base/mess822_when.3 base/now.3 base/qgetgrnam_r.3 base/qgetpwuid.3 \
+	base/qgetpwuid_r.3 base/qerror.3 base/qendgrent.3 base/qendpwent.3 base/qgetgrent.3 \
 	base/qgetgrgid_r.3 base/qgetgrgid.3 base/qgetgrent_r.3 base/qgetgrnam.3 \
 	base/qgetpwent.3 base/qgetpwent_r.3 base/qgetpwnam.3 base/qgetservbyname.3 \
 	base/qgetservbyname_r.3 base/qgetservbyport.3 base/qgetservbyport_r.3 \
