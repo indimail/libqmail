@@ -1022,7 +1022,7 @@ translate(int rfd, int wfd, int clearout, int clearin, unsigned int iotimeout)
 			if (!iop[0].revents)
 				strerr_warn1("timeout reached without input from network", 0);
 			if (!iop[1].revents)
-				strerr_warn1("timeout reached without input from child", 0);
+				strerr_warn1("timeout reached without output from child", 0);
 			return -1;
 		}
 	} /*- while (!flagexitasap) */
