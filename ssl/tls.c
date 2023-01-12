@@ -1,5 +1,5 @@
 /*
- * $Id: tls.c,v 1.4 2023-01-07 12:53:05+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tls.c,v 1.5 2023-01-12 19:07:55+05:30 Cprogrammer Exp mbhangui $
  *
  * ssl_timeoutio functions froms from Frederik Vermeulen's
  * tls patch for qmail
@@ -34,7 +34,7 @@
 #include "tls.h"
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tls.c,v 1.4 2023-01-07 12:53:05+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: tls.c,v 1.5 2023-01-12 19:07:55+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #ifdef HAVE_SSL
@@ -49,6 +49,7 @@ void
 set_essential_fd(int fd)
 {
 	efd = fd;
+	return;
 }
 
 void
@@ -522,7 +523,6 @@ tls_init(char *tls_method, char *cert, char *cafile, char *crlfile,
 	X509_STORE     *store;
 	X509_LOOKUP    *lookup;
 #endif
-	int             session_id_context = 1; /* anything will do */
 
 	if (ctx)
 		return (ctx);
@@ -539,23 +539,29 @@ tls_init(char *tls_method, char *cert, char *cafile, char *crlfile,
 	}
 	/*- POODLE Vulnerability */
 	SSL_CTX_set_options(ctx, SSL_OP_NO_SSLv2 | SSL_OP_NO_SSLv3);
-	/* renegotiation should include certificate request */
-	SSL_CTX_set_options(ctx, SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION);
+	/*-
+	 *  When performing renegotiation as a server, always start a new session
+	 *  (i.e., session resumption requests are only accepted in the initial
+	 *  handshake). This option is not needed for clients
+	 */
+	if (tmode != client)
+		SSL_CTX_set_options(ctx, SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION);
 
 	/* never bother the application with retries if the transport is blocking */
 	SSL_CTX_set_mode(ctx, SSL_MODE_AUTO_RETRY);
 
 	/* relevant in renegotiation */
-	SSL_CTX_set_session_cache_mode(ctx, SSL_SESS_CACHE_OFF);
-	if (!SSL_CTX_set_session_id_context(ctx, (void *)&session_id_context, sizeof(session_id_context))) {
-		SSL_CTX_free(ctx);
-		strerr_warn1("tls_init: failed to set session_id context", 0);
-		return ((SSL_CTX *) NULL) ;
+	if (tmode != client) {
+		if (!SSL_CTX_set_session_id_context(ctx, (const unsigned char *) "tcpserver", 9)) {
+			SSL_CTX_free(ctx);
+			strerr_warn1("tls_init: failed to set session_id context", 0);
+			return ((SSL_CTX *) NULL) ;
+		}
 	}
+	SSL_CTX_set_session_cache_mode(ctx, SSL_SESS_CACHE_OFF);
 #if 0
-	SSL_CTX_set_session_id_context(ctx, (const unsigned char *) "tcpserver", 9);
-	SSL_CTX_set_timeout(ctx, dtimeout);
 	SSL_CTX_set_session_cache_mode(ctx, SSL_SESS_CACHE_SERVER|SSL_SESS_CACHE_UPDATE_TIME);
+	/*- SSL_CTX_set_timeout(ctx, dtimeout); -*/
 #endif
 #if OPENSSL_VERSION_NUMBER >= 0x30000000L
 	SSL_CTX_set1_groups_list(ctx, "P-256:P-384:P-521:X25519:X448:ffdhe2048:ffdhe3072:ffdhe4096:ffdhe6144:ffdhe8192");
@@ -579,10 +585,12 @@ tls_init(char *tls_method, char *cert, char *cafile, char *crlfile,
 		}
 #if OPENSSL_VERSION_NUMBER >= 0x00907000L
 		/*- crl checking */
-		store = SSL_CTX_get_cert_store(ctx);
-		if ((lookup = X509_STORE_add_lookup(store, X509_LOOKUP_file())) &&
-				X509_load_crl_file(lookup, crlfile, X509_FILETYPE_PEM) == 1)
-			X509_STORE_set_flags(store, X509_V_FLAG_CRL_CHECK | X509_V_FLAG_CRL_CHECK_ALL);
+		if (crlfile) {
+			store = SSL_CTX_get_cert_store(ctx);
+			if ((lookup = X509_STORE_add_lookup(store, X509_LOOKUP_file())) &&
+					X509_load_crl_file(lookup, crlfile, X509_FILETYPE_PEM) == 1)
+				X509_STORE_set_flags(store, X509_V_FLAG_CRL_CHECK | X509_V_FLAG_CRL_CHECK_ALL);
+		}
 #endif
 	}
 	/*- set the callback here; SSL_set_verify didn't work before 0.9.6c */
@@ -827,12 +835,13 @@ ssl_timeoutio(int (*fun) (), long t, int rfd, int wfd, SSL *myssl, char *buf, si
 			FD_SET(rfd, &fds);
 			n = select(efd != -1 && efd > rfd ? efd + 1 : rfd + 1, &fds, NULL, NULL, &tv);
 			/*-
-			 * this avoids deadlock in tcpclient
-			 * where data is initiated by tcpclient by reading fd 0
-			 * but if tcpclient blocks on rfd, this will never happen
-			 * and tcpclient will continue to block on rfd.
+			 * this avoids deadlock in tcpclient when rfd becomes
+			 * readable only when data is written to SSL..
+			 * select will continue to wait for data on rfd.
 			 * checking efd for input allows ssl_timeoutio() to
-			 * return when data is available to be written to SSL.
+			 * return when data is available to be written to SSL when
+			 * efd becomes available to be read for data that can
+			 * be written to SSL.
 			 */
 			if (usessl == client && fun == SSL_read && efd != -1) {
 				if (FD_ISSET(efd, &fds)) {
@@ -863,12 +872,13 @@ ssl_timeoutconn(long t, int rfd, int wfd, SSL *ssl)
 			(wfd_ndelay = ndelay(wfd)) == -1)
 		return -1;
 	/*- if connection is established, keep NDELAY */
-	if (ndelay_on(rfd) == -1 || ndelay_on(wfd) == -1)
+	if ((!rfd_ndelay && ndelay_on(rfd) == -1) || (!wfd_ndelay && ndelay_on(wfd) == -1))
 		return -1;
 	if ((r = ssl_timeoutio(SSL_connect, t, rfd, wfd, ssl, NULL, 0)) <= 0) {
-		if (rfd_ndelay)
+		/*- restore status quo */
+		if (!rfd_ndelay)
 			ndelay_off(rfd);
-		if (wfd_ndelay)
+		if (!wfd_ndelay)
 			ndelay_off(wfd);
 	} else
 		SSL_set_mode(ssl, SSL_MODE_ENABLE_PARTIAL_WRITE);
@@ -885,12 +895,12 @@ ssl_timeoutaccept(long t, int rfd, int wfd, SSL *ssl)
 			(wfd_ndelay = ndelay(wfd)) == -1)
 		return -1;
 	/*- if connection is established, keep NDELAY */
-	if (ndelay_on(rfd) == -1 || ndelay_on(wfd) == -1)
+	if ((!rfd_ndelay && ndelay_on(rfd) == -1) || (!wfd_ndelay && ndelay_on(wfd) == -1))
 		return -1;
 	if ((r = ssl_timeoutio(SSL_accept, t, rfd, wfd, ssl, NULL, 0)) <= 0) {
-		if (rfd_ndelay)
+		if (!rfd_ndelay)
 			ndelay_off(rfd);
-		if (wfd_ndelay)
+		if (!wfd_ndelay)
 			ndelay_off(wfd);
 	} else {
 		SSL_set_mode(ssl, SSL_MODE_ENABLE_PARTIAL_WRITE);
@@ -945,10 +955,12 @@ ssl_timeoutrehandshake(long t, int rfd, int wfd, SSL *ssl)
 ssize_t
 ssl_timeoutread(long t, int rfd, int wfd, SSL *myssl, char *buf, size_t len)
 {
+	ssize_t         n;
+
 	if (!buf)
 		return 0;
-	if (SSL_pending(myssl))
-		return (SSL_read(myssl, buf, len));
+	if ((n = SSL_pending(myssl)))
+		return (SSL_read(myssl, buf, n <= len ? n : len));
 	return ssl_timeoutio(SSL_read, t, rfd, wfd, myssl, buf, len);
 }
 
@@ -966,13 +978,12 @@ translate(int rfd, int wfd, int clearout, int clearin, unsigned int iotimeout)
 {
 	struct taia     now, deadline;
 	iopause_fd      iop[2];
-	int             flagexitasap, iopl;
+	int             flagexitasap, iopl, counter, t;
 	ssize_t         n, r;
-	char            tbuf[2048];
+	char            tbuf_clear[1024], tbuf_ssl[4096];
 
 	flagexitasap = 0;
-	/*- ndelay_on(sfd); -*/
-	while (!flagexitasap) {
+	while (!flagexitasap) { /*- main event loop to encrypt/decrypt SSL data */
 		taia_now(&now);
 		taia_uint(&deadline, iotimeout);
 		taia_add(&deadline, &now, &deadline);
@@ -986,24 +997,72 @@ translate(int rfd, int wfd, int clearout, int clearin, unsigned int iotimeout)
 
 		/*- do iopause read */
 		iopause(iop, iopl, &deadline, &now);
-		if (iop[0].revents) { /*- data on s */
-			if ((n = tlsread(rfd, tbuf, sizeof(tbuf), iotimeout)) < 0) {
-				if (errno == EAGAIN)
-					continue;
-				strerr_warn1("translate: read network", &strerr_sys);
-				return -1;
-			} else
-			if (!n) {
-				flagexitasap = 1;
+		if (iop[0].revents) { /*- encrypted data on rfd */
+			/*-
+			 * this for loop empties the SSL read queue. We use combination of
+			 * two methods
+			 * 1. Use SSL_has_pending() to keep on reading till the SSL read
+			 *    queue is emtpy
+			 * 2. We use a larger buffer for reading from SSL than the buffer
+			 *    used for writing to SSL. We require this because the SSL read
+			 *    queue length will be bigger than sizeof(tbuf_clear). So if we
+			 *    write n bytes to SSL it is possible that the decrypted data is
+			 *    larger than n.
+			 */
+			for (counter = 0;!flagexitasap;counter++) {
+				t = 0;
+				if ((n = tlsread(rfd, tbuf_ssl, sizeof(tbuf_ssl), iotimeout)) < 0) {
+					/*
+					 * tlsread will block on select till data is available
+					 * in the SSL (rfd) buffer to be processed. It is possible
+					 * that data becomes available on after data is available
+					 * on clearin to be subsequently written to SSL (wfd).
+					 * So we use a trick to add the file descriptor clearin
+					 * to the fd set of select in ssl_timeoutread() using
+					 * set_essential_fd() and return EAGAIN if there is data
+					 * on clearin to be written to wfd.
+					 * We set t=1 and break out of this loop to come back
+					 * to the main event loop. The main event loop will then
+					 * have iop[1].revents be true which will make the application
+					 * process data on clearin
+					 */
+					if (errno == EAGAIN) {
+						t = 1; /*- maybe data available on clearin */
+						break;
+					}
+					strerr_warn1("translate: read network", &strerr_sys);
+					return -1;
+				} else
+				if (!n) {
+					flagexitasap = 1;
+					break;
+				}
+				if ((r = allwrite(clearout, tbuf_ssl, n)) == -1) {
+					strerr_warn1("translate: write clear channel: ", &strerr_sys);
+					return -1;
+				}
+#ifdef TLS
+				if (usessl != none && rfd == ssl_rfd) {
+					if (!SSL_has_pending(ssl_t))
+						break;
+					if (counter > 10)
+						usleep(100);
+				} else
+					break;
+#else
 				break;
-			}
-			if ((r = allwrite(clearout, tbuf, n)) == -1) {
-				strerr_warn1("translate: write clear channel: ", &strerr_sys);
-				return -1;
-			}
+#endif
+			} /*- for (counter = 0;!flagexitasap;counter++) */
+			/*-
+			 * now continue the main event loop and process
+			 * iop[1].revents to read data on clearin and write
+			 * it to SSL
+			 */
+			if (t)
+				continue;
 		}
-		if (iop[1].revents) { /*- data on clearin */
-			if ((n = timeoutread(iotimeout, clearin, tbuf, sizeof(tbuf))) < 0) {
+		if (iop[1].revents) { /*- un-encrypted data on clearin */
+			if ((n = timeoutread(iotimeout, clearin, tbuf_clear, sizeof(tbuf_clear))) < 0) {
 				strerr_warn1("translate: read clear channel: ", &strerr_sys);
 				return -1;
 			} else
@@ -1011,7 +1070,7 @@ translate(int rfd, int wfd, int clearout, int clearin, unsigned int iotimeout)
 				flagexitasap = 1;
 				break;
 			}
-			if ((r = tlswrite(wfd, tbuf, n, iotimeout)) == -1) {
+			if ((r = tlswrite(wfd, tbuf_clear, n, iotimeout)) == -1) {
 				if (errno == EAGAIN)
 					continue;
 				strerr_warn1("translate: write network: ", &strerr_sys);
@@ -1088,6 +1147,11 @@ getversion_tls_c()
 
 /*
  * $Log: tls.c,v $
+ * Revision 1.5  2023-01-12 19:07:55+05:30  Cprogrammer
+ * added check for crlfile
+ * restore ndelay if changed in ssl_timeoutconn, ssl_timeoutaccept
+ * use SSL_pending, SSL_has_pending to read complete application data
+ *
  * Revision 1.4  2023-01-07 12:53:05+05:30  Cprogrammer
  * replaced SSH_shutdown + SSL_free with ssl_free function
  *

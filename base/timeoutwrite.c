@@ -1,5 +1,8 @@
 /*
  * $Log: timeoutwrite.c,v $
+ * Revision 1.6  2023-01-11 00:35:01+05:30  Cprogrammer
+ * replaced write() with allwrite()
+ *
  * Revision 1.5  2021-03-03 23:56:39+05:30  Cprogrammer
  * fix data types
  *
@@ -16,6 +19,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include "timeoutwrite.h"
+#include "allwrite.h"
 #include "select.h"
 #include "error.h"
 
@@ -34,7 +38,7 @@ timeoutwrite(long t, int fd, char *buf, size_t len)
 	if (select(fd + 1, (fd_set *) 0, &wfds, (fd_set *) 0, &tv) == -1)
 		return -1;
 	if (FD_ISSET(fd, &wfds))
-		return write(fd, buf, len);
+		return allwrite(fd, buf, len);
 
 	errno = error_timeout;
 	return -1;
@@ -43,7 +47,7 @@ timeoutwrite(long t, int fd, char *buf, size_t len)
 void
 getversion_timeoutwrite_c()
 {
-	static char    *x = "$Id: timeoutwrite.c,v 1.5 2021-03-03 23:56:39+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: timeoutwrite.c,v 1.6 2023-01-11 00:35:01+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

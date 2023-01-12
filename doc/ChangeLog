@@ -27,6 +27,12 @@ Release 1.1.2 Start 10/10/2021 End --/--/20--
 14. tls.c: SSL_CTX_set_ecdh_auto supported only on openssl 1.0.2 and above
 - 07/01/2023
 15. tls.c: replaced SSH_shutdown + SSL_free with ssl_free function
+- 12/01/2023
+16. timeoutwrite.c: replaced write() with allwrite()
+- 13/01/2023
+17. tls.c: added check for crlfile
+18. tls.c: use SSL_pending, SSL_has_pending to read complete application data
+19. restore ndelay if changed in ssl_timeoutconn, ssl_timeoutaccept
 
 * Thu 08 Sep 2022 03:42:16 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1.1-1.1%{?dist}
 Release 1.1.1 Start 18/07/2021 End 08/09/2022
