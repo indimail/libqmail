@@ -39,10 +39,11 @@ man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 \
 	base/qgetgrgid_r.3 base/qgetgrgid.3 base/qgetgrent_r.3 base/qgetgrnam.3 \
 	base/qgetpwent.3 base/qgetpwent_r.3 base/qgetpwnam.3 base/qgetservbyname.3 \
 	base/qgetservbyname_r.3 base/qgetservbyport.3 base/qgetservbyport_r.3 \
-	base/qgetservent.3 base/qgetservent_r.3 base/qsetgrent.3 base/qsetpwent.3 \
-	base/qtime.3 base/rewritehost.3 base/scan_double.3 base/scan_int.3 \
-	base/scan_long.3 base/scan_plusminus.3 base/scan_ulonglong.3 base/sgetopt.3 \
-	base/stralloc.3 base/subgetopt.3 base/substdio.3 base/substdio_copy.3 \
+	base/qgetservent.3 base/qgetservent_r.3 base/qprintf.3 base/qsetgrent.3 \
+	base/qsetpwent.3 base/qsnprintf.3 base/qtime.3 base/rewritehost.3 \
+	base/scan_double.3 base/scan_int.3 base/scan_long.3 base/scan_plusminus.3 \
+	base/scan_ulonglong.3 base/sgetopt.3 base/stralloc.3 base/subgetopt.3 \
+	base/subprintf.3 base/substdio.3 base/substdio_copy.3 \
 	base/substdio_in.3 base/substdio_out.3 base/tai.3 base/tai_now.3 \
 	base/tai_pack.3 base/tai_unpack.3 base/tai_sub.3 base/tai_less.3 \
 	base/tai_approx.3 base/tai_add.3 base/taia.3 base/taia_addsec.3 \
@@ -144,12 +145,12 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/allwrite.c base/arc4random.c \
 	base/sha256_crypt.c base/sha512_crypt.c base/sig.c base/sig_alarm.c \
 	base/sig_block.c base/sig_bug.c base/sig_catch.c base/sig_child.c \
 	base/sig_hup.c base/sig_int.c base/sig_misc.c base/sig_pause.c \
-	base/sig_pipe.c base/sig_term.c base/sodium_random.c base/stralloc_arts.c \
-	base/stralloc_catb.c base/stralloc_cat.c base/stralloc_cats.c \
-	base/stralloc_copy.c base/stralloc_eady.c base/stralloc_num.c \
-	base/stralloc_opyb.c base/stralloc_opys.c base/stralloc_pend.c \
-	base/str_chr.c base/str_chrn.c base/str_cpyb.c base/str_cpy.c \
-	base/str_cspn.c base/str_diff.c base/str_diffn.c \
+	base/sig_pipe.c base/sig_term.c base/snprintf.c base/sodium_random.c \
+	base/stralloc_arts.c base/stralloc_catb.c base/stralloc_cat.c \
+	base/stralloc_cats.c base/stralloc_copy.c base/stralloc_eady.c \
+	base/stralloc_num.c base/stralloc_opyb.c base/stralloc_opys.c \
+	base/stralloc_pend.c base/str_chr.c base/str_chrn.c base/str_cpyb.c \
+	base/str_cpy.c base/str_cspn.c base/str_diff.c base/str_diffn.c \
 	base/str_end.c base/strerr_die.c base/strerr_sys.c base/str_len.c \
 	base/strmsg_out.c base/str_rchr.c base/str_start.c base/str_str.c \
 	base/str_tok.c base/subfderr.c base/subfdin.c base/subfdins.c \
