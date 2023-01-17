@@ -1,5 +1,8 @@
 /*
  * $Log: qprintf.h,v $
+ * Revision 1.3  2023-01-17 17:02:09+05:30  Cprogrammer
+ * added stralloc.h
+ *
  * Revision 1.2  2023-01-16 18:47:23+05:30  Cprogrammer
  * added subprintf, qsnprintf functions
  *
@@ -10,6 +13,7 @@
 #ifndef QPRINTF_H
 #define QPRINTF_H
 #include "substdio.h"
+#include "stralloc.h"
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
