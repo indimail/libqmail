@@ -1,5 +1,9 @@
 /*
  * $Log: qprintf.h,v $
+ * Revision 1.4  2023-01-21 16:59:29+05:30  Cprogrammer
+ * added __attribute__ ((format (printf, x, y))) for compile time warnings
+ * added qsprintf function
+ *
  * Revision 1.3  2023-01-17 17:02:09+05:30  Cprogrammer
  * added stralloc.h
  *
@@ -24,10 +28,15 @@
 int             qprintf(substdio *, char *, char *);
 int             qprintf_flush(substdio *);
 #ifdef HAVE_STDARG_H
-int             subprintf(substdio *ss, const char *format, ...);
-int             qsnprintf(stralloc *, size_t size, const char *format, ...);
+int             subprintf(substdio *ss, const char *format, ...)
+					__attribute__ ((format (printf, 2, 3)));
+int             qsprintf(stralloc *, const char *format, ...)
+					__attribute__ ((format (printf, 2, 3)));
+int             qsnprintf(stralloc *, size_t size, const char *format, ...)
+					__attribute__ ((format (printf, 3, 4)));
 #else
 int             subprintf();
+int             qsprintf();
 int             qsnprintf();
 #endif
 #endif

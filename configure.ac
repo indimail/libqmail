@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.38  2023-01-21 17:05:00+05:30  Cprogrammer
+# added foreign no-dist to AM_INIT_AUTOMAKE
+#
 # Revision 1.37  2023-01-16 19:43:00+05:30  Cprogrammer
 # added check for varargs.h
 #
@@ -112,7 +115,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.37 2023-01-16 19:43:00+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.38 2023-01-21 17:05:00+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/mbhangui/libqmail])
@@ -120,7 +123,7 @@ AC_CANONICAL_TARGET
 PACKAGE=$PACKAGE_NAME
 VERSION=$PACKAGE_VERSION
 LT_INIT
-AM_INIT_AUTOMAKE([subdir-objects silent-rules])
+AM_INIT_AUTOMAKE([foreign subdir-objects silent-rules no-dist])
 AC_CONFIG_HEADER(config.h)
 
 dnl Checks for programs.

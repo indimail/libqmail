@@ -8,6 +8,7 @@ libqmail.pc
 libtool
 stamp-h1
 .libs
+.deps
 hasflock.h
 hassgact.h
 hassgprm.h

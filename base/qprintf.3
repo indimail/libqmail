@@ -13,6 +13,8 @@ subprintf, qsprintf, snprintf, vsnprintf \- formatted output conversion
 .BI "            const char *restrict " format ", va_list " ap );
 .BI "int qsnprintf(stralloc *restrict " sa ", size_t " size ,
 .BI "            const char *restrict " format ", ...);"
+.BI "int qsprintf(stralloc *restrict " sa ",
+.BI "            const char *restrict " format ", ...);"
 .fi
 
 .SH DESCRIPTION
@@ -45,15 +47,24 @@ bytes (including the terminating null byte (\(aq\e0\(aq)) to
 
 The function
 .BR qsnprintf ()
-pre-allocaes
+pre-allocates
 .I size
 bytes, but re-allocates as many bytes required to accomodate the string
-(including the terminating null byte (\(aq\e0\(aq)) to
+(including the terminating null byte (\(aq\e0\(aq)) in
 .BR stralloc (3)
 variable
 .IR sa .
-The length of the string can be obtained from \fIsa.len\fR.
-.PP
+\fIsa.len\fR will be the number of bytes in the string.
+
+The function
+.BR qsprintf ()
+allocates as many bytes required to accomodate the string
+(including the terminating null byte (\(aq\e0\(aq)) in
+.BR stralloc (3)
+variable
+.IR sa .
+\fIsa.len\fR will be the number of bytes in the string.
+
 All of these functions write the output under the control of a
 .I format
 string that specifies how subsequent arguments (or arguments accessed via

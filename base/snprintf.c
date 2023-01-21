@@ -32,7 +32,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * $Id: snprintf.c,v 1.1 2023-01-16 22:13:01+05:30 Cprogrammer Exp mbhangui $
+ * $Id: snprintf.c,v 1.2 2023-01-21 17:00:38+05:30 Cprogrammer Exp mbhangui $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -127,7 +127,8 @@ va_dcl
  * (including NULL character) is returned in saptr->len
  *
  * qsnprintf will allocate as needed and copied data can exceed
- * size argument
+ * size argument. qsnprintf will return -1 if memory
+ * allocation fails.
  */
 int
 #ifdef HAVE_STDARG_H
@@ -158,15 +159,64 @@ va_dcl
 		return -1;
 	}
 	r = vsnprintf(saptr->s, size + 1, format, ap);
+	va_end(ap);
 	if (r > size) {
-		va_end(ap);
 		if (!stralloc_ready(saptr, r  + 1))
 			return -1;
 		va_start(ap, format);
 		r = vsnprintf(saptr->s, r + 1, format, ap);
+		va_end(ap);
 	}
 	saptr->len = r + 1;
+	return r;
+}
+
+/*-
+ * arguments
+ * saptr  - stralloc variable which will be dynamically allocated
+ *
+ * works like sprintf with copied data length
+ * (including NULL character) is returned in saptr->len
+ *
+ * qsprintf will allocate as needed and return -1 if memory
+ * allocation fails.
+ */
+int
+#ifdef HAVE_STDARG_H
+qsprintf(stralloc *saptr, const char *format, ...)
+#else
+qsprintf(va_alist)
+va_dcl
+#endif
+{
+	int             r;
+	va_list         ap;
+#ifndef HAVE_STDARG_H
+	stralloc       *saptr;
+	const char     *format;
+#endif
+
+#ifdef HAVE_STDARG_H
+	va_start(ap, format);
+#else
+	va_start(ap);
+	saptr = va_arg(ap, stralloc *);
+	format = va_arg(ap, const char *);
+#endif
+	if (!stralloc_ready(saptr, 1)) {
+		va_end(ap);
+		return -1;
+	}
+	r = vsnprintf(saptr->s, 1, format, ap);
 	va_end(ap);
+	if (r > 0) {
+		if (!stralloc_ready(saptr, r  + 1))
+			return -1;
+		va_start(ap, format);
+		r = vsnprintf(saptr->s, r + 1, format, ap);
+		va_end(ap);
+	}
+	saptr->len = r + 1;
 	return r;
 }
 
@@ -1175,13 +1225,16 @@ main(void)
 void
 getversion_snprintf_c()
 {
-	static char    *x = "$Id: snprintf.c,v 1.1 2023-01-16 22:13:01+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: snprintf.c,v 1.2 2023-01-21 17:00:38+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
 
 /*-
  * $Log: snprintf.c,v $
+ * Revision 1.2  2023-01-21 17:00:38+05:30  Cprogrammer
+ * added qsprintf function
+ *
  * Revision 1.1  2023-01-16 22:13:01+05:30  Cprogrammer
  * Initial revision
  *

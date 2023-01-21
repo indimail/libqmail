@@ -35,6 +35,10 @@ Release 1.1.2 Start 10/10/2021 End --/--/20--
 19. restore ndelay if changed in ssl_timeoutconn, ssl_timeoutaccept
 - 16/01/2023
 20. snprintf.c: added snprintf, vsnprintf, subprintf, qsnprintf() functions
+- 21/01/2023
+21. snprintf.c: added __attribute__ ((format (printf, x, y))) for compile time warnings
+22. snprintf.c: added qsprintf function
+23. configure.ac, Makefile.am: Turned on automatic dependency tracking
 
 * Thu 08 Sep 2022 03:42:16 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1.1-1.1%{?dist}
 Release 1.1.1 Start 18/07/2021 End 08/09/2022
