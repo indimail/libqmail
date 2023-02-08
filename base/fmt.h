@@ -1,5 +1,8 @@
 /*
  * $Log: fmt.h,v $
+ * Revision 1.13  2023-02-08 11:22:48+05:30  Cprogrammer
+ * include qmailconfig.h if HAVE_CONFIG_H is not defined
+ *
  * Revision 1.12  2020-11-24 09:31:23+05:30  Cprogrammer
  * use const keyword for readonly arguments
  *
@@ -39,7 +42,7 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #else
-#include <sys/types.h>
+#include "qmailconfig.h"
 #endif
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>

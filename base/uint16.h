@@ -1,5 +1,8 @@
 /*
  * $Log: uint16.h,v $
+ * Revision 1.4  2023-02-08 11:23:14+05:30  Cprogrammer
+ * include qmailconfig.h if HAVE_CONFIG_H is not defined
+ *
  * Revision 1.3  2021-05-03 10:02:13+05:30  Cprogrammer
  * fixed function prototype and warning -Warray-parameter
  *
@@ -17,7 +20,7 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #else
-#include <inttypes.h>
+#include "qmailconfig.h"
 #endif
 #ifdef HAVE_INTTYPES_H
 #include <inttypes.h>

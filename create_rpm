@@ -1,5 +1,8 @@
 #!/bin/sh
 # $Log: create_rpm,v $
+# Revision 1.14  2023-02-08 11:21:49+05:30  Cprogrammer
+# updated libqmail.spec before rpm generation
+#
 # Revision 1.13  2022-03-29 21:03:30+05:30  Cprogrammer
 # added --clean option
 #
@@ -28,7 +31,7 @@
 # rpm creation script for libqmail
 #
 #
-# $Id: create_rpm,v 1.13 2022-03-29 21:03:30+05:30 Cprogrammer Exp mbhangui $
+# $Id: create_rpm,v 1.14 2023-02-08 11:21:49+05:30 Cprogrammer Exp mbhangui $
 #
 curdir=`pwd`
 version=$(cat conf-version)
@@ -74,6 +77,7 @@ if [ " $key" = " y" -o " $key" = " Y" ] ; then
 	copy_src=1
 fi
 
+make libqmail.spec
 cd ..
 /bin/rm -rf /tmp/libqmail-"$version"
 cp -rp libqmail /tmp/libqmail-"$version"

@@ -1,5 +1,8 @@
 /*-
  * $Log: arc4random.h,v $
+ * Revision 1.2  2023-02-08 11:22:28+05:30  Cprogrammer
+ * include qmailconfig.h if HAVE_CONFIG_H is not defined
+ *
  * Revision 1.1  2022-03-29 21:06:28+05:30  Cprogrammer
  * Initial revision
  *
@@ -30,12 +33,14 @@
  * SUCH DAMAGE.
  */
 
-/* $Id: arc4random.h,v 1.1 2022-03-29 21:06:28+05:30 Cprogrammer Exp mbhangui $ */
+/* $Id: arc4random.h,v 1.2 2023-02-08 11:22:28+05:30 Cprogrammer Exp mbhangui $ */
 
 #ifndef ARC4RANDOM_H
 #define ARC4RANDOM_H
 #ifdef HAVE_CONFIG_H
 #include "config.h"
+#else
+#include "qmailconfig.h"
 #endif
 
 #ifndef HAVE_ARC4RANDOM
@@ -44,6 +49,8 @@
 int             arc4random_stir(void);
 int             arc4random_addrandom(unsigned char *, int);
 uint32_t        arc4random(void);
+#else
+#include <stdlib.h>
 #endif
 
 #endif

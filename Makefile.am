@@ -100,7 +100,7 @@ include_HEADERS = base/alloc.h base/allwrite.h base/arc4random.h \
 	array/array.h textcode/entities.h textcode/textcode.h base/likely.h \
 	base/iarray.h base/safemult.h base/rangecheck.h socket/tcpbind.h \
 	base/valid_password_chars.h socket/tcpopen.h socket/udpopen.h base/qdirname.h \
-	ssl/tls.h
+	ssl/tls.h qmailconfig.h
 
 includedir=@prefix@/include/qmail
 COMMONSOURCES = base/alloc.c base/alloc_re.c base/allwrite.c base/arc4random.c \
@@ -212,6 +212,9 @@ catChangeLog
 PKGBUILD: PKGBUILD.in catChangeLog Makefile conf-email \
 conf-version conf-release doc/ChangeLog libqmail.changes
 	cat $@.in | $(edit) > $@
+
+qmailconfig.h: config.h
+	cp config.h qmailconfig.h
 
 base/hasbltnofl.h: base/trybltnoverflow.c
 	( ( $(COMPILE) -c base/trybltnoverflow.c && $(CC) \

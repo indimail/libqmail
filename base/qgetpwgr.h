@@ -1,5 +1,8 @@
 /*
  * $Log: qgetpwgr.h,v $
+ * Revision 1.3  2023-02-08 11:22:54+05:30  Cprogrammer
+ * include qmailconfig.h if HAVE_CONFIG_H is not defined
+ *
  * Revision 1.2  2021-07-10 22:19:48+05:30  Cprogrammer
  * added getservent functions to read /etc/services
  *
@@ -11,6 +14,8 @@
 #define _QPWD_H
 #ifdef HAVE_CONFIG_H
 #include "config.h"
+#else
+#include "qmailconfig.h"
 #endif
 #ifdef HAVE_PWD_H
 #include <pwd.h>

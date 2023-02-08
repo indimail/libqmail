@@ -65,3 +65,4 @@ PKGBUILD
 base/chkshsgr
 base/hasshsgr.h
 base/hashmethods.h
+qmailconfig.h

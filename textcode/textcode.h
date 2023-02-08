@@ -5,6 +5,8 @@
 #define TEXTCODE_H
 #ifdef HAVE_CONFIG_H
 #include "config.h"
+#else
+#include "qmailconfig.h"
 #endif
 #ifdef HAVE_STDDEF_H
 #include <stddef.h>

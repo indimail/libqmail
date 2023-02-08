@@ -1,5 +1,8 @@
 /*
- * $Log: $
+ * $Log: strmsg.h,v $
+ * Revision 1.1  2023-02-08 11:24:25+05:30  Cprogrammer
+ * Initial revision
+ *
  */
 #ifndef STRMSG_OUT_H
 #define STRMSG_OUT_H

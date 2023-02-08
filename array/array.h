@@ -1,11 +1,16 @@
 /*
- * $Log: $
+ * $Log: array.h,v $
+ * Revision 1.1  2023-02-08 11:25:21+05:30  Cprogrammer
+ * Initial revision
+ *
  */
 /*- this header file comes from libowfat, http://www.fefe.de/libowfat/ */
 #ifndef ARRAY_H
 #define ARRAY_H
 #ifdef HAVE_CONFIG_H
 #include "config.h"
+#else
+#include "qmailconfig.h"
 #endif
 #ifdef HAVE_STDDEF_H
 #include <stddef.h>

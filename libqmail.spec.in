@@ -179,6 +179,7 @@ necessary to develop qmail applications
 %attr(644,root,root)                    %{_prefix}/include/qmail/prot.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/pw_comp.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/qgetpwgr.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/qmailconfig.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/qprintf.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/qtime.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/readclose.h

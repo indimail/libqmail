@@ -1,5 +1,8 @@
 /*
  * $Log: check_domain.h,v $
+ * Revision 1.2  2023-02-08 11:22:45+05:30  Cprogrammer
+ * include qmailconfig.h if HAVE_CONFIG_H is not defined
+ *
  * Revision 1.1  2021-08-24 11:16:15+05:30  Cprogrammer
  * Initial revision
  *
@@ -8,6 +11,8 @@
 #define CHECK_DOMAIN_H
 #ifdef HAVE_CONFIG_H
 #include "config.h"
+#else
+#include "qmailconfig.h"
 #endif
 #include <strerr.h>
 

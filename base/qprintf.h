@@ -1,5 +1,8 @@
 /*
  * $Log: qprintf.h,v $
+ * Revision 1.5  2023-02-08 11:22:57+05:30  Cprogrammer
+ * include qmailconfig.h if HAVE_CONFIG_H is not defined
+ *
  * Revision 1.4  2023-01-21 16:59:29+05:30  Cprogrammer
  * added __attribute__ ((format (printf, x, y))) for compile time warnings
  * added qsprintf function
@@ -20,6 +23,8 @@
 #include "stralloc.h"
 #ifdef HAVE_CONFIG_H
 #include "config.h"
+#else
+#include "qmailconfig.h"
 #endif
 #ifdef HAVE_STDARG_H
 #include <stdarg.h>

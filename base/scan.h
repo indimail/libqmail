@@ -1,5 +1,8 @@
 /*
  * $Log: scan.h,v $
+ * Revision 1.10  2023-02-08 11:23:04+05:30  Cprogrammer
+ * include qmailconfig.h if HAVE_CONFIG_H is not defined
+ *
  * Revision 1.9  2020-11-22 23:52:02+05:30  Cprogrammer
  * use const keyword
  *
@@ -25,7 +28,7 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #else
-#include <sys/types.h>
+#include "qmailconfig.h"
 #endif
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
