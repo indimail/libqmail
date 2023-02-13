@@ -2,6 +2,8 @@
 Release 1.1.3 Start 08/02/2023 End --/--/20--
 - 08/02/2023
 01. include qmailconfig.h if HAVE_CONFIG_H is not defined
+- 13/02/2023
+02. ssl/tls.c: removed SSL_CTX_free in tls_session on SSL_new failure
 
 * Mon Jan 30 2023 12:46:04 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1.2-1.1%{?dist}
 Release 1.1.2 Start 10/10/2022 End 30/01/2023

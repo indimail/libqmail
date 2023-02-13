@@ -1,5 +1,5 @@
 /*
- * $Id: tls.c,v 1.5 2023-01-12 19:07:55+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tls.c,v 1.6 2023-02-13 20:24:38+05:30 Cprogrammer Exp mbhangui $
  *
  * ssl_timeoutio functions froms from Frederik Vermeulen's
  * tls patch for qmail
@@ -34,7 +34,7 @@
 #include "tls.h"
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tls.c,v 1.5 2023-01-12 19:07:55+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: tls.c,v 1.6 2023-02-13 20:24:38+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #ifdef HAVE_SSL
@@ -647,7 +647,6 @@ tls_session(SSL_CTX *ctx, int fd)
 	if (!(myssl = SSL_new(ctx))) {
 		sslerr_str = (char *) myssl_error_str();
 		strerr_warn2("SSL_new: Unable to setup SSL session: ", sslerr_str, 0);
-		SSL_CTX_free(ctx);
 		return ((SSL *) NULL);
 	}
 	if (!(sbio = BIO_new_socket(fd, BIO_NOCLOSE))) {
@@ -1147,6 +1146,9 @@ getversion_tls_c()
 
 /*
  * $Log: tls.c,v $
+ * Revision 1.6  2023-02-13 20:24:38+05:30  Cprogrammer
+ * removed SSL_CTX_free in tls_session on SSL_new failure
+ *
  * Revision 1.5  2023-01-12 19:07:55+05:30  Cprogrammer
  * added check for crlfile
  * restore ndelay if changed in ssl_timeoutconn, ssl_timeoutaccept
