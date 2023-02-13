@@ -1,5 +1,8 @@
 /*
  * $Log: setuserid.c,v $
+ * Revision 1.6  2023-02-13 22:35:32+05:30  Cprogrammer
+ * rewind passwd file using qsetpwent, setpwent
+ *
  * Revision 1.5  2021-07-05 23:27:42+05:30  Cprogrammer
  * use qgepwnam, qgetgrent if USE_QPWGR is set
  *
@@ -16,6 +19,7 @@
  * Initial revision
  *
  */
+#include <errno.h>
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -60,9 +64,11 @@ grpscan(char *user, int *ngroups)
 	else
 	if (!(gidset = (gid_t *) alloc(maxgroups * sizeof(gid_t))))
 		return ((gid_t *) 0);
-	else
-	if (!(pwd = (use_qpwgr ? qgetpwnam : getpwnam) (user)))
-		return ((gid_t *) 0);
+	else {
+		(use_qpwgr ? qsetpwent : setpwent) ();
+		if (!(pwd = (use_qpwgr ? qgetpwnam : getpwnam) (user)))
+			return ((gid_t *) 0);
+	}
 	idx = 0;
 	gidset[idx++] = pwd->pw_gid;	/* the base gid */
 	(use_qpwgr ? qsetgrent : setgrent) ();
@@ -83,13 +89,13 @@ setuserid(char *user)
 {
 	struct passwd  *pwdent;
 	gid_t          *gidset;
-	int             ngroups, use_qpwgr = -1;
+	int             ngroups, use_qpwgr = -1, t;
 	uid_t           uid;
 	gid_t           gid;
 
 	if (use_qpwgr == -1)
 		use_qpwgr = env_get("USE_QPWGR") ? 1 : 0;
-	(use_qpwgr ? qsetgrent : setgrent) ();
+	(use_qpwgr ? qsetpwent : setpwent) ();
 	if (!(pwdent = (use_qpwgr ? qgetpwnam : getpwnam) (user)))
 		return (-1);
 	uid = pwdent->pw_uid;
@@ -97,15 +103,21 @@ setuserid(char *user)
 	if (!(gidset = grpscan(user, &ngroups)))
 		return (-1);
 	if (setgroups(ngroups, gidset)) {
+		t = errno;
 		alloc_free((char *) gidset);
+		errno = t;
 		return (-1);
 	} else
 	if (setgid(gid)) {
+		t = errno;
 		alloc_free((char *) gidset);
+		errno = t;
 		return (-1);
 	} else
 	if (setuid(uid)) {
+		t = errno;
 		alloc_free((char *) gidset);
+		errno = t;
 		return (-1);
 	}
 	alloc_free((char *) gidset);
@@ -139,7 +151,7 @@ setuser_privileges(uid_t uid, gid_t gid, char *user)
 void
 getversion_setuserid_c()
 {
-	static char    *x = "$Id: setuserid.c,v 1.5 2021-07-05 23:27:42+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: setuserid.c,v 1.6 2023-02-13 22:35:32+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
