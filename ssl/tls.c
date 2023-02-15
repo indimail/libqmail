@@ -1,5 +1,5 @@
 /*
- * $Id: tls.c,v 1.6 2023-02-13 20:24:38+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tls.c,v 1.7 2023-02-15 16:55:41+05:30 Cprogrammer Exp mbhangui $
  *
  * ssl_timeoutio functions froms from Frederik Vermeulen's
  * tls patch for qmail
@@ -34,7 +34,7 @@
 #include "tls.h"
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tls.c,v 1.6 2023-02-13 20:24:38+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: tls.c,v 1.7 2023-02-15 16:55:41+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #ifdef HAVE_SSL
@@ -207,8 +207,8 @@ get_rsakey(int export, int keylen, char *_certdir)
 	int             i, j;
 	EVP_PKEY       *rsa_key;
 
-	if (!export)
-		keylen = 512;
+	if (!export) /*- bullshit */
+		keylen = 1024;
 	if (!stralloc_copys(&filename, _certdir) ||
 			!stralloc_catb(&filename, "/rsa", 4))
 		strerr_die1x(111, "out of memory");
@@ -224,14 +224,19 @@ get_rsakey(int export, int keylen, char *_certdir)
 		filename.len = j;
 		if (access(filename.s, F_OK)) {
 			if (errno != error_noent)
-				strerr_die1sys(111, "error reading rsa private key: ");
+				strerr_die3sys(111, "error reading rsa parameters ", filename.s, ": ");
 			continue;
 		}
 		if ((in = BIO_new(BIO_s_file()))) {
-			BIO_read_filename(in, filename.s);
+			if (BIO_read_filename(in, filename.s) <= 0) {
+				BIO_free(in);
+				continue;
+			}
 			alloc_free(filename.s);
-			if (!(rsa_key = PEM_read_bio_PrivateKey(in, NULL, 0, NULL)))
-				strerr_die1sys(111, "error reading rsa private key: ");
+			if (!(rsa_key = PEM_read_bio_PrivateKey(in, NULL, 0, NULL))) {
+				BIO_free(in);
+				continue;
+			}
 			BIO_free(in);
 			return rsa_key;
 		} else
@@ -251,7 +256,7 @@ get_dhkey(int export, int keylen, char *_certdir)
 	BIO            *in;
 	EVP_PKEY       *dh_key;
 
-	if (!export)
+	if (!export) /*- bullshit */
 		keylen = 1024;
 	if (!stralloc_copys(&filename, _certdir) ||
 			!stralloc_catb(&filename, "/dh", 3))
@@ -268,15 +273,19 @@ get_dhkey(int export, int keylen, char *_certdir)
 		filename.len = j;
 		if (access(filename.s, F_OK)) {
 			if (errno != error_noent)
-				strerr_die1sys(111, "error reading dh parameters: ");
+				strerr_die3sys(111, "error reading dh parameters ", filename.s, ": ");
 			continue;
 		}
 		if ((in = BIO_new(BIO_s_file()))) {
-			if (!BIO_read_filename(in, filename.s))
-				strerr_die1sys(111, "error reading dhparams file: ");
+			if (BIO_read_filename(in, filename.s) <= 0) {
+				BIO_free(in);
+				continue;
+			}
 			alloc_free(filename.s);
-			if (!(dh_key = PEM_read_bio_Parameters_ex(in, NULL, NULL, NULL)))
-				strerr_die1sys(111, "error reading dh parameters: ");
+			if (!(dh_key = PEM_read_bio_Parameters_ex(in, NULL, NULL, NULL))) {
+				BIO_free(in);
+				continue;
+			}
 			BIO_free(in);
 			return dh_key;
 		} else
@@ -294,12 +303,17 @@ set_rsa_dh(SSL_CTX *ctx)
 	int             bits;
 
 	getEnvConfigInt(&bits, "SSL_BITS", 2048);
+	/*-
+	 * if we don't get pre-generated RSA/DH parameters
+	 * we generate it using EVP_RAS_gen, SSL_CTX_set_dh_auto
+	 * which will be slower
+	 */
 	if (!get_rsakey(0, bits, certdir))
 		EVP_RSA_gen(bits);
-	if ((dh_pkey = get_dhkey(0, bits, certdir))) {
-		SSL_CTX_set0_tmp_dh_pkey(ctx, dh_pkey);
-	} else
+	if (!(dh_pkey = get_dhkey(0, bits, certdir)))
 		SSL_CTX_set_dh_auto(ctx, 1);
+	else
+		SSL_CTX_set0_tmp_dh_pkey(ctx, dh_pkey);
 #else
 	SSL_CTX_set_tmp_rsa_callback(ctx, tmp_rsa_cb);
 	SSL_CTX_set_tmp_dh_callback(ctx, tmp_dh_cb);
@@ -1146,6 +1160,9 @@ getversion_tls_c()
 
 /*
  * $Log: tls.c,v $
+ * Revision 1.7  2023-02-15 16:55:41+05:30  Cprogrammer
+ * self generate rsa/dh parameters if rsa/dh files are missing or unreadable
+ *
  * Revision 1.6  2023-02-13 20:24:38+05:30  Cprogrammer
  * removed SSL_CTX_free in tls_session on SSL_new failure
  *
