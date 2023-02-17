@@ -1,5 +1,8 @@
 /*
  * $Log: commands.c,v $
+ * Revision 1.10  2023-02-17 11:36:34+05:30  Cprogrammer
+ * return -3 for out of memory error
+ *
  * Revision 1.9  2023-01-02 20:31:53+05:30  Cprogrammer
  * return -2 for command too long
  *
@@ -22,6 +25,7 @@
 #ifndef COMMANDS_C
 #define COMMANDS_C
 #endif
+#include <stdio.h>
 #include <errno.h>
 #include "commands.h"
 #include "substdio.h"
@@ -40,10 +44,10 @@ commands(substdio *ss, struct commands *c)
 
 	for (;;) {
 		if (!stralloc_copys(&cmd, ""))
-			return -1;
+			return -3;
 		for (;;) {
 			if (!stralloc_readyplus(&cmd, 1))
-				return -1;
+				return -3;
 			if (!(i = substdio_get(ss, cmd.s + cmd.len, 1))) {
 				errno = 0;
 				return 0;
@@ -82,7 +86,7 @@ commands(substdio *ss, struct commands *c)
 void
 getversion_commands_c()
 {
-	static char    *x = "$Id: commands.c,v 1.9 2023-01-02 20:31:53+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: commands.c,v 1.10 2023-02-17 11:36:34+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
