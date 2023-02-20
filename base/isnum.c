@@ -1,5 +1,8 @@
 /*
  * $Log: isnum.c,v $
+ * Revision 1.2  2023-02-20 20:36:21+05:30  Cprogrammer
+ * refactored isnum()
+ *
  * Revision 1.1  2022-05-10 19:49:13+05:30  Cprogrammer
  * Initial revision
  *
@@ -12,24 +15,21 @@
 #endif
 
 #ifndef	lint
-static char     sccsid[] = "$Id: isnum.c,v 1.1 2022-05-10 19:49:13+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: isnum.c,v 1.2 2023-02-20 20:36:21+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 int
-isnum(char *str)
+isnum(register char *str)
 {
-	register char  *ptr;
-
-	for (ptr = str; *ptr; ptr++)
-		if (!isdigit((int) *ptr))
-			return (0);
-	return (1);
+	while (*str && isdigit(*str))
+		str++;
+	return *str ? 0 : 1;
 }
 
 void
 getversion_isnum_c()
 {
-	static char    *x = "$Id: isnum.c,v 1.1 2022-05-10 19:49:13+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: isnum.c,v 1.2 2023-02-20 20:36:21+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -10,6 +10,12 @@ Release 1.1.3 Start 08/02/2023 End --/--/20--
     unreadable
 - 17/02/2023
 05. base/commands.c: return -3 for out of memory error
+- 20/02/2023
+06. base/setuserid.c: added set_additional_groups function, refactored
+    setuserid.c
+07. qgetpwgr.c: allow alternate passwd, group, service for uid 0 using env
+    variables
+08. isnum.c: refactored isnum.c
 
 * Mon Jan 30 2023 12:46:04 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1.2-1.1%{?dist}
 Release 1.1.2 Start 10/10/2022 End 30/01/2023

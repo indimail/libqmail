@@ -1,5 +1,8 @@
 /*
  * $Log: qgetpwgr.c,v $
+ * Revision 1.9  2023-02-20 20:38:12+05:30  Cprogrammer
+ * allow alternate passwd, group, service for uid 0 using env variables
+ *
  * Revision 1.8  2022-03-18 13:37:33+05:30  Cprogrammer
  * fixed SIGSEGV caused by byte_copy of extra bytes
  *
@@ -64,6 +67,7 @@
 #include <str.h>
 #include <alloc.h>
 #include <error.h>
+#include <env.h>
 #include "qgetpwgr.h"
 
 static int      set_pwent, end_pwent, set_grent, end_grent, set_svent, end_svent;
@@ -135,7 +139,10 @@ qgetpwent_r(struct passwd *pwd, char *buf, size_t buflen, struct passwd **result
 		end_pwent = _is_open = 0;
 	}
 	if (!_is_open) {
-		if ((pwfd = open_read("/etc/passwd")) == -1)
+		ptr = env_get("PASSWD_FILE");
+		if (!ptr || !*ptr || getuid())
+			ptr = "/etc/passwd";
+		if ((pwfd = open_read(ptr)) == -1)
 			return errno;
 		_is_open = 1;
 		substdio_fdbuf(&pwss, read, pwfd, _pw_inbuf, sizeof (_pw_inbuf));
@@ -396,7 +403,10 @@ qgetgrent_r(struct group *grp, char *buf, size_t buflen, struct group **result)
 		end_grent = _is_open = 0;
 	}
 	if (!_is_open) {
-		if ((grfd = open_read("/etc/group")) == -1)
+		ptr = env_get("GROUP_FILE");
+		if (!ptr || !*ptr || getuid())
+			ptr = "/etc/group";
+		if ((grfd = open_read(ptr)) == -1)
 			return errno;
 		_is_open = 1;
 		substdio_fdbuf(&grss, read, grfd, _gr_inbuf, sizeof (_gr_inbuf));
@@ -673,7 +683,10 @@ qgetservent_r(struct servent *svc, char *buf, size_t buflen, struct servent **re
 		end_svent = _is_open = 0;
 	}
 	if (!_is_open) {
-		if ((svfd = open_read("/etc/services")) == -1)
+		ptr = env_get("SERVICE_FILE");
+		if (!ptr || !*ptr || getuid())
+			ptr = "/etc/services";
+		if ((svfd = open_read(ptr)) == -1)
 			return errno;
 		_is_open = 1;
 		substdio_fdbuf(&svss, read, svfd, _sv_inbuf, sizeof (_sv_inbuf));
@@ -950,7 +963,7 @@ qgetservent()
 void
 getversion_qgetpwgr_c()
 {
-	static char    *x = "$Id: qgetpwgr.c,v 1.8 2022-03-18 13:37:33+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: qgetpwgr.c,v 1.9 2023-02-20 20:38:12+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

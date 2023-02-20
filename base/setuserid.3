@@ -4,12 +4,21 @@ setuserid \- set user identity
 .SH SYNTAX
 .B #include <setuserid.h>
 
-int \fBsetuserid\fP(char* \fIuser\fR);
+int \fBsetuserid\fP(char* \fIuser\fR, int \fIsupp\fR, char *\fIgroups\fR);
 .SH DESCRIPTION
 
-setuserid sets the effective user ID, effective group ID, supplementary groups of the
-user \fIuser\fR from uid, gid, supplementary ids from passwd(5), group(5) database.
-It uses setuid(2), setgid(2), setgroups, getpwnam(3), getgrent(3).
+setuserid sets the effective user ID, effective group ID of user\fIuser\fR
+using user ID, group ID from the passwd(5) database. It uses setuid(2) to
+set the effective user ID, setgid(2) to set the effective gorup ID. If
+\fIsupp\fR is non zero, setgroups(2) is used to set supplementary groups
+IDs from group(5) database. setuserid uses getpwnam(3), getgrent(3) to
+fetch information form the passwd(5) and group(5) database. If \fBQPWGR\fR
+environment variable is set, setuserid uses qgetpwnam(3), qgetgrent(3)
+instead.
+
+Additional supplementary groups can be specified as a comma separated null
+terminated string of group IDs. The group IDS in groups can either be
+numeric or group IDs from /etc/group.
 
 setuserid returns -1 on failure, 0 on success
 
@@ -17,6 +26,7 @@ setuserid returns -1 on failure, 0 on success
 setuid(2),
 setgid(2),
 setgroups(2),
+getpwnam(3),
 qgetpwnam(3),
 qgetpwuid(3),
 qgetpwnam_r(3),
@@ -28,6 +38,7 @@ qgetgrgid_r(3),
 qgetpwent(3),
 qsetpwent(3),
 qendpwent(3),
+getgrent(3),
 qgetgrent(3),
 qsetgrent(3),
 qendgrent(3),

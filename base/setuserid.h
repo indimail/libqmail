@@ -1,5 +1,8 @@
 /*
  * $Log: setuserid.h,v $
+ * Revision 1.5  2023-02-20 20:37:29+05:30  Cprogrammer
+ * refactored setuserid.c
+ *
  * Revision 1.4  2023-02-08 11:23:08+05:30  Cprogrammer
  * include qmailconfig.h if HAVE_CONFIG_H is not defined
  *
@@ -28,7 +31,8 @@
 #endif
 
 gid_t           *grpscan(char *, int *);
-int              setuserid(char *);
+int              setuserid(char *, int, char *);
 int              setuser_privileges(uid_t, gid_t, char *);
+int              set_additional_groups(char *, int);
 
 #endif
