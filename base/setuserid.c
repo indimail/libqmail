@@ -1,5 +1,5 @@
 /*
- * $Id: setuserid.c,v 1.7 2023-02-21 00:11:41+05:30 Cprogrammer Exp mbhangui $
+ * $Id: setuserid.c,v 1.8 2023-02-21 01:02:56+05:30 Cprogrammer Exp mbhangui $
  */
 #include <errno.h>
 #ifdef HAVE_CONFIG_H
@@ -69,6 +69,10 @@ grpscan(char *user, int *ngroups)
 		}
 	}
 	*ngroups = idx;
+	if (!alloc_re((char *) &gidset, maxgroups * sizeof(gid_t), idx * sizeof(gid_t))) {
+		alloc_free((char *) gidset);
+		return ((gid_t *) 0);
+	}
 	return (gidset);
 }
 
@@ -139,7 +143,7 @@ setuserid(char *user, int set_supp_id, char *groups)
 	struct group   *gr;
 	char           *ptr, *cptr;
 	gid_t          *gidset = NULL;
-	int             ngroups, old, use_qpwgr = -1, i, t;
+	int             ngroups = 0, old, use_qpwgr = -1, i, t;
 	uid_t           uid;
 	gid_t           gid, g;
 
@@ -150,25 +154,16 @@ setuserid(char *user, int set_supp_id, char *groups)
 		return -1;
 	uid = pw->pw_uid;
 	gid = pw->pw_gid;
-	ngroups = 0;
 	if (set_supp_id && !(gidset = grpscan(user, &ngroups)))
 		return -1;
 	if (groups) {
-		if (ngroups) {
-			if ((t = sysconf(_SC_NGROUPS_MAX)) == -1) {
-				if (gidset)
-					alloc_free((char *) gidset);
-				return -1;
-			}
-		} else
-			t = 0;
 		old = ngroups;
 		for (ptr = groups; *ptr; ptr++) {
 			if (*ptr == ',')
 				ngroups++;
 		}
 		ngroups++;
-		if (!alloc_re((char *) &gidset, t * sizeof(gid_t), ngroups * sizeof(gid_t)))
+		if (!alloc_re((char *) &gidset, old * sizeof(gid_t), ngroups * sizeof(gid_t)))
 			return -1;
 		for (i = old, ptr = cptr = groups; *ptr; ptr++) {
 			if (*ptr == ',') {
@@ -243,13 +238,16 @@ setuser_privileges(uid_t uid, gid_t gid, char *user)
 void
 getversion_setuserid_c()
 {
-	static char    *x = "$Id: setuserid.c,v 1.7 2023-02-21 00:11:41+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: setuserid.c,v 1.8 2023-02-21 01:02:56+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
 
 /*
  * $Log: setuserid.c,v $
+ * Revision 1.8  2023-02-21 01:02:56+05:30  Cprogrammer
+ * re-allocate gidset to actual size
+ *
  * Revision 1.7  2023-02-21 00:11:41+05:30  Cprogrammer
  * refactored setuserid
  *
