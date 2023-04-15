@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.39  2023-04-15 22:32:46+05:30  Cprogrammer
+# fixed setting of pkgconfigdir
+#
 # Revision 1.38  2023-01-21 17:05:00+05:30  Cprogrammer
 # added foreign no-dist to AM_INIT_AUTOMAKE
 #
@@ -115,7 +118,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.38 2023-01-21 17:05:00+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.39 2023-04-15 22:32:46+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/mbhangui/libqmail])
@@ -181,17 +184,6 @@ AC_CHECK_LIB(crypto, CRYPTO_new_ex_data, [AC_SUBST([LIB_CRYPTO], ["-lcrypto"]) A
 AC_CHECK_LIB(crypt, crypt, [AC_SUBST([LIB_CRYPT], ["-lcrypt"]) AC_DEFINE([HAVE_CRYPT], [1],[crypt Library])],,)
 AC_CHECK_LIB(sodium, sodium_init, [AC_SUBST([LIB_SODIUM], ["-lsodium"]) AC_DEFINE([HAVE_SODIUM], [1],[Sodium Library])],,-lsodium)
 
-dnl Does not work on RHEL 5, CentOS 5 64 bit systems
-RPATH_LIB="$acl_libdirstem"
-defaultprefix="/usr"
-AC_SUBST([LIBTOOL_DEPS])
-AC_SUBST(RPATH_LIB)
-AC_SUBST(defaultprefix)
-AC_SUBST(libdir)
-LIBVER=1
-AC_SUBST(LIBVER)
-AC_CONFIG_FILES([libqmail.pc:libqmail.pc.in],[], [])
-
 if test x$prefix = xNONE
 then
 	prefix="$defaultprefix"
@@ -210,6 +202,18 @@ then
 		AC_MSG_ERROR(Could not find pkgconfigdir)
 	fi
 fi
+
+dnl Does not work on RHEL 5, CentOS 5 64 bit systems
+RPATH_LIB="$acl_libdirstem"
+defaultprefix="/usr"
+AC_SUBST([LIBTOOL_DEPS])
+AC_SUBST(RPATH_LIB)
+AC_SUBST(defaultprefix)
+AC_SUBST(libdir)
+AC_SUBST(pkgconfigdir)
+LIBVER=1
+AC_SUBST(LIBVER)
+AC_CONFIG_FILES([libqmail.pc:libqmail.pc.in],[], [])
 
 AC_ARG_ENABLE(ENABLE_MD5_CRYPT,    [  --enable-md5-crypt            if your system crypt does not support md5],
 	[with_md5crypt=$enableval],
