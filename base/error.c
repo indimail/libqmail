@@ -1,5 +1,8 @@
 /*
  * $Log: error.c,v $
+ * Revision 1.11  2023-04-24 22:17:56+05:30  Cprogrammer
+ * fixed error codes
+ *
  * Revision 1.10  2022-12-13 15:48:57+05:30  Cprogrammer
  * added error_child for ECHILD
  *
@@ -25,20 +28,6 @@
 #include "error.h"
 
 /* warning: as coverage improves here, should update error_{str,temp} */
-
-int error_ebadf =
-#ifdef EBADF
-EBADF;
-#else
--1;
-#endif
-
-int error_child =
-#ifdef ECHILD
-ECHILD;
-#else
--1;
-#endif
 
 int error_intr =
 #ifdef EINTR
@@ -133,9 +122,9 @@ EACCES;
 
 int error_nodevice =
 #ifdef ENXIO
-	ENXIO;
+ENXIO;
 #else
-	-14;
+-14;
 #endif
 
 int error_proto =
@@ -208,10 +197,24 @@ ERESTART;
 -24;
 #endif
 
+int error_child =
+#ifdef ECHILD
+ECHILD;
+#else
+-25;
+#endif
+
+int error_ebadf =
+#ifdef EBADF
+EBADF;
+#else
+-26;
+#endif
+
 void
 getversion_error_c()
 {
-	static char    *x = "$Id: error.c,v 1.10 2022-12-13 15:48:57+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: error.c,v 1.11 2023-04-24 22:17:56+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

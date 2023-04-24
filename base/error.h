@@ -1,5 +1,8 @@
 /*
  * $Log: error.h,v $
+ * Revision 1.12  2023-04-24 22:18:02+05:30  Cprogrammer
+ * fixed order
+ *
  * Revision 1.11  2022-12-13 15:49:10+05:30  Cprogrammer
  * added error_child
  *
@@ -30,8 +33,6 @@
 
 #include <errno.h>
 
-extern int      error_ebadf;
-extern int      error_child;
 extern int      error_intr;
 extern int      error_nomem;
 extern int      error_noent;
@@ -56,6 +57,8 @@ extern int      error_netunreach;
 extern int      error_hostunreach;
 extern int      error_srch;
 extern int      error_restart;
+extern int      error_child;
+extern int      error_ebadf;
 
 char           *error_str(int);
 char           *estack(int, const char *);
