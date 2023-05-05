@@ -1,3 +1,8 @@
+* Fri May 04 2023 15:57:02 +0000 Manvendra Bhangui <@email@> @version@-@release@%{?dist}
+Release @version@-@release@ Start 24/04/2023 End XX/XX/XXXX
+- 24/04/2023
+01. error.c, error.h: fixed error code numbering
+
 * Sun Apr 23 2023 16:55:15 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1.3-1.1%{?dist}
 Release 1.1.3-1.1 Start 08/02/2023 End 23/04/2023
 - 08/02/2023
@@ -18,6 +23,9 @@ Release 1.1.3-1.1 Start 08/02/2023 End 23/04/2023
 08. isnum.c: refactored isnum.c
 - 15/04/2023
 09. configure.ac: fixed setting of pkgconfigdir
+- 23/04/2023 Final release libqmail-1.1.3
+- 24/04/2023
+10. error.c, error.h: fixed error code numbering
 
 * Mon Jan 30 2023 12:46:04 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1.2-1.1%{?dist}
 Release 1.1.2 Start 10/10/2022 End 30/01/2023
