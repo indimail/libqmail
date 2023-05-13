@@ -57,7 +57,7 @@ AutoReqProv: Yes
 Provides: qmail-libs = %{version}
 Provides: qmail-libs%{?_isa} = %{version}
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
 libqmail provides qmail libraries
@@ -97,6 +97,7 @@ necessary to develop qmail applications
   --enable-passwd-hash=sha256
 
 %install
+[ "%{buildroot}" != "/" ] && /bin/rm -fr %{buildroot}
 %{__make} -s %{?_smp_mflags}
 %if %{defined nodebug}
   %{__make} -s %{?_smp_mflags} DESTDIR=%{buildroot} install-strip
