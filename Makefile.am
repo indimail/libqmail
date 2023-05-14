@@ -71,8 +71,8 @@ man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 \
 	mult/range_str4inbuf.3 mult/range_strinbuf.3 mult/range_validbuf.3 \
 	mult/sub_of.3 mult/umult16.3 mult/umult32.3 mult/umult64.3
 
-docs = README doc/ChangeLog COPYING AUTHORS
 docdir=@docdir@
+doc_DATA = README.md doc/ChangeLog COPYING AUTHORS
 
 include_HEADERS = base/alloc.h base/allwrite.h base/arc4random.h \
 	base/authmethods.h base/base64.h base/builtinoflmacros.h \
