@@ -19,7 +19,7 @@
 Name: libqmail
 Version: @VERSION@
 Release: @release@%{?dist}
-Summary: Library for qmail
+Summary: General Purpose library for indimail-mta, daemontools, ucspi-tcp
 %if %{undefined suse_version} && %{undefined sles_version}
 Group: System Environment/Libraries
 %else
@@ -58,10 +58,9 @@ AutoReqProv: Yes
 Provides: qmail-libs = %{version}
 Provides: qmail-libs%{?_isa} = %{version}
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
 %description
-libqmail provides qmail libraries
+libqmail provides qmail libraries extracted from qmail-1.03 and
+other software written by djb.
 Included APIs:
 * wrappers around memory allocation, stralloc (dynamic strings)
 * substdio buffered I/O
@@ -72,6 +71,7 @@ Included APIs:
 * unix - contains wrappers for socket functions, mkfifo, opendir, wait and an
   abstraction around errno.
 * sig - contains wrappers for Unix signal functions
+* tls/ssl - contains tls/ssl functions
 
 %{see_base}
 
@@ -98,7 +98,6 @@ necessary to develop qmail applications
   --enable-passwd-hash=sha256
 
 %install
-[ "%{buildroot}" != "/" ] && /bin/rm -fr %{buildroot}
 %{__make} -s %{?_smp_mflags}
 %if %{defined nodebug}
   %{__make} -s %{?_smp_mflags} DESTDIR=%{buildroot} install-strip
@@ -114,9 +113,6 @@ do
   install -p -m 0644 README.md %{buildroot}%{_prefix}/share/doc/$i
 done
 %{__rm} -f %{buildroot}%{_libdir}/libqmail.la
-
-%clean
-[ "%{buildroot}" = "/" ] || rm -rf "%{buildroot}"
 
 %files
 %defattr(-, root, root, 0755)
