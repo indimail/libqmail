@@ -4,6 +4,8 @@ Release @version@-@release@ Start 24/04/2023 End XX/XX/XXXX
 01. error.c, error.h: fixed error code numbering
 - 19/05/2023
 02. libqmail.spec.in: updated SPEC post fedora review
+- 10/06/2023
+03. tcpopen.c: added missing return for unix domain socket
 
 * Sun Apr 23 2023 16:55:15 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1.3-1.1%{?dist}
 Release 1.1.3-1.1 Start 08/02/2023 End 23/04/2023

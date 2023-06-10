@@ -1,5 +1,8 @@
 /*
  * $Log: tcpopen.c,v $
+ * Revision 1.2  2023-06-10 19:14:31+05:30  Cprogrammer
+ * added missing return for unix domain socket
+ *
  * Revision 1.1  2022-05-10 19:50:24+05:30  Cprogrammer
  * Initial revision
  *
@@ -104,9 +107,8 @@ tcpopen(char *host, char *service, int port) /*- Thanks to Richard Stevens */
         		return -1;
 			}
 			return(fd);
-		} else
-		if (errno != error_noent)
-        	return -1;
+		}
+       	return -1;
 	}
 #ifdef sun
 	if (sysinfo(SI_HOSTNAME, localhost, MAXHOSTNAMELEN) > MAXHOSTNAMELEN)
@@ -150,7 +152,7 @@ tcpopen(char *host, char *service, int port) /*- Thanks to Richard Stevens */
 	} else
 		serv[fmt_ulong(serv, port)] = 0;
 	if ((retval = getaddrinfo(hostptr, serv, &hints, &res0)))
-		strerr_die6x(111, "tcpopen: getaddrinfo: ", hostptr, ": ", serv, ":", (char *) gai_strerror(retval));
+		strerr_die6x(111, "tcpopen: getaddrinfo: ", hostptr, ": ", serv, ": ", (char *) gai_strerror(retval));
 	for (fd = -1, res = res0; res && fd == -1; res = res->ai_next) {
 		for (;;) {
 			if (port >= 0) {
@@ -339,7 +341,7 @@ tcpopen(char *host, char *service, int port) /*- Thanks to Richard Stevens */
 void
 getversion_tcpopen_c()
 {
-	static char    *x = "$Id: tcpopen.c,v 1.1 2022-05-10 19:50:24+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: tcpopen.c,v 1.2 2023-06-10 19:14:31+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
