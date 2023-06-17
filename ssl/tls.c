@@ -1043,7 +1043,7 @@ translate(int rfd, int wfd, int clearout, int clearin, unsigned int iotimeout)
 						t = 1; /*- maybe data available on clearin */
 						break;
 					}
-					strerr_warn1("translate: read network", &strerr_sys);
+					strerr_warn1("translate: read network: ", &strerr_sys);
 					return -1;
 				} else
 				if (!n) {
