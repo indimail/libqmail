@@ -32,5 +32,5 @@ Description: Reimplementation of qmail functions, development files
  formatting and scanning and an abstraction around errno. It also includes
  wrappers for Unix signal functions. 
  .
- This package contains libqmail linked with glibc, and man pages.
+ This package contains the static library libqmail.a and headers
 

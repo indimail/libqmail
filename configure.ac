@@ -210,6 +210,7 @@ AC_SUBST([LIBTOOL_DEPS])
 AC_SUBST(RPATH_LIB)
 AC_SUBST(defaultprefix)
 AC_SUBST(libdir)
+AC_SUBST(docdir)
 AC_SUBST(pkgconfigdir)
 LIBVER=1
 AC_SUBST(LIBVER)
