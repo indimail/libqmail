@@ -99,8 +99,8 @@ include_HEADERS = base/alloc.h base/allwrite.h base/arc4random.h \
 	base/uint16.h base/uint32.h base/uint64.h base/wait.h base/qprintf.h \
 	array/array.h textcode/entities.h textcode/textcode.h base/likely.h \
 	base/iarray.h base/safemult.h base/rangecheck.h socket/tcpbind.h \
-	base/valid_password_chars.h socket/tcpopen.h socket/udpopen.h base/qdirname.h \
-	ssl/tls.h qmailconfig.h
+	base/valid_password_chars.h socket/tcpopen.h socket/udpopen.h socket/tcpremoteip.h \
+	base/qdirname.h ssl/tls.h qmailconfig.h
 
 includedir=@prefix@/include/qmail
 COMMONSOURCES = base/alloc.c base/alloc_re.c base/allwrite.c base/arc4random.c \
@@ -191,7 +191,7 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/allwrite.c base/arc4random.c \
 	mult/imult16.c mult/imult32.c mult/imult64.c mult/range_arrayinbuf.c \
 	mult/range_str2inbuf.c mult/range_str4inbuf.c mult/range_strinbuf.c \
 	mult/umult16.c mult/umult32.c mult/umult64.c \
-	socket/tcpbind.c socket/tcpopen.c socket/udpopen.c \
+	socket/tcpbind.c socket/tcpopen.c socket/udpopen.c socket/tcpremoteip.c \
 	ssl/tls.c
 
 edit = sed \

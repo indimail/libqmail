@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.40  2023-06-28 12:30:30+05:30  Cprogrammer
+# added check header netinet/in.h
+#
 # Revision 1.39  2023-04-15 22:32:46+05:30  Cprogrammer
 # fixed setting of pkgconfigdir
 #
@@ -118,7 +121,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.39 2023-04-15 22:32:46+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.40 2023-06-28 12:30:30+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/mbhangui/libqmail])
@@ -169,7 +172,7 @@ esac
 
 dnl Checks for header files.
 AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h endian.h netdb.h sodium.h)
-AC_CHECK_HEADERS(varargs.h regex.h sys/types.h sys/stat.h sys/wait.h sys/file.h sys/time.h sys/endian.h arpa/inet.h sys/socket.h sys/un.h)
+AC_CHECK_HEADERS(varargs.h regex.h sys/types.h sys/stat.h sys/wait.h sys/file.h sys/time.h sys/endian.h netinet/in.h arpa/inet.h sys/socket.h sys/un.h)
 
 AC_CHECK_FUNCS(flock arc4random)
 

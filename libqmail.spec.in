@@ -241,6 +241,7 @@ done
 %attr(644,root,root)                    %{_prefix}/include/qmail/tcpbind.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/tcpopen.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/udpopen.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/tcpremoteip.h
 
 %{_libdir}/libqmail.so
 %{_libdir}/libqmail.a
