@@ -1,5 +1,8 @@
 /*
  * $Log: mkpasswd.c,v $
+ * Revision 1.5  2023-07-15 08:39:39+05:30  Cprogrammer
+ * allow storage space for salt to be dynamically allocated
+ *
  * Revision 1.4  2022-08-28 10:57:10+05:30  Cprogrammer
  * allow variable salt size using environment variable SALTSIZE
  *
@@ -45,14 +48,16 @@ int
 mkpasswd(char *newpasswd, stralloc *crypted, int encrypt_flag)
 {
 	char           *tmpstr;
-	char            salt[SALTSIZE + 1];
+	static stralloc salt = {0};
 	int             saltsize;
 
 	getEnvConfigInt(&saltsize, "SALTSIZE", SALTSIZE);
 	crypted->len = 0;
 	if (encrypt_flag) {
-		makesalt(salt, saltsize);
-		if (!(tmpstr = in_crypt(newpasswd, salt)))
+		if (!stralloc_ready(&salt, saltsize + 1))
+			die_nomem();
+		makesalt(salt.s, saltsize);
+		if (!(tmpstr = in_crypt(newpasswd, salt.s)))
 			return (-1);
 	} else
 		tmpstr = newpasswd;
@@ -65,7 +70,7 @@ mkpasswd(char *newpasswd, stralloc *crypted, int encrypt_flag)
 void
 getversion_mkpasswd_c()
 {
-	static char    *x = "$Id: mkpasswd.c,v 1.4 2022-08-28 10:57:10+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: mkpasswd.c,v 1.5 2023-07-15 08:39:39+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

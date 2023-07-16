@@ -8,6 +8,10 @@ Release @version@-@release@ Start 24/04/2023 End XX/XX/XXXX
 03. tcpopen.c: added missing return for unix domain socket
 - 28/06/2023
 04. added tcpremoteip() function
+- 16/07/2023
+05. base/mkpasswd.c: allow storage space for salt to be dynamically allocated
+06. base/makesalt.c: added YESCRIPT. use crypt_gensalt if available to
+    generate salt for yescrypt
 
 * Sun Apr 23 2023 16:55:15 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1.3-1.1%{?dist}
 Release 1.1.3-1.1 Start 08/02/2023 End 23/04/2023

@@ -1,5 +1,8 @@
 /*
  * $Log: makesalt.h,v $
+ * Revision 1.4  2023-07-16 13:50:27+05:30  Cprogrammer
+ * increased SALTSIZE
+ *
  * Revision 1.3  2022-08-26 18:43:30+05:30  Cprogrammer
  * added additional characters to random generated passwords
  *
@@ -13,7 +16,7 @@
 #ifndef HAVE_MAKESALT_H
 #define HAVE_MAKESALT_H
 
-#define SALTSIZE 32
+#define SALTSIZE 64
 extern char     pchars[];
 
 int             makesalt(char *, int);

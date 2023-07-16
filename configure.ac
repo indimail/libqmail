@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.41  2023-07-16 13:51:55+05:30  Cprogrammer
+# define HAVE_CRYPT_GENSALT if libcrypt has crypt_gensalt function
+#
 # Revision 1.40  2023-06-28 12:30:30+05:30  Cprogrammer
 # added check header netinet/in.h
 #
@@ -121,7 +124,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.40 2023-06-28 12:30:30+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.41 2023-07-16 13:51:55+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/mbhangui/libqmail])
@@ -171,8 +174,10 @@ case "$host" in
 esac
 
 dnl Checks for header files.
-AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h signal.h stdint.h stddef.h endian.h netdb.h sodium.h)
-AC_CHECK_HEADERS(varargs.h regex.h sys/types.h sys/stat.h sys/wait.h sys/file.h sys/time.h sys/endian.h netinet/in.h arpa/inet.h sys/socket.h sys/un.h)
+AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h)
+AC_CHECK_HEADERS(crypt.h signal.h stdint.h stddef.h endian.h netdb.h sodium.h)
+AC_CHECK_HEADERS(varargs.h regex.h sys/types.h sys/stat.h sys/wait.h sys/file.h)
+AC_CHECK_HEADERS(sys/time.h sys/endian.h netinet/in.h arpa/inet.h sys/socket.h sys/un.h)
 
 AC_CHECK_FUNCS(flock arc4random)
 
@@ -185,6 +190,7 @@ AC_CHECK_LIB(ssl, TLSv1_2_client_method, [AC_DEFINE([TLSV1_2_CLIENT_METHOD], [1]
 AC_CHECK_LIB(ssl, TLSv1_2_server_method, [AC_DEFINE([TLSV1_2_SERVER_METHOD], [1],[TLSV1_2 Server Method])],)
 AC_CHECK_LIB(crypto, CRYPTO_new_ex_data, [AC_SUBST([LIB_CRYPTO], ["-lcrypto"]) AC_DEFINE([HAVE_CRYPTO], [1],[Crypto Library])],,-lcrypto)
 AC_CHECK_LIB(crypt, crypt, [AC_SUBST([LIB_CRYPT], ["-lcrypt"]) AC_DEFINE([HAVE_CRYPT], [1],[crypt Library])],,)
+AC_CHECK_LIB(crypt, crypt_gensalt, [AC_DEFINE([HAVE_CRYPT_GENSALT], [1],[crypt_gensalt Method])],)
 AC_CHECK_LIB(sodium, sodium_init, [AC_SUBST([LIB_SODIUM], ["-lsodium"]) AC_DEFINE([HAVE_SODIUM], [1],[Sodium Library])],,-lsodium)
 
 if test x$prefix = xNONE
@@ -241,8 +247,9 @@ AC_SUBST(des_hash, 0)
 AC_SUBST(md5_hash, 1)
 AC_SUBST(sha256_hash, 2)
 AC_SUBST(sha512_hash, 3)
+AC_SUBST(yescrypt_hash, 4)
 AC_ARG_ENABLE(passwd-hash,
-	[--enable-passwd-hash=des|md5|sha256|sha512|system Passwd Hash (des - DES, md5 - MD5, sha256 - SHA256, sha512 - SHA512, system)],
+	[--enable-passwd-hash=des|md5|sha256|sha512|yescrypt|system Passwd Hash (des - DES, md5 - MD5, sha256 - SHA256, sha512 - SHA512, system)],
 	pwdhash=$enableval,
 	[
 	 pwdhash=sha256
@@ -250,29 +257,35 @@ AC_ARG_ENABLE(passwd-hash,
 case $pwdhash in
 	des)
 	AC_SUBST(PASSWORD_HASH, $des_hash)
-	AC_DEFINE_UNQUOTED(PASSWORD_HASH, [$des_hash],    Default DES Encryption for makesalt)
+	AC_DEFINE_UNQUOTED(PASSWORD_HASH, [$des_hash],     Default DES Encryption for makesalt)
 	;;
 	md5)
 	AC_SUBST(PASSWORD_HASH, $md5_hash)
-	AC_DEFINE_UNQUOTED(PASSWORD_HASH, [$md5_hash],    Default MD5 Encryption for makesalt)
+	AC_DEFINE_UNQUOTED(PASSWORD_HASH, [$md5_hash],     Default MD5 Encryption for makesalt)
 	;;
 	sha256)
 	AC_SUBST(PASSWORD_HASH, $sha256_hash)
-	AC_DEFINE_UNQUOTED(PASSWORD_HASH, [$sha256_hash], Default SHA256 Encryption for makesalt)
+	AC_DEFINE_UNQUOTED(PASSWORD_HASH, [$sha256_hash],  Default SHA256 Encryption for makesalt)
 	;;
 	sha512)
 	AC_SUBST(PASSWORD_HASH, $sha512_hash)
-	AC_DEFINE_UNQUOTED(PASSWORD_HASH, [$sha512_hash], Default SHA512 Encryption for makesalt)
+	AC_DEFINE_UNQUOTED(PASSWORD_HASH, [$sha512_hash],  Default SHA512 Encryption for makesalt)
+	;;
+	yescrypt)
+	AC_SUBST(PASSWORD_HASH, $yescrypt_hash)
+	AC_DEFINE_UNQUOTED(PASSWORD_HASH, [$yescrypt_hash], Default YESCRYPT Encryption for makesalt)
 	;;
 	system)
 	AC_SUBST(PASSWORD_HASH, -1)
 	AC_DEFINE_UNQUOTED(PASSWORD_HASH, [-1], default makesalt crypt encryption)
 	;;
 esac
-AC_DEFINE_UNQUOTED([DES_HASH],    [$des_hash],    hash method identifier for DES_HASH)
-AC_DEFINE_UNQUOTED([MD5_HASH],    [$md5_hash],    hash method identifier for MD5_HASH)
-AC_DEFINE_UNQUOTED([SHA256_HASH], [$sha256_hash], hash method identifier for SHA256_HASH)
-AC_DEFINE_UNQUOTED([SHA512_HASH], [$sha512_hash], hash method identifier for SHA512_HASH)
+AC_DEFINE_UNQUOTED([DES_HASH],      [$des_hash],      hash method identifier for DES_HASH)
+AC_DEFINE_UNQUOTED([MD5_HASH],      [$md5_hash],      hash method identifier for MD5_HASH)
+AC_DEFINE_UNQUOTED([SHA256_HASH],   [$sha256_hash],   hash method identifier for SHA256_HASH)
+AC_DEFINE_UNQUOTED([SHA512_HASH],   [$sha512_hash],   hash method identifier for SHA512_HASH)
+AC_DEFINE_UNQUOTED([YESCRYPT_HASH], [$yescrypt_hash], hash method identifier for YESCRYPT_HASH)
+
 AC_DEFINE_UNQUOTED([SYSCONFDIR], "$sysconfdir", Directory for leapsecs.dat)
 
 dnl **********************************************************************
@@ -353,19 +366,22 @@ AC_OUTPUT
 
 case $pwdhash in
 	des)
-echo "     Password Hash = DES --enable-password-hash=des"
+	echo "     Password Hash = DES --enable-password-hash=des"
 	;;
 	md5)
-echo "     Password Hash = MD5 --enable-password-hash=md5"
+	echo "     Password Hash = MD5 --enable-password-hash=md5"
 	;;
 	sha256)
-echo "     Password Hash = SHA256 --enable-password-hash=sha256"
+	echo "     Password Hash = SHA256 --enable-password-hash=sha256"
 	;;
 	sha512)
-echo "     Password Hash = SHA512 --enable-password-hash=sha512"
+	echo "     Password Hash = SHA512 --enable-password-hash=sha512"
+	;;
+	yescrypt)
+	echo "     Password Hash = YESCRYPT --enable-password-hash=yescrypt"
 	;;
 	system)
-echo "     Password Hash = system --enable-password-hash=system"
+	echo "     Password Hash = system --enable-password-hash=system"
 	;;
 esac
 
