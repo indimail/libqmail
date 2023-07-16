@@ -56,7 +56,7 @@ flush()
 }
 
 /*
- * testlogin   - usernamae
+ * testlogin   - username
  * localpw     - password from db
  * challenge   - CRAM (challenge = challenge from server). For non-CRAM challenge = NULL
  * response    - CRAM (response  = response  from client). For non-CRAM challenge = password input from user
