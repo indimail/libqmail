@@ -14,6 +14,7 @@
 #define MD5_HASH       @md5_hash@
 #define SHA256_HASH    @sha256_hash@
 #define SHA512_HASH    @sha512_hash@
+#define YESCRYPT_HASH  @yescrypt_hash@
 #define PASSWORD_HASH  @PASSWORD_HASH@
 
 #endif

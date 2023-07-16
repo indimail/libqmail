@@ -243,13 +243,14 @@ AC_ARG_ENABLE(ENABLE_SHA512_CRYPT, [  --enable-sha512-crypt         if your syst
 test "$with_sha512crypt" = "no" && AC_DEFINE(ENABLE_SHA512_CRYPT,1,Define if you want sha512 crypt support compiled in)
 AM_CONDITIONAL(ENABLE_SHA512_CRYPT, test "$with_sha512crypt" = yes)
 
+dnl this goes into hashmethods.h
 AC_SUBST(des_hash, 0)
 AC_SUBST(md5_hash, 1)
 AC_SUBST(sha256_hash, 2)
 AC_SUBST(sha512_hash, 3)
 AC_SUBST(yescrypt_hash, 4)
 AC_ARG_ENABLE(passwd-hash,
-	[--enable-passwd-hash=des|md5|sha256|sha512|yescrypt|system Passwd Hash (des - DES, md5 - MD5, sha256 - SHA256, sha512 - SHA512, system)],
+	[--enable-passwd-hash=des|md5|sha256|sha512|yescrypt|system Passwd Hash (des - DES, md5 - MD5, sha256 - SHA256, sha512 - SHA512, yescrypt - YESCRYPT, system)],
 	pwdhash=$enableval,
 	[
 	 pwdhash=sha256
