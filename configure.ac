@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.42  2023-08-06 09:25:08+05:30  Cprogrammer
+# added YESCRYPT
+#
 # Revision 1.41  2023-07-16 13:51:55+05:30  Cprogrammer
 # define HAVE_CRYPT_GENSALT if libcrypt has crypt_gensalt function
 #
@@ -124,7 +127,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.41 2023-07-16 13:51:55+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.42 2023-08-06 09:25:08+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/mbhangui/libqmail])
