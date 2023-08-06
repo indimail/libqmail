@@ -1,36 +1,5 @@
 /*
- * $Log: strerr.h,v $
- * Revision 1.11  2021-09-12 18:41:20+05:30  Cprogrammer
- * renamed noreturn to no_return
- *
- * Revision 1.10  2021-08-29 21:41:59+05:30  Cprogrammer
- * use noreturn.h header
- *
- * Revision 1.9  2021-08-24 11:17:28+05:30  Cprogrammer
- * added additional members to struct strerr
- *
- * Revision 1.8  2021-06-30 14:16:15+05:30  Cprogrammer
- * added STRERR2, STRERR3, STRERR_SYS2 macros
- *
- * Revision 1.7  2020-11-24 13:34:28+05:30  Cprogrammer
- * added noreturn attribute for strerr_die()
- *
- * Revision 1.6  2020-11-22 23:53:39+05:30  Cprogrammer
- * use const keyword
- *
- * Revision 1.5  2019-06-24 21:28:40+05:30  Cprogrammer
- * added more sterr_warnx, strerr_diex macros
- *
- * Revision 1.4  2004-10-21 21:50:27+05:30  Cprogrammer
- * added strerr_warn8,strerr_warn7,strerr_die8,strerr_die7,strerr_die8sys,strerr_die7sys,
- * strerr_die8x,strerr_die7x
- *
- * Revision 1.3  2004-10-11 14:09:04+05:30  Cprogrammer
- * added function prototypes
- *
- * Revision 1.2  2004-06-18 23:01:58+05:30  Cprogrammer
- * added RCS log
- *
+ * $Id: strerr.h,v 1.12 2023-08-06 09:28:27+05:30 Cprogrammer Exp mbhangui $
  */
 #ifndef STRERR_H
 #define STRERR_H
@@ -61,26 +30,26 @@ no_return void  strerr_die(int, c_char *, c_char *, c_char *, c_char *,
 					c_char *, c_char *, struct strerr *);
 
 #define STRERR(r,se,a) \
-{ se.who = 0; se.v = a; se.w = 0; se.x = 0; se.y = 0; se.z = 0; return r; }
+{ se.who = 0; se.v = (a); se.w = 0; se.x = 0; se.y = 0; se.z = 0; return r; }
 #define STRERR2(r,se,a,b) \
-{ se.who = 0; se.v = a; se.w = b; se.x = 0; se.y = 0; se.z = 0; return r; }
+{ se.who = 0; se.v = (a); se.w = (b); se.x = 0; se.y = 0; se.z = 0; return r; }
 #define STRERR3(r,se,a,b,c) \
-{ se.who = 0; se.v = a; se.w = b; se.x = c; se.y = 0; se.z = 0; return r; }
+{ se.who = 0; se.v = (a); se.w = (b); se.x = (c); se.y = 0; se.z = 0; return r; }
 #define STRERR4(r,se,a,b,c,d) \
-{ se.who = 0; se.v = a; se.w = b; se.x = c; se.y = d; se.z = 0; return r; }
+{ se.who = 0; se.v = (a); se.w = (b); se.x = (c); se.y = (d); se.z = 0; return r; }
 #define STRERR5(r,se,a,b,c,d,e) \
-{ se.who = 0; se.v = a; se.w = b; se.x = c; se.y = d; se.z = e; return r; }
+{ se.who = 0; se.v = (a); se.w = (b); se.x = (c); se.y = (d); se.z = (e); return r; }
 
 #define STRERR_SYS(r,se,a) \
-{ se.who = &strerr_sys; se.v = a; se.w = 0; se.x = 0; se.y = 0; se.z = 0; return r; }
+{ se.who = &strerr_sys; se.v = (a); se.w = 0; se.x = 0; se.y = 0; se.z = 0; return r; }
 #define STRERR_SYS2(r,se,a,b) \
-{ se.who = &strerr_sys; se.v = a; se.w = b; se.x = 0; se.y = 0; se.z = 0; return r; }
+{ se.who = &strerr_sys; se.v = (a); se.w = (b); se.x = 0; se.y = 0; se.z = 0; return r; }
 #define STRERR_SYS3(r,se,a,b,c) \
-{ se.who = &strerr_sys; se.v = a; se.w = b; se.x = c; se.y = 0; se.z = 0; return r; }
+{ se.who = &strerr_sys; se.v = (a); se.w = (b); se.x = (c); se.y = 0; se.z = 0; return r; }
 #define STRERR_SYS4(r,se,a,b,c,d) \
-{ se.who = &strerr_sys; se.v = a; se.w = b; se.x = c; se.y = d; se.z = 0; return r; }
+{ se.who = &strerr_sys; se.v = (a); se.w = (b); se.x = (c); se.y = (d); se.z = 0; return r; }
 #define STRERR_SYS5(r,se,a,b,c,d,e) \
-{ se.who = &strerr_sys; se.v = a; se.w = b; se.x = c; se.y = d; se.z = e; return r; }
+{ se.who = &strerr_sys; se.v = (a); se.w = (b); se.x = (c); se.y = (d); se.z = (e); return r; }
 
 #define strerr_warn16(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15,x16,se) \
 strerr_warn((x1),(x2),(x3),(x4),(x5),(x6),(x7),(x8),(x9),(x10),(x11),(x12),(x13),(x14),(x15),(x16),(struct strerr *) (se))
@@ -215,3 +184,41 @@ strerr_die((e),(x1),(x2),(c_char *)0,(c_char *)0,(c_char *)0,(c_char *)0,(c_char
 strerr_die((e),(x1),(c_char *)0,(c_char *)0,(c_char *)0,(c_char *)0,(c_char *)0,(c_char *)0,(c_char *)0,(c_char *)0,(c_char *)0,(c_char *)0,(c_char *)0,(c_char *)0,(c_char *)0,(c_char *)0,(c_char *)0,(struct strerr *)0)
 
 #endif
+
+/*
+ * $Log: strerr.h,v $
+ * Revision 1.12  2023-08-06 09:28:27+05:30  Cprogrammer
+ * protect STRERR, STRERR_SYS macro parameters
+ *
+ * Revision 1.11  2021-09-12 18:41:20+05:30  Cprogrammer
+ * renamed noreturn to no_return
+ *
+ * Revision 1.10  2021-08-29 21:41:59+05:30  Cprogrammer
+ * use noreturn.h header
+ *
+ * Revision 1.9  2021-08-24 11:17:28+05:30  Cprogrammer
+ * added additional members to struct strerr
+ *
+ * Revision 1.8  2021-06-30 14:16:15+05:30  Cprogrammer
+ * added STRERR2, STRERR3, STRERR_SYS2 macros
+ *
+ * Revision 1.7  2020-11-24 13:34:28+05:30  Cprogrammer
+ * added noreturn attribute for strerr_die()
+ *
+ * Revision 1.6  2020-11-22 23:53:39+05:30  Cprogrammer
+ * use const keyword
+ *
+ * Revision 1.5  2019-06-24 21:28:40+05:30  Cprogrammer
+ * added more sterr_warnx, strerr_diex macros
+ *
+ * Revision 1.4  2004-10-21 21:50:27+05:30  Cprogrammer
+ * added strerr_warn8,strerr_warn7,strerr_die8,strerr_die7,strerr_die8sys,strerr_die7sys,
+ * strerr_die8x,strerr_die7x
+ *
+ * Revision 1.3  2004-10-11 14:09:04+05:30  Cprogrammer
+ * added function prototypes
+ *
+ * Revision 1.2  2004-06-18 23:01:58+05:30  Cprogrammer
+ * added RCS log
+ *
+ */

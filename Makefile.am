@@ -1,7 +1,7 @@
 COFLAGS=-z+05:30
 ACLOCAL_AMFLAGS=-I m4
 
-DEFS=@DEFS@ -I. -Ibase -Iarray -Itextcode -Isocket -Issl
+DEFS=@DEFS@ -I. -Ibase -Iarray -Itextcode -Isocket -Itls
 
 libqmail_LTLIBRARIES = libqmail.la
 libqmail_la_SOURCES = $(COMMONSOURCES)
@@ -100,7 +100,7 @@ include_HEADERS = base/alloc.h base/allwrite.h base/arc4random.h \
 	array/array.h textcode/entities.h textcode/textcode.h base/likely.h \
 	base/iarray.h base/safemult.h base/rangecheck.h socket/tcpbind.h \
 	base/valid_password_chars.h socket/tcpopen.h socket/udpopen.h socket/tcpremoteip.h \
-	base/qdirname.h ssl/tls.h qmailconfig.h
+	base/qdirname.h tls/tls.h qmailconfig.h
 
 includedir=@prefix@/include/qmail
 COMMONSOURCES = base/alloc.c base/alloc_re.c base/allwrite.c base/arc4random.c \
@@ -192,7 +192,7 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/allwrite.c base/arc4random.c \
 	mult/range_str2inbuf.c mult/range_str4inbuf.c mult/range_strinbuf.c \
 	mult/umult16.c mult/umult32.c mult/umult64.c \
 	socket/tcpbind.c socket/tcpopen.c socket/udpopen.c socket/tcpremoteip.c \
-	ssl/tls.c
+	tls/tls.c
 
 edit = sed \
 	-e 's}@PACKAGE\@}$(PACKAGE)}g' \
@@ -540,7 +540,7 @@ base/subfd.h base/strerr.h
 socket/udpopen.o: socket/udpopen.c socket/haveip6.h base/subfd.h \
 base/strerr.h base/fmt.h base/byte.h
 
-ssl/tls.lo: ssl/tls.h
+tls/tls.lo: tls/tls.h
 
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 libtool: $(LIBTOOL_DEPS)

@@ -1,5 +1,5 @@
 /*
- * $Id: tls.h,v 1.1 2023-01-02 22:41:27+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tls.h,v 1.2 2023-08-06 11:15:39+05:30 Cprogrammer Exp mbhangui $
  */
 #ifndef _TLS_H
 #define _TLS_H
@@ -7,9 +7,11 @@
 #if defined(HAVE_SSL) || defined(TLS)
 #include <openssl/ssl.h>
 #endif
+#include <strerr.h>
 
 enum tlsmode  {none = 0, client = 1, server = 2, qsmtpd = 3, qremote = 4};
 enum starttls {smtp, pop3, unknown};
+extern struct strerr strerr_tls;
 
 ssize_t         tlsread(int, char *, size_t, long);
 ssize_t         tlswrite(int, char *, size_t, long);
@@ -47,6 +49,9 @@ EVP_PKEY       *get_dhkey(int, int, char *);
 
 /*
  * $Log: tls.h,v $
+ * Revision 1.2  2023-08-06 11:15:39+05:30  Cprogrammer
+ * store ssl, system error for tlsread, tlswrite in strerr_tls structure
+ *
  * Revision 1.1  2023-01-02 22:41:27+05:30  Cprogrammer
  * Initial revision
  *

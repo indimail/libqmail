@@ -1,5 +1,5 @@
 /*
- * $Id: tls.c,v 1.7 2023-02-15 16:55:41+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tls.c,v 1.8 2023-08-06 09:46:21+05:30 Cprogrammer Exp mbhangui $
  *
  * ssl_timeoutio functions froms from Frederik Vermeulen's
  * tls patch for qmail
@@ -34,7 +34,7 @@
 #include "tls.h"
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tls.c,v 1.7 2023-02-15 16:55:41+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: tls.c,v 1.8 2023-08-06 09:46:21+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #ifdef HAVE_SSL
@@ -44,6 +44,7 @@ static SSL     *ssl_t;
 static int      efd = -1, ssl_rfd = -1, ssl_wfd = -1; /*- SSL_get_fd() are broken */
 static char     do_shutdown;
 static char    *certdir;
+struct strerr   strerr_tls;
 
 void
 set_essential_fd(int fd)
@@ -841,7 +842,7 @@ ssl_timeoutio(int (*fun) (), long t, int rfd, int wfd, SSL *myssl, char *buf, si
 		switch (SSL_get_error(myssl, r))
 		{
 		default: /*- SSL_accept(), SSL_connect() will return here */
-			return r; /*- some other error */
+			return r; /*- some other error. See man SSL_read(3ossl), SSL_write(3ossl), etc */
 		case SSL_ERROR_WANT_READ:
 			if (errno == EAGAIN && usessl == client && fun == SSL_read && efd != -1)
 				FD_SET(efd, &fds);
@@ -1112,10 +1113,16 @@ tlsread(int fd, char *buf, size_t len, long timeout)
 			if (errno == EAGAIN || errno == ETIMEDOUT)
 				return -1;
 			sslerr_str = (char *) myssl_error_str();
-			if (sslerr_str)
-				strerr_warn2("tlsread: ", sslerr_str, errno ? &strerr_sys : 0);
+			if (sslerr_str && errno)
+				STRERR4(r, strerr_tls, "ssl_err: ", sslerr_str, "sys_err: ", error_str(errno))
 			else
-				strerr_warn1("tlsread: ", errno ? &strerr_sys : 0);
+			if (sslerr_str)
+				STRERR2(r, strerr_tls, "ssl_err: ", sslerr_str)
+			else
+			if (errno)
+				STRERR2(r, strerr_tls, "sys_err: ", error_str(errno))
+			else
+				STRERR(r, strerr_tls, "tls/sys_err: Unknown error")
 		}
 	} else
 		r = timeoutread(timeout, fd, buf, len);
@@ -1136,10 +1143,16 @@ tlswrite(int fd, char *buf, size_t len, long timeout)
 			if (errno == EAGAIN || errno == ETIMEDOUT)
 				return -1;
 			sslerr_str = (char *) myssl_error_str();
-			if (sslerr_str)
-				strerr_warn3("tlswrite: ", sslerr_str, ": ", errno ? &strerr_sys : 0);
+			if (sslerr_str && errno)
+				STRERR4(r, strerr_tls, "ssl_err: ", sslerr_str, "sys_err: ", error_str(errno))
 			else
-				strerr_warn1("tlswrite: ", errno ? &strerr_sys : 0);
+			if (sslerr_str)
+				STRERR2(r, strerr_tls, "ssl_err: ", sslerr_str)
+			else
+			if (errno)
+				STRERR2(r, strerr_tls, "sys_err: ", error_str(errno))
+			else
+				STRERR(r, strerr_tls, "tls/sys_err: Unknown error")
 		}
 	} else
 		r = timeoutwrite(timeout, fd, buf, len);
@@ -1160,6 +1173,9 @@ getversion_tls_c()
 
 /*
  * $Log: tls.c,v $
+ * Revision 1.8  2023-08-06 09:46:21+05:30  Cprogrammer
+ * store ssl, system error for tlsread, tlswrite in strerr_tls structure
+ *
  * Revision 1.7  2023-02-15 16:55:41+05:30  Cprogrammer
  * self generate rsa/dh parameters if rsa/dh files are missing or unreadable
  *
