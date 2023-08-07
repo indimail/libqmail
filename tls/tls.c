@@ -1,5 +1,5 @@
 /*
- * $Id: tls.c,v 1.8 2023-08-06 09:46:21+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tls.c,v 1.8 2023-08-07 23:44:54+05:30 Cprogrammer Exp mbhangui $
  *
  * ssl_timeoutio functions froms from Frederik Vermeulen's
  * tls patch for qmail
@@ -34,7 +34,7 @@
 #include "tls.h"
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tls.c,v 1.8 2023-08-06 09:46:21+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: tls.c,v 1.8 2023-08-07 23:44:54+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #ifdef HAVE_SSL
@@ -1114,7 +1114,7 @@ tlsread(int fd, char *buf, size_t len, long timeout)
 				return -1;
 			sslerr_str = (char *) myssl_error_str();
 			if (sslerr_str && errno)
-				STRERR4(r, strerr_tls, "ssl_err: ", sslerr_str, "sys_err: ", error_str(errno))
+				STRERR_SYS2(r, strerr_tls, "ssl_err: ", sslerr_str)
 			else
 			if (sslerr_str)
 				STRERR2(r, strerr_tls, "ssl_err: ", sslerr_str)
@@ -1144,7 +1144,7 @@ tlswrite(int fd, char *buf, size_t len, long timeout)
 				return -1;
 			sslerr_str = (char *) myssl_error_str();
 			if (sslerr_str && errno)
-				STRERR4(r, strerr_tls, "ssl_err: ", sslerr_str, "sys_err: ", error_str(errno))
+				STRERR_SYS2(r, strerr_tls, "ssl_err: ", sslerr_str)
 			else
 			if (sslerr_str)
 				STRERR2(r, strerr_tls, "ssl_err: ", sslerr_str)
@@ -1173,7 +1173,7 @@ getversion_tls_c()
 
 /*
  * $Log: tls.c,v $
- * Revision 1.8  2023-08-06 09:46:21+05:30  Cprogrammer
+ * Revision 1.8  2023-08-07 23:44:54+05:30  Cprogrammer
  * store ssl, system error for tlsread, tlswrite in strerr_tls structure
  *
  * Revision 1.7  2023-02-15 16:55:41+05:30  Cprogrammer
