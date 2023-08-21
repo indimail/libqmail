@@ -1,5 +1,5 @@
 /*
- * $Id: tls.h,v 1.2 2023-08-06 11:15:39+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tls.h,v 1.4 2023-08-22 00:57:26+05:30 Cprogrammer Exp mbhangui $
  */
 #ifndef _TLS_H
 #define _TLS_H
@@ -17,7 +17,10 @@ ssize_t         tlsread(int, char *, size_t, long);
 ssize_t         tlswrite(int, char *, size_t, long);
 #if defined(HAVE_SSL) || defined(TLS)
 SSL_CTX        *tls_init(char *, char *, char *, char *, char *, enum tlsmode);
-SSL_CTX        *set_tls_method(char *, enum tlsmode, int *);
+int             get_tls_method(char *);
+int             sslvstr_to_method(char *);
+int             sslmethod_to_version(int);
+SSL_CTX        *set_tls_method(char *, int *, enum tlsmode, int *);
 void            set_rsa_dh(SSL_CTX *);
 SSL            *tls_session(SSL_CTX *, int);
 int             tls_connect(int, int, int, SSL *, char *);
@@ -49,6 +52,13 @@ EVP_PKEY       *get_dhkey(int, int, char *);
 
 /*
  * $Log: tls.h,v $
+ * Revision 1.4  2023-08-22 00:57:26+05:30  Cprogrammer
+ * added sslvstr_to_method, sslmethod_to_version functions
+ *
+ * Revision 1.3  2023-08-19 12:06:52+05:30  Cprogrammer
+ * added get_tls_method function
+ * added pointer to tls method variable as a new argument to tls_set_method()
+ *
  * Revision 1.2  2023-08-06 11:15:39+05:30  Cprogrammer
  * store ssl, system error for tlsread, tlswrite in strerr_tls structure
  *

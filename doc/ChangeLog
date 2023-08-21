@@ -18,6 +18,16 @@ Release @version@-@release@ Start 24/04/2023 End XX/XX/XXXX
 09. base/strerr.h: protect STRERR, STRERR_SYS macro parameters
 10. tls/tls.c, tls/tls.h: store ssl, system error for tlsread, tlswrite in
     strerr_tls structure
+- 21/08/2023
+11. tls/tls.c: added get_tls_method function
+12. tls/tls.c: use SSL_CTX_set_ciphersuites() for TLSv1_3 and above instead of SSL_CTX_set_cipher_list()
+13. tls/tls.c: pass pointer to tls method in set_tls_method()
+14. tls/tls.c: set default cipher PROFILE=SYSTEM only for TLSv1_2 and below
+15. tls/tls.h: added get_tls_method function
+16. tls/tls.h: added pointer to tls method variable as a new argument to tls_set_method()
+17. tls/tls.c: adjusted OPENSSL_VERSION_NUMBER for TLSv1_3
+18. tls/tls.c: corrected bug invalid cipher caused SIGSEGV
+19. tls/tls.c: tlsclientmethod, tlsservermethod can have min:max as version
 
 * Sun Apr 23 2023 16:55:15 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1.3-1.1%{?dist}
 Release 1.1.3-1.1 Start 08/02/2023 End 23/04/2023

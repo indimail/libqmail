@@ -1,5 +1,5 @@
 /*
- * $Id: tls.c,v 1.8 2023-08-07 23:44:54+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tls.c,v 1.9 2023-08-22 00:55:37+05:30 Cprogrammer Exp mbhangui $
  *
  * ssl_timeoutio functions froms from Frederik Vermeulen's
  * tls patch for qmail
@@ -34,7 +34,7 @@
 #include "tls.h"
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tls.c,v 1.8 2023-08-07 23:44:54+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: tls.c,v 1.9 2023-08-22 00:55:37+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #ifdef HAVE_SSL
@@ -383,110 +383,248 @@ check_cert(SSL *myssl, char *host)
 	return (0);
 }
 
+/*
+ * gets the highest supported verison
+ */
+int
+get_tls_method(char *vstr)
+{
+	if (!vstr) {
+#if OPENSSL_VERSION_NUMBER >= 0x1010107f
+		/*- (1,2 unused) 3=SSLv3, 4 = TLSv1, 5=TLSv1.1, 6=TLSv1.2, 7=TLSv1.3 */
+		return 7;
+#elif OPENSSL_VERSION_NUMBER >= 0x10100000L
+		/*- (1 unused) 2 = SSLv23, 3=SSLv3, 4 = TLSv1, 5=TLSv1.1, 6=TLSv1.2 */
+		return 6;
+#else
+		return 3;
+#endif
+	}
+	return (sslvstr_to_method(vstr));
+}
+
+/*
+ * convert ssl version string to libqmail numerical number
+ * representing ssl/tls version (1, 2, 3, 4, ...)
+ */
+int
+sslvstr_to_method(char *vstr)
+{
+	int             i = 0;
+	char           *p;
+
+	i = str_chr(vstr, ':');
+	if (vstr[i]) {
+		if (vstr[i + 1])
+			p = vstr + i + 1;
+		else {
+#if OPENSSL_VERSION_NUMBER >= 0x1010107f
+			return 7;
+#elif OPENSSL_VERSION_NUMBER >= 0x10100000L
+			return 6;
+#else
+			return 3;
+#endif
+		}
+	} else
+		p = vstr;
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
+	if (str_equal(p, "SSLv23"))
+		return 2;
+	else
+	if (str_equal(p, "SSLv3"))
+		return 3;
+	else
+#endif
+	if (str_equal(p, "TLSv1"))
+		return 4;
+	else
+	if (str_equal(p, "TLSv1_1"))
+		return 5;
+	else
+	if (str_equal(p, "TLSv1_2"))
+		return 6;
+#if OPENSSL_VERSION_NUMBER >= 0x1010107f
+	else
+	if (str_equal(p, "TLSv1_3"))
+		return 7;
+#endif
+	else
+		return -1;
+}
+
+/*
+ * convert libqmail ssl numerical version
+ * to SSL/TLS VERSION
+ */
+int
+sslmethod_to_version(int method)
+{
+	switch (method)
+	{
+	case 2:
+		return SSL2_VERSION;
+	case 3:
+		return SSL3_VERSION;
+	case 4:
+		return TLS1_VERSION;
+	case 5:
+		return TLS1_1_VERSION;
+	case 6:
+		return TLS1_2_VERSION;
+		break;
+#if OPENSSL_VERSION_NUMBER >= 0x1010107f
+	case 7:
+		return TLS1_3_VERSION;
+#endif
+	}
+	return 0;
+}
+
+static void
+print_invalid_method(char *sslver)
+{
+	strerr_warn3("tls_method: Invalid TLS method configured [", sslver ? sslver : "[", "]", 0);
+#if OPENSSL_VERSION_NUMBER >= 0x1010107f
+	strerr_warn1("tls_method: Supported methods: SSLv23, SSLv3, TLSv1, TLSv1_1, TLSv1_2, TLSv1_3", 0);
+#elif OPENSSL_VERSION_NUMBER >= 0x10100000L
+	strerr_warn1("tls_method: Supported methods: SSLv23, SSLv3, TLSv1, TLSv1_1, TLSv1_2", 0);
+#else
+	strerr_warn1("tls_method: Supported methods: SSLv23, SSLv3", 0);
+#endif
+	return;
+}
+
 SSL_CTX        *
-set_tls_method(char *ssl_option, enum tlsmode tmode, int *method_fail)
+set_tls_method(char *ssl_option, int *method, enum tlsmode tmode, int *method_fail)
 {
 	SSL_CTX        *ctx;
-#if OPENSSL_VERSION_NUMBER < 0x10100000L
-	int             method = 4;	/*- (1 unused) 2 = SSLv23, 3=SSLv3, 4 = TLSv1, 5=TLSv1.1, 6=TLSv1.2 */
-#else
-	int             method = 0;	/*- (1,2 unused) 3=SSLv3, 4 = TLSv1, 5=TLSv1.1, 6=TLSv1.2, 7=TLSv1.3 */
+	int             i = 0;
+	int             min_version = 0, max_version = 0;
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+	int             t;
 #endif
 
-	if (ssl_option) {
-#if OPENSSL_VERSION_NUMBER < 0x10100000L
-		if (str_equal(ssl_option, "SSLv23"))
-			method = 2;
-		else
-		if (str_equal(ssl_option, "SSLv3"))
-			method = 3;
-		else
-#endif
-		if (str_equal(ssl_option, "TLSv1"))
-			method = 4;
-		else
-		if (str_equal(ssl_option, "TLSv1_1"))
-			method = 5;
-		else
-		if (str_equal(ssl_option, "TLSv1_2"))
-			method = 6;
-		else
-		if (str_equal(ssl_option, "TLSv1_3"))
-			method = 7;
-		else {
-			if (method_fail) {
-				*method_fail = 1;
-				return ((SSL_CTX *) NULL);
-			}
-			strerr_warn1("tls_method: Invalid TLS method configured", 0);
-#if OPENSSL_VERSION_NUMBER < 0x10100000L
-			strerr_warn1("tls_method: Supported methods: SSLv23, SSLv3, TLSv1, TLSv1_1, TLSv1_2", 0);
+#if OPENSSL_VERSION_NUMBER < 0x1010107f
+	/*- (1 unused) 2 = SSLv23, 3=SSLv3, 4 = TLSv1, 5=TLSv1.1, 6=TLSv1.2 */
+	*method = 4;
 #else
-			strerr_warn1("tls_method: Supported methods: TLSv1, TLSv1_1, TLSv1_2 TLSv1_3", 0);
+	/*- (1,2 unused) 3=SSLv3, 4 = TLSv1, 5=TLSv1.1, 6=TLSv1.2, 7=TLSv1.3 */
+	*method = 0; /*- method = 0 -> auto */
 #endif
-			return ((SSL_CTX *) NULL);
+	if (ssl_option) {
+		i = str_chr(ssl_option, ':');
+		if (ssl_option[i]) {
+			ssl_option[i] = '\0';
+			if (i) { /* min number specified */
+				if ((t = sslvstr_to_method(ssl_option)) == -1) {
+					if (method_fail) {
+						*method_fail = 1;
+						return ((SSL_CTX *) NULL);
+					}
+					ssl_option[i] = ':';
+					print_invalid_method(ssl_option);
+					return ((SSL_CTX *) NULL);
+				}
+				min_version = sslmethod_to_version(t);
+			}
+			i++;
+			if (ssl_option[i]) { /* max number specified */
+				if ((t = sslvstr_to_method(ssl_option + i)) == -1) {
+					if (method_fail) {
+						*method_fail = 1;
+						return ((SSL_CTX *) NULL);
+					}
+					ssl_option[i - 1] = ':';
+					print_invalid_method(ssl_option);
+					return ((SSL_CTX *) NULL);
+				} else
+					*method = t;
+				max_version = sslmethod_to_version(t);
+			}
+		} else { /* version doesn't have min and max */
+			if ((t = sslvstr_to_method(ssl_option)) == -1) {
+				if (method_fail) {
+					*method_fail = 1;
+					return ((SSL_CTX *) NULL);
+				}
+				print_invalid_method(ssl_option);
+				return ((SSL_CTX *) NULL);
+			} else
+				*method = t;
+			max_version = sslmethod_to_version(t);
 		}
 	}
 	if (method_fail)
-		*method_fail = method;
+		*method_fail = *method;
 	SSL_library_init();
 	/*- a new SSL context with the bare minimum of options */
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
-	if (method == 2 && !(ctx = SSL_CTX_new(tmode == client ? SSLv23_client_method() : SSLv23_server_method()))) {
+	if (*method == 2 && !(ctx = SSL_CTX_new(tmode == client ? SSLv23_client_method() : SSLv23_server_method()))) {
 		if (!method_fail)
 			strerr_warn1("tls_method: unable to initialize SSLv23 ctx", 0);
 		return ((SSL_CTX *) NULL);
 	} else
-	if (method == 3 && !(ctx = SSL_CTX_new(tmode == client ? SSLv3_client_method() : SSLv3_server_method()))) {
+	if (*method == 3 && !(ctx = SSL_CTX_new(tmode == client ? SSLv3_client_method() : SSLv3_server_method()))) {
 		if (!method_fail)
 			strerr_warn1("tls_method: unable to initialize SSLv3 ctx", 0);
 		return ((SSL_CTX *) NULL);
 	} else
 #if (defined(TLSV1_CLIENT_METHOD) && defined(TLSv1_SERVER_METHOD)) || defined(TLS1_VERSION)
-	if (method == 4 && !(ctx = SSL_CTX_new(tmode == client ? TLSv1_client_method() : TLSv1_server_method()))) {
+	if (*method == 4 && !(ctx = SSL_CTX_new(tmode == client ? TLSv1_client_method() : TLSv1_server_method()))) {
 		if (!method_fail)
 			strerr_warn1("tls_method: unable to initialize TLSv1 ctx", 0);
 		return ((SSL_CTX *) NULL);
 	} else
 #else
-	if (method == 4) {
+	if (*method == 4) {
 		if (!method_fail)
 			strerr_warn1("tls_method: TLSv1 method not available", 0);
 		return ((SSL_CTX *) NULL);
 	} else
 #endif
 #if (defined(TLSV1_1_CLIENT_METHOD) && defined(TLSV1_1_SERVER_METHOD)) || defined(TLS1_1_VERSION)
-	if (method == 5 && !(ctx = SSL_CTX_new(tmode == client ? TLSv1_1_client_method() : TLSv1_1_server_method()))) {
+	if (*method == 5 && !(ctx = SSL_CTX_new(tmode == client ? TLSv1_1_client_method() : TLSv1_1_server_method()))) {
 		if (!method_fail)
 			strerr_warn1("tls_method: unable to initialize TLSv1_1 ctx", 0);
 		return ((SSL_CTX *) NULL);
 	} else
 #else
-	if (method == 5) {
+	if (*method == 5) {
 		if (!method_fail)
 			strerr_warn1("tls_method: TLSv1_1_server_method not available", 0);
 		return ((SSL_CTX *) NULL);
 	} else
 #endif
 #if (defined(TLSV1_2_CLIENT_METHOD) && defined(TLSV1_2_SERVER_METHOD)) || defined(TLS1_2_VERSION)
-	if (method == 6 && !(ctx = SSL_CTX_new(tmode == client ? TLSv1_2_client_method() : TLSv1_2_server_method()))) {
+	if (*method == 6 && !(ctx = SSL_CTX_new(tmode == client ? TLSv1_2_client_method() : TLSv1_2_server_method()))) {
 		if (!method_fail)
 			strerr_warn1("tls_method: unable to initialize TLSv1_2 ctx", 0);
 		return ((SSL_CTX *) NULL) ;
 	} else
 #else
-	if (method == 6) {
+	if (*method == 6) {
 		if (!method_fail)
 			strerr_warn1("tls_method: TLSv1_2_server_method not available", 0);
 		return ((SSL_CTX *) NULL) ;
 	}
 #endif
 #else /*- OPENSSL_VERSION_NUMBER >= 0x10100000L */
+	/*- (1,2 unused) 3=SSLv3, 4 = TLSv1, 5=TLSv1.1, 6=TLSv1.2, 7=TLSv1.3 */
+	if (*method < 5) {
+		if (!method_fail)
+			strerr_warn1("tls_method: SSLv23, SSLv3, TLSv1, methods not supported", 0);
+		else
+			*method_fail = 1;
+		return ((SSL_CTX *) NULL) ;
+	}
 	switch (tmode)
 	{
+	case qremote:
 	case client:
 		ctx = SSL_CTX_new(TLS_client_method());
 		break;
+	case qsmtpd:
 	case server:
 		ctx = SSL_CTX_new(TLS_server_method());
 		break;
@@ -495,36 +633,16 @@ set_tls_method(char *ssl_option, enum tlsmode tmode, int *method_fail)
 		break;
 	}
 	/*-
-	 * Currently supported versions are SSL3_VERSION, TLS1_VERSION, TLS1_1_VERSION,
+	 * Currently supported versions are
 	 * TLS1_2_VERSION, TLS1_3_VERSION for TLS
 	 */
-	switch (method)
-	{
-	case 2:
-		if (!method_fail)
-			strerr_warn1("tls_method: SSLv23_server_method not available", 0);
-		else
-			*method_fail = 1;
-		return ((SSL_CTX *) NULL) ;
-	case 3:
-		SSL_CTX_set_min_proto_version(ctx, SSL3_VERSION);
-		SSL_CTX_set_max_proto_version(ctx, SSL3_VERSION);
-		break;
-	case 4:
-		SSL_CTX_set_min_proto_version(ctx, TLS1_VERSION);
-		SSL_CTX_set_max_proto_version(ctx, TLS1_VERSION);
-		break;
-	case 5:
-		SSL_CTX_set_min_proto_version(ctx, TLS1_1_VERSION);
-		SSL_CTX_set_max_proto_version(ctx, TLS1_1_VERSION);
-		break;
-	case 6:
-		SSL_CTX_set_min_proto_version(ctx, TLS1_2_VERSION);
-		SSL_CTX_set_max_proto_version(ctx, TLS1_2_VERSION);
-		break;
+	if (*method && ctx) {
+		if (min_version)
+			SSL_CTX_set_min_proto_version(ctx, min_version);
+		SSL_CTX_set_max_proto_version(ctx, max_version);
 	}
 #endif /*- OPENSSL_VERSION_NUMBER < 0x10100000L */
-	if (method_fail)
+	if (!ctx && method_fail)
 		*method_fail = 0;
 	return ctx;
 }
@@ -534,6 +652,7 @@ tls_init(char *tls_method, char *cert, char *cafile, char *crlfile,
 		char *ciphers, enum tlsmode tmode)
 {
 	static SSL_CTX *ctx = (SSL_CTX *) NULL;
+	int             method, r;
 #if OPENSSL_VERSION_NUMBER >= 0x00907000L
 	X509_STORE     *store;
 	X509_LOOKUP    *lookup;
@@ -546,7 +665,7 @@ tls_init(char *tls_method, char *cert, char *cafile, char *crlfile,
 		return ((SSL_CTX *) NULL);
 	}
 
-	ctx = set_tls_method(tls_method, tmode, 0);
+	ctx = set_tls_method(tls_method, &method, tmode, 0);
 	if (!ctx) {
 		sslerr_str = (char *) myssl_error_str();
 		strerr_warn2("SSL_CTX_new: error initializing method: ", sslerr_str, 0);
@@ -610,12 +729,29 @@ tls_init(char *tls_method, char *cert, char *cafile, char *crlfile,
 	}
 	/*- set the callback here; SSL_set_verify didn't work before 0.9.6c */
 	SSL_CTX_set_verify(ctx, SSL_VERIFY_PEER, verify_cb);
-	/*- Set our cipher list */
+	/*-
+	 * Set our cipher list
+	 * The format of the string is described in openssl-ciphers(1)
+	 *
+	 * for method >= 7 (> TLSv1_3), default is
+	 * default is TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256
+	 */
+#if OPENSSL_VERSION_NUMBER >= 0x1010107f
+	if (method < 7 && !ciphers)
+		ciphers = "PROFILE=SYSTEM";
+	r = ciphers ? (method < 7 ? SSL_CTX_set_cipher_list : SSL_CTX_set_ciphersuites) (ctx, ciphers) : 1;
+#else
 	if (!ciphers)
 		ciphers = "PROFILE=SYSTEM";
-	if (ciphers && !SSL_CTX_set_cipher_list(ctx, ciphers)) {
+	r = SSL_CTX_set_cipher_list(ctx, ciphers);
+#endif
+	if (!r) {
 		sslerr_str = (char *) myssl_error_str();
-		strerr_warn4("tls_init: unable to set ciphers: ", ciphers, ": ", sslerr_str, 0);
+#if OPENSSL_VERSION_NUMBER >= 0x1010107f
+		strerr_warn5("tls_init: unable to set cipher", method < 7 ? "list: " : "suites: ", ciphers, ": ", sslerr_str, 0);
+#else
+		strerr_warn4("tls_init: unable to set cipherlist: ", ciphers, ": ", sslerr_str, 0);
+#endif
 		SSL_CTX_free(ctx);
 		return ((SSL_CTX *) NULL);
 	}
@@ -1173,7 +1309,17 @@ getversion_tls_c()
 
 /*
  * $Log: tls.c,v $
- * Revision 1.8  2023-08-07 23:44:54+05:30  Cprogrammer
+ * Revision 1.9  2023-08-22 00:55:37+05:30  Cprogrammer
+ * added get_tls_method function
+ * use SSL_CTX_set_ciphersuites() for TLSv1_3 and above instead of SSL_CTX_set_cipher_list()
+ * pass pointer to tls method in set_tls_method()
+ * set default cipher PROFILE=SYSTEM only for TLSv1_2 and below
+ * added get_tls_method function
+ * added pointer to tls method variable as a new argument to tls_set_method()
+ * corrected bug invalid cipher caused SIGSEGV
+ * tlsclientmethod, tlsservermethod can have min:max as version
+ *
+ * Revision 1.8  2023-08-20 22:33:36+05:30  Cprogrammer
  * store ssl, system error for tlsread, tlswrite in strerr_tls structure
  *
  * Revision 1.7  2023-02-15 16:55:41+05:30  Cprogrammer
