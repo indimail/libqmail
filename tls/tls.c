@@ -1,5 +1,5 @@
 /*
- * $Id: tls.c,v 1.10 2023-08-22 18:37:03+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tls.c,v 1.9 2023-08-22 20:00:23+05:30 Cprogrammer Exp mbhangui $
  *
  * ssl_timeoutio functions froms from Frederik Vermeulen's
  * tls patch for qmail
@@ -34,7 +34,7 @@
 #include "tls.h"
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tls.c,v 1.10 2023-08-22 18:37:03+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: tls.c,v 1.9 2023-08-22 20:00:23+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #ifdef HAVE_SSL
@@ -499,10 +499,7 @@ SSL_CTX        *
 set_tls_method(char *ssl_option, int *method, enum tlsmode tmode, int *method_fail)
 {
 	SSL_CTX        *ctx = (SSL_CTX *) NULL;
-	int             i = 0, min_version = 0, max_version = 0;
-#if OPENSSL_VERSION_NUMBER >= 0x10100000L
-	int             t;
-#endif
+	int             i = 0, min_version = 0, max_version = 0, t;
 
 #if OPENSSL_VERSION_NUMBER < 0x1010107f
 	/*- (1 unused) 2 = SSLv23, 3=SSLv3, 4 = TLSv1, 5=TLSv1.1, 6=TLSv1.2 */
@@ -596,7 +593,7 @@ set_tls_method(char *ssl_option, int *method, enum tlsmode tmode, int *method_fa
 	if (*method == 5 && !(ctx = SSL_CTX_new(tmode == client ? TLSv1_1_client_method() : TLSv1_1_server_method()))) {
 		sslerr_str = (char *) myssl_error_str();
 		if (!method_fail)
-			strerr_warn1("tls_method: unable to initialize TLSv1_1 ctx: ", sslerr_str, 0);
+			strerr_warn2("tls_method: unable to initialize TLSv1_1 ctx: ", sslerr_str, 0);
 		return ((SSL_CTX *) NULL);
 	} else
 #else
@@ -611,7 +608,7 @@ set_tls_method(char *ssl_option, int *method, enum tlsmode tmode, int *method_fa
 	if (*method == 6 && !(ctx = SSL_CTX_new(tmode == client ? TLSv1_2_client_method() : TLSv1_2_server_method()))) {
 		sslerr_str = (char *) myssl_error_str();
 		if (!method_fail)
-			strerr_warn1("tls_method: unable to initialize TLSv1_2 ctx: ", sslerr_str, 0);
+			strerr_warn2("tls_method: unable to initialize TLSv1_2 ctx: ", sslerr_str, 0);
 		return ((SSL_CTX *) NULL) ;
 	} else
 #else
@@ -1323,13 +1320,7 @@ getversion_tls_c()
 
 /*
  * $Log: tls.c,v $
- * Revision 1.10  2023-08-22 18:37:03+05:30  Cprogrammer
- * set errno = EPROTO when protocol is unavailable
- * fixed few warnings without ssl errors
- * BUG. SSL_CTX_set_cipher_list incorrectly called instead of SSL_CTX_set_ciphersuites when method is auto
- * set min/max proto version only when min/max version variable is no-zero
- *
- * Revision 1.9  2023-08-22 00:55:37+05:30  Cprogrammer
+ * Revision 1.9  2023-08-22 20:00:23+05:30  Cprogrammer
  * added get_tls_method function
  * use SSL_CTX_set_ciphersuites() for TLSv1_3 and above instead of SSL_CTX_set_cipher_list()
  * pass pointer to tls method in set_tls_method()
@@ -1338,6 +1329,11 @@ getversion_tls_c()
  * added pointer to tls method variable as a new argument to tls_set_method()
  * corrected bug invalid cipher caused SIGSEGV
  * tlsclientmethod, tlsservermethod can have min:max as version
+ * added sslvstr_to_method, sslmethod_to_version functions
+ * set errno = EPROTO when protocol is unavailable
+ * fixed few warnings without ssl errors
+ * BUG. SSL_CTX_set_cipher_list incorrectly called instead of SSL_CTX_set_ciphersuites when method is auto
+ * set min/max proto version only when min/max version variable is non-zero
  *
  * Revision 1.8  2023-08-20 22:33:36+05:30  Cprogrammer
  * store ssl, system error for tlsread, tlswrite in strerr_tls structure
