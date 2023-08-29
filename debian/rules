@@ -2,6 +2,9 @@
 
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_CFLAGS_MAINT_APPEND = "-fno-lto"
+export DEB_LDFLAGS_MAINT_APPEND = "-fno-lto"
 
 # This is the debhelper compatibility version to use.
 # export DH_COMPAT=4
