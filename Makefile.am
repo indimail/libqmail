@@ -85,16 +85,16 @@ include_HEADERS = base/alloc.h base/allwrite.h base/arc4random.h \
 	base/gen_alloc.h base/get_scram_secrets.h base/getEnvConfig.h \
 	base/getln.h base/global.h base/hasbltnofl.h base/hashmethods.h base/hmac.h \
 	base/in_crypt.h base/iopause.h base/isnum.h base/leapsecs.h \
-	base/lock.h base/makeargs.h base/makesalt.h base/md5.h base/mess822.h \
-	base/mkpasswd.h base/mktempfile.h base/ndelay.h base/noreturn.h \
-	base/now.h base/no_of_days.h base/open.h base/openreadclose.h \
-	base/pathexec.h base/prot.h base/pw_comp.h base/qgetpwgr.h \
-	base/qtime.h base/readclose.h base/replacestr.h base/rewritehost.h \
-	base/ripemd.h base/r_mkdir.h base/scan.h base/sconfig.h base/seek.h \
-	base/select.h base/setuserid.h base/sgetopt.h base/sha1.h base/sig.h \
-	base/sodium_random.h base/stralloc.h base/strerr.h base/str.h \
-	base/strmsg.h base/subfd.h base/subgetopt.h base/substdio.h \
-	base/taia.h base/tai.h base/tai2.h base/timeoutread.h \
+	base/lock.h base/makeargs.h base/makesalt.h base/matchregex.h base/md5.h \
+	base/mess822.h base/mkpasswd.h base/mktempfile.h base/ndelay.h \
+	base/noreturn.h base/now.h base/no_of_days.h base/open.h \
+	base/openreadclose.h base/pathexec.h base/prot.h base/pw_comp.h \
+	base/qgetpwgr.h base/qtime.h base/readclose.h base/replacestr.h \
+	base/rewritehost.h base/ripemd.h base/r_mkdir.h base/scan.h \
+	base/sconfig.h base/seek.h base/select.h base/setuserid.h base/sgetopt.h \
+	base/sha1.h base/sig.h base/sodium_random.h base/stralloc.h \
+	base/strerr.h base/str.h base/strmsg.h base/subfd.h base/subgetopt.h \
+	base/substdio.h base/taia.h base/tai.h base/tai2.h base/timeoutread.h \
 	base/timeoutwrite.h base/timestamp.h base/token822.h base/typesx.h \
 	base/uint16.h base/uint32.h base/uint64.h base/wait.h base/qprintf.h \
 	array/array.h textcode/entities.h textcode/textcode.h base/likely.h \
@@ -126,10 +126,10 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/allwrite.c base/arc4random.c \
 	base/hmac_sha224.c base/hmac_sha256.c base/hmac_sha384.c base/hmac_sha512.c \
 	base/in_crypt.c base/iopause.c base/isnum.c base/leapsecs_add.c \
 	base/leapsecs_init.c base/leapsecs_read.c base/leapsecs_sub.c base/lock_ex.c \
-	base/lock_exnb.c base/lock_un.c base/makeargs.c base/makesalt.c base/md5.c \
-	base/md5_crypt.c base/mess822_addr.c base/mess822_fold.c base/mess822_line.c \
-	base/mess822_quote.c base/mess822_when.c base/mess822_date.c base/mess822.h \
-	base/mess822_ok.c base/mess822_token.c base/mktempfile.c \
+	base/lock_exnb.c base/lock_un.c base/makeargs.c base/makesalt.c base/matchregex.c \
+	base/md5.c base/md5_crypt.c base/mess822_addr.c base/mess822_fold.c \
+	base/mess822_line.c base/mess822_quote.c base/mess822_when.c base/mess822_date.c \
+	base/mess822.h base/mess822_ok.c base/mess822_token.c base/mktempfile.c \
 	base/ndelay.c base/ndelay_off.c base/no_of_days.c base/now.c \
 	base/open_append.c base/open_excl.c base/open_exclr.c base/open_read.c \
 	base/open_readwrite.c base/open_trunc.c base/open_write.c \

@@ -38,6 +38,8 @@ Release @version@-@release@ Start 24/04/2023 End XX/XX/XXXX
     non-zero
 - 26/08/2023
 25. tls/tls.c: refactored tls_get_method(), tls_set_method()
+- 05/09/2023
+26. matchregex.[c,h]: added matchregex function
 
 * Sun Apr 23 2023 16:55:15 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.1.3-1.1%{?dist}
 Release 1.1.3-1.1 Start 08/02/2023 End 23/04/2023

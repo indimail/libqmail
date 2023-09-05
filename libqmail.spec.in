@@ -173,6 +173,7 @@ done
 %attr(644,root,root)                    %{_prefix}/include/qmail/lock.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/makeargs.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/makesalt.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/matchregex.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/md5.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/mess822.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/mkpasswd.h
