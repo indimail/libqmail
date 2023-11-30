@@ -1,5 +1,41 @@
 /*
+ * $Id: scan_ulong.c,v 1.8 2023-11-30 15:18:26+05:30 Cprogrammer Exp mbhangui $
+ */
+#include "scan.h"
+
+unsigned int
+scan_ulong(register const char *s, register unsigned long *u)
+{
+	register unsigned int pos;
+	register unsigned long result;
+	register unsigned long c;
+
+	pos = 0;
+	result = 0;
+	for (; s[pos]; pos++) {
+		if ((c = (unsigned long) (unsigned char) (s[pos] - '0')) >= 10) {
+			*u = result;
+			return pos;
+		}
+		result = result * 10 + c;
+	}
+	*u = result;
+	return pos;
+}
+
+void
+getversion_scan_ulong_c()
+{
+	static char    *x = "$Id: scan_ulong.c,v 1.8 2023-11-30 15:18:26+05:30 Cprogrammer Exp mbhangui $";
+
+	x++;
+}
+
+/*
  * $Log: scan_ulong.c,v $
+ * Revision 1.8  2023-11-30 15:18:26+05:30  Cprogrammer
+ * incorrect conversion when string has non-numeric characters
+ *
  * Revision 1.7  2020-11-22 23:52:18+05:30  Cprogrammer
  * use const keyword
  *
@@ -16,30 +52,3 @@
  * added RCS log
  *
  */
-#include "scan.h"
-
-unsigned int
-scan_ulong(register const char *s, register unsigned long *u)
-{
-	register unsigned int pos;
-	register unsigned long result;
-	register unsigned long c;
-
-	pos = 0;
-	result = 0;
-	while ((c = (unsigned long) (unsigned char) (s[pos] - '0')) < 10)
-	{
-		result = result * 10 + c;
-		++pos;
-	}
-	*u = result;
-	return pos;
-}
-
-void
-getversion_scan_ulong_c()
-{
-	static char    *x = "$Id: scan_ulong.c,v 1.7 2020-11-22 23:52:18+05:30 Cprogrammer Exp mbhangui $";
-
-	x++;
-}

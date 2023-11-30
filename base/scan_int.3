@@ -1,3 +1,4 @@
+.\" vim: tw=75
 .TH scan_int 3
 .SH NAME
 scan_int \- parse an integer in decimal ASCII representation
@@ -5,9 +6,17 @@ scan_int \- parse an integer in decimal ASCII representation
 .B #include <scan.h>
 
 unsigned int \fBscan_int\fP(const char *\fIsrc\fR,int *\fIdest\fR);
+
 .SH DESCRIPTION
-scan_int parses an integer in decimal ASCII representation
-from \fIsrc\fR and writes the result into \fIdest\fR. It returns the
-number of bytes read from \fIsrc\fR.
+scan_int parses an integer in decimal ASCII representation from \fIsrc\fR
+and writes the result into \fIdest\fR. It returns the number of bytes
+successfully read from \fIsrc\fR.
+
+\fIsrc\fR may begin with an arbitrary amount of white space characters
+(white space or tabs), followed by a single optional '+' or '-' sign.
+White space characters following the '+' or '-' sign are also ignored.
+Remainder of the string is converted to a int value in the obvious manner,
+stopping at the first character which is not a valid digit.
+
 .SH "SEE ALSO"
 scan_long(3), scan_xint(3), scan_8int(3), fmt_int(3)

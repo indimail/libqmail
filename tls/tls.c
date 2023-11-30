@@ -1380,7 +1380,7 @@ getversion_tls_c()
  * use SSL_pending, SSL_has_pending to read complete application data
  *
  * Revision 1.4  2023-01-07 12:53:05+05:30  Cprogrammer
- * replaced SSH_shutdown + SSL_free with ssl_free function
+ * replaced SSL_shutdown + SSL_free with ssl_free function
  *
  * Revision 1.3  2023-01-03 23:00:17+05:30  Cprogrammer
  * SSL_CTX_set_ecdh_auto supported only on openssl 1.0.2 and above
