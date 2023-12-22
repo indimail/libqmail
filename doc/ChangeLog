@@ -5,6 +5,8 @@ Release @version@-@release@ Start 30/11/2023 End --/--/----
 - 30/11/2023
 01. scan_int.c, scan_ulong.c: fix conversion when string has non-numeric
     characters
+- 22/12/2023
+02. str_spn.c: added str_spn() function
 
 * Fri Sep 08 2023 12:40:38 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.2-1.1%{?dist}
 Release 1.2-1.1 Start 24/04/2023 End 08/09/2023

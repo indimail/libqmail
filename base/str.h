@@ -1,5 +1,33 @@
 /*
+ * $Id: str.h,v 1.12 2023-12-22 18:37:34+05:30 Cprogrammer Exp mbhangui $
+ */
+#ifndef STR_H
+#define STR_H
+
+unsigned int    str_copy(char *, const char *);
+unsigned int    str_copyb(char *, const char *, unsigned int);
+int             str_diff(const char *, const char *);
+int             str_diffn(const char *, const char *, unsigned int);
+unsigned int    str_len(const char *);
+unsigned int    str_chr(const char *, int);
+char           *str_chrn(const char *, int, int);
+unsigned int    str_rchr(const char *, int);
+int             str_start(const char *, const char *);
+int             str_end(const char *, const char *);
+char           *str_str(const char *, const char *);
+#include <sys/types.h>
+size_t          str_cspn(const char *, register const char *);
+size_t          str_spn(const char *, register const char *);
+char           *str_tok(char *, const char *);
+
+#define str_equal(s,t) (!str_diff((s),(t)))
+
+#endif
+/*
  * $Log: str.h,v $
+ * Revision 1.12  2023-12-22 18:37:34+05:30  Cprogrammer
+ * added str_spn() function
+ *
  * Revision 1.11  2021-07-15 09:49:20+05:30  Cprogrammer
  * fixed prototypes for str_chr, str_chrn, str_rchr - use const char *
  *
@@ -31,24 +59,3 @@
  * added RCS log
  *
  */
-#ifndef STR_H
-#define STR_H
-
-unsigned int    str_copy(char *, const char *);
-unsigned int    str_copyb(char *, const char *, unsigned int);
-int             str_diff(const char *, const char *);
-int             str_diffn(const char *, const char *, unsigned int);
-unsigned int    str_len(const char *);
-unsigned int    str_chr(const char *, int);
-char           *str_chrn(const char *, int, int);
-unsigned int    str_rchr(const char *, int);
-int             str_start(const char *, const char *);
-int             str_end(const char *, const char *);
-char           *str_str(const char *, const char *);
-#include <sys/types.h>
-size_t          str_cspn(const char *, register const char *);
-char           *str_tok(char *, const char *);
-
-#define str_equal(s,t) (!str_diff((s),(t)))
-
-#endif

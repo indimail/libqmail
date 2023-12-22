@@ -150,23 +150,23 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/allwrite.c base/arc4random.c \
 	base/stralloc_cats.c base/stralloc_copy.c base/stralloc_eady.c \
 	base/stralloc_num.c base/stralloc_opyb.c base/stralloc_opys.c \
 	base/stralloc_pend.c base/str_chr.c base/str_chrn.c base/str_cpyb.c \
-	base/str_cpy.c base/str_cspn.c base/str_diff.c base/str_diffn.c \
-	base/str_end.c base/strerr_die.c base/strerr_sys.c base/str_len.c \
-	base/strmsg_out.c base/str_rchr.c base/str_start.c base/str_str.c \
-	base/str_tok.c base/subfderr.c base/subfdin.c base/subfdins.c \
-	base/subfdout.c base/subfdouts.c base/subgetopt.c base/substdi.c \
-	base/substdio.c base/substdio_copy.c base/substdo.c base/taia_add.c \
-	base/taia_addsec.c base/taia_approx.c base/taia_half.c base/taia_fmtfrac.c \
-	base/taia_frac.c base/taia_less.c base/taia_now.c base/taia_pack.c \
-	base/taia_sub.c base/taia_tai.c base/taia_uint.c base/taia_unpack.c \
-	base/tai64n_decode.c base/tai64n_encode.c base/tai_add.c base/tai_decode.c \
-	base/tai_encode.c base/tai_now.c base/tai_pack.c base/tai_sub.c \
-	base/tai_uint.c base/tai_unpack.c base/timeoutread.c base/timeoutwrite.c \
-	base/timestamp.c base/token822.c base/uint16_pack.c base/uint16_read.c \
-	base/uint16_unpack.c base/uint32_pack.c base/uint32_read.c \
-	base/uint32_unpack.c base/valid_password_chars.c base/wait_handler.c \
-	base/wait_nohang.c base/wait_pid.c textcode/base64url.c \
-	textcode/fmt_asn1derlength.c textcode/fmt_asn1dertag.c \
+	base/str_cpy.c base/str_spn.c base/str_cspn.c base/str_diff.c \
+	base/str_diffn.c base/str_end.c base/strerr_die.c base/strerr_sys.c \
+	base/str_len.c base/strmsg_out.c base/str_rchr.c base/str_start.c \
+	base/str_str.c base/str_tok.c base/subfderr.c base/subfdin.c \
+	base/subfdins.c base/subfdout.c base/subfdouts.c base/subgetopt.c \
+	base/substdi.c base/substdio.c base/substdio_copy.c base/substdo.c \
+	base/taia_add.c base/taia_addsec.c base/taia_approx.c base/taia_half.c \
+	base/taia_fmtfrac.c base/taia_frac.c base/taia_less.c base/taia_now.c \
+	base/taia_pack.c base/taia_sub.c base/taia_tai.c base/taia_uint.c \
+	base/taia_unpack.c base/tai64n_decode.c base/tai64n_encode.c base/tai_add.c \
+	base/tai_decode.c base/tai_encode.c base/tai_now.c base/tai_pack.c \
+	base/tai_sub.c base/tai_uint.c base/tai_unpack.c base/timeoutread.c \
+	base/timeoutwrite.c base/timestamp.c base/token822.c base/uint16_pack.c \
+	base/uint16_read.c base/uint16_unpack.c base/uint32_pack.c \
+	base/uint32_read.c base/uint32_unpack.c base/valid_password_chars.c \
+	base/wait_handler.c base/wait_nohang.c base/wait_pid.c \
+	textcode/base64url.c textcode/fmt_asn1derlength.c textcode/fmt_asn1dertag.c \
 	textcode/fmt_base64.c textcode/fmt_base64url.c textcode/fmt_cescape.c \
 	textcode/fmt_foldwhitespace.c textcode/fmt_html.c \
 	textcode/fmt_html_tagarg.c textcode/fmt_jsonescape.c \
