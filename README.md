@@ -95,8 +95,8 @@ Currently, the list of supported binary distributions for libqmail is
     * Arch Linux
 
     * SUSE
-          o openSUSE_Leap_15.3
           o openSUSE_Leap_15.4
+          o openSUSE_Leap_15.5
           o openSUSE_Tumbleweed
           o SUSE Linux Enterprise 12
           o SUSE Linux Enterprise 12 SP1
@@ -111,8 +111,8 @@ Currently, the list of supported binary distributions for libqmail is
           o SUSE Linux Enterprise 15 SP4
 
     * Red Hat
-          o Fedora 37
           o Fedora 38
+          o Fedora 39
           o Red Hat Enterprise Linux 7
           o Red Hat Enterprise Linux 8 +
           o Red Hat Enterprise Linux 9 +
@@ -136,6 +136,7 @@ Currently, the list of supported binary distributions for libqmail is
     * Debian
           o Debian 10.0
           o Debian 11.0
+          o Debian 12.0
 
     * Ubuntu
           o Ubuntu 18.04
