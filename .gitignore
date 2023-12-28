@@ -66,3 +66,5 @@ base/chkshsgr
 base/hasshsgr.h
 base/hashmethods.h
 qmailconfig.h
+.repo-build
+.repo-build.tmp
