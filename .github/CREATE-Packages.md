@@ -10,7 +10,7 @@ For this to work you need few things to be installed on your system. Check your 
 
 ```
 $ cd /usr/local/src
-$ git clone https://github.com/mbhangui/libqmail.git
+$ git clone https://github.com/indimail/libqmail.git
 $ ./create_rpm     # for RPM
 $ ./create_debian  # for deb
 $ ./create_archpkg # for zst (Arch Linux)

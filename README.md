@@ -2,12 +2,12 @@
 
 **Compilation Status (from Github Actions)**
 
-[![libqmail Ubuntu, Mac OSX](https://github.com/mbhangui/libqmail/actions/workflows/libqmail-c-cpp.yml/badge.svg)](https://github.com/mbhangui/libqmail/actions/workflows/libqmail-c-cpp.yml)
-[![libqmail FreeBSD](https://github.com/mbhangui/libqmail/actions/workflows/libqmail-freebsd.yml/badge.svg)](https://github.com/mbhangui/libqmail/actions/workflows/libqmail-freebsd.yml)
+[![libqmail Ubuntu, Mac OSX](https://github.com/indimail/libqmail/actions/workflows/libqmail-c-cpp.yml/badge.svg)](https://github.com/indimail/libqmail/actions/workflows/libqmail-c-cpp.yml)
+[![libqmail FreeBSD](https://github.com/indimail/libqmail/actions/workflows/libqmail-freebsd.yml/badge.svg)](https://github.com/indimail/libqmail/actions/workflows/libqmail-freebsd.yml)
 
 # Introduction
 
-libqmail is a library of general purpose APIs extracted from Dan Bernstein's [qmail](http://cr.yp.to/qmail.html), reimplemented and covered by the GNU General Public License Version. Many of the functions implemented here have since been placed in the public domain. Many of the functions have been generously borrowed from [libowfat](http://www.fefe.de/libowfat/). libqmail is used by [indimail-mta](https://github.com/mbhangui/indimail-mta) and it's subpackages daemontools and ucspi-tcp, [indimail-virtualdomains](https://github.com/mbhangui/indimail-virtualdomains), [ezmlm](https://github.com/mbhangui/ezmlm), [ezmlm-idx](https://github.com/mbhangui/ezmlm-idx), [tinydnssec](https://github.com/mbhangui/tinydnssec). It is also used by [mpdev](https://github.com/mbhangui/mpdev) - An event watcher for [Music Player Daemon (mpd)](https://www.musicpd.org/). The library comes with a set of man pages, though few are missing. Another thing that is missing are the DNS, ipv4 and ipv6 functions. They are in the todo list.
+libqmail is a library of general purpose APIs extracted from Dan Bernstein's [qmail](http://cr.yp.to/qmail.html), reimplemented and covered by the GNU General Public License Version. Many of the functions implemented here have since been placed in the public domain. Many of the functions have been generously borrowed from [libowfat](http://www.fefe.de/libowfat/). libqmail is used by [indimail-mta](https://github.com/indimail/indimail-mta) and it's subpackages daemontools and ucspi-tcp, [indimail-virtualdomains](https://github.com/indimail/indimail-virtualdomains), [ezmlm](https://github.com/indimail/ezmlm), [ezmlm-idx](https://github.com/indimail/ezmlm-idx), [tinydnssec](https://github.com/indimail/tinydnssec). It is also used by [mpdev](https://github.com/indimail/mpdev) - An event watcher for [Music Player Daemon (mpd)](https://www.musicpd.org/). The library comes with a set of man pages, though few are missing. Another thing that is missing are the DNS, ipv4 and ipv6 functions. They are in the todo list.
 
 # Compilation
 
@@ -57,7 +57,7 @@ LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 
 ```
 $ cd /usr/local/src
-$ git clone https://github.com/mbhangui/libqmail.git
+$ git clone https://github.com/indimail/libqmail.git
 $ cd /usr/local/src/libqmail/libqmail
 $ ./default.configure
 $ make
@@ -68,7 +68,7 @@ $ sudo make install
 
 **[Build Status on](https://build.opensuse.org/project/monitor/home:mbhangui) [Open Build Service](https://build.opensuse.org/project/show/home:mbhangui)**
 
-[![libqmail obs CI](https://github.com/mbhangui/libqmail/actions/workflows/libqmail-obs.yml/badge.svg)](https://github.com/mbhangui/libqmail/actions/workflows/libqmail-obs.yml)
+[![libqmail obs CI](https://github.com/indimail/libqmail/actions/workflows/libqmail-obs.yml/badge.svg)](https://github.com/indimail/libqmail/actions/workflows/libqmail-obs.yml)
 
 [![libqmail](https://build.opensuse.org/projects/home:mbhangui/packages/libqmail/badge.svg?type=percent)](https://build.opensuse.org/package/show/home:mbhangui/libqmail)
 

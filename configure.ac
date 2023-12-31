@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.43  2023-12-31 09:01:46+05:30  Cprogrammer
+# moved repository to indimail org
+#
 # Revision 1.42  2023-08-06 09:25:08+05:30  Cprogrammer
 # added YESCRYPT
 #
@@ -127,10 +130,10 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.42 2023-08-06 09:25:08+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.43 2023-12-31 09:01:46+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
-AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/mbhangui/libqmail])
+AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/indimail/libqmail])
 AC_CANONICAL_TARGET
 PACKAGE=$PACKAGE_NAME
 VERSION=$PACKAGE_VERSION
