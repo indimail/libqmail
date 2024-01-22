@@ -133,6 +133,7 @@ done
 %attr(644,root,root)                    %{_prefix}/include/qmail/arc4random.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/authmethods.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/base64.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/buffer.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/builtinoflmacros.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/byte.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/caldate.h

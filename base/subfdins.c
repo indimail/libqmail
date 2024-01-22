@@ -1,5 +1,35 @@
 /*
+ * $Id: subfdins.c,v 1.7 2024-01-22 10:18:15+05:30 Cprogrammer Exp mbhangui $
+ */
+#include <unistd.h>
+#include "substdio.h"
+#include "subfd.h"
+
+ssize_t
+subfd_readsmall(int fd, char *buf, int len)
+{
+	if (substdio_flush(subfdoutsmall) == -1)
+		return -1;
+	return read(fd, buf, len);
+}
+
+char            subfd_inbufsmall[SUBSTDIO_SMALL];
+static substdio it = SUBSTDIO_FDBUF(subfd_readsmall, 0, subfd_inbufsmall, SUBSTDIO_SMALL);
+substdio       *subfdinsmall = &it;
+
+void
+getversion_subfdins_c()
+{
+	static char    *x = "$Id: subfdins.c,v 1.7 2024-01-22 10:18:15+05:30 Cprogrammer Exp mbhangui $";
+
+	x++;
+}
+
+/*
  * $Log: subfdins.c,v $
+ * Revision 1.7  2024-01-22 10:18:15+05:30  Cprogrammer
+ * use SUBSTDIO_SMALL definition from substdio.h
+ *
  * Revision 1.6  2022-10-18 20:00:50+05:30  Cprogrammer
  * converted proto to ansic
  *
@@ -16,26 +46,3 @@
  * added RCS log
  *
  */
-#include <unistd.h>
-#include "substdio.h"
-#include "subfd.h"
-
-ssize_t
-subfd_readsmall(int fd, char *buf, int len)
-{
-	if (substdio_flush(subfdoutsmall) == -1)
-		return -1;
-	return read(fd, buf, len);
-}
-
-char            subfd_inbufsmall[256];
-static substdio it = SUBSTDIO_FDBUF(subfd_readsmall, 0, subfd_inbufsmall, 256);
-substdio       *subfdinsmall = &it;
-
-void
-getversion_subfdins_c()
-{
-	static char    *x = "$Id: subfdins.c,v 1.6 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
-
-	x++;
-}

@@ -1,5 +1,27 @@
 /*
+ * $Id: subfderr.c,v 1.5 2024-01-22 10:16:54+05:30 Cprogrammer Exp mbhangui $
+ */
+#include <unistd.h>
+#include "substdio.h"
+#include "subfd.h"
+
+char            subfd_errbuf[SUBSTDIO_SMALL];
+static substdio it = SUBSTDIO_FDBUF(write, 2, subfd_errbuf, SUBSTDIO_SMALL);
+substdio       *subfderr = &it;
+
+void
+getversion_subfderr_c()
+{
+	static char    *x = "$Id: subfderr.c,v 1.5 2024-01-22 10:16:54+05:30 Cprogrammer Exp mbhangui $";
+
+	x++;
+}
+
+/*
  * $Log: subfderr.c,v $
+ * Revision 1.5  2024-01-22 10:16:54+05:30  Cprogrammer
+ * use SUBSTDIO_SMALL definition from substdio.h
+ *
  * Revision 1.4  2004-10-22 20:31:03+05:30  Cprogrammer
  * added RCS id
  *
@@ -10,18 +32,3 @@
  * added RCS log
  *
  */
-#include <unistd.h>
-#include "substdio.h"
-#include "subfd.h"
-
-char            subfd_errbuf[256];
-static substdio it = SUBSTDIO_FDBUF(write, 2, subfd_errbuf, 256);
-substdio       *subfderr = &it;
-
-void
-getversion_subfderr_c()
-{
-	static char    *x = "$Id: subfderr.c,v 1.4 2004-10-22 20:31:03+05:30 Cprogrammer Stab mbhangui $";
-
-	x++;
-}
