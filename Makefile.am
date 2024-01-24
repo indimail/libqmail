@@ -270,17 +270,18 @@ base/hassgprm.h: base/trysgprm.c
 	&& echo \#define HASSIGPROCMASK 1 || exit 0 ) > base/hassgprm.h
 	rm -f trysgprm.o trysgprm
 base/select.h: base/trysysel.c base/select.h1 base/select.h2
-	( $(COMPILE) -c trysysel.c >/dev/null 2>&1 \
+	( $(COMPILE) -c base/trysysel.c >/dev/null 2>&1 \
 	&& cat base/select.h2 || cat base/select.h1 ) > base/select.h
 	rm -f trysysel.o trysysel
 
 base/haveuint128.h: base/tryuint128.c
 	-rm -f $@
-	if $(COMPILE) -c tryuint128.c >/dev/null 2>&1; then echo "#define HAVE_UINT128"; fi > $@
+	if $(COMPILE) -c base/tryuint128.c >/dev/null 2>&1; then echo "#define HAVE_UINT128"; fi > $@
 	-rm -f tryuint128.o
 
 base/iopause.h: base/trypoll.c base/iopause.h1 base/iopause.h2
-	( $(COMPILE) -c trypoll.c >/dev/null 2>&1 \
+	( ( $(COMPILE) -c base/trypoll.c && $(CC) -o trypoll trypoll.o && \
+	./trypoll base/trypoll.c ) >/dev/null 2>&1 \
 	&& cat base/iopause.h2 || cat base/iopause.h1 ) > base/iopause.h
 	rm -f trypoll.o trypoll
 

@@ -11,6 +11,9 @@ Release @version@-@release@ Start 30/11/2023 End XX/XX/XXXX
 04. added buffer library interface
 05. subsdio.h, subfdins.c, subfdouts.c, subfderr.c: use SUBSTDIO_SMALL
     definition from substdio.h
+- 23/01/2024
+06. timeoutread.c, timeoutwrite.c: added version using poll() instead of
+    select() - taken from Erwin Hofman's fehQlibs
 
 * Fri Sep 08 2023 12:40:38 +0530 Manvendra Bhangui <libqmail@indimail.org> 1.2-1.1%{?dist}
 Release 1.2-1.1 Start 24/04/2023 End 08/09/2023

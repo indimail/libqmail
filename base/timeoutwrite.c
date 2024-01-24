@@ -1,5 +1,8 @@
 /*
  * $Log: timeoutwrite.c,v $
+ * Revision 1.7  2024-01-23 18:36:52+05:30  Cprogrammer
+ * added timeoutwrite using poll() instead of select()
+ *
  * Revision 1.6  2023-01-11 00:35:01+05:30  Cprogrammer
  * replaced write() with allwrite()
  *
@@ -20,8 +23,37 @@
 #include <sys/types.h>
 #include "timeoutwrite.h"
 #include "allwrite.h"
-#include "select.h"
+#include "iopause.h"
 #include "error.h"
+
+#ifdef IOPAUSE_POLL /*- taken from Erwin Hofman fehQlibs */
+ssize_t
+timeoutwrite(long t, int fd, char *buf, size_t len)
+{
+	struct taia     now;
+	struct taia     deadline;
+	iopause_fd      x;
+
+	taia_now(&now);
+	taia_uint(&deadline, t);
+	taia_add(&deadline, &now, &deadline);
+
+	x.fd = fd;
+	x.events = IOPAUSE_WRITE;
+	for (;;) {
+		taia_now(&now);
+		iopause(&x, 1, &deadline, &now);
+		if (x.revents)
+			break;
+		if (taia_less(&deadline, &now)) {
+			errno = ETIMEDOUT;
+			return -1;
+		}
+	}
+	return allwrite(fd, buf, len);
+}
+#else
+#include "select.h"
 
 ssize_t
 timeoutwrite(long t, int fd, char *buf, size_t len)
@@ -43,11 +75,12 @@ timeoutwrite(long t, int fd, char *buf, size_t len)
 	errno = error_timeout;
 	return -1;
 }
+#endif
 
 void
 getversion_timeoutwrite_c()
 {
-	static char    *x = "$Id: timeoutwrite.c,v 1.6 2023-01-11 00:35:01+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: timeoutwrite.c,v 1.7 2024-01-23 18:36:52+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
