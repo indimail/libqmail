@@ -25,7 +25,7 @@ pkgconfig_DATA = libqmail.pc
 
 noinst_DATA = libqmail.spec libqmail.changes PKGBUILD
 
-man_MANS = base/alloc.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 \
+man_MANS = base/alloc.3 base/buffer.3 base/byte.3 base/caldate.3 base/caldate_mjd.3 \
 	base/caltime.3 base/caltime_tai.3 base/case.3 base/cdb.3 base/coe.3 \
 	base/commands.3 base/config.3 base/datetime.3 base/direntry.3 \
 	base/env.3 base/error_str.3 base/error_temp.3 base/fd_copy.3 \

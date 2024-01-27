@@ -1,0 +1,133 @@
+.\" vim: tw=75
+.TH buffer 3
+.SH NAME
+buffer \- generic read/write buffering
+.SH SYNTAX
+.B #include \(dqbuffer.h\(dq
+
+buffer* buffer_0;   /* like stdio's stdin */
+.br
+buffer* buffer_1;   /* like stdio's stdout */
+.br
+buffer* buffer_2;   /* like stdio's stderr */
+
+void \fBbuffer_init\fR(buffer &\fIb\fR,ssize_t (*\fIop\fR)(int,char *,size_t),
+                int \fIfd\fR, char *\fIy\fR, size_t \fIylen\fR);
+.br
+ssize_t \fBbuffer_get\fP(buffer *\fIb\fR,char *\fIx\fR,size_t \fIlen\fR);
+
+int \fBbuffer_put\fP(buffer *\fIb\fR,const char *\fIx\fR,size_t \fIlen\fR);
+.br
+int \fBbuffer_puts\fP(buffer *\fIb\fR,const char *\fIx\fR);
+.br
+int \fBbuffer_putalign\fP(buffer *\fIb\fR,char *\fIx\fR,unsigned int \fIlen\fR);
+.br
+int \fBbuffer_putsalign\fP(buffer *\fIb\fR,char *\fIx\fR);
+
+int \fBbuffer_putflush\fP(buffer *\fIb\fR,char *\fIx\fR,unsigned int \fIlen\fR);
+.br
+int \fBbuffer_putsflush\fP(buffer *\fIb\fR,char *\fIx\fR);
+
+int \fBbuffer_flush\fP(buffer *\fIb\fR);
+.br
+int \fBbuffer_copy\fP(buffer *\fIbo\fR,buffer *\fIbi\fR);
+
+int \fBbuffer_unixread\fP(int \fIfd\fR,char *\fIbuf\fR,size_t \fIlen\fR);
+.br
+int \fBbuffer_unixwrite\fP(int \fIfd\fR,char *\fIbuf\fR,size_t \fIlen\fR);
+
+.SH DESCRIPTION
+\fBbuffer.h \fR describes a generic buffer interface that can be used for
+read and write buffering. Buffers must be initialized with
+\fBbuffer_init\fR.
+
+A buffer can only be used for reading or writing at the same time, not
+both.
+
+Unlike \fBstdio\fR, these write buffers are not flushed automatically at
+program termination; you must manually call \fBbuffer_flush\fR,
+\fBbuffer_putflush\fR, or \fBbuffer_putsflush\fR.
+
+\fBbuffer_init\fR prepares \fIb\fR to store a string in \fIy\fR[0],
+\fIy\fR[1], ..., \fIy\fR[\fIylen\fR-1]. Initially the string is empty.
+
+\fBbuffer_init\fR also prepares \fIb\fR to use the read/write operation
+specified by \fIop\fR and \fIfd\fR.
+
+You can use
+
+  buffer \fIb\fR = BUFFER_INIT(\fIop\fR,\fIfd\fR,\fIy\fR,\fIylen\fR);
+
+to initialize \fIb\fR statically if \fIop\fR, \fIfd\fR, \fIy\fR, and \fIylen\fR
+are compile-time constants.
+
+You can call \fBbuffer_init\fR again at any time. Note that this discards
+the currently buffered string.
+
+\fBbuffer_get\fR copies data to \fIx\fR[0], \fIx\fR[1], ...,
+\fIx\fR[\fIlen\fR-1] from the beginning of a string stored in preallocated
+space; removes these \fIlen\fR bytes from the string; and returns
+\fIlen\fR.
+
+If, however, the string has fewer than \fIlen\fR (but more than 0) bytes,
+\fIbuffer_get\fR copies only that many bytes, and returns that number.
+
+If the string is empty, \fBbuffer_get\fR first uses a \fBread operation\fR
+to feed data into the string. The \fBread operation\fR may indicate end of
+input.
+
+The preallocated space and the \fBread operation\fR are specified by
+\fIb\fR. You must initialize \fBb\fR using \fBbuffer_init\fR before
+calling \fBbuffer_get\fR (or use the pre-initialized \fIbuffer_0\fR).
+
+\fBbuffer_put\fR writes \fIlen\fR bytes from \fIx\fR to \fIb\fR.
+
+The difference to \fBbuffer_putalign\fR is that, when there isn't enough
+space for new data, \fBbuffer_put\fR calls \fBbuffer_flush\fR before
+copying any data, while \fBbuffer_putalign\fR fills all available space
+with data before calling \fBbuffer_flush\fR
+
+\fBbuffer_copy\fR copies one buffer to other one.  The output buffer needs
+to have at least the preallocated size of the input buffer.
+\fBbuffer_unixread\fR and \fBbuffer_unixwrite\fR perform the same operation
+like standard Unix \fBread\fR or \fBwrite\fR.
+
+.SH MACROS
+Apart from this basic usage, some helpful macro definitions are provided:
+\fBBUFFER_INIT(op,fd,buf,len)\fR uses \fIop\fR function to operate
+(read/write) on \fIbuf\fR with \fIlen\fR to file descriptor \fIfd\fR.
+\fBbuffer_GETC(buf,c)\fR returns the upmost position of character \fIc\fR
+within buffer \fIbuf\fR or 0. \fBbuffer_PUTC(buf,c)\fR adds character
+\fIc\fR to buffer \fIbuf\fR.
+
+.SH EXAMPLE
+  #include <buffer.h>
+  #include <open.h>
+
+  char buf[BUFFER_INSIZE]; // defined in buffer.h
+  int fd = open_read("/etc/services");
+  buffer input;
+
+  if (fd >= 0) {
+    char x;
+    buffer_init(&input,read,fd,buf,sizeof buf);
+    while (buffer_get(&input,&x,1) == 1) {
+      buffer_put(buffer_1,&x,1);
+      if (x == '\\n') break;
+    }
+    buffer_flush(buffer_1);
+  }
+
+.SH "RETURN CODES"
+\fBbuffer_put\fR and \fBbuffer_get\fR return \fI0\fR if everything was
+fine, \fI-1\fR, on error (setting \fIerrno\fR). \fBbuffer_copy\fR returns
+\fI-2\fR, if the input buffer can't be read, and \fI-3\fR, if the data
+can't successfully copied to the output buffer. On success
+\fBbuffer_copy\fR returns \fI0\fR.
+
+.SH "REFERENCES"
+https://cr.yp.to/lib/buffer_get.html
+
+https://cr.yp.to/lib/buffer_put.html
+.SH "SEE ALSO"
+stdio(3)
