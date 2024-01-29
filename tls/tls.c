@@ -1,7 +1,7 @@
 /*
  * $Id: tls.c,v 1.10 2023-08-26 21:45:04+05:30 Cprogrammer Exp mbhangui $
  *
- * ssl_timeoutio functions froms from Frederik Vermeulen's
+ * ssl_timeoutio functions from Frederik Vermeulen's
  * tls patch for qmail
  * https://inoa.net/qmail-tls/netqmail-1.06-tls-20200107.patch
  */
