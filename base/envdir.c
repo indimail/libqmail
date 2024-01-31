@@ -1,47 +1,5 @@
 /*
- * $Log: envdir.c,v $
- * Revision 1.14  2022-09-07 09:54:10+05:30  Cprogrammer
- * allow .envfile, .envdir to be softlinks
- *
- * Revision 1.13  2022-08-29 08:33:30+05:30  Cprogrammer
- * BUG: advance to next line for blank lines/comments
- *
- * Revision 1.12  2022-08-20 12:20:51+05:30  Cprogrammer
- * skip leading spaces, blank lines and comments in envfile
- *
- * Revision 1.11  2022-03-05 21:18:12+05:30  Cprogrammer
- * fixed variable sa getting overwritten by openreadclose()
- *
- * Revision 1.10  2021-07-16 16:21:26+05:30  Cprogrammer
- * treat openreadclose returning 0 as an error
- *
- * Revision 1.9  2021-07-14 13:13:59+05:30  Cprogrammer
- * added option to ignore read errors and eliminate use of chdir
- *
- * Revision 1.8  2021-07-13 23:19:59+05:30  Cprogrammer
- * return directory/file names in error
- *
- * Revision 1.7  2021-07-12 17:30:29+05:30  Cprogrammer
- * added feature to process .envfile and .envdir as a file containing list of directories
- *
- * Revision 1.6  2021-07-11 23:20:33+05:30  Cprogrammer
- * set variables from .envdir first to prevent .envdir from overriding main
- *
- * Revision 1.5  2021-07-07 20:02:16+05:30  Cprogrammer
- * do lstat after chdir to fix false recursive loop error
- *
- * Revision 1.4  2021-06-30 14:15:59+05:30  Cprogrammer
- * hyperlink feature using .envdir link/dir to traverse multiple directories
- *
- * Revision 1.3  2021-05-13 12:20:47+05:30  Cprogrammer
- * refactored envdir_set and renamed to envdir
- *
- * Revision 1.2  2021-05-12 18:51:24+05:30  Cprogrammer
- * fixed error message
- *
- * Revision 1.1  2010-06-08 19:06:28+05:30  Cprogrammer
- * Initial revision
- *
+ * $Id: envdir.c,v 1.15 2024-01-31 19:39:18+05:30 Cprogrammer Exp mbhangui $
  */
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -134,14 +92,23 @@ process_dot_envfile(char *fn, char **e, int ignore_unreadable, int *unreadable)
 	{
 	case S_IFDIR: /*- ignore */
 		break;
-	case S_IFREG:
 	case S_IFLNK:
 		/*- 
 		 * openreadclose reads fn into stralloc and has
 		 * last byte as newline and all lines have newlines
 		 * converted to \0
+		 *
+		 * I could have used readlink(2), but it has a stupid
+		 * interface where the buffer gets truncated if the buffer
+		 * size is smaller than filename length.
 		 */
 		i = openreadclose(fn, &sa, st.st_size);
+		if (i == -1 && errno == error_isdir) /*- ignore .envfile entry */
+			break;
+		/*- flow through if link points to a file */
+	case S_IFREG:
+		if ((st.st_mode & S_IFMT) == S_IFREG)
+			i = openreadclose(fn, &sa, st.st_size);
 		if (i == -1 || !i) {
 			(*unreadable)++;
 			if (e)
@@ -217,9 +184,22 @@ process_dot_envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
 		if ((i = envdir(fn, e, ignore_unreadable, unreadable)))
 			return (i);
 		break;
-	case S_IFREG:
 	case S_IFLNK:
+		/*- 
+		 * I could have used readlink(2), but it has a stupid
+		 * interface where the buffer gets truncated if the buffer
+		 * size is smaller than filename length.
+		 */
 		i = openreadclose(fn, &sa, st.st_size);
+		if (i == -1 && errno == error_isdir) {
+			if ((i = envdir(fn, e, ignore_unreadable, unreadable)))
+				return (i);
+			break;
+		}
+		/*- flow through if link points to a file */
+	case S_IFREG:
+		if ((st.st_mode & S_IFMT) == S_IFREG)
+			i = openreadclose(fn, &sa, st.st_size);
 		if (i == -1 || !i) {
 			(*unreadable)++;
 			if (e)
@@ -387,7 +367,56 @@ envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
 void
 getversion_envdir_c()
 {
-	static char    *x = "$Id: envdir.c,v 1.14 2022-09-07 09:54:10+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: envdir.c,v 1.15 2024-01-31 19:39:18+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
+
+/*
+ * $Log: envdir.c,v $
+ * Revision 1.15  2024-01-31 19:39:18+05:30  Cprogrammer
+ * handle symbolic links to .evndir and .envfile correctly
+ *
+ * Revision 1.14  2022-09-07 09:54:10+05:30  Cprogrammer
+ * allow .envfile, .envdir to be softlinks
+ *
+ * Revision 1.13  2022-08-29 08:33:30+05:30  Cprogrammer
+ * BUG: advance to next line for blank lines/comments
+ *
+ * Revision 1.12  2022-08-20 12:20:51+05:30  Cprogrammer
+ * skip leading spaces, blank lines and comments in envfile
+ *
+ * Revision 1.11  2022-03-05 21:18:12+05:30  Cprogrammer
+ * fixed variable sa getting overwritten by openreadclose()
+ *
+ * Revision 1.10  2021-07-16 16:21:26+05:30  Cprogrammer
+ * treat openreadclose returning 0 as an error
+ *
+ * Revision 1.9  2021-07-14 13:13:59+05:30  Cprogrammer
+ * added option to ignore read errors and eliminate use of chdir
+ *
+ * Revision 1.8  2021-07-13 23:19:59+05:30  Cprogrammer
+ * return directory/file names in error
+ *
+ * Revision 1.7  2021-07-12 17:30:29+05:30  Cprogrammer
+ * added feature to process .envfile and .envdir as a file containing list of directories
+ *
+ * Revision 1.6  2021-07-11 23:20:33+05:30  Cprogrammer
+ * set variables from .envdir first to prevent .envdir from overriding main
+ *
+ * Revision 1.5  2021-07-07 20:02:16+05:30  Cprogrammer
+ * do lstat after chdir to fix false recursive loop error
+ *
+ * Revision 1.4  2021-06-30 14:15:59+05:30  Cprogrammer
+ * hyperlink feature using .envdir link/dir to traverse multiple directories
+ *
+ * Revision 1.3  2021-05-13 12:20:47+05:30  Cprogrammer
+ * refactored envdir_set and renamed to envdir
+ *
+ * Revision 1.2  2021-05-12 18:51:24+05:30  Cprogrammer
+ * fixed error message
+ *
+ * Revision 1.1  2010-06-08 19:06:28+05:30  Cprogrammer
+ * Initial revision
+ *
+ */
