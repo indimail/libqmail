@@ -12,6 +12,7 @@ on:
       - '!**.3'
       - '!**/obs/*'
       - '!**/libqmail-freebsd.yml'
+      - '!**/codeql.yml'
       - '!**/libqmail-obs.yml'
   workflow_dispatch:
 

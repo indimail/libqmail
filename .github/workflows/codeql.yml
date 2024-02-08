@@ -14,6 +14,14 @@ name: "CodeQL"
 on:
   push:
     branches: [ "master" ]
+    paths:
+      - '**'
+      - '!**/doc/*'
+      - '!**.md'
+      - '!**/obs/*'
+      - '!**/libqmail-obs.yml'
+      - '!**/libqmail-freebsd.yml'
+      - '!**/libqmail-c-cpp.yml'
   pull_request:
     branches: [ "master" ]
   schedule:
