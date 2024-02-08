@@ -1,5 +1,8 @@
 /*
  * $Log: tcpbind.c,v $
+ * Revision 1.3  2024-02-08 10:32:24+05:30  Cprogrammer
+ * remove unlink of unix domain socket
+ *
  * Revision 1.2  2022-12-06 08:31:31+05:30  Cprogrammer
  * display servicename, hostname in getaddrinfo error
  *
@@ -9,7 +12,7 @@
  */
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tcpbind.c,v 1.2 2022-12-06 08:31:31+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: tcpbind.c,v 1.3 2024-02-08 10:32:24+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #ifdef HAVE_CONFIG_H
@@ -69,10 +72,6 @@ tcpbind(char *hostname, char *servicename, int backlog)
 #ifdef HAVE_SYS_UN_H
 	if ((dir = qdirname(hostname)) && !access(dir, F_OK)) {
 		byte_zero((char *) &localunaddr, sizeof(struct sockaddr_un));
-		if (!access(hostname, F_OK) && unlink(hostname)) {
-			errno = EEXIST;
-			return(-1);
-		}
 		if ((listenfd = socket(AF_UNIX, SOCK_STREAM, 0)) == -1)
 			return (-1);
 		idx = 1;
@@ -182,7 +181,7 @@ tcpbind(char *hostname, char *servicename, int backlog)
 void
 getversion_tcpbind_c()
 {
-	static char    *x = "$Id: tcpbind.c,v 1.2 2022-12-06 08:31:31+05:30 Cprogrammer Exp mbhangui $";
+	static char    *x = "$Id: tcpbind.c,v 1.3 2024-02-08 10:32:24+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
