@@ -40,7 +40,7 @@ str_len(register const char *s)
 void
 getversion_str_len_c()
 {
-	static char    *x = "$Id: str_len.c,v 1.5 2022-01-30 19:36:27+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: str_len.c,v 1.5 2022-01-30 19:36:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

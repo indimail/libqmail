@@ -40,7 +40,7 @@ taia_sub(struct taia *t, const struct taia *u, const struct taia *v)
 void
 getversion_taia_sub_c()
 {
-	static char    *x = "$Id: taia_sub.c,v 1.2 2004-10-22 20:31:32+05:30 Cprogrammer Stab mbhangui $";
+	const char     *x = "$Id: taia_sub.c,v 1.2 2004-10-22 20:31:32+05:30 Cprogrammer Stab mbhangui $";
 
 	x++;
 }

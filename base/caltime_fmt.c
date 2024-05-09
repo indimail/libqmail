@@ -68,7 +68,7 @@ caltime_fmt(char *s, struct caltime *ct)
 void
 getversion_caltime_fmt_c()
 {
-	static char    *x = "$Id: caltime_fmt.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: caltime_fmt.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

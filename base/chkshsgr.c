@@ -30,7 +30,7 @@ main()
 void
 getversion_chkshsgr_c()
 {
-	static char    *x = "$Id: chkshsgr.c,v 1.7 2020-11-24 13:44:29+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: chkshsgr.c,v 1.7 2020-11-24 13:44:29+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

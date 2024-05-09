@@ -23,7 +23,7 @@ byte_cspn(register const char *s, register unsigned int n, register const char *
 void
 getversion_byte_cspn_c()
 {
-	static char    *x = "$Id: byte_cspn.c,v 1.3 2020-11-22 23:49:07+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: byte_cspn.c,v 1.3 2020-11-22 23:49:07+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

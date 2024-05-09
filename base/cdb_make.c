@@ -194,7 +194,7 @@ cdb_make_finish(struct cdb_make *c)
 void
 getversion_cdb_make_c()
 {
-	static char    *x = "$Id: cdb_make.c,v 1.2 2020-11-22 23:50:46+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: cdb_make.c,v 1.2 2020-11-22 23:50:46+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

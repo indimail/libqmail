@@ -42,7 +42,7 @@ fmt_xml(char *dest, const char *src, size_t len)
 void
 getversion_fmt_xml_c()
 {
-	static char    *x = "$Id: fmt_xml.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_xml.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

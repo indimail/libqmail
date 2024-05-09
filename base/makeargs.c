@@ -58,14 +58,14 @@
  *
  */
 char          **
-makeargs(char *cmmd)
+makeargs(const char *cmmd)
 {
 	char           *ptr, *marker;
 	char          **argv;
 	int             argc, idx;
 	static stralloc sptr = { 0 };
 
-	for (ptr = cmmd;*ptr && isspace((int) *ptr);ptr++);
+	for (ptr = (char *) cmmd;*ptr && isspace((int) *ptr);ptr++);
 	idx = str_len(ptr);
 	if (!stralloc_copys(&sptr, ptr))
 		return((char **) 0);
@@ -148,7 +148,7 @@ free_makeargs(char **argv)
 void
 getversion_makeargs_c()
 {
-	static char     *x = "$Id: makeargs.c,v 2.11 2021-06-09 19:42:27+05:30 Cprogrammer Exp mbhangui $";
+	const char      *x = "$Id: makeargs.c,v 2.11 2021-06-09 19:42:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 	return;

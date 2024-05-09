@@ -40,7 +40,7 @@ ndelay(int fd)
 void
 getversion_ndelay_c()
 {
-	static char    *x = "$Id: ndelay.c,v 1.5 2023-01-02 20:33:25+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: ndelay.c,v 1.5 2023-01-02 20:33:25+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

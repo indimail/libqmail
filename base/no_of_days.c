@@ -24,7 +24,7 @@
 #include <fmt.h>
 
 #ifndef	lint
-static char     sccsid[] = "$Id: no_of_days.c,v 1.3 2021-08-21 12:10:52+05:30 Cprogrammer Exp mbhangui $";
+const char      sccsid[] = "$Id: no_of_days.c,v 1.3 2021-08-21 12:10:52+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 static void

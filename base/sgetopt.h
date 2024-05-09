@@ -27,7 +27,7 @@
 #include "subgetopt.h"
 
 extern int      sgetopterr;
-extern char    *sgetoptprogname;
+extern const char *sgetoptprogname;
 
 int             sgetoptmine(int, char **, const char *);
 

@@ -116,7 +116,7 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/allwrite.c base/arc4random.c \
 	base/commands.c base/constmap.c base/date822fmt.c base/datetime.c \
 	base/datetime_un.c base/digest_md5.c base/env.c base/envdir.c \
 	base/envread.c base/error.c base/error_str.c base/error_temp.c \
-	base/evaluate.c base/fd_copy.c base/fd_move.c base/fifo.c \
+	base/estack.c base/evaluate.c base/fd_copy.c base/fd_move.c base/fifo.c \
 	base/fmt_8long.c base/fmt_double.c base/fmt_fill.c base/fmt_hexbytes.c \
 	base/fmt_hexdump.c base/fmt_int.c base/fmt_long.c base/fmt_minus.c base/fmt_pad.c \
 	base/fmt_plusminus.c base/fmt_str.c base/fmt_strn.c base/fmt_uint0.c \

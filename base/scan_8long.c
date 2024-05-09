@@ -30,7 +30,7 @@ scan_8long(register const char *s, register unsigned long *u)
 void
 getversion_scan_8long_c()
 {
-	static char    *x = "$Id: scan_8long.c,v 1.2 2020-11-22 23:51:58+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_8long.c,v 1.2 2020-11-22 23:51:58+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

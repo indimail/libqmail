@@ -13,7 +13,8 @@
 #include "mess822.h"
 #include "stralloc.h"
 
-static char    *montab[12] = {
+typedef const char c_char;
+static c_char  *montab[12] = {
 	"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 };
 
@@ -67,7 +68,7 @@ mess822_date(stralloc *out, mess822_time *when)
 void
 getversion_mess822_date_c()
 {
-	static char    *x = "$Id: mess822_date.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: mess822_date.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

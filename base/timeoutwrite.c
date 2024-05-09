@@ -80,7 +80,7 @@ timeoutwrite(long t, int fd, char *buf, size_t len)
 void
 getversion_timeoutwrite_c()
 {
-	static char    *x = "$Id: timeoutwrite.c,v 1.7 2024-01-23 18:36:52+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: timeoutwrite.c,v 1.7 2024-01-23 18:36:52+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

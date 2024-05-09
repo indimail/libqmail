@@ -58,7 +58,7 @@ taia_fmtfrac(char *s, const struct taia *t)
 void
 getversion_taia_fmtfrac_c()
 {
-	static char    *x = "$Id: taia_fmtfrac.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: taia_fmtfrac.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

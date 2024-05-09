@@ -34,7 +34,7 @@ timestamp(char s[TIMESTAMP])
 void
 getversion_timestamp_c()
 {
-	static char    *x = "$Id: timestamp.c,v 1.2 2004-10-22 20:31:47+05:30 Cprogrammer Stab mbhangui $";
+	const char     *x = "$Id: timestamp.c,v 1.2 2004-10-22 20:31:47+05:30 Cprogrammer Stab mbhangui $";
 
 	x++;
 }

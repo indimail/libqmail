@@ -35,7 +35,7 @@ str_cspn(const char *s1, register const char *s2)
 void
 getversion_str_cspn_c()
 {
-	static char    *x = "$Id: str_cspn.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: str_cspn.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

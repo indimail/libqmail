@@ -24,7 +24,7 @@ unsigned int fmt_ulonglong(char *dest,unsigned long long int i)
 void
 getversion_fmt_ulonglong_c()
 {
-	static char    *x = "$Id: fmt_ulonglong.c,v 1.2 2019-07-18 10:08:32+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_ulonglong.c,v 1.2 2019-07-18 10:08:32+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

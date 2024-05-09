@@ -70,7 +70,7 @@ mkpasswd(char *newpasswd, stralloc *crypted, int encrypt_flag)
 void
 getversion_mkpasswd_c()
 {
-	static char    *x = "$Id: mkpasswd.c,v 1.5 2023-07-15 08:39:39+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: mkpasswd.c,v 1.5 2023-07-15 08:39:39+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

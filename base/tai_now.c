@@ -22,7 +22,7 @@ tai_now(struct tai *t)
 void
 getversion_tai_now_c()
 {
-	static char    *x = "$Id: tai_now.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: tai_now.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

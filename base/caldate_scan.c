@@ -52,7 +52,7 @@ caldate_scan(char *s, struct caldate *cd)
 void
 getversion_caldate_scan_c()
 {
-	static char    *x = "$Id: caldate_scan.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: caldate_scan.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

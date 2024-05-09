@@ -86,7 +86,7 @@ commands(substdio *ss, struct commands *c)
 void
 getversion_commands_c()
 {
-	static char    *x = "$Id: commands.c,v 1.10 2023-02-17 11:36:34+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: commands.c,v 1.10 2023-02-17 11:36:34+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

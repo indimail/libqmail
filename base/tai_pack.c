@@ -38,7 +38,7 @@ tai_pack(char *s, struct tai *t)
 void
 getversion_tai_pack_c()
 {
-	static char    *x = "$Id: tai_pack.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: tai_pack.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

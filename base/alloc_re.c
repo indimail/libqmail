@@ -43,7 +43,7 @@ alloc_re(void **x, unsigned int old_size, unsigned int new_size)
 void
 getversion_alloc_re_c()
 {
-	static char    *x = "$Id: alloc_re.c,v 1.8 2022-10-18 19:53:00+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: alloc_re.c,v 1.8 2022-10-18 19:53:00+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

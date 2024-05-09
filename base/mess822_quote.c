@@ -14,7 +14,7 @@
 #include "str.h"
 
 static int
-needquote(char *buf, int len)
+needquote(const char *buf, int len)
 {
 	int             i;
 	char            ch;
@@ -64,7 +64,7 @@ needquote(char *buf, int len)
 }
 
 static int
-doit(stralloc *out, char *buf, int len, char *pre, char *post)
+doit(stralloc *out, const char *buf, int len, const char *pre, const char *post)
 {
 	char            ch;
 
@@ -86,10 +86,10 @@ doit(stralloc *out, char *buf, int len, char *pre, char *post)
 }
 
 int
-mess822_quoteplus(stralloc *out, char *addr, char *comment)
+mess822_quoteplus(stralloc *out, const char *addr, const char *comment)
 {
 	int             i;
-	char           *quote;
+	const char     *quote;
 	int             flagempty;
 	int             flagbracket;
 
@@ -135,7 +135,7 @@ mess822_quoteplus(stralloc *out, char *addr, char *comment)
 }
 
 int
-mess822_quote(stralloc *out, char *addr, char *comment)
+mess822_quote(stralloc *out, const char *addr, const char *comment)
 {
 	if (!stralloc_copys(out, ""))
 		return 0;
@@ -187,7 +187,7 @@ mess822_quotelist(stralloc *out, stralloc *in)
 void
 getversion_mess822_quote_c()
 {
-	static char    *x = "$Id: mess822_quote.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: mess822_quote.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

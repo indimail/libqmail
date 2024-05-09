@@ -26,7 +26,7 @@ open_readwrite(const char *fn)
 void
 getversion_open_readwrite_c()
 {
-	static char    *x = "$Id: open_readwrite.c,v 1.4 2020-11-22 23:51:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: open_readwrite.c,v 1.4 2020-11-22 23:51:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

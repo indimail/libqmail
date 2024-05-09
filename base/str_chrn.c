@@ -49,7 +49,7 @@ str_chrn(register const char *s, int c, int len)
 void
 getversion_str_chrn_c()
 {
-	static char    *x = "$Id: str_chrn.c,v 1.5 2022-01-30 19:36:14+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: str_chrn.c,v 1.5 2022-01-30 19:36:14+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

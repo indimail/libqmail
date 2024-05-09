@@ -21,7 +21,7 @@
 #include <str.h>
 
 #ifndef	lint
-static char     sccsid[] = "$Id: replacestr.c,v 1.4 2022-01-30 19:37:31+05:30 Cprogrammer Exp mbhangui $";
+const char      sccsid[] = "$Id: replacestr.c,v 1.4 2022-01-30 19:37:31+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 /*-
@@ -29,11 +29,11 @@ static char     sccsid[] = "$Id: replacestr.c,v 1.4 2022-01-30 19:37:31+05:30 Cp
  * and leaves buf untouched
  */
 int
-replacestr(char *str, char *ch, char *rch, stralloc *buf)
+replacestr(const char *str, const char *ch, const char *rch, stralloc *buf)
 {
 	int             chlen, rchlen, prev;
 	register int    i, cnt;
-	register char  *ptr, *s;
+	register const char  *ptr, *s;
 
 	chlen = str_len(ch);
 	rchlen = str_len(rch);

@@ -20,7 +20,7 @@ substdio       *subfdinsmall = &it;
 void
 getversion_subfdins_c()
 {
-	static char    *x = "$Id: subfdins.c,v 1.7 2024-01-22 10:18:15+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: subfdins.c,v 1.7 2024-01-22 10:18:15+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

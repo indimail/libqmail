@@ -32,7 +32,7 @@ scan_hexdump(const char *src, char *dest, size_t *destlen)
 void
 getversion_scan_hexdump_c()
 {
-	static char    *x = "$Id: scan_hexdump.c,v 1.1 2020-07-01 12:12:36+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_hexdump.c,v 1.1 2020-07-01 12:12:36+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

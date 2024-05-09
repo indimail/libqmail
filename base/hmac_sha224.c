@@ -87,7 +87,7 @@ hmac_sha224(const unsigned char *text, /*- pointer to data stream        */
 void
 getversion_hmac_sha224_c()
 {
-	static char    *x = "$Id: hmac_sha224.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: hmac_sha224.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

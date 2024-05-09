@@ -8,7 +8,7 @@
 #define MYCTIME_H
 
 #ifndef	lint
-static char     sccsidmyctimeh[] = "$Id: qtime.h,v 1.1 2021-06-01 09:52:43+05:30 Cprogrammer Exp mbhangui $";
+static const char sccsidmyctimeh[] = "$Id: qtime.h,v 1.1 2021-06-01 09:52:43+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #include "datetime.h"

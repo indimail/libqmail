@@ -53,7 +53,7 @@ str_diff(register const char *s, register const char *t)
 void
 getversion_str_diff_c()
 {
-	static char    *x = "$Id: str_diff.c,v 1.4 2020-11-22 23:53:23+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: str_diff.c,v 1.4 2020-11-22 23:53:23+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -55,7 +55,7 @@ byte_chr(const char *s, register unsigned int n, int c)
 void
 getversion_byte_chr_c()
 {
-	static char    *x = "$Id: byte_chr.c,v 1.5 2021-06-10 10:49:33+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: byte_chr.c,v 1.5 2021-06-10 10:49:33+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

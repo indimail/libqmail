@@ -22,7 +22,7 @@ GEN_ALLOC_append(stralloc, const char, s, len, a, 30, stralloc_readyplus, strall
 void
 getversion_stralloc_pend_c()
 {
-	static char    *x = "$Id: stralloc_pend.c,v 1.5 2020-11-23 18:05:03+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: stralloc_pend.c,v 1.5 2020-11-23 18:05:03+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

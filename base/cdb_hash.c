@@ -40,7 +40,7 @@ cdb_hash(const char *buf, unsigned int len)
 void
 getversion_cdb_hash_c()
 {
-	static char    *x = "$Id: cdb_hash.c,v 1.5 2020-11-22 23:50:40+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: cdb_hash.c,v 1.5 2020-11-22 23:50:40+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

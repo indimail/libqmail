@@ -34,7 +34,7 @@ tohex(char num)
 void
 getversion_fmt_hexbytes_c()
 {
-	static char    *x = "$Id: fmt_hexbytes.c,v 1.3 2020-08-03 18:12:21+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_hexbytes.c,v 1.3 2020-08-03 18:12:21+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

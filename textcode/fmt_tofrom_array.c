@@ -28,7 +28,7 @@ fmt_tofrom_array(size_t (*func)(char *, const char *, size_t), array * dest, arr
 void
 getversion_fmt_tofrom_array_c()
 {
-	static char    *x = "$Id: fmt_tofrom_array.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_tofrom_array.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

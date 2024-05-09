@@ -30,6 +30,6 @@
 #define AUTH_SCRAM_SHA256_PLUS 15
 #define AUTH_SCRAM_SHA512_PLUS 16
 
-char           *get_authmethod(int);
+const char     *get_authmethod(int);
 
 #endif

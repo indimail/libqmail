@@ -17,7 +17,7 @@ open_exclr(const char *fn)
 void
 getversion_open_exclr_c()
 {
-	static char    *x = "$Id: open_exclr.c,v 1.1 2021-06-15 21:21:17+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: open_exclr.c,v 1.1 2021-06-15 21:21:17+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

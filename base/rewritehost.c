@@ -139,7 +139,7 @@ rewritehost_list(stralloc *out, char *in, unsigned int len, stralloc *rules)
 void
 getversion_rewritehost_c()
 {
-	static char    *x = "$Id: rewritehost.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: rewritehost.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

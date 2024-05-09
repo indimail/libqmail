@@ -346,7 +346,7 @@ static void MD5_memset (POINTER output, int value, unsigned int len)
 void
 getversion_md5_c()
 {
-	static char    *x = "$Id: md5.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: md5.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 #ifndef lint
 	x=sccsidmd5h;
 	x=sccsidglobalh;

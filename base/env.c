@@ -228,7 +228,7 @@ restore_env()
 void
 getversion_env_c()
 {
-	static char    *x = "$Id: env.c,v 1.9 2022-01-30 19:35:38+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: env.c,v 1.9 2022-01-30 19:35:38+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

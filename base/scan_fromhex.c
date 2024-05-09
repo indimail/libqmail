@@ -22,7 +22,7 @@ scan_fromhex(unsigned char c)
 void
 getversion_scan_fromhex_c()
 {
-	static char    *x = "$Id: scan_fromhex.c,v 1.1 2020-07-01 16:57:48+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_fromhex.c,v 1.1 2020-07-01 16:57:48+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

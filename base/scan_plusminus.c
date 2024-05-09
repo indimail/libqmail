@@ -32,7 +32,7 @@ scan_plusminus(const char *src, signed int *dest)
 void
 getversion_scan_plusminus_c()
 {
-	static char    *x = "$Id: scan_plusminus.c,v 1.4 2020-11-22 23:52:10+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_plusminus.c,v 1.4 2020-11-22 23:52:10+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

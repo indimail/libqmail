@@ -28,7 +28,7 @@
 #define REGEXEC(X,Y)    regexec(&X, Y, (size_t) 0, (regmatch_t *) 0, (int) 0)
 
 int
-matchregex(char *text, char *regex, char **errStr)
+matchregex(const char *text, const char *regex, const char *errStr[])
 {
 	regex_t         qreg;
 	char            errbuf[512];
@@ -36,7 +36,7 @@ matchregex(char *text, char *regex, char **errStr)
 	static stralloc err_str = { 0 };
 
 	if (errStr)
-		*errStr = 0;
+		*errStr = NULL;
 	/*- build the regex */
 	if ((retval = regcomp(&qreg, regex, REG_EXTENDED|REG_ICASE)) != 0) {
 		regerror(retval, &qreg, errbuf, sizeof(errbuf));
@@ -94,7 +94,7 @@ matchregex(char *text, char *regex, char **errStr)
 void
 getversion_matchregex_c()
 {
-	static char    *x = "$Id: matchregex.c,v 1.6 2023-09-05 11:02:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: matchregex.c,v 1.6 2023-09-05 11:02:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

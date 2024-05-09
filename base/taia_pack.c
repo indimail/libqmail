@@ -39,7 +39,7 @@ taia_pack(char *s, const struct taia *t)
 void
 getversion_taia_pack_c()
 {
-	static char    *x = "$Id: taia_pack.c,v 1.2 2004-10-22 20:31:31+05:30 Cprogrammer Stab mbhangui $";
+	const char     *x = "$Id: taia_pack.c,v 1.2 2004-10-22 20:31:31+05:30 Cprogrammer Stab mbhangui $";
 
 	x++;
 }

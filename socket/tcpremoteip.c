@@ -56,7 +56,7 @@ tcpremoteip(int s)
 void
 getversion_tcpremoteip_c()
 {
-	static char    *x = "$Id: tcpremoteip.c,v 1.1 2023-06-28 12:29:43+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: tcpremoteip.c,v 1.1 2023-06-28 12:29:43+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

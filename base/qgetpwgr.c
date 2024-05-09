@@ -141,7 +141,7 @@ qgetpwent_r(struct passwd *pwd, char *buf, size_t buflen, struct passwd **result
 	if (!_is_open) {
 		ptr = env_get("PASSWD_FILE");
 		if (!ptr || !*ptr || getuid())
-			ptr = "/etc/passwd";
+			ptr = (char *) "/etc/passwd";
 		if ((pwfd = open_read(ptr)) == -1)
 			return errno;
 		_is_open = 1;
@@ -405,7 +405,7 @@ qgetgrent_r(struct group *grp, char *buf, size_t buflen, struct group **result)
 	if (!_is_open) {
 		ptr = env_get("GROUP_FILE");
 		if (!ptr || !*ptr || getuid())
-			ptr = "/etc/group";
+			ptr = (char *) "/etc/group";
 		if ((grfd = open_read(ptr)) == -1)
 			return errno;
 		_is_open = 1;
@@ -685,7 +685,7 @@ qgetservent_r(struct servent *svc, char *buf, size_t buflen, struct servent **re
 	if (!_is_open) {
 		ptr = env_get("SERVICE_FILE");
 		if (!ptr || !*ptr || getuid())
-			ptr = "/etc/services";
+			ptr = (char *) "/etc/services";
 		if ((svfd = open_read(ptr)) == -1)
 			return errno;
 		_is_open = 1;
@@ -963,7 +963,7 @@ qgetservent()
 void
 getversion_qgetpwgr_c()
 {
-	static char    *x = "$Id: qgetpwgr.c,v 1.9 2023-02-20 20:38:12+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: qgetpwgr.c,v 1.9 2023-02-20 20:38:12+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

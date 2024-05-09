@@ -30,7 +30,7 @@ static stralloc plus;
 static stralloc tmp;
 
 int
-pathexec_env(char *s, char *t)
+pathexec_env(const char *s, const char *t)
 {
 	if (!s)
 		return 1;
@@ -109,7 +109,7 @@ pathexec(char **argv)
 void
 getversion_pathexec_env_c()
 {
-	static char    *x = "$Id: pathexec_env.c,v 1.6 2021-07-14 09:38:47+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: pathexec_env.c,v 1.6 2021-07-14 09:38:47+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

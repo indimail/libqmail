@@ -15,11 +15,11 @@
 #endif
 
 #ifndef	lint
-static char     sccsid[] = "$Id: isnum.c,v 1.2 2023-02-20 20:36:21+05:30 Cprogrammer Exp mbhangui $";
+const char      sccsid[] = "$Id: isnum.c,v 1.2 2023-02-20 20:36:21+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 int
-isnum(register char *str)
+isnum(register const char *str)
 {
 	while (*str && isdigit(*str))
 		str++;
@@ -29,7 +29,7 @@ isnum(register char *str)
 void
 getversion_isnum_c()
 {
-	static char    *x = "$Id: isnum.c,v 1.2 2023-02-20 20:36:21+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: isnum.c,v 1.2 2023-02-20 20:36:21+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -36,7 +36,7 @@ void datetime_tai(struct datetime *dt, datetime_sec dts)
 void
 getversion_datetime_c()
 {
-	static char    *x = "$Id: datetime.c,v 1.4 2020-11-24 13:33:09+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: datetime.c,v 1.4 2020-11-24 13:33:09+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

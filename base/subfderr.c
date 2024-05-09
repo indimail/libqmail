@@ -12,7 +12,7 @@ substdio       *subfderr = &it;
 void
 getversion_subfderr_c()
 {
-	static char    *x = "$Id: subfderr.c,v 1.5 2024-01-22 10:16:54+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: subfderr.c,v 1.5 2024-01-22 10:16:54+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

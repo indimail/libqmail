@@ -86,7 +86,7 @@ leapsecs_read()
 void
 getversion_leapsecs_read_c()
 {
-	static char    *x = "$Id: leapsecs_read.c,v 1.5 2021-05-28 22:34:42+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: leapsecs_read.c,v 1.5 2021-05-28 22:34:42+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

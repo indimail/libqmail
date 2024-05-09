@@ -3,11 +3,12 @@
  */
 #include <authmethods.h>
 
-static char    *authmethod[] = {"LOGIN", "PLAIN", "CRAM-MD5", "CRAM-SHA1", "CRAM-SHA224",
+typedef const char c_char;
+static c_char  *authmethod[] = {"LOGIN", "PLAIN", "CRAM-MD5", "CRAM-SHA1", "CRAM-SHA224",
                                 "CRAM-SHA256", "CRAM-SHA384", "CRAM-SHA512", "CRAM-RIPEMD",
                                 "DIGEST-MD5", "SCRAM-SHA-1", "SCRAM-SHA-256", "SCRAM-SHA-512",
                                 "SCRAM-SHA-1-PLUS", "SCRAM-SHA-256-PLUS", "SCRAM-SHA-512-PLUS", 0};
-char           *
+const char     *
 get_authmethod(int method)
 {
 	int             i;

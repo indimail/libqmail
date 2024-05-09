@@ -27,7 +27,7 @@ cdbmake_pack(unsigned char *buf, uint32 num)
 void
 getversion_cdbmake_pack_c()
 {
-	static char    *x = "$Id: cdbmake_pack.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: cdbmake_pack.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

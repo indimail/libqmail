@@ -122,7 +122,7 @@ udpopen(char *rhost, char *servicename)
 void
 getversion_udpopen_c()
 {
-	static char    *x = "$Id: udpopen.c,v 1.1 2022-05-10 19:50:48+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: udpopen.c,v 1.1 2022-05-10 19:50:48+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -28,7 +28,7 @@ stralloc_starts(stralloc *sa, const char *s)
 void
 getversion_stralloc_arts_c()
 {
-	static char    *x = "$Id: stralloc_arts.c,v 1.5 2020-11-22 23:52:45+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: stralloc_arts.c,v 1.5 2020-11-22 23:52:45+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

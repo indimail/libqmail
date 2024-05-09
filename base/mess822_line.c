@@ -160,7 +160,7 @@ mess822_line(mess822_header *h, stralloc * s)
 void
 getversion_mess822_line_c()
 {
-	static char    *x = "$Id: mess822_line.c,v 1.6 2020-11-28 19:54:51+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: mess822_line.c,v 1.6 2020-11-28 19:54:51+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

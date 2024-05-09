@@ -19,12 +19,12 @@ struct strerr   check_domain_err;
 static char     errbuf[128];
 
 int
-check_domain(char *domain)
+check_domain(const char *domain)
 {
 	regex_t         re;
 	int             r;
-	char           *p;
-	char           *reg_exp = "^[0-9a-zA-Z_-]+(\\.[0-9a-zA-Z_-]+)*(\\.[a-zA-Z]+)$";
+	const char     *p;
+	const char     *reg_exp = "^[0-9a-zA-Z_-]+(\\.[0-9a-zA-Z_-]+)*(\\.[a-zA-Z]+)$";
 
 	if (!(p = env_get("CHECK_DOMAIN_REGEXP")))
 		p = reg_exp;

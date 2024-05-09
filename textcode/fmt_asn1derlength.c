@@ -41,7 +41,7 @@ fmt_asn1derlength(char *dest, unsigned long long l)
 void
 getversion_fmt_asn1derlength_c()
 {
-	static char    *x = "$Id: fmt_asn1derlength.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_asn1derlength.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -23,7 +23,7 @@ scan_to_array(size_t (*func)(const char *, char *, size_t *), const char *src, a
 void
 getversion_scan_to_array_c()
 {
-	static char    *x = "$Id: scan_to_array.c,v 1.1 2020-09-30 09:17:54+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_to_array.c,v 1.1 2020-09-30 09:17:54+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

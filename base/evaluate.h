@@ -8,7 +8,7 @@
 #define _EVALUATE_H_
 
 #ifndef	lint
-static char     sccsidevalh[] = "$Id: evaluate.h,v 2.1 2004-03-22 23:51:58+05:30 Cprogrammer Stab mbhangui $";
+static const char sccsidevalh[] = "$Id: evaluate.h,v 2.1 2004-03-22 23:51:58+05:30 Cprogrammer Stab mbhangui $";
 #endif
 
 #define T_INT    0
@@ -62,5 +62,5 @@ void            free_vartable(struct vartable *vt);
  * (not NULL) and optionally your own variable table (NULL for 'internal
  * only' vartable), will return an error code (and result, etc)
  */
-int             evaluate(char *eval, struct val *result, struct vartable *variables);
+int             evaluate(const char *eval, struct val *result, struct vartable *variables);
 #endif

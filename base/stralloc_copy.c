@@ -22,7 +22,7 @@ stralloc_copy(stralloc *sato, const stralloc *safrom)
 void
 getversion_stralloc_copy_c()
 {
-	static char    *x = "$Id: stralloc_copy.c,v 1.4 2020-11-22 23:52:57+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: stralloc_copy.c,v 1.4 2020-11-22 23:52:57+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

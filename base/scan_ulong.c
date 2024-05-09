@@ -26,7 +26,7 @@ scan_ulong(register const char *s, register unsigned long *u)
 void
 getversion_scan_ulong_c()
 {
-	static char    *x = "$Id: scan_ulong.c,v 1.8 2023-11-30 15:18:26+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_ulong.c,v 1.8 2023-11-30 15:18:26+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

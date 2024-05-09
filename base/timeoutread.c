@@ -76,7 +76,7 @@ timeoutread(long t, int fd, char *buf, size_t len)
 void
 getversion_timeoutread_c()
 {
-	static char    *x = "$Id: timeoutread.c,v 1.6 2024-01-23 18:36:27+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: timeoutread.c,v 1.6 2024-01-23 18:36:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

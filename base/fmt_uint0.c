@@ -31,7 +31,7 @@ fmt_uint0(char *s, unsigned int u, unsigned int n)
 void
 getversion_fmt_uint0_c()
 {
-	static char    *x = "$Id: fmt_uint0.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_uint0.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -84,7 +84,7 @@ str_tok(char *s,      /* string to search for tokens */
 void
 getversion_str_tok_c()
 {
-	static char    *x = "$Id: str_tok.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: str_tok.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -117,7 +117,7 @@ substdio_seek(register substdio *s, register int len)
 void
 getversion_substdi_c()
 {
-	static char    *x = "$Id: substdi.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: substdi.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

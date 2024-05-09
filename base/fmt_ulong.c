@@ -38,7 +38,7 @@ fmt_ulong(register char *s, register unsigned long u)
 void
 getversion_fmt_ulong_c()
 {
-	static char    *x = "$Id: fmt_ulong.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_ulong.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

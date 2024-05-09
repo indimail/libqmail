@@ -34,7 +34,7 @@ str_copyb(register char *s, register const char *t, unsigned int max)
 void
 getversion_str_cpyb_c()
 {
-	static char    *x = "$Id: str_cpyb.c,v 1.4 2020-11-22 23:53:16+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: str_cpyb.c,v 1.4 2020-11-22 23:53:16+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

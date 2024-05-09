@@ -166,7 +166,7 @@ b64encode(stralloc *in, stralloc *out)
 void
 getversion_base64sub_c()
 {
-	static char    *x = "$Id: base64sub.c,v 1.9 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: base64sub.c,v 1.9 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

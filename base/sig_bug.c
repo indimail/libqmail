@@ -32,7 +32,7 @@ sig_bugcatch(void (*f) ())
 void
 getversion_sig_bug_c()
 {
-	static char    *x = "$Id: sig_bug.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: sig_bug.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

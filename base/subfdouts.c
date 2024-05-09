@@ -13,7 +13,7 @@ substdio       *subfdoutsmall = &it;
 void
 getversion_subfdouts_c()
 {
-	static char    *x = "$Id: subfdouts.c,v 1.5 2024-01-22 10:18:21+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: subfdouts.c,v 1.5 2024-01-22 10:18:21+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -23,7 +23,7 @@ cdbmake_hashadd(uint32 h, unsigned int c)
 void
 getversion_cdbmake_hash_c()
 {
-	static char    *x = "$Id: cdbmake_hash.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: cdbmake_hash.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

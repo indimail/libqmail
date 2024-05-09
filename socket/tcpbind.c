@@ -181,7 +181,7 @@ tcpbind(char *hostname, char *servicename, int backlog)
 void
 getversion_tcpbind_c()
 {
-	static char    *x = "$Id: tcpbind.c,v 1.3 2024-02-08 10:32:24+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: tcpbind.c,v 1.3 2024-02-08 10:32:24+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

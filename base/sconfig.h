@@ -23,10 +23,10 @@ typedef struct
 	int             flagconf;
 } config_str;
 
-int             config_default(config_str *, char *);
+int             config_default(config_str *, const char *);
 int             config_copy(config_str *, config_str *);
-int             config_env(config_str *, char *);
-int             config_readline(config_str *, char *);
-int             config_readfile(config_str *, char *);
+int             config_env(config_str *, const char *);
+int             config_readline(config_str *, const char *);
+int             config_readfile(config_str *, const char *);
 
 #endif

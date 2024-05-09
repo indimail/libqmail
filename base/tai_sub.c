@@ -21,7 +21,7 @@ tai_sub(struct tai *t, struct tai *u, struct tai *v)
 void
 getversion_tai_sub_c()
 {
-	static char    *x = "$Id: tai_sub.c,v 1.2 2004-10-22 20:31:35+05:30 Cprogrammer Stab mbhangui $";
+	const char     *x = "$Id: tai_sub.c,v 1.2 2004-10-22 20:31:35+05:30 Cprogrammer Stab mbhangui $";
 
 	x++;
 }

@@ -42,7 +42,7 @@ caltime_tai(struct caltime *ct, struct tai *t)
 void
 getversion_caltime_tai_c()
 {
-	static char    *x = "$Id: caltime_tai.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: caltime_tai.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -15,7 +15,7 @@
 #endif
 #endif
 
-int             tcpopen     __P((char *, char *, int));
+int             tcpopen     __P((const char *, const char *, int));
 
 #endif
 

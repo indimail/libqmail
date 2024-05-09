@@ -27,7 +27,7 @@ ndelay_off(int fd)
 void
 getversion_ndelay_off_c()
 {
-	static char    *x = "$Id: ndelay_off.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: ndelay_off.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

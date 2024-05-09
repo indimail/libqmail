@@ -121,7 +121,7 @@ cdb_seek(int fd, const char *key, unsigned int len, uint32 *dlen)
 void
 getversion_cdb_seek_c()
 {
-	static char    *x = "$Id: cdb_seek.c,v 1.8 2022-01-30 19:35:15+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: cdb_seek.c,v 1.8 2022-01-30 19:35:15+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

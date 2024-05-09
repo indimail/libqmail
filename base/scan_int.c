@@ -48,7 +48,7 @@ scan_int(register const char *s, register int *i)
 void
 getversion_scan_int_c()
 {
-	static char    *x = "$Id: scan_int.c,v 1.5 2023-11-30 15:15:33+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_int.c,v 1.5 2023-11-30 15:15:33+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -17,13 +17,13 @@
 
 #ifdef HASMKFIFO
 int
-fifo_make(char *fn, mode_t mode)
+fifo_make(const char *fn, mode_t mode)
 {
 	return mkfifo(fn, mode);
 }
 #else
 int
-fifo_make(char *fn, mode_t mode)
+fifo_make(const char *fn, mode_t mode)
 {
 	return mknod(fn, S_IFIFO | mode, 0);
 }
@@ -32,7 +32,7 @@ fifo_make(char *fn, mode_t mode)
 void
 getversion_fifo_c()
 {
-	static char    *x = "$Id: fifo.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fifo.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

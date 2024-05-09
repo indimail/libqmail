@@ -81,7 +81,7 @@ doit(stralloc *out)
 }
 
 static int
-addcomment(char *tok)
+addcomment(const char *tok)
 {
 	int             i;
 
@@ -126,7 +126,7 @@ addaddr(char *tok)
 }
 
 int
-mess822_addrlist(stralloc *out, char *in)
+mess822_addrlist(stralloc *out, const char *in)
 {
 	int             flagwordok = 1;
 	int             flagphrase = 0;
@@ -255,7 +255,7 @@ mess822_addrlist(stralloc *out, char *in)
 void
 getversion_mess822_addr_c()
 {
-	static char    *x = "$Id: mess822_addr.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: mess822_addr.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

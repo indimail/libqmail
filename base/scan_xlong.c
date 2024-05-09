@@ -44,7 +44,7 @@ scan_xlong(const char *src, unsigned long *dest)
 void
 getversion_scan_xlong_c()
 {
-	static char    *x = "$Id: scan_xlong.c,v 1.3 2020-11-22 23:52:28+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_xlong.c,v 1.3 2020-11-22 23:52:28+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

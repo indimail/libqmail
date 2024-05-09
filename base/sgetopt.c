@@ -29,13 +29,13 @@
 #define optprogname sgetoptprogname
 
 int             opterr = 1;
-char           *optprogname = 0;
+const char     *optprogname = 0;
 
 int
 getopt(int argc, char **argv, const char *opts)
 {
 	int             c;
-	char           *s;
+	const char     *s;
 
 	if (!optprogname) {
 		optprogname = *argv;
@@ -66,7 +66,7 @@ getopt(int argc, char **argv, const char *opts)
 void
 getversion_sgetopt_c()
 {
-	static char    *x = "$Id: sgetopt.c,v 1.3 2020-11-23 18:04:36+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: sgetopt.c,v 1.3 2020-11-23 18:04:36+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -32,7 +32,7 @@ int readclose(int fd,stralloc *sa,unsigned int bufsize)
 void
 getversion_readclose_c()
 {
-	static char    *x = "$Id: readclose.c,v 1.1 2020-11-24 09:35:27+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: readclose.c,v 1.1 2020-11-24 09:35:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

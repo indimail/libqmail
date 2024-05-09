@@ -54,7 +54,7 @@ scan_base64(const char *src, char *dest, size_t *destlen)
 void
 getversion_scan_base64_c()
 {
-	static char    *x = "$Id: scan_base64.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_base64.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

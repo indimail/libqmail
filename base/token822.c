@@ -706,7 +706,7 @@ if (!token822_append(taout,&comma)) return -1; }
 void
 getversion_token822_c()
 {
-	static char    *x = "$Id: token822.c,v 1.7 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: token822.c,v 1.7 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

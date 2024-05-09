@@ -23,7 +23,7 @@ open_write(const char *fn)
 void
 getversion_open_write_c()
 {
-	static char    *x = "$Id: open_write.c,v 1.4 2020-11-22 23:51:55+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: open_write.c,v 1.4 2020-11-22 23:51:55+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

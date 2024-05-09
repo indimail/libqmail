@@ -35,7 +35,7 @@ substdio       *subfdin = &it;
 void
 getversion_subfdin_c()
 {
-	static char    *x = "$Id: subfdin.c,v 1.6 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: subfdin.c,v 1.6 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

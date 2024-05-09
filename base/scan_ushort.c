@@ -25,7 +25,7 @@ scan_ushort(register const char *s, register unsigned short *u)
 void
 getversion_scan_ushort_c()
 {
-	static char    *x = "$Id: scan_ushort.c,v 1.3 2020-11-22 23:52:25+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_ushort.c,v 1.3 2020-11-22 23:52:25+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

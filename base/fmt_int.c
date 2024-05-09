@@ -25,7 +25,7 @@ unsigned int fmt_int(char *dest, int i)
 void
 getversion_fmt_int_c()
 {
-	static char    *x = "$Id: fmt_int.c,v 1.3 2019-07-18 10:08:02+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_int.c,v 1.3 2019-07-18 10:08:02+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

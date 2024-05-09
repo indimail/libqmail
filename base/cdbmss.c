@@ -82,7 +82,7 @@ cdbmss_finish(struct cdbmss *c)
 void
 getversion_cdbmss_c()
 {
-	static char    *x = "$Id: cdbmss.c,v 1.6 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: cdbmss.c,v 1.6 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

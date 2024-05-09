@@ -50,7 +50,7 @@ leapsecs_sub(struct tai *t)
 void
 getversion_leapsecs_sub_c()
 {
-	static char    *x = "$Id: leapsecs_sub.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: leapsecs_sub.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

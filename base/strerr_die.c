@@ -103,7 +103,7 @@ strerr_die(int e, const char *x1, const char *x2, const char *x3,
 void
 getversion_strerr_die_c()
 {
-	static char    *x = "$Id: strerr_die.c,v 1.9 2022-08-27 09:07:02+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: strerr_die.c,v 1.9 2022-08-27 09:07:02+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

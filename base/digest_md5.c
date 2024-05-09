@@ -171,7 +171,7 @@ digest_md5(char *greeting, unsigned char *r_user, unsigned char *r_pass,
 void
 getversion_digest_md5_c()
 {
-	static char    *x = "$Id: digest_md5.c,v 1.2 2022-11-05 22:31:38+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: digest_md5.c,v 1.2 2022-11-05 22:31:38+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

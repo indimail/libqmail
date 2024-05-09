@@ -52,7 +52,7 @@ fmt_html(char *dest, const char *src, size_t len)
 void
 getversion_fmt_html_c()
 {
-	static char    *x = "$Id: fmt_html.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_html.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

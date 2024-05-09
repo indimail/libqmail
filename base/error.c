@@ -214,7 +214,7 @@ EBADF;
 void
 getversion_error_c()
 {
-	static char    *x = "$Id: error.c,v 1.11 2023-04-24 22:17:56+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: error.c,v 1.11 2023-04-24 22:17:56+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

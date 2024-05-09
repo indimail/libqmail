@@ -8,12 +8,12 @@
 struct strerr
 {
 	struct strerr  *who;
-	char           *v;
-	char           *w;
-	char           *x;
-	char           *y;
-	char           *z;
-} ;
+	const char     *v;
+	const char     *w;
+	const char     *x;
+	const char     *y;
+	const char     *z;
+};
 
 extern struct strerr strerr_sys;
 

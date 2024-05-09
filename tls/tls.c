@@ -38,12 +38,13 @@ static char     sccsid[] = "$Id: tls.c,v 1.10 2023-08-26 21:45:04+05:30 Cprogram
 #endif
 
 #ifdef HAVE_SSL
+typedef const char c_char;
 static enum tlsmode usessl = none;
 static char    *sslerr_str;
 static SSL     *ssl_t;
 static int      efd = -1, ssl_rfd = -1, ssl_wfd = -1; /*- SSL_get_fd() are broken */
 static char     do_shutdown;
-static char    *certdir;
+static c_char  *certdir;
 struct strerr   strerr_tls;
 
 void
@@ -83,7 +84,7 @@ ssl_free()
 }
 
 void
-set_certdir(char *s)
+set_certdir(const char *s)
 {
 	certdir = s;
 	return;
@@ -199,11 +200,11 @@ tmp_dh_cb(SSL *ssl_p, int export, int keylen)
 }
 #else /*- #if OPENSSL_VERSION_NUMBER < 0x30000000L openssl 3.0.0 */
 EVP_PKEY       *
-get_rsakey(int export, int keylen, char *_certdir)
+get_rsakey(int export, int keylen, const char *_certdir)
 {
 	stralloc        filename = { 0 };
-	char           *pems[] = {"8192", "4096", "2048", "1024", "512", 0};
-	char          **ptr;
+	const char     *pems[] = {"8192", "4096", "2048", "1024", "512", 0};
+	const char    **ptr;
 	BIO            *in;
 	int             i, j;
 	EVP_PKEY       *rsa_key;
@@ -248,11 +249,11 @@ get_rsakey(int export, int keylen, char *_certdir)
 }
 
 EVP_PKEY       *
-get_dhkey(int export, int keylen, char *_certdir)
+get_dhkey(int export, int keylen, const char *_certdir)
 {
 	stralloc        filename = { 0 };
-	char           *pems[] = {"8192", "4096", "2048", "1024", "512", 0};
-	char          **ptr;
+	const char     *pems[] = {"8192", "4096", "2048", "1024", "512", 0};
+	const char    **ptr;
 	int             i, j;
 	BIO            *in;
 	EVP_PKEY       *dh_key;
@@ -353,7 +354,7 @@ myssl_error_str()
 }
 
 static int
-check_cert(SSL *myssl, char *host)
+check_cert(SSL *myssl, const char *host)
 {
 	X509           *peer;
 	char            peer_CN[256];
@@ -387,7 +388,7 @@ check_cert(SSL *myssl, char *host)
  * gets the highest supported verison
  */
 int
-get_tls_method(char *vstr)
+get_tls_method(const char *vstr)
 {
 	if (!vstr) {
 #if OPENSSL_VERSION_NUMBER >= 0x1010107f /* openssl 1.1.1 */
@@ -408,10 +409,10 @@ get_tls_method(char *vstr)
  * representing ssl/tls version (1, 2, 3, 4, ...)
  */
 int
-sslvstr_to_method(char *vstr)
+sslvstr_to_method(const char *vstr)
 {
 	int             i = 0;
-	char           *p;
+	const char     *p;
 
 	i = str_chr(vstr, ':');
 	if (vstr[i]) {
@@ -499,7 +500,7 @@ sslmethod_to_version(int method)
 }
 
 static void
-print_invalid_method(char *sslver)
+print_invalid_method(const char *sslver)
 {
 	strerr_warn3("tls_method: Invalid TLS method configured [", sslver ? sslver : "[", "]", 0);
 #if OPENSSL_VERSION_NUMBER >= 0x1010107f /*- openssl 1.1.1 */
@@ -513,39 +514,45 @@ print_invalid_method(char *sslver)
 }
 
 SSL_CTX        *
-set_tls_method(char *ssl_option, int *method, enum tlsmode tmode, int *method_fail)
+set_tls_method(const char *ssl_option, int *method, enum tlsmode tmode, int *method_fail)
 {
 	SSL_CTX        *ctx = (SSL_CTX *) NULL;
+	char           *s;
 	int             i = 0, min_version = 0, max_version = 0, t;
 
 	if (ssl_option) {
-		i = str_chr(ssl_option, ':');
-		if (ssl_option[i]) {
-			ssl_option[i] = '\0';
+		if (!(s = (char *) alloc((t = str_len(ssl_option)) + 1)))
+			strerr_die1x(111, "set_tls_method: out of memory");
+		str_copyb(s, ssl_option, t + 1);
+		i = str_chr(s, ':');
+		if (s[i]) {
+			s[i] = '\0';
 			if (i) { /* min number specified */
-				if ((t = sslvstr_to_method(ssl_option)) == -1) {
+				if ((t = sslvstr_to_method(s)) == -1) {
 					if (method_fail) {
+						alloc_free(s);
 						*method_fail = 1;
 						errno = EPROTO;
 						return ((SSL_CTX *) NULL);
 					}
-					ssl_option[i] = ':';
-					print_invalid_method(ssl_option);
+					alloc_free(s);
+					s[i] = ':';
+					print_invalid_method(s);
 					errno = EPROTO;
 					return ((SSL_CTX *) NULL);
 				}
 				min_version = sslmethod_to_version(t);
 			}
 			i++;
-			if (ssl_option[i]) { /* max number specified */
-				if ((t = sslvstr_to_method(ssl_option + i)) == -1) {
+			if (s[i]) { /* max number specified */
+				if ((t = sslvstr_to_method(s + i)) == -1) {
 					if (method_fail) {
 						*method_fail = 1;
 						errno = EPROTO;
 						return ((SSL_CTX *) NULL);
 					}
-					ssl_option[i - 1] = ':';
-					print_invalid_method(ssl_option);
+					s[i - 1] = ':';
+					print_invalid_method(s);
 					errno = EPROTO;
 					return ((SSL_CTX *) NULL);
 				} else
@@ -684,8 +691,8 @@ set_tls_method(char *ssl_option, int *method, enum tlsmode tmode, int *method_fa
 }
 
 SSL_CTX        *
-tls_init(char *tls_method, char *cert, char *cafile, char *crlfile,
-		char *ciphers, enum tlsmode tmode)
+tls_init(const char *tls_method, const char *cert, const char *cafile,
+		const char *crlfile, const char *ciphers, enum tlsmode tmode)
 {
 	static SSL_CTX *ctx = (SSL_CTX *) NULL;
 	int             method, r;
@@ -908,7 +915,7 @@ decode_ssl_error(int i)
 }
 
 int
-tls_connect(int timeout, int rfd, int wfd, SSL *myssl, char *host)
+tls_connect(int timeout, int rfd, int wfd, SSL *myssl, const char *host)
 {
 	int             i, err;
 	const char     *err_str;

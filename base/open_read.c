@@ -23,7 +23,7 @@ open_read(const char *fn)
 void
 getversion_open_read_c()
 {
-	static char    *x = "$Id: open_read.c,v 1.4 2020-11-22 23:51:48+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: open_read.c,v 1.4 2020-11-22 23:51:48+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

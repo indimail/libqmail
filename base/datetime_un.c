@@ -59,7 +59,7 @@ datetime_untai(const struct datetime *dt)
 void
 getversion_datetime_un_c()
 {
-	static char    *x = "$Id: datetime_un.c,v 1.4 2021-06-10 10:50:03+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: datetime_un.c,v 1.4 2021-06-10 10:50:03+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

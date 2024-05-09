@@ -82,7 +82,7 @@ hmac_md5(unsigned char *text, /*- pointer to data stream */
 void
 getversion_hmac_md5_c()
 {
-	static char    *x = "$Id: hmac_md5.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: hmac_md5.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 #ifndef lint
 	x=sccsidmd5h;
 	x=sccsidglobalh;

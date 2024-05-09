@@ -28,7 +28,7 @@ case_lowers(char *s)
 void
 getversion_case_lowers_c()
 {
-	static char    *x = "$Id: case_lowers.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: case_lowers.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

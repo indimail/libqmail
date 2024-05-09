@@ -30,7 +30,7 @@
 #include <stdarg.h>
 #endif
 
-int             qprintf(substdio *, char *, char *);
+int             qprintf(substdio *, const char *, const char *);
 int             qprintf_flush(substdio *);
 #ifdef HAVE_STDARG_H
 int             subprintf(substdio *ss, const char *format, ...)

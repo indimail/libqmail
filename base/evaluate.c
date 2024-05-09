@@ -77,7 +77,7 @@ char            scantable[UCHAR_MAX + 1];
 int             scantable_ok = 0;
 
 /*- table of function names */
-char           *functable[] = {
+const char     *functable[] = {
 	"acos", "asin", "atan", "cos", "cosh", "exp", "ln", "log",
 	"sin", "sinh", "sqr", "sqrt", "tan", "tanh", NULL
 };
@@ -89,12 +89,8 @@ enum
 	F_SIN, F_SINH, F_SQR, F_SQRT, F_TAN, F_TANH
 };
 
-
-
-
 int             same_str(const char *a, const char *b);
 int             same_str_len(const char *a, const char *b, int len);
-
 void            init_scantable();
 int             tokenize(struct memh *mh, char **string, struct tok **listptr);
 int             scan_number(char **stringptr, struct val *valptr);
@@ -102,7 +98,7 @@ int             precedence(struct tok *t);
 int             eval(struct memh *mh, struct tok *list, struct vartable *vt, struct val *result);
 
 int
-evaluate(char *expr, struct val *result, struct vartable *vartable)
+evaluate(const char *expr, struct val *result, struct vartable *vartable)
 {
 	struct memh    *mh = NULL;
 	int             i, error = RESULT_OK, madevar = 0;
@@ -262,7 +258,7 @@ tokenize(struct memh *mh, char **string, struct tok **listptr)
 			len = s + 1 - name;
 			/*- look for matching function */
 			for (i = 0; functable[i]; i++) {
-				char           *fname = functable[i];
+				const char     *fname = functable[i];
 				if (same_str_len(name, fname, len) && str_len(fname) == len) {
 					list[idx].token = TK_FUNC;
 					list[idx].funcid = i;
@@ -1178,7 +1174,7 @@ put_var(struct vartable *vt, char *name, struct val *value)
 void
 getversion_evaluate_c()
 {
-	static char    *x = "$Id: evaluate.c,v 2.4 2021-05-22 19:00:41+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: evaluate.c,v 2.4 2021-05-22 19:00:41+05:30 Cprogrammer Exp mbhangui $";
 	x = sccsidevalh;
 
 	x++;

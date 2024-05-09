@@ -13,6 +13,8 @@
 #include "global.h"
 #include "md5.h"
 
+typedef const char c_char;
+
 static void
 to64(char *s, unsigned long v, int n)
 {
@@ -36,7 +38,7 @@ md5_crypt(const char *pw, const char *salt)
 	 * This string is magic for this algorithm.
 	 * Having it this way, we can get get better later on
 	 */
-	static char    *magic = "$1$";
+	static c_char  *magic = "$1$";
 	static char     passwd[120], *p;
 	static const char *sp, *ep;
 	unsigned char   final[16];
@@ -151,7 +153,7 @@ md5_crypt(const char *pw, const char *salt)
 void
 getversion_md5_crypt_c()
 {
-	static char    *x = "$Id: md5_crypt.c,v 1.1 2020-04-01 18:10:46+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: md5_crypt.c,v 1.1 2020-04-01 18:10:46+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

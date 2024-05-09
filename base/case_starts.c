@@ -39,7 +39,7 @@ case_starts(register const char *s, register const char *t)
 void
 getversion_case_starts_c()
 {
-	static char    *x = "$Id: case_starts.c,v 1.4 2020-11-22 23:50:35+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: case_starts.c,v 1.4 2020-11-22 23:50:35+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

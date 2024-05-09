@@ -27,7 +27,7 @@ seek_end(int fd)
 void
 getversion_seek_end_c()
 {
-	static char    *x = "$Id: seek_end.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: seek_end.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

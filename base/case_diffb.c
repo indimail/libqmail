@@ -39,7 +39,7 @@ case_diffb(register const char *s, unsigned int len, register const char *t)
 void
 getversion_case_diffb_c()
 {
-	static char    *x = "$Id: case_diffb.c,v 1.4 2020-11-22 23:50:10+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: case_diffb.c,v 1.4 2020-11-22 23:50:10+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

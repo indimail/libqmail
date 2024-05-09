@@ -23,7 +23,7 @@ fmt_ushort(register char *s, register unsigned short u)
 void
 getversion_fmt_ushort_c()
 {
-	static char    *x = "$Id: fmt_ushort.c,v 1.3 2020-10-01 13:30:31+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_ushort.c,v 1.3 2020-10-01 13:30:31+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
