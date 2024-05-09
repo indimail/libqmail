@@ -34,7 +34,7 @@ fmt_str(register char *s, register const char *t)
 void
 getversion_fmt_str_c()
 {
-	static char    *x = "$Id: fmt_str.c,v 1.6 2020-11-24 09:32:01+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_str.c,v 1.6 2020-11-24 09:32:01+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

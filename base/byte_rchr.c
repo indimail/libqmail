@@ -60,7 +60,7 @@ byte_rchr(const char *s, register unsigned int n, int c)
 void
 getversion_byte_rchr_c()
 {
-	static char    *x = "$Id: byte_rchr.c,v 1.5 2021-06-10 10:49:43+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: byte_rchr.c,v 1.5 2021-06-10 10:49:43+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

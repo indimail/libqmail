@@ -173,7 +173,7 @@ cdb_find(struct cdb *c, const char *key, unsigned int len)
 void
 getversion_cdb_c()
 {
-	static char    *x = "$Id: cdb.c,v 1.4 2022-05-17 18:12:00+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: cdb.c,v 1.4 2022-05-17 18:12:00+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

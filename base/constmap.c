@@ -175,7 +175,7 @@ constmap_free(struct constmap *cm)
 void
 getversion_constmap_c()
 {
-	static char    *x = "$Id: constmap.c,v 1.6 2020-11-26 13:48:36+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: constmap.c,v 1.6 2020-11-26 13:48:36+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

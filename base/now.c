@@ -20,7 +20,7 @@ now()
 void
 getversion_now_c()
 {
-	static char    *x = "$Id: now.c,v 1.3 2004-10-22 20:27:44+05:30 Cprogrammer Stab mbhangui $";
+	const char     *x = "$Id: now.c,v 1.3 2004-10-22 20:27:44+05:30 Cprogrammer Stab mbhangui $";
 
 	x++;
 }

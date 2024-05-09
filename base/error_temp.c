@@ -92,7 +92,7 @@ int error_temp(int e)
 void
 getversion_error_temp_c()
 {
-	static char    *x = "$Id: error_temp.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: error_temp.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

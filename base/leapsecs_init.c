@@ -25,7 +25,7 @@ leapsecs_init()
 void
 getversion_leapsecs_init_c()
 {
-	static char    *x = "$Id: leapsecs_init.c,v 1.2 2004-10-22 20:26:03+05:30 Cprogrammer Stab mbhangui $";
+	const char     *x = "$Id: leapsecs_init.c,v 1.2 2004-10-22 20:26:03+05:30 Cprogrammer Stab mbhangui $";
 
 	x++;
 }

@@ -39,7 +39,7 @@ fmt_xlong(char *s, unsigned long u)
 void
 getversion_fmt_xlong_c()
 {
-	static char    *x = "$Id: fmt_xlong.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_xlong.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

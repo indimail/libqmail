@@ -30,7 +30,7 @@ fd_copy(int to, int from)
 void
 getversion_fd_copy_c()
 {
-	static char    *x = "$Id: fd_copy.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fd_copy.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

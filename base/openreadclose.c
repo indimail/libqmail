@@ -27,7 +27,7 @@ int openreadclose(const char *fn,stralloc *sa,unsigned int bufsize)
 void
 getversion_openreadclose_c()
 {
-	static char    *x = "$Id: openreadclose.c,v 1.1 2020-11-24 09:35:24+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: openreadclose.c,v 1.1 2020-11-24 09:35:24+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

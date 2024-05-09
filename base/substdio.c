@@ -30,7 +30,7 @@ substdio_fdbuf(register substdio *s, register ssize_t (*op)(),
 void
 getversion_substdio_c()
 {
-	static char    *x = "$Id: substdio.c,v 1.5 2020-05-12 11:23:47+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: substdio.c,v 1.5 2020-05-12 11:23:47+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

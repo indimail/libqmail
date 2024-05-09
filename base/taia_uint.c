@@ -27,7 +27,7 @@ taia_uint(struct taia *t, unsigned int s)
 void
 getversion_taia_uint_c()
 {
-	static char    *x = "$Id: taia_uint.c,v 1.2 2004-10-22 20:31:33+05:30 Cprogrammer Stab mbhangui $";
+	const char     *x = "$Id: taia_uint.c,v 1.2 2004-10-22 20:31:33+05:30 Cprogrammer Stab mbhangui $";
 
 	x++;
 }

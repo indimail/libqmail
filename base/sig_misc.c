@@ -29,7 +29,7 @@ sig_miscignore()
 void
 getversion_sig_misc_c()
 {
-	static char    *x = "$Id: sig_misc.c,v 1.3 2004-10-22 20:30:25+05:30 Cprogrammer Stab mbhangui $";
+	const char     *x = "$Id: sig_misc.c,v 1.3 2004-10-22 20:30:25+05:30 Cprogrammer Stab mbhangui $";
 
 	x++;
 }

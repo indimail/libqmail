@@ -32,7 +32,7 @@ strerr_sysinit()
 void
 getversion_strerr_sys_c()
 {
-	static char    *x = "$Id: strerr_sys.c,v 1.5 2021-08-24 11:17:43+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: strerr_sys.c,v 1.5 2021-08-24 11:17:43+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -53,7 +53,7 @@ env_findeq(const char *s)
 void
 getversion_envread_c()
 {
-	static char    *x = "$Id: envread.c,v 1.7 2022-01-30 19:35:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: envread.c,v 1.7 2022-01-30 19:35:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

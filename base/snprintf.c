@@ -772,7 +772,7 @@ my_strnlen(const char *s, int max)
 
 /** print %s */
 static void
-print_str(char **at, size_t *left, int *ret, char *s, int minw, int precision, int prgiven, int minus)
+print_str(char **at, size_t *left, int *ret, const char *s, int minw, int precision, int prgiven, int minus)
 {
 	int             w;
 	/*- with prec: no more than x characters from this string, stop at 0 */
@@ -1225,7 +1225,7 @@ main(void)
 void
 getversion_snprintf_c()
 {
-	static char    *x = "$Id: snprintf.c,v 1.2 2023-01-21 17:00:38+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: snprintf.c,v 1.2 2023-01-21 17:00:38+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

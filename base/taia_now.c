@@ -30,7 +30,7 @@ taia_now(struct taia *t)
 void
 getversion_taia_now_c()
 {
-	static char    *x = "$Id: taia_now.c,v 1.3 2020-07-07 09:12:01+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: taia_now.c,v 1.3 2020-07-07 09:12:01+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

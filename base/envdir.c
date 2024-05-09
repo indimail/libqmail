@@ -27,7 +27,7 @@
 #include "direntry.h"
 #include "stralloc.h"
 
-char *
+const char     *
 envdir_str(int code)
 {
 	switch (code)
@@ -73,7 +73,7 @@ if_visited(ino_t inum)
 }
 
 int
-process_dot_envfile(char *fn, char **e, int ignore_unreadable, int *unreadable)
+process_dot_envfile(char *fn, const char **e, int ignore_unreadable, int *unreadable)
 {
 	struct stat     st;
 	char           *ptr, *cptr;
@@ -163,7 +163,7 @@ process_dot_envfile(char *fn, char **e, int ignore_unreadable, int *unreadable)
 }
 
 int
-process_dot_envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
+process_dot_envdir(const char *fn, const char **e, int ignore_unreadable, int *unreadable)
 {
 	struct stat     st;
 	char           *ptr, *cptr;
@@ -236,7 +236,7 @@ exit_nicely(char *d, DIR *dir)
 }
 
 int
-envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
+envdir(const char *fn, const char **e, int ignore_unreadable, int *unreadable)
 {
 	DIR            *dir;
 	direntry       *dt;
@@ -367,7 +367,7 @@ envdir(char *fn, char **e, int ignore_unreadable, int *unreadable)
 void
 getversion_envdir_c()
 {
-	static char    *x = "$Id: envdir.c,v 1.15 2024-01-31 19:39:18+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: envdir.c,v 1.15 2024-01-31 19:39:18+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

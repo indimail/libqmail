@@ -34,7 +34,7 @@ lock_ex(int fd)
 void
 getversion_lock_ex_c()
 {
-	static char    *x = "$Id: lock_ex.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: lock_ex.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

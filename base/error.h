@@ -60,7 +60,7 @@ extern int      error_restart;
 extern int      error_child;
 extern int      error_ebadf;
 
-char           *error_str(int);
+const char     *error_str(int);
 char           *estack(int, const char *);
 int             error_temp(int);
 

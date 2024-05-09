@@ -40,7 +40,7 @@ byte_copyr(register char *to, register unsigned int n, register const char *from
 void
 getversion_byte_cr_c()
 {
-	static char    *x = "$Id: byte_cr.c,v 1.4 2020-11-22 23:49:02+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: byte_cr.c,v 1.4 2020-11-22 23:49:02+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

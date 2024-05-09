@@ -16,7 +16,7 @@
 #ifndef ENVDIR_H
 #define ENVDIR_H
 
-int             envdir(char *, char **, int, int *);
-char           *envdir_str(int);
+int             envdir(const char *, const char **, int, int *);
+const char     *envdir_str(int);
 
 #endif

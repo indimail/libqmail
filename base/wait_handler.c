@@ -33,7 +33,7 @@ wait_handler(int wstat, int *sig)
 void
 getversion_wait_handler_c()
 {
-	static char    *x = "$Id: wait_handler.c,v 1.1 2022-12-18 13:38:05+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: wait_handler.c,v 1.1 2022-12-18 13:38:05+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

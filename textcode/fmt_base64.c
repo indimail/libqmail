@@ -42,7 +42,7 @@ fmt_base64(char *dest, const char *src, size_t len)
 void
 getversion_fmt_base64_c()
 {
-	static char    *x = "$Id: fmt_base64.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_base64.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

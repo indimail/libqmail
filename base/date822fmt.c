@@ -18,11 +18,12 @@
 #include "fmt.h"
 #include "date822fmt.h"
 
-static char    *montab[12] = {
+typedef const char c_char;
+static c_char  *montab[12] = {
 	"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 };
 
-static char    *daytab[7] = {
+static c_char  *daytab[7] = {
 	"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
 };
 
@@ -144,7 +145,7 @@ date822fmt(char *s, const struct datetime *dt)
 void
 getversion_date822fmt_c()
 {
-	static char    *x = "$Id: date822fmt.c,v 1.6 2021-04-18 21:21:13+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: date822fmt.c,v 1.6 2021-04-18 21:21:13+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

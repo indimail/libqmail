@@ -14,7 +14,7 @@ void tai_uint(struct tai *t,unsigned int u)
 void
 getversion_tai_uint_c()
 {
-	static char    *x = "$Id: tai_uint.c,v 1.1 2020-11-21 21:50:38+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: tai_uint.c,v 1.1 2020-11-21 21:50:38+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -23,7 +23,7 @@ fmt_uint(register char *s, register unsigned int u)
 void
 getversion_fmt_uint_c()
 {
-	static char    *x = "$Id: fmt_uint.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_uint.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

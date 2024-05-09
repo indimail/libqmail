@@ -42,7 +42,7 @@ case_startb(register const char *s, unsigned int len, register const char *t)
 void
 getversion_case_startb_c()
 {
-	static char    *x = "$Id: case_startb.c,v 1.4 2020-11-22 23:50:31+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: case_startb.c,v 1.4 2020-11-22 23:50:31+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

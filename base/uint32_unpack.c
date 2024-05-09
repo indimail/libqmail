@@ -47,7 +47,7 @@ uint32_unpack_big(const char s[4], uint32 *u)
 void
 getversion_uint32_unpack_c()
 {
-	static char    *x = "$Id: uint32_unpack.c,v 1.3 2020-11-23 00:18:58+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: uint32_unpack.c,v 1.3 2020-11-23 00:18:58+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

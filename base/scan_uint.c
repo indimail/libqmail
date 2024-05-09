@@ -25,7 +25,7 @@ scan_uint(register const char *s, register unsigned int *u)
 void
 getversion_scan_uint_c()
 {
-	static char    *x = "$Id: scan_uint.c,v 1.3 2020-11-22 23:52:13+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_uint.c,v 1.3 2020-11-22 23:52:13+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -46,7 +46,7 @@ stralloc_catb(stralloc *sa, const char *s, unsigned int n)
 void
 getversion_stralloc_catb_c()
 {
-	static char    *x = "$Id: stralloc_catb.c,v 1.7 2020-11-22 23:52:49+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: stralloc_catb.c,v 1.7 2020-11-22 23:52:49+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

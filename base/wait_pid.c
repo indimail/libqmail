@@ -68,7 +68,7 @@ wait_pid(int *wstat, int pid)
 void
 getversion_wait_pid_c()
 {
-	static char    *x = "$Id: wait_pid.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: wait_pid.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

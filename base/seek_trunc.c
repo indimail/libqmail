@@ -23,7 +23,7 @@ seek_trunc(int fd, seek_pos pos)
 void
 getversion_seek_trunc_c()
 {
-	static char    *x = "$Id: seek_trunc.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: seek_trunc.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -17,7 +17,7 @@ int
 mktempfile(int seekfd)
 {
 	char            inbuf[2048], outbuf[2048], strnum[FMT_ULONG];
-	char           *tmpdir;
+	const char     *tmpdir;
 	static stralloc tmpFile = { 0 };
 	struct substdio ssin;
 	struct substdio ssout;
@@ -70,7 +70,7 @@ mktempfile(int seekfd)
 void
 getversion_mktempfile_c()
 {
-	static char    *x = "$Id: mktempfile.c,v 1.1 2021-06-09 19:32:47+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: mktempfile.c,v 1.1 2021-06-09 19:32:47+05:30 Cprogrammer Exp mbhangui $";
 
 	x = sccsidmktempfileh;
 	x++;

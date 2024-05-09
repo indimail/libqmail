@@ -47,7 +47,7 @@ str_str(register char *buf, register char *sub)
 void
 getversion_str_str_c()
 {
-	static char    *x = "$Id: str_str.c,v 1.3 2019-07-18 10:09:22+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: str_str.c,v 1.3 2019-07-18 10:09:22+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

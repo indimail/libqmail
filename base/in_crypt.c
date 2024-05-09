@@ -55,7 +55,7 @@ in_crypt(const char *pw, const char *salt)
 void
 getversion_in_crypt_c()
 {
-	static char    *x = "$Id: in_crypt.c,v 1.2 2022-08-26 21:19:16+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: in_crypt.c,v 1.2 2022-08-26 21:19:16+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

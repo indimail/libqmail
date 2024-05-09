@@ -23,7 +23,7 @@ open_trunc(const char *fn)
 void
 getversion_open_trunc_c()
 {
-	static char    *x = "$Id: open_trunc.c,v 1.4 2020-11-22 23:51:53+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: open_trunc.c,v 1.4 2020-11-22 23:51:53+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -39,7 +39,7 @@
 static char     hextab[] = "0123456789abcdef";
 
 static void
-out(char *str)
+out(const char *str)
 {
 	if (!str || !*str)
 		return;
@@ -201,7 +201,7 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 void
 getversion_pw_comp_c()
 {
-	static char    *x = "$Id: pw_comp.c,v 1.5 2022-11-05 22:29:02+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: pw_comp.c,v 1.5 2022-11-05 22:29:02+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

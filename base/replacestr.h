@@ -18,6 +18,6 @@
 #include <stralloc.h>
 #endif
 
-int             replacestr(char *, char *, char *, stralloc *);
+int             replacestr(const char *, const char *, const char *, stralloc *);
 
 #endif

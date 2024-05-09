@@ -34,7 +34,7 @@ lock_un(int fd)
 void
 getversion_lock_un_c()
 {
-	static char    *x = "$Id: lock_un.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: lock_un.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

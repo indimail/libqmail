@@ -101,7 +101,7 @@ sgopt(int argc, char **argv, const char *opts)
 void
 getversion_subgetopt_c()
 {
-	static char    *x = "$Id: subgetopt.c,v 1.5 2022-01-30 19:36:39+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: subgetopt.c,v 1.5 2022-01-30 19:36:39+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

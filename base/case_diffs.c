@@ -40,7 +40,7 @@ case_diffs(register const char *s, register const char *t)
 void
 getversion_case_diffs_c()
 {
-	static char    *x = "$Id: case_diffs.c,v 1.4 2020-11-22 23:50:15+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: case_diffs.c,v 1.4 2020-11-22 23:50:15+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

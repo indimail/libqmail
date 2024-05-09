@@ -37,7 +37,7 @@ fmt_ldapescape2(char *dest, const char *src, size_t len, const char *escapeme)
 void
 getversion_fmt_ldap_escape2_c()
 {
-	static char    *x = "$Id: fmt_ldapescape2.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_ldapescape2.c,v 1.1 2020-09-30 09:16:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

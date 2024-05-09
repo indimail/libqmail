@@ -20,7 +20,7 @@ unsigned int fmt_minus(char *dest,int i) {
 void
 getversion_fmt_minus_c()
 {
-	static char    *x = "$Id: fmt_minus.c,v 1.2 2019-07-18 10:08:21+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_minus.c,v 1.2 2019-07-18 10:08:21+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

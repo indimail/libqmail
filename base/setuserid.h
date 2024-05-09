@@ -30,9 +30,9 @@
 #include <grp.h>
 #endif
 
-gid_t           *grpscan(char *, int *);
-int              setuserid(char *, int, char *);
-int              setuser_privileges(uid_t, gid_t, char *);
-int              set_additional_groups(char *, int);
+gid_t           *grpscan(const char *, int *);
+int              setuserid(const char *, int, const char *);
+int              setuser_privileges(uid_t, gid_t, const char *);
+int              set_additional_groups(const char *, int);
 
 #endif

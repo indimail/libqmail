@@ -37,7 +37,7 @@ taia_add(struct taia *t, const struct taia *u, const struct taia *v)
 void
 getversion_taia_add_c()
 {
-	static char    *x = "$Id: taia_add.c,v 1.2 2004-10-22 20:31:27+05:30 Cprogrammer Stab mbhangui $";
+	const char     *x = "$Id: taia_add.c,v 1.2 2004-10-22 20:31:27+05:30 Cprogrammer Stab mbhangui $";
 
 	x++;
 }

@@ -50,7 +50,7 @@ tai64n_decode(stralloc *str, char **endptr)
 void
 getversion_tai64n_decode_c()
 {
-	static char    *x = "$Id: tai64n_decode.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: tai64n_decode.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

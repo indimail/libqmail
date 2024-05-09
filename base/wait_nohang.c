@@ -27,7 +27,7 @@ wait_nohang(int *wstat)
 void
 getversion_wait_nohang_c()
 {
-	static char    *x = "$Id: wait_nohang.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: wait_nohang.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

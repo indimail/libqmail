@@ -871,7 +871,7 @@ main(void)
 void
 getversion_sha512_crypt_c()
 {
-	static char    *x = "$Id: sha512_crypt.c,v 1.3 2020-10-05 16:32:18+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: sha512_crypt.c,v 1.3 2020-10-05 16:32:18+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -46,7 +46,7 @@ prot_uid(uid_t uid)
 void
 getversion_prot_c()
 {
-	static char    *x = "$Id: prot.c,v 1.5 2021-07-03 13:51:13+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: prot.c,v 1.5 2021-07-03 13:51:13+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

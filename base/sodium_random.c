@@ -32,7 +32,7 @@ sodium_random(char *str, size_t len)
 void
 getversion_sodium_random_c()
 {
-	static char    *x = "$Id: sodium_random.c,v 1.1 2022-08-05 09:00:00+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: sodium_random.c,v 1.1 2022-08-05 09:00:00+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

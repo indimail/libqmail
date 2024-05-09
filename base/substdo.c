@@ -174,7 +174,7 @@ substdio_putsflush(register substdio *s, register const char *buf)
 void
 getversion_substdo_c()
 {
-	static char    *x = "$Id: substdo.c,v 1.11 2022-01-30 19:36:45+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: substdo.c,v 1.11 2022-01-30 19:36:45+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

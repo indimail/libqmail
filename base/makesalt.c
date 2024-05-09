@@ -159,7 +159,7 @@ makesalt(char *salt, int n)
 void
 getversion_makesalt_c()
 {
-	static char    *x = "$Id: makesalt.c,v 1.9 2023-07-16 13:49:56+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: makesalt.c,v 1.9 2023-07-16 13:49:56+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

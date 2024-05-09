@@ -33,7 +33,7 @@ scan_yenc(const char *src, char *dest, size_t *destlen)
 void
 getversion_scan_yenc_c()
 {
-	static char    *x = "$Id: scan_yenc.c,v 1.1 2020-09-30 09:17:54+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_yenc.c,v 1.1 2020-09-30 09:17:54+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

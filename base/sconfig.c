@@ -26,7 +26,7 @@
 #include <unistd.h>
 
 int
-config_default(config_str *c, char *s)
+config_default(config_str *c, const char *s)
 {
 	if (c->flagconf || !s)
 		return 0;
@@ -48,7 +48,7 @@ config_copy(config_str *c, config_str *d)
 }
 
 int
-config_env(config_str *c, char *s)
+config_env(config_str *c, const char *s)
 {
 	if (c->flagconf || !(s = env_get(s)))
 		return 0;
@@ -84,11 +84,10 @@ static char     inbuf[128];
 static stralloc line = { 0 };
 
 int
-config_readline(config_str *c, char *fn)
+config_readline(config_str *c, const char *fn)
 {
 	substdio        ss;
-	int             fd;
-	int             match;
+	int             fd, match;
 
 	if (c->flagconf)
 		return 0;
@@ -111,11 +110,10 @@ config_readline(config_str *c, char *fn)
 }
 
 int
-config_readfile(config_str *c, char *fn)
+config_readfile(config_str *c, const char *fn)
 {
 	substdio        ss;
-	int             fd;
-	int             match;
+	int             fd, match;
 
 	if (c->flagconf)
 		return 0;
@@ -152,7 +150,7 @@ config_readfile(config_str *c, char *fn)
 void
 getversion_sconfig_c()
 {
-	static char    *x = "$Id: sconfig.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: sconfig.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

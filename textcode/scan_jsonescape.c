@@ -74,7 +74,7 @@ scan_jsonescape(const char *src, char *dest, size_t *destlen)
 void
 getversion_scan_jsonescape_c()
 {
-	static char    *x = "$Id: scan_jsonescape.c,v 1.1 2020-09-30 09:17:10+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_jsonescape.c,v 1.1 2020-09-30 09:17:10+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

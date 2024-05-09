@@ -21,7 +21,7 @@ substdio       *subfdout = &it;
 void
 getversion_subfdout_c()
 {
-	static char    *x = "$Id: subfdout.c,v 1.4 2004-10-22 20:31:06+05:30 Cprogrammer Stab mbhangui $";
+	const char     *x = "$Id: subfdout.c,v 1.4 2004-10-22 20:31:06+05:30 Cprogrammer Stab mbhangui $";
 
 	x++;
 }

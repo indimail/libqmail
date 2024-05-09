@@ -29,7 +29,7 @@ case_lowerb(char *s, unsigned int len)
 void
 getversion_case_lowerb_c()
 {
-	static char    *x = "$Id: case_lowerb.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: case_lowerb.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

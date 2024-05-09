@@ -44,7 +44,7 @@ fmt_pad(char *dest, const char *src, unsigned int srclen, unsigned int padlen, u
 void
 getversion_fmt_pad_c()
 {
-	static char    *x = "$Id: fmt_pad.c,v 1.1 2019-07-18 10:13:20+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_pad.c,v 1.1 2019-07-18 10:13:20+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

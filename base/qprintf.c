@@ -27,10 +27,10 @@ qprintf_flush(substdio *ss)
 }
 
 int
-qprintf(substdio *ss, char *src, char *format_spec)
+qprintf(substdio *ss, const char *src, const char *format_spec)
 {
 	register int    len = 0, todo;
-	char           *delim = " ";
+	const char     *delim = " ";
 	int             i = -1, j;
 
 	len = str_len(src);
@@ -98,7 +98,7 @@ qprintf(substdio *ss, char *src, char *format_spec)
 void
 getversion_qprintf_c()
 {
-	static char    *x = "$Id: qprintf.c,v 1.4 2021-05-26 11:58:45+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: qprintf.c,v 1.4 2021-05-26 11:58:45+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

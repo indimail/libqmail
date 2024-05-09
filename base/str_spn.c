@@ -26,7 +26,7 @@ cont:
 void
 getversion_str_spn_c()
 {
-	static char    *x = "$Id: str_spn.c,v 1.1 2023-12-22 18:36:10+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: str_spn.c,v 1.1 2023-12-22 18:36:10+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

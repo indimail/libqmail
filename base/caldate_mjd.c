@@ -68,7 +68,7 @@ caldate_mjd(struct caldate *cd)
 void
 getversion_caldate_mjd_c()
 {
-	static char    *x = "$Id: caldate_mjd.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: caldate_mjd.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

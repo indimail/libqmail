@@ -35,7 +35,7 @@ substdio_copy(register substdio *ssout, register substdio *ssin)
 void
 getversion_substdio_copy_c()
 {
-	static char    *x = "$Id: substdio_copy.c,v 1.4 2020-12-04 12:27:46+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: substdio_copy.c,v 1.4 2020-12-04 12:27:46+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -29,7 +29,7 @@ cdb_unpack(unsigned char *buf)
 void
 getversion_cdb_unpack_c()
 {
-	static char    *x = "$Id: cdb_unpack.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: cdb_unpack.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

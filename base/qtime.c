@@ -8,10 +8,11 @@
 #include "fmt.h"
 #include "qtime.h"
 
-static char    *daytab[7] = {
+typedef const char c_char;
+static c_char  *daytab[7] = {
 	"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
 };
-static char    *montab[12] = {
+static c_char  *montab[12] = {
 	"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 };
 
@@ -46,7 +47,7 @@ qtime(datetime_sec t)
 void
 getversion_qtime_c()
 {
-	static char    *x = "$Id: qtime.c,v 1.1 2021-06-01 09:52:27+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: qtime.c,v 1.1 2021-06-01 09:52:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

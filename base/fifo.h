@@ -14,6 +14,6 @@
 #define FIFO_H
 #include <sys/types.h>
 
-int             fifo_make(char *, mode_t);
+int             fifo_make(const char *, mode_t);
 
 #endif

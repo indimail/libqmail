@@ -163,7 +163,7 @@ case "$host" in
 	CPPFLAGS="$CPPFLAGS -Dlint -DLINUX -Wall"
 	CFLAGS="$CFLAGS -O4 -Wall -Wimplicit -fPIC -fno-strict-aliasing"
 	CFLAGS="$CFLAGS -Wunused -Wcomment -Wchar-subscripts -Wuninitialized"
-	CFLAGS="$CFLAGS -Wshadow -Wcast-align -Wwrite-strings -Wno-discarded-qualifiers"
+	CFLAGS="$CFLAGS -Wshadow -Wcast-align -Wwrite-strings"
 	;;
 *-*-freebsd*)
 	CPPFLAGS="$CPPFLAGS -I/usr/local/include -Dlint -DFREEBSD -Wall"

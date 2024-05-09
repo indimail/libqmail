@@ -34,7 +34,7 @@
  * The returned value should be freed after use
  */
 gid_t   *
-grpscan(char *user, int *ngroups)
+grpscan(const char *user, int *ngroups)
 {
 	struct passwd  *pwd;
 	struct group   *grp;
@@ -77,26 +77,34 @@ grpscan(char *user, int *ngroups)
 }
 
 int
-set_additional_groups(char *groups, int set_primary_gid)
+set_additional_groups(const char *groups, int set_primary_gid)
 {
 	struct group   *gr;
-	char           *ptr, *cptr;
+	char           *groups_t = NULL, *ptr, *cptr;
 	int             ngroups, i = 0, e;
 	gid_t          *gidset, g;
 
-	for (ptr = groups, ngroups = 0; *ptr; ptr++) {
+	for (ptr = (char *) groups, ngroups = 0; *ptr; ptr++) {
 		if (*ptr == ',')
 			ngroups++;
 	}
 	ngroups++;
 	if (!(gidset = (gid_t *) alloc(ngroups * sizeof(gid_t))))
 		return -1;
-	for (ptr = cptr = groups; *ptr; ptr++) {
+	if (!(groups_t = (char *) alloc((e = str_len(groups)) + 1))) {
+		e = errno;
+		alloc_free((char *) gidset);
+		errno = e;
+		return -1;
+	}
+	str_copyb(groups_t, groups_t, e + 1);
+	for (ptr = cptr = groups_t; *ptr; ptr++) {
 		if (*ptr == ',') {
 			*ptr = 0;
 			if (!isnum(cptr)) {
 				if (!(gr = getgrnam(cptr))) {
 					e = errno;
+					alloc_free(groups_t);
 					alloc_free((char *) gidset);
 					errno = e;
 					return -1;
@@ -112,6 +120,7 @@ set_additional_groups(char *groups, int set_primary_gid)
 	if (!isnum(cptr)) {
 		if (!(gr = getgrnam(cptr))) {
 			e = errno;
+			alloc_free(groups_t);
 			alloc_free((char *) gidset);
 			errno = e;
 			return -1;
@@ -122,26 +131,29 @@ set_additional_groups(char *groups, int set_primary_gid)
 	gidset[i++] = g;
 	if (set_primary_gid && setgid(gidset[0]) == -1) {
 		e = errno;
+		alloc_free(groups_t);
 		alloc_free((char *) gidset);
 		errno = e;
 		return -1;
 	}
 	if (setgroups(ngroups, gidset)) {
 		e = errno;
+		alloc_free(groups_t);
 		alloc_free((char *) gidset);
 		errno = e;
 		return -1;
 	}
+	alloc_free(groups_t);
 	alloc_free((char *) gidset);
 	return 0;
 }
 
 int
-setuserid(char *user, int set_supp_id, char *groups)
+setuserid(const char *user, int set_supp_id, const char *groups)
 {
 	struct passwd  *pw;
 	struct group   *gr;
-	char           *ptr, *cptr;
+	char           *groups_t = NULL, *ptr, *cptr;
 	gid_t          *gidset = NULL;
 	int             ngroups = 0, old, use_qpwgr = -1, i, t;
 	uid_t           uid;
@@ -158,19 +170,27 @@ setuserid(char *user, int set_supp_id, char *groups)
 		return -1;
 	if (groups) {
 		old = ngroups;
-		for (ptr = groups; *ptr; ptr++) {
+		for (ptr = (char *) groups; *ptr; ptr++) {
 			if (*ptr == ',')
 				ngroups++;
 		}
 		ngroups++;
 		if (!alloc_re((char *) &gidset, old * sizeof(gid_t), ngroups * sizeof(gid_t)))
 			return -1;
-		for (i = old, ptr = cptr = groups; *ptr; ptr++) {
+		if (!(groups_t = (char *) alloc((t = str_len(groups)) + 1))) {
+			t = errno;
+			alloc_free((char *) gidset);
+			errno = t;
+			return -1;
+		}
+		str_copyb(groups_t, groups, t + 1);
+		for (i = old, ptr = cptr = groups_t; *ptr; ptr++) {
 			if (*ptr == ',') {
 				*ptr = 0;
 				if (!isnum(cptr)) {
 					if (!(gr = getgrnam(cptr))) {
 						t = errno;
+						alloc_free(groups_t);
 						alloc_free((char *) gidset);
 						errno = t;
 						return -1;
@@ -186,6 +206,7 @@ setuserid(char *user, int set_supp_id, char *groups)
 		if (!isnum(cptr)) {
 			if (!(gr = getgrnam(cptr))) {
 				t = errno;
+				alloc_free(groups_t);
 				alloc_free((char *) gidset);
 				errno = t;
 				return -1;
@@ -195,6 +216,8 @@ setuserid(char *user, int set_supp_id, char *groups)
 			scan_uint(cptr, &g);
 		gidset[i++] = g;
 	}
+	if (groups_t)
+		alloc_free(groups_t);
 	if (ngroups && setgroups(ngroups, gidset)) {
 		t = errno;
 		alloc_free((char *) gidset);
@@ -212,7 +235,7 @@ setuserid(char *user, int set_supp_id, char *groups)
 }
 
 int
-setuser_privileges(uid_t uid, gid_t gid, char *user)
+setuser_privileges(uid_t uid, gid_t gid, const char *user)
 {
 	gid_t          *gidset;
 	int             ngroups;
@@ -238,7 +261,7 @@ setuser_privileges(uid_t uid, gid_t gid, char *user)
 void
 getversion_setuserid_c()
 {
-	static char    *x = "$Id: setuserid.c,v 1.8 2023-02-21 01:02:56+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: setuserid.c,v 1.8 2023-02-21 01:02:56+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

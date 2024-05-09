@@ -44,7 +44,7 @@ stralloc_copyb(stralloc *sa, const char *s, unsigned int n)
 void
 getversion_stralloc_opyb_c()
 {
-	static char    *x = "$Id: stralloc_opyb.c,v 1.7 2020-11-22 23:53:03+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: stralloc_opyb.c,v 1.7 2020-11-22 23:53:03+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

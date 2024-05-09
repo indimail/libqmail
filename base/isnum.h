@@ -7,6 +7,6 @@
 #ifndef ISNUM_H
 #define ISNUM_H
 
-int             isnum(char *);
+int             isnum(const char *);
 
 #endif

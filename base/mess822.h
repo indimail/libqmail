@@ -25,7 +25,7 @@ typedef struct
 
 typedef struct
 {
-	char           *name; /*- 0 means all names */
+	const char     *name; /*- 0 means all names */
 	int            *flag;
 	stralloc       *copy;
 	stralloc       *value;
@@ -39,14 +39,14 @@ typedef struct
 	mess822_action *action;
 } mess822_header;
 
-int             mess822_quoteplus(stralloc *, char *, char *);
-int             mess822_quote(stralloc *, char *, char *);
+int             mess822_quoteplus(stralloc *, const char *, const char *);
+int             mess822_quote(stralloc *, const char *, const char *);
 int             mess822_quotelist(stralloc *, stralloc *);
-int             mess822_fold(stralloc *, stralloc *, char *, int);
+int             mess822_fold(stralloc *, stralloc *, const char *, int);
 int             mess822_date(stralloc *, mess822_time *);
-int             mess822_token(stralloc *, char *);
-int             mess822_addrlist(stralloc *, char *);
-int             mess822_when(mess822_time *, char *);
+int             mess822_token(stralloc *, const char *);
+int             mess822_addrlist(stralloc *, const char *);
+int             mess822_when(mess822_time *, const char *);
 int             mess822_begin(mess822_header *, mess822_action *);
 int             mess822_line(mess822_header *, stralloc *);
 int             mess822_end(mess822_header *);

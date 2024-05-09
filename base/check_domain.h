@@ -22,7 +22,7 @@
 
 extern struct strerr check_domain_err;
 
-int              check_domain(char *);
+int              check_domain(const char *);
 
 #endif
 

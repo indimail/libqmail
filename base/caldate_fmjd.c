@@ -80,7 +80,7 @@ caldate_frommjd(struct caldate *cd, long day, int *pwday, int *pyday)
 void
 getversion_caldate_fmjd_c()
 {
-	static char    *x = "$Id: caldate_fmjd.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: caldate_fmjd.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

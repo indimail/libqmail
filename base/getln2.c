@@ -50,7 +50,7 @@ getln2(register substdio *ss, register stralloc *sa, char **cont, unsigned int *
 void
 getversion_getln2_c()
 {
-	static char    *x = "$Id: getln2.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: getln2.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

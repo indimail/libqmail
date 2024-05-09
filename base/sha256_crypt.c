@@ -795,7 +795,7 @@ main(void)
 void
 getversion_sha256_crypt_c()
 {
-	static char    *x = "$Id: sha256_crypt.c,v 1.3 2020-10-05 16:32:06+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: sha256_crypt.c,v 1.3 2020-10-05 16:32:06+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -9,10 +9,11 @@
  */
 #include "env.h"
 #include "scan.h"
+#include "getEnvConfig.h"
 
 /*- getEnvConfigStr */
 void
-getEnvConfigStr(char **source, char *envname, char *defaultValue)
+getEnvConfigStr(char **source, const char *envname, char *defaultValue)
 {
 	if (!(*source = env_get(envname)))
 		*source = defaultValue;
@@ -20,7 +21,7 @@ getEnvConfigStr(char **source, char *envname, char *defaultValue)
 }
 
 void
-getEnvConfigInt(int *source, char *envname, int defaultValue)
+getEnvConfigInt(int *source, const char *envname, int defaultValue)
 {
 	char           *value;
 
@@ -32,7 +33,7 @@ getEnvConfigInt(int *source, char *envname, int defaultValue)
 }
 
 void
-getEnvConfigLong(long *source, char *envname, long defaultValue)
+getEnvConfigLong(long *source, const char *envname, long defaultValue)
 {
 	char           *value;
 
@@ -44,7 +45,7 @@ getEnvConfigLong(long *source, char *envname, long defaultValue)
 }
 
 void
-getEnvConfiguLong(unsigned long *source, char *envname, unsigned long defaultValue)
+getEnvConfiguLong(unsigned long *source, const char *envname, unsigned long defaultValue)
 {
 	char           *value;
 
@@ -56,7 +57,7 @@ getEnvConfiguLong(unsigned long *source, char *envname, unsigned long defaultVal
 }
 
 void
-getEnvConfigDouble(double *source, char *envname, double defaultValue)
+getEnvConfigDouble(double *source, const char *envname, double defaultValue)
 {
 	char           *value;
 
@@ -70,7 +71,7 @@ getEnvConfigDouble(double *source, char *envname, double defaultValue)
 void
 getversion_getEnvConfig_c()
 {
-	static char    *x = "$Id: getEnvConfig.c,v 1.2 2022-04-17 08:19:24+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: getEnvConfig.c,v 1.2 2022-04-17 08:19:24+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

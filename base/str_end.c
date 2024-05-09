@@ -76,7 +76,7 @@ str_end(register const char *s, register const char *t)
 void
 getversion_str_end_c()
 {
-	static char    *x = "$Id: str_end.c,v 1.3 2022-01-30 19:36:20+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: str_end.c,v 1.3 2022-01-30 19:36:20+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

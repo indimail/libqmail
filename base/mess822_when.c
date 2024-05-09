@@ -22,7 +22,7 @@ static stralloc tokens = { 0 };
 static struct caltime ct;
 
 int
-mess822_when(mess822_time *out, char *in)
+mess822_when(mess822_time *out, const char *in)
 {
 	int             state;
 	int             pos;
@@ -281,7 +281,7 @@ mess822_when(mess822_time *out, char *in)
 void
 getversion_mess822_when_c()
 {
-	static char    *x = "$Id: mess822_when.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: mess822_when.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

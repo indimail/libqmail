@@ -90,7 +90,7 @@ done:
 void
 getversion_scan_double_c()
 {
-	static char    *x = "$Id: scan_double.c,v 1.4 2020-05-11 12:32:17+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_double.c,v 1.4 2020-05-11 12:32:17+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

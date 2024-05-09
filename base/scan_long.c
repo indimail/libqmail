@@ -35,7 +35,7 @@ scan_long(register const char *s, register long *i)
 void
 getversion_scan_long_c()
 {
-	static char    *x = "$Id: scan_long.c,v 1.4 2020-11-22 23:52:07+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_long.c,v 1.4 2020-11-22 23:52:07+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

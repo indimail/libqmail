@@ -33,5 +33,5 @@
 #endif
 #define MAX_AM_ERR -5
 
-int             matchregex(char *, char *, char **);
+int             matchregex(const char *, const char *, const char *[]);
 #endif

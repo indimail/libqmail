@@ -16,14 +16,14 @@ extern struct strerr strerr_tls;
 ssize_t         tlsread(int, char *, size_t, long);
 ssize_t         tlswrite(int, char *, size_t, long);
 #if defined(HAVE_SSL) || defined(TLS)
-SSL_CTX        *tls_init(char *, char *, char *, char *, char *, enum tlsmode);
-int             get_tls_method(char *);
-int             sslvstr_to_method(char *);
+SSL_CTX        *tls_init(const char *, const char *, const char *, const char *, const char *, enum tlsmode);
+int             get_tls_method(const char *);
+int             sslvstr_to_method(const char *);
 int             sslmethod_to_version(int);
-SSL_CTX        *set_tls_method(char *, int *, enum tlsmode, int *);
+SSL_CTX        *set_tls_method(const char *, int *, enum tlsmode, int *);
 void            set_rsa_dh(SSL_CTX *);
 SSL            *tls_session(SSL_CTX *, int);
-int             tls_connect(int, int, int, SSL *, char *);
+int             tls_connect(int, int, int, SSL *, const char *);
 int             tls_accept(int, int, int, SSL *);
 void            ssl_free();
 int             translate(int, int, int, int, unsigned int);
@@ -38,13 +38,13 @@ const char     *myssl_error_str();
 const char     *myssl_error();
 void            set_essential_fd(int fd);
 void            set_ssl_fd(SSL *, int, int);
-void            set_certdir(char *s);
+void            set_certdir(const char *s);
 #if OPENSSL_VERSION_NUMBER < 0x30000000L
 RSA            *tmp_rsa_cb(SSL *, int, int);
 DH             *tmp_dh_cb(SSL *, int, int);
 #else
-EVP_PKEY       *get_rsakey(int, int, char *);
-EVP_PKEY       *get_dhkey(int, int, char *);
+EVP_PKEY       *get_rsakey(int, int, const char *);
+EVP_PKEY       *get_dhkey(int, int, const char *);
 #endif
 #endif /*- #if defined(HAVE_SSL) || defined(TLS) */
 

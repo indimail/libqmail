@@ -29,7 +29,7 @@ allwrite(int fd, char *buf, size_t len)
 void
 getversion_allwrite_c()
 {
-	static char    *x = "$Id: allwrite.c,v 1.1 2023-01-02 19:47:18+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: allwrite.c,v 1.1 2023-01-02 19:47:18+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

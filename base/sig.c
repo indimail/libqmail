@@ -32,7 +32,7 @@ void            (*sig_ignorehandler) () = SIG_IGN;
 void
 getversion_sig_c()
 {
-	static char    *x = "$Id: sig.c,v 1.3 2020-08-03 18:10:08+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: sig.c,v 1.3 2020-08-03 18:10:08+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

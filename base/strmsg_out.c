@@ -18,11 +18,12 @@
  */
 #include "substdio.h"
 #include "subfd.h"
+#include "strmsg.h"
 
 void
-strmsg_out(char *x1, char *x2, char *x3, char *x4, char *x5, char *x6,
-		char *x7, char *x8, char *x9, char *x10, char *x11, char *x12,
-		char *x13, char *x14, char *x15, char *x16)
+strmsg_out(c_char *x1, c_char *x2, c_char *x3, c_char *x4, c_char *x5, c_char *x6,
+		c_char *x7, c_char *x8, c_char *x9, c_char *x10, c_char *x11, c_char *x12,
+		c_char *x13, c_char *x14, c_char *x15, c_char *x16)
 {
 	if (x1)
 		substdio_puts(subfdout, x1);
@@ -60,7 +61,7 @@ strmsg_out(char *x1, char *x2, char *x3, char *x4, char *x5, char *x6,
 void
 getversion_strmsg_out_c()
 {
-	static char    *x = "$Id: strmsg_out.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: strmsg_out.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

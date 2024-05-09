@@ -36,7 +36,7 @@ GEN_ALLOC_ready(stralloc, char, s, len, a, 30, stralloc_ready)
 void
 getversion_stralloc_eady_c()
 {
-	static char    *x = "$Id: stralloc_eady.c,v 1.7 2020-05-10 17:50:59+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: stralloc_eady.c,v 1.7 2020-05-10 17:50:59+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

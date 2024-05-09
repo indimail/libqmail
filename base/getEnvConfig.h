@@ -13,10 +13,10 @@
 #ifndef GETENVCONFIGSTR_H
 #define GETENVCONFIGSTR_H
 
-void            getEnvConfigStr(char **, char *, char *);
-void            getEnvConfigInt(int *, char *, int);
-void            getEnvConfigLong(long *, char *, long);
-void            getEnvConfiguLong(unsigned long *, char *, unsigned long);
-void            getEnvConfigDouble(double *, char *, double);
+void            getEnvConfigStr(char **, const char *, char *);
+void            getEnvConfigInt(int *, const char *, int);
+void            getEnvConfigLong(long *, const char *, long);
+void            getEnvConfiguLong(unsigned long *, const char *, unsigned long);
+void            getEnvConfigDouble(double *, const char *, double);
 
 #endif /*- GETENVCONFIGSTR_H */

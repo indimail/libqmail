@@ -73,7 +73,7 @@ alloc_free(char *x)
 void
 getversion_alloc_c()
 {
-	static char    *x = "$Id: alloc.c,v 1.9 2022-10-18 19:47:27+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: alloc.c,v 1.9 2022-10-18 19:47:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

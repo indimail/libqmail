@@ -14,7 +14,7 @@
 
 #define X(e,s) if (i == e) return s;
 
-char *error_str(int i)
+const char *error_str(int i)
 {
   X(0,"no error")
   X(error_intr,"interrupted system call")
@@ -288,7 +288,7 @@ char *error_str(int i)
 void
 getversion_error_str_c()
 {
-	static char    *x = "$Id: error_str.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: error_str.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

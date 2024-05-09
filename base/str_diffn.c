@@ -61,7 +61,7 @@ str_diffn(register const char *s, register const char *t, unsigned int len)
 void
 getversion_str_diffn_c()
 {
-	static char    *x = "$Id: str_diffn.c,v 1.4 2020-11-22 23:53:27+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: str_diffn.c,v 1.4 2020-11-22 23:53:27+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

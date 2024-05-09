@@ -52,7 +52,7 @@ caltime_utc(struct caltime *ct, struct tai *t, int *pwday, int *pyday)
 void
 getversion_caltime_utc_c()
 {
-	static char    *x = "$Id: caltime_utc.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: caltime_utc.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

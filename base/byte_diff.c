@@ -51,7 +51,7 @@ byte_diff(register const char *s, register unsigned int n, register const char *
 void
 getversion_byte_diff_c()
 {
-	static char    *x = "$Id: byte_diff.c,v 1.4 2020-11-22 23:49:11+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: byte_diff.c,v 1.4 2020-11-22 23:49:11+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

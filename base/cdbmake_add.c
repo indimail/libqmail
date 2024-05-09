@@ -121,7 +121,7 @@ cdbmake_throw(struct cdbmake *cdbm, uint32 pos, int b)
 void
 getversion_cdbmake_add_c()
 {
-	static char    *x = "$Id: cdbmake_add.c,v 1.8 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: cdbmake_add.c,v 1.8 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

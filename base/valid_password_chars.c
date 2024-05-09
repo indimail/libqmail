@@ -27,7 +27,7 @@ valid_password_chars(char *password)
 void
 getversion_valid_pasword_chars_c()
 {
-	static char    *x = "$Id: valid_password_chars.c,v 1.1 2022-08-26 18:33:05+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: valid_password_chars.c,v 1.1 2022-08-26 18:33:05+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

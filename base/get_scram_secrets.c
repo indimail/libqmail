@@ -1,5 +1,5 @@
 #ifndef	lint
-static char     sccsid[] = "$Id: get_scram_secrets.c,v 1.4 2022-10-29 21:22:06+05:30 Cprogrammer Exp mbhangui $";
+const char      sccsid[] = "$Id: get_scram_secrets.c,v 1.4 2022-10-29 21:22:06+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #include <str.h>

@@ -29,7 +29,7 @@ uint32_read_big(const char *in)
 void
 getversion_uint32_read_c()
 {
-	static char    *x = "$Id: uint32_read.c,v 1.1 2020-08-03 18:05:28+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: uint32_read.c,v 1.1 2020-08-03 18:05:28+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

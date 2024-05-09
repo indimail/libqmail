@@ -17,9 +17,9 @@
 static stralloc tmp;
 
 void
-pathexec_run(char *file, char **argv, char **envp)
+pathexec_run(const char *file, char **argv, char **envp)
 {
-	char           *path;
+	const char     *path;
 	unsigned int    split;
 	int             savederrno;
 
@@ -71,7 +71,7 @@ pathexec_run(char *file, char **argv, char **envp)
 void
 getversion_pathexec_run_c()
 {
-	static char    *x = "$Id: pathexec_run.c,v 1.2 2004-10-22 20:27:55+05:30 Cprogrammer Stab mbhangui $";
+	const char     *x = "$Id: pathexec_run.c,v 1.2 2004-10-22 20:27:55+05:30 Cprogrammer Stab mbhangui $";
 
 	x++;
 }

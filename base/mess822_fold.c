@@ -13,7 +13,7 @@
 #include "mess822.h"
 
 int
-mess822_fold(stralloc *out, stralloc *in, char *prefix, int linelen)
+mess822_fold(stralloc *out, stralloc *in, const char *prefix, int linelen)
 {
 	int             i;
 	int             j;
@@ -49,7 +49,7 @@ mess822_fold(stralloc *out, stralloc *in, char *prefix, int linelen)
 void
 getversion_mess822_fold_c()
 {
-	static char    *x = "$Id: mess822_fold.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: mess822_fold.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

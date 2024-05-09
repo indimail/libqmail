@@ -40,7 +40,7 @@ sig_alarmdefault()
 void
 getversion_sig_alarm_c()
 {
-	static char    *x = "$Id: sig_alarm.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: sig_alarm.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

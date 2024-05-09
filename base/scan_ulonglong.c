@@ -45,7 +45,7 @@ scan_ulonglong(const char *src, unsigned long long *dest)
 void
 getversion_scan_ulonglong_c()
 {
-	static char    *x = "$Id: scan_ulonglong.c,v 1.4 2020-11-22 23:52:22+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_ulonglong.c,v 1.4 2020-11-22 23:52:22+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

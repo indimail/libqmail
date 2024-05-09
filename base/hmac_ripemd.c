@@ -78,6 +78,6 @@ void hmac_ripemd(u8 *text, /*- pointer to data stream */
 void
 getversion_hmac_ripemd_c()
 {
-	static char    *x = "$Id: hmac_ripemd.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: hmac_ripemd.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 	x++;
 }

@@ -26,7 +26,7 @@ mess822_ok(stralloc *sa)
 	if (!len)
 		return 0;
 	/*
-	 * if input message is 822-compliant, will return 1 after this 
+	 * if input message is 822-compliant, will return 1 after this
 	 */
 	if (sa->s[0] == ' ')
 		return 1;
@@ -51,7 +51,7 @@ mess822_ok(stralloc *sa)
 void
 getversion_mess822_ok_c()
 {
-	static char    *x = "$Id: mess822_ok.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: mess822_ok.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

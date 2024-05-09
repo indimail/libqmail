@@ -43,7 +43,7 @@ fmt_fill(char *dest, unsigned int srclen, unsigned int padlen, unsigned int maxl
 void
 getversion_fmt_fill_c()
 {
-	static char    *x = "$Id: fmt_fill.c,v 1.2 2019-07-18 10:06:24+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_fill.c,v 1.2 2019-07-18 10:06:24+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

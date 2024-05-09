@@ -15,7 +15,7 @@
 #include "str.h"
 
 #ifndef	lint
-static char     sccsid[] = "$Id: qdirname.c,v 1.1 2022-05-10 19:49:09+05:30 Cprogrammer Exp mbhangui $"
+const char      sccsid[] = "$Id: qdirname.c,v 1.1 2022-05-10 19:49:09+05:30 Cprogrammer Exp mbhangui $"
 #endif
 
 static void
@@ -38,7 +38,7 @@ qdirname(char *path)
 	i = str_rchr(tmpbuf.s, '/');
 	if (tmpbuf.s[i]) {
 		if (!i)
-			return ("/");
+			return ((char *) "/");
 		tmpbuf.s[i] = 0;
 		return (tmpbuf.s);
 	} else
@@ -48,7 +48,7 @@ qdirname(char *path)
 void
 getversion_qdirname_c()
 {
-	static char    *x = "$Id: qdirname.c,v 1.1 2022-05-10 19:49:09+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: qdirname.c,v 1.1 2022-05-10 19:49:09+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -25,7 +25,7 @@ seek_cur(int fd)
 void
 getversion_seek_cur_c()
 {
-	static char    *x = "$Id: seek_cur.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: seek_cur.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

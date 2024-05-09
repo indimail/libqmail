@@ -26,7 +26,7 @@ sig_pause()
 void
 getversion_sig_pause_c()
 {
-	static char    *x = "$Id: sig_pause.c,v 1.3 2004-10-22 20:30:26+05:30 Cprogrammer Stab mbhangui $";
+	const char     *x = "$Id: sig_pause.c,v 1.3 2004-10-22 20:30:26+05:30 Cprogrammer Stab mbhangui $";
 
 	x++;
 }

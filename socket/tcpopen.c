@@ -69,13 +69,13 @@ setsockbuf(int fd, int option, int size)
  *           if > 0, it is the port# of server (host-byte-order)
  */
 int
-tcpopen(char *host, char *service, int port) /*- Thanks to Richard Stevens */
+tcpopen(const char *host, const char *service, int port) /*- Thanks to Richard Stevens */
 {
 #ifdef HAVE_RRESVPORT
 	int             resvport;
 #endif
 	int             fd = -1, optval, retval, i;
-	char           *ptr, *hostptr;
+	const char     *ptr, *hostptr;
 	struct servent *sp;
 #ifdef ENABLE_IPV6
 	struct addrinfo hints = {0}, *res = 0, *res0 = 0;
@@ -341,7 +341,7 @@ tcpopen(char *host, char *service, int port) /*- Thanks to Richard Stevens */
 void
 getversion_tcpopen_c()
 {
-	static char    *x = "$Id: tcpopen.c,v 1.2 2023-06-10 19:14:31+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: tcpopen.c,v 1.2 2023-06-10 19:14:31+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
