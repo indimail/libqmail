@@ -1,5 +1,8 @@
 /*
  * $Log: fmt_ushort.c,v $
+ * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.3  2020-10-01 13:30:31+05:30  Cprogrammer
  * changed function to c89 prototype to fix warning on Darwin (warning: promoted type 'int' of K&R function parameter is not compatible with the parameter type)
  *
@@ -23,7 +26,7 @@ fmt_ushort(register char *s, register unsigned short u)
 void
 getversion_fmt_ushort_c()
 {
-	const char     *x = "$Id: fmt_ushort.c,v 1.3 2020-10-01 13:30:31+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_ushort.c,v 1.4 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

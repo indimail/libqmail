@@ -1,5 +1,8 @@
 /*
  * $Log: hmac_md5.c,v $
+ * Revision 1.5  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
  * converted proto to ansic
  *
@@ -82,7 +85,7 @@ hmac_md5(unsigned char *text, /*- pointer to data stream */
 void
 getversion_hmac_md5_c()
 {
-	const char     *x = "$Id: hmac_md5.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: hmac_md5.c,v 1.5 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 #ifndef lint
 	x=sccsidmd5h;
 	x=sccsidglobalh;

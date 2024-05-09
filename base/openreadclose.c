@@ -1,5 +1,8 @@
 /* 
  * $Log: openreadclose.c,v $
+ * Revision 1.2  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.1  2020-11-24 09:35:24+05:30  Cprogrammer
  * Initial revision
  *
@@ -27,7 +30,7 @@ int openreadclose(const char *fn,stralloc *sa,unsigned int bufsize)
 void
 getversion_openreadclose_c()
 {
-	const char     *x = "$Id: openreadclose.c,v 1.1 2020-11-24 09:35:24+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: openreadclose.c,v 1.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

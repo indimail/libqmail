@@ -1,5 +1,8 @@
 /*
  * $Log: evaluate.h,v $
+ * Revision 2.2  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 2.1  2004-03-22 23:51:58+05:30  Cprogrammer
  * header file for evaluate() function
  *
@@ -8,7 +11,7 @@
 #define _EVALUATE_H_
 
 #ifndef	lint
-static const char sccsidevalh[] = "$Id: evaluate.h,v 2.1 2004-03-22 23:51:58+05:30 Cprogrammer Stab mbhangui $";
+static const char sccsidevalh[] = "$Id: evaluate.h,v 2.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 #endif
 
 #define T_INT    0

@@ -1,5 +1,8 @@
 /*
  * $Log: strmsg_out.c,v $
+ * Revision 1.6  2024-05-09 23:46:54+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
  * converted proto to ansic
  *
@@ -61,7 +64,7 @@ strmsg_out(c_char *x1, c_char *x2, c_char *x3, c_char *x4, c_char *x5, c_char *x
 void
 getversion_strmsg_out_c()
 {
-	const char     *x = "$Id: strmsg_out.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: strmsg_out.c,v 1.6 2024-05-09 23:46:54+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

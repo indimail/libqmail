@@ -1,5 +1,8 @@
 /*
  * $Log: global.h,v $
+ * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.3  2011-12-07 18:22:09+05:30  Cprogrammer
  * use uint32 data type (fix for 64 bit system)
  *
@@ -23,7 +26,7 @@
 #define _GLOBAL_H_ 1
 
 #ifndef	lint
-static const char sccsidglobalh[] = "$Id: global.h,v 1.3 2011-12-07 18:22:09+05:30 Cprogrammer Stab mbhangui $";
+static const char sccsidglobalh[] = "$Id: global.h,v 1.4 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 #endif
 
 /* 

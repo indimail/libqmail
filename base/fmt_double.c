@@ -1,5 +1,8 @@
 /*
  * $Log: fmt_double.c,v $
+ * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.3  2019-06-24 21:19:01+05:30  Cprogrammer
  * changed datatype of precision to unsigned int
  *
@@ -64,7 +67,7 @@ fmt_double(register char *s, double d, unsigned int precision)
 void
 getversion_fmt_double_c()
 {
-	const char     *x = "$Id: fmt_double.c,v 1.3 2019-06-24 21:19:01+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_double.c,v 1.4 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

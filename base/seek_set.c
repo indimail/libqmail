@@ -1,5 +1,8 @@
 /*
  * $Log: seek_set.c,v $
+ * Revision 1.6  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
  * converted proto to ansic
  *
@@ -26,7 +29,7 @@ seek_set(int fd, seek_pos pos)
 void
 getversion_seek_set_c()
 {
-	const char     *x = "$Id: seek_set.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: seek_set.c,v 1.6 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

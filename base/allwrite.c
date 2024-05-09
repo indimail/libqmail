@@ -1,5 +1,5 @@
 /*
- * $Id: allwrite.c,v 1.1 2023-01-02 19:47:18+05:30 Cprogrammer Exp mbhangui $
+ * $Id: allwrite.c,v 1.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $
  */
 #include <unistd.h>
 #include <sys/types.h>
@@ -29,13 +29,16 @@ allwrite(int fd, char *buf, size_t len)
 void
 getversion_allwrite_c()
 {
-	const char     *x = "$Id: allwrite.c,v 1.1 2023-01-02 19:47:18+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: allwrite.c,v 1.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }
 
 /*
  * $Log: allwrite.c,v $
+ * Revision 1.2  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.1  2023-01-02 19:47:18+05:30  Cprogrammer
  * Initial revision
  *

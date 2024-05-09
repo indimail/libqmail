@@ -1,5 +1,8 @@
 /*
  * $Log: md5_crypt.c,v $
+ * Revision 1.2  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.1  2020-04-01 18:10:46+05:30  Cprogrammer
  * Initial revision
  *
@@ -153,7 +156,7 @@ md5_crypt(const char *pw, const char *salt)
 void
 getversion_md5_crypt_c()
 {
-	const char     *x = "$Id: md5_crypt.c,v 1.1 2020-04-01 18:10:46+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: md5_crypt.c,v 1.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

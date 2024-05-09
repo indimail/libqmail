@@ -1,5 +1,8 @@
 /*
  * $Log: str_cpy.c,v $
+ * Revision 1.5  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.4  2020-11-22 23:53:20+05:30  Cprogrammer
  * use const keyword
  *
@@ -46,7 +49,7 @@ str_copy(register char *to, register const char *from)
 void
 getversion_str_cpy_c()
 {
-	const char     *x = "$Id: str_cpy.c,v 1.4 2020-11-22 23:53:20+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: str_cpy.c,v 1.5 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

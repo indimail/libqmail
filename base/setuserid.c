@@ -1,5 +1,5 @@
 /*
- * $Id: setuserid.c,v 1.8 2023-02-21 01:02:56+05:30 Cprogrammer Exp mbhangui $
+ * $Id: setuserid.c,v 1.9 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $
  */
 #include <errno.h>
 #ifdef HAVE_CONFIG_H
@@ -261,13 +261,16 @@ setuser_privileges(uid_t uid, gid_t gid, const char *user)
 void
 getversion_setuserid_c()
 {
-	const char     *x = "$Id: setuserid.c,v 1.8 2023-02-21 01:02:56+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: setuserid.c,v 1.9 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }
 
 /*
  * $Log: setuserid.c,v $
+ * Revision 1.9  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.8  2023-02-21 01:02:56+05:30  Cprogrammer
  * re-allocate gidset to actual size
  *

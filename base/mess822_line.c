@@ -1,5 +1,8 @@
 /*
  * $Log: mess822_line.c,v $
+ * Revision 1.7  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.6  2020-11-28 19:54:51+05:30  Cprogrammer
  * refactored logic to skip extra wsp
  *
@@ -160,7 +163,7 @@ mess822_line(mess822_header *h, stralloc * s)
 void
 getversion_mess822_line_c()
 {
-	const char     *x = "$Id: mess822_line.c,v 1.6 2020-11-28 19:54:51+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: mess822_line.c,v 1.7 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

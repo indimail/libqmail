@@ -1,5 +1,5 @@
 #ifndef	lint
-const char      sccsid[] = "$Id: get_scram_secrets.c,v 1.4 2022-10-29 21:22:06+05:30 Cprogrammer Exp mbhangui $";
+const char      sccsid[] = "$Id: get_scram_secrets.c,v 1.5 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 #endif
 
 #include <str.h>
@@ -151,6 +151,9 @@ get_scram_secrets(char *pass_str, int *mech, int *iter, char **salt,
 }
 /*
  * $Log: get_scram_secrets.c,v $
+ * Revision 1.5  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.4  2022-10-29 21:22:06+05:30  Cprogrammer
  * updated comments
  *

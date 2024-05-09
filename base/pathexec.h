@@ -1,5 +1,8 @@
 /*
  * $Log: pathexec.h,v $
+ * Revision 1.5  2024-05-09 23:46:54+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.4  2021-07-14 09:39:16+05:30  Cprogrammer
  * added pathexec_clear() to clear new env variables added
  *

@@ -1,5 +1,8 @@
 /*
  * $Log: byte_rcspn.c,v $
+ * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.3  2020-11-22 23:50:05+05:30  Cprogrammer
  * use const keyword
  *
@@ -27,7 +30,7 @@ byte_rcspn(register const char *s, register unsigned int n, register const char 
 void
 getversion_byte_rcspn_c()
 {
-	const char     *x = "$Id: byte_rcspn.c,v 1.3 2020-11-22 23:50:05+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: byte_rcspn.c,v 1.4 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

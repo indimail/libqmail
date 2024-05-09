@@ -1,5 +1,8 @@
 /*
  * $Log: sodium_random.c,v $
+ * Revision 1.2  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.1  2022-08-05 09:00:00+05:30  Cprogrammer
  * Initial revision
  *
@@ -32,7 +35,7 @@ sodium_random(char *str, size_t len)
 void
 getversion_sodium_random_c()
 {
-	const char     *x = "$Id: sodium_random.c,v 1.1 2022-08-05 09:00:00+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: sodium_random.c,v 1.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

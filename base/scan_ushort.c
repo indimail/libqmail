@@ -1,5 +1,8 @@
 /*
  * $Log: scan_ushort.c,v $
+ * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.3  2020-11-22 23:52:25+05:30  Cprogrammer
  * use const keyword
  *
@@ -25,7 +28,7 @@ scan_ushort(register const char *s, register unsigned short *u)
 void
 getversion_scan_ushort_c()
 {
-	const char     *x = "$Id: scan_ushort.c,v 1.3 2020-11-22 23:52:25+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_ushort.c,v 1.4 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

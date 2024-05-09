@@ -1,5 +1,5 @@
 /*
- * $Id: tcpremoteip.c,v 1.1 2023-06-28 12:29:43+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tcpremoteip.c,v 1.2 2024-05-09 23:49:23+05:30 mbhangui Exp mbhangui $
  */
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -56,13 +56,16 @@ tcpremoteip(int s)
 void
 getversion_tcpremoteip_c()
 {
-	const char     *x = "$Id: tcpremoteip.c,v 1.1 2023-06-28 12:29:43+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: tcpremoteip.c,v 1.2 2024-05-09 23:49:23+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }
 
 /*
  * $Log: tcpremoteip.c,v $
+ * Revision 1.2  2024-05-09 23:49:23+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.1  2023-06-28 12:29:43+05:30  Cprogrammer
  * Initial revision
  *

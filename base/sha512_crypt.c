@@ -1,5 +1,8 @@
 /*
  * $Log: sha512_crypt.c,v $
+ * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.3  2020-10-05 16:32:18+05:30  Cprogrammer
  * Darwin Fix
  *
@@ -871,7 +874,7 @@ main(void)
 void
 getversion_sha512_crypt_c()
 {
-	const char     *x = "$Id: sha512_crypt.c,v 1.3 2020-10-05 16:32:18+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: sha512_crypt.c,v 1.4 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

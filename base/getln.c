@@ -1,5 +1,8 @@
 /*
  * $Log: getln.c,v $
+ * Revision 1.5  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
  * converted proto to ansic
  *
@@ -36,7 +39,7 @@ getln(register substdio *ss, register stralloc *sa, int *match, int sep)
 void
 getversion_getln_c()
 {
-	const char     *x = "$Id: getln.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: getln.c,v 1.5 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

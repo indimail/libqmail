@@ -1,5 +1,8 @@
 /*
  * $Log: strerr_die.c,v $
+ * Revision 1.10  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.9  2022-08-27 09:07:02+05:30  Cprogrammer
  * BUG: added missing substdio output for argument 16
  *
@@ -103,7 +106,7 @@ strerr_die(int e, const char *x1, const char *x2, const char *x3,
 void
 getversion_strerr_die_c()
 {
-	const char     *x = "$Id: strerr_die.c,v 1.9 2022-08-27 09:07:02+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: strerr_die.c,v 1.10 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

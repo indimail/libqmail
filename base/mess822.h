@@ -1,5 +1,8 @@
 /*
  * $Log: mess822.h,v $
+ * Revision 1.5  2024-05-09 23:46:54+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.4  2020-11-22 23:51:26+05:30  Cprogrammer
  * removed extra newline
  *

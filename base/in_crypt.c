@@ -1,5 +1,8 @@
 /*
  * $Log: in_crypt.c,v $
+ * Revision 1.3  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.2  2022-08-26 21:19:16+05:30  Cprogrammer
  * use crypt(3) if first char is '$'
  *
@@ -55,7 +58,7 @@ in_crypt(const char *pw, const char *salt)
 void
 getversion_in_crypt_c()
 {
-	const char     *x = "$Id: in_crypt.c,v 1.2 2022-08-26 21:19:16+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: in_crypt.c,v 1.3 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

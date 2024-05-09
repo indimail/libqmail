@@ -1,5 +1,8 @@
 /*
  * $Log: setuserid.h,v $
+ * Revision 1.6  2024-05-09 23:46:54+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.5  2023-02-20 20:37:29+05:30  Cprogrammer
  * refactored setuserid.c
  *

@@ -1,5 +1,8 @@
 /*
  * $Log: fmt_xlong.c,v $
+ * Revision 1.3  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.2  2022-10-18 20:00:50+05:30  Cprogrammer
  * converted proto to ansic
  *
@@ -39,7 +42,7 @@ fmt_xlong(char *s, unsigned long u)
 void
 getversion_fmt_xlong_c()
 {
-	const char     *x = "$Id: fmt_xlong.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_xlong.c,v 1.3 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

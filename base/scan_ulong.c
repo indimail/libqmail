@@ -1,5 +1,5 @@
 /*
- * $Id: scan_ulong.c,v 1.8 2023-11-30 15:18:26+05:30 Cprogrammer Exp mbhangui $
+ * $Id: scan_ulong.c,v 1.9 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $
  */
 #include "scan.h"
 
@@ -26,13 +26,16 @@ scan_ulong(register const char *s, register unsigned long *u)
 void
 getversion_scan_ulong_c()
 {
-	const char     *x = "$Id: scan_ulong.c,v 1.8 2023-11-30 15:18:26+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_ulong.c,v 1.9 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }
 
 /*
  * $Log: scan_ulong.c,v $
+ * Revision 1.9  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.8  2023-11-30 15:18:26+05:30  Cprogrammer
  * incorrect conversion when string has non-numeric characters
  *

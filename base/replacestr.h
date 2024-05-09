@@ -1,5 +1,8 @@
 /*
  * $Log: replacestr.h,v $
+ * Revision 1.3  2024-05-09 23:46:54+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.2  2023-02-08 11:22:59+05:30  Cprogrammer
  * include qmailconfig.h if HAVE_CONFIG_H is not defined
  *

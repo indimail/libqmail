@@ -1,5 +1,8 @@
 /*
  * $Log: scan_hexdump.c,v $
+ * Revision 1.2  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.1  2020-07-01 12:12:36+05:30  Cprogrammer
  * Initial revision
  *
@@ -32,7 +35,7 @@ scan_hexdump(const char *src, char *dest, size_t *destlen)
 void
 getversion_scan_hexdump_c()
 {
-	const char     *x = "$Id: scan_hexdump.c,v 1.1 2020-07-01 12:12:36+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_hexdump.c,v 1.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

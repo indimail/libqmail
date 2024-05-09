@@ -1,5 +1,8 @@
 /*
  * $Log: byte_rchr.c,v $
+ * Revision 1.6  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.5  2021-06-10 10:49:43+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -60,7 +63,7 @@ byte_rchr(const char *s, register unsigned int n, int c)
 void
 getversion_byte_rchr_c()
 {
-	const char     *x = "$Id: byte_rchr.c,v 1.5 2021-06-10 10:49:43+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: byte_rchr.c,v 1.6 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

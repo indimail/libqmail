@@ -1,5 +1,8 @@
 /*
  * $Log: stralloc_copy.c,v $
+ * Revision 1.5  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.4  2020-11-22 23:52:57+05:30  Cprogrammer
  * use const keyword
  *
@@ -22,7 +25,7 @@ stralloc_copy(stralloc *sato, const stralloc *safrom)
 void
 getversion_stralloc_copy_c()
 {
-	const char     *x = "$Id: stralloc_copy.c,v 1.4 2020-11-22 23:52:57+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: stralloc_copy.c,v 1.5 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

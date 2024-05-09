@@ -1,5 +1,8 @@
 /*
  * $Log: commands.c,v $
+ * Revision 1.11  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.10  2023-02-17 11:36:34+05:30  Cprogrammer
  * return -3 for out of memory error
  *
@@ -86,7 +89,7 @@ commands(substdio *ss, struct commands *c)
 void
 getversion_commands_c()
 {
-	const char     *x = "$Id: commands.c,v 1.10 2023-02-17 11:36:34+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: commands.c,v 1.11 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

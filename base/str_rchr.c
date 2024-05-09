@@ -1,5 +1,8 @@
 /*
  * $Log: str_rchr.c,v $
+ * Revision 1.8  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.7  2022-01-30 19:36:34+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -61,7 +64,7 @@ str_rchr(register const char *s, int c)
 void
 getversion_str_rchr_c()
 {
-	const char     *x = "$Id: str_rchr.c,v 1.7 2022-01-30 19:36:34+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: str_rchr.c,v 1.8 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

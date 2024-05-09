@@ -1,5 +1,8 @@
 /*
  * $Log: makeargs.c,v $
+ * Revision 2.12  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 2.11  2021-06-09 19:42:27+05:30  Cprogrammer
  * fixed getversion
  *
@@ -148,7 +151,7 @@ free_makeargs(char **argv)
 void
 getversion_makeargs_c()
 {
-	const char      *x = "$Id: makeargs.c,v 2.11 2021-06-09 19:42:27+05:30 Cprogrammer Exp mbhangui $";
+	const char      *x = "$Id: makeargs.c,v 2.12 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 	return;

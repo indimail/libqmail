@@ -1,5 +1,5 @@
 /*
- * $Id: str_spn.c,v 1.1 2023-12-22 18:36:10+05:30 Cprogrammer Exp mbhangui $
+ * $Id: str_spn.c,v 1.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $
  */
 #include <str.h>
 
@@ -26,13 +26,16 @@ cont:
 void
 getversion_str_spn_c()
 {
-	const char     *x = "$Id: str_spn.c,v 1.1 2023-12-22 18:36:10+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: str_spn.c,v 1.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }
 
 /*
  * $Log: str_spn.c,v $
+ * Revision 1.2  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.1  2023-12-22 18:36:10+05:30  Cprogrammer
  * Initial revision
  *

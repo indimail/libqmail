@@ -1,5 +1,8 @@
 /*
  * $Log: tcpopen.c,v $
+ * Revision 1.3  2024-05-09 23:49:23+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.2  2023-06-10 19:14:31+05:30  Cprogrammer
  * added missing return for unix domain socket
  *
@@ -341,7 +344,7 @@ tcpopen(const char *host, const char *service, int port) /*- Thanks to Richard S
 void
 getversion_tcpopen_c()
 {
-	const char     *x = "$Id: tcpopen.c,v 1.2 2023-06-10 19:14:31+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: tcpopen.c,v 1.3 2024-05-09 23:49:23+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

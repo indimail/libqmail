@@ -1,5 +1,8 @@
 /*
  * $Log: fmt_str.c,v $
+ * Revision 1.7  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.6  2020-11-24 09:32:01+05:30  Cprogrammer
  * use const keyword for readonly arguments
  *
@@ -34,7 +37,7 @@ fmt_str(register char *s, register const char *t)
 void
 getversion_fmt_str_c()
 {
-	const char     *x = "$Id: fmt_str.c,v 1.6 2020-11-24 09:32:01+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_str.c,v 1.7 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

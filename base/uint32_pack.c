@@ -1,5 +1,8 @@
 /*
  * $Log: uint32_pack.c,v $
+ * Revision 1.3  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.2  2020-08-03 18:20:22+05:30  Cprogrammer
  * added getversion()
  *
@@ -34,7 +37,7 @@ uint32_pack_big(char s[4], uint32 u)
 void
 getversion_uint32_pack_c()
 {
-	const char     *x = "$Id: uint32_pack.c,v 1.2 2020-08-03 18:20:22+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: uint32_pack.c,v 1.3 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

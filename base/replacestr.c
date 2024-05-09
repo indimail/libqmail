@@ -1,5 +1,8 @@
 /*
  * $Log: replacestr.c,v $
+ * Revision 1.5  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.4  2022-01-30 19:37:31+05:30  Cprogrammer
  * removed #ifdef HAVE_QMAIL
  *
@@ -21,7 +24,7 @@
 #include <str.h>
 
 #ifndef	lint
-const char      sccsid[] = "$Id: replacestr.c,v 1.4 2022-01-30 19:37:31+05:30 Cprogrammer Exp mbhangui $";
+const char      sccsid[] = "$Id: replacestr.c,v 1.5 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 #endif
 
 /*-

@@ -1,5 +1,8 @@
 /*-
  * $Log: no_of_days.c,v $
+ * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.3  2021-08-21 12:10:52+05:30  Cprogrammer
  * removed #ifdef HAVE_QMAIL
  *
@@ -24,7 +27,7 @@
 #include <fmt.h>
 
 #ifndef	lint
-const char      sccsid[] = "$Id: no_of_days.c,v 1.3 2021-08-21 12:10:52+05:30 Cprogrammer Exp mbhangui $";
+const char      sccsid[] = "$Id: no_of_days.c,v 1.4 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 #endif
 
 static void

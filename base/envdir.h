@@ -1,5 +1,8 @@
 /*
  * $Log: envdir.h,v $
+ * Revision 1.6  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.5  2021-07-14 13:16:38+05:30  Cprogrammer
  * added arguments ignore_unreadable, unreadable_count
  *

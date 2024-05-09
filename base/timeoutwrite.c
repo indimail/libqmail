@@ -1,5 +1,8 @@
 /*
  * $Log: timeoutwrite.c,v $
+ * Revision 1.8  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.7  2024-01-23 18:36:52+05:30  Cprogrammer
  * added timeoutwrite using poll() instead of select()
  *
@@ -80,7 +83,7 @@ timeoutwrite(long t, int fd, char *buf, size_t len)
 void
 getversion_timeoutwrite_c()
 {
-	const char     *x = "$Id: timeoutwrite.c,v 1.7 2024-01-23 18:36:52+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: timeoutwrite.c,v 1.8 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

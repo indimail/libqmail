@@ -1,5 +1,8 @@
 /*
  * $Log: fmt_pad.c,v $
+ * Revision 1.2  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.1  2019-07-18 10:13:20+05:30  Cprogrammer
  * Initial revision
  *
@@ -44,7 +47,7 @@ fmt_pad(char *dest, const char *src, unsigned int srclen, unsigned int padlen, u
 void
 getversion_fmt_pad_c()
 {
-	const char     *x = "$Id: fmt_pad.c,v 1.1 2019-07-18 10:13:20+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_pad.c,v 1.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }
