@@ -1,5 +1,8 @@
 /*
  * $Log: case_lowers.c,v $
+ * Revision 1.6  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.5  2022-10-18 20:00:50+05:30  Cprogrammer
  * converted proto to ansic
  *
@@ -28,7 +31,7 @@ case_lowers(char *s)
 void
 getversion_case_lowers_c()
 {
-	const char     *x = "$Id: case_lowers.c,v 1.5 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: case_lowers.c,v 1.6 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

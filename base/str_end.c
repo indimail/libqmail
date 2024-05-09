@@ -1,5 +1,8 @@
 /*
  * $Log: str_end.c,v $
+ * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.3  2022-01-30 19:36:20+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -76,7 +79,7 @@ str_end(register const char *s, register const char *t)
 void
 getversion_str_end_c()
 {
-	const char     *x = "$Id: str_end.c,v 1.3 2022-01-30 19:36:20+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: str_end.c,v 1.4 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

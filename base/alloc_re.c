@@ -1,5 +1,8 @@
 /*
  * $Log: alloc_re.c,v $
+ * Revision 1.9  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.8  2022-10-18 19:53:00+05:30  Cprogrammer
  * converted proto to ansic
  *
@@ -43,7 +46,7 @@ alloc_re(void **x, unsigned int old_size, unsigned int new_size)
 void
 getversion_alloc_re_c()
 {
-	const char     *x = "$Id: alloc_re.c,v 1.8 2022-10-18 19:53:00+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: alloc_re.c,v 1.9 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

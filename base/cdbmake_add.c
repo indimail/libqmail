@@ -1,5 +1,8 @@
 /*
  * $Log: cdbmake_add.c,v $
+ * Revision 1.9  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.8  2022-10-18 20:00:50+05:30  Cprogrammer
  * converted proto to ansic
  *
@@ -121,7 +124,7 @@ cdbmake_throw(struct cdbmake *cdbm, uint32 pos, int b)
 void
 getversion_cdbmake_add_c()
 {
-	const char     *x = "$Id: cdbmake_add.c,v 1.8 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: cdbmake_add.c,v 1.9 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

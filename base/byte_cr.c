@@ -1,5 +1,8 @@
 /*
  * $Log: byte_cr.c,v $
+ * Revision 1.5  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.4  2020-11-22 23:49:02+05:30  Cprogrammer
  * changed argument to const char *
  *
@@ -40,7 +43,7 @@ byte_copyr(register char *to, register unsigned int n, register const char *from
 void
 getversion_byte_cr_c()
 {
-	const char     *x = "$Id: byte_cr.c,v 1.4 2020-11-22 23:49:02+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: byte_cr.c,v 1.5 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

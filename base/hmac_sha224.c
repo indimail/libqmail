@@ -1,5 +1,8 @@
 /*
  * $Log: hmac_sha224.c,v $
+ * Revision 1.3  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.2  2022-10-18 20:00:50+05:30  Cprogrammer
  * converted proto to ansic
  *
@@ -87,7 +90,7 @@ hmac_sha224(const unsigned char *text, /*- pointer to data stream        */
 void
 getversion_hmac_sha224_c()
 {
-	const char     *x = "$Id: hmac_sha224.c,v 1.2 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: hmac_sha224.c,v 1.3 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

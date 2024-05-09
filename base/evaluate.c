@@ -1,5 +1,8 @@
 /*
  * $Log: evaluate.c,v $
+ * Revision 2.5  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 2.4  2021-05-22 19:00:41+05:30  Cprogrammer
  * use alloc(), env_get() to replace malloc(), getenv()
  *
@@ -1174,7 +1177,7 @@ put_var(struct vartable *vt, char *name, struct val *value)
 void
 getversion_evaluate_c()
 {
-	const char     *x = "$Id: evaluate.c,v 2.4 2021-05-22 19:00:41+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: evaluate.c,v 2.5 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 	x = sccsidevalh;
 
 	x++;

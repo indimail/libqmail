@@ -1,5 +1,8 @@
 /*
  * $Log: isnum.c,v $
+ * Revision 1.3  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.2  2023-02-20 20:36:21+05:30  Cprogrammer
  * refactored isnum()
  *
@@ -15,7 +18,7 @@
 #endif
 
 #ifndef	lint
-const char      sccsid[] = "$Id: isnum.c,v 1.2 2023-02-20 20:36:21+05:30 Cprogrammer Exp mbhangui $";
+const char      sccsid[] = "$Id: isnum.c,v 1.3 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 #endif
 
 int
@@ -29,7 +32,7 @@ isnum(register const char *str)
 void
 getversion_isnum_c()
 {
-	const char     *x = "$Id: isnum.c,v 1.2 2023-02-20 20:36:21+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: isnum.c,v 1.3 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

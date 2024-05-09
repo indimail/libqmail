@@ -1,5 +1,8 @@
 /*
  * $Log: taia_approx.c,v $
+ * Revision 1.3  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.2  2004-10-22 20:31:28+05:30  Cprogrammer
  * added RCS id
  *
@@ -21,7 +24,7 @@ taia_approx(const struct taia *t)
 void
 getversion_taia_approx_c()
 {
-	const char     *x = "$Id: taia_approx.c,v 1.2 2004-10-22 20:31:28+05:30 Cprogrammer Stab mbhangui $";
+	const char     *x = "$Id: taia_approx.c,v 1.3 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

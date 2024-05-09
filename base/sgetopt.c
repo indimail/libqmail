@@ -1,5 +1,8 @@
 /*
  * $Log: sgetopt.c,v $
+ * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.3  2020-11-23 18:04:36+05:30  Cprogrammer
  * use const keyword for options argument
  *
@@ -66,7 +69,7 @@ getopt(int argc, char **argv, const char *opts)
 void
 getversion_sgetopt_c()
 {
-	const char     *x = "$Id: sgetopt.c,v 1.3 2020-11-23 18:04:36+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: sgetopt.c,v 1.4 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

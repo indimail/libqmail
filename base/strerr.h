@@ -1,5 +1,5 @@
 /*
- * $Id: strerr.h,v 1.12 2023-08-06 09:28:27+05:30 Cprogrammer Exp mbhangui $
+ * $Id: strerr.h,v 1.13 2024-05-09 23:46:54+05:30 mbhangui Exp mbhangui $
  */
 #ifndef STRERR_H
 #define STRERR_H
@@ -187,6 +187,9 @@ strerr_die((e),(x1),(c_char *)0,(c_char *)0,(c_char *)0,(c_char *)0,(c_char *)0,
 
 /*
  * $Log: strerr.h,v $
+ * Revision 1.13  2024-05-09 23:46:54+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.12  2023-08-06 09:28:27+05:30  Cprogrammer
  * protect STRERR, STRERR_SYS macro parameters
  *

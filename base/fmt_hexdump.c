@@ -1,5 +1,8 @@
 /*
  * $Log: fmt_hexdump.c,v $
+ * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.3  2022-08-03 13:43:50+05:30  Cprogrammer
  * removed uneeded header files
  *
@@ -31,7 +34,7 @@ fmt_hexdump(char *dest, const char *src, size_t len)
 void
 getversion_fmt_hexdump_c()
 {
-	const char     *x = "$Id: fmt_hexdump.c,v 1.3 2022-08-03 13:43:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: fmt_hexdump.c,v 1.4 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

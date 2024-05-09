@@ -1,5 +1,8 @@
 /*
  * $Log: error.h,v $
+ * Revision 1.13  2024-05-09 23:46:54+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.12  2023-04-24 22:18:02+05:30  Cprogrammer
  * fixed order
  *

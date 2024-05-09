@@ -1,5 +1,8 @@
 /*
  * $Log: cdb_make.c,v $
+ * Revision 1.3  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.2  2020-11-22 23:50:46+05:30  Cprogrammer
  * use const keyword
  *
@@ -194,7 +197,7 @@ cdb_make_finish(struct cdb_make *c)
 void
 getversion_cdb_make_c()
 {
-	const char     *x = "$Id: cdb_make.c,v 1.2 2020-11-22 23:50:46+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: cdb_make.c,v 1.3 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: pw_comp.c,v $
+ * Revision 1.6  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.5  2022-11-05 22:29:02+05:30  Cprogrammer
  * added documentary comments
  *
@@ -201,7 +204,7 @@ pw_comp(unsigned char *testlogin, unsigned char *localpw, unsigned char *challen
 void
 getversion_pw_comp_c()
 {
-	const char     *x = "$Id: pw_comp.c,v 1.5 2022-11-05 22:29:02+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: pw_comp.c,v 1.6 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

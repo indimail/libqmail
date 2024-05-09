@@ -1,5 +1,8 @@
 /*
  * $Log: cdb_seek.c,v $
+ * Revision 1.9  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.8  2022-01-30 19:35:15+05:30  Cprogrammer
  * fixed compiler warnings
  *
@@ -121,7 +124,7 @@ cdb_seek(int fd, const char *key, unsigned int len, uint32 *dlen)
 void
 getversion_cdb_seek_c()
 {
-	const char     *x = "$Id: cdb_seek.c,v 1.8 2022-01-30 19:35:15+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: cdb_seek.c,v 1.9 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: chkshsgr.c,v $
+ * Revision 1.8  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.7  2020-11-24 13:44:29+05:30  Cprogrammer
  * removed exit.h
  *
@@ -30,7 +33,7 @@ main()
 void
 getversion_chkshsgr_c()
 {
-	const char     *x = "$Id: chkshsgr.c,v 1.7 2020-11-24 13:44:29+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: chkshsgr.c,v 1.8 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

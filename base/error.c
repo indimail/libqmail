@@ -1,5 +1,8 @@
 /*
  * $Log: error.c,v $
+ * Revision 1.12  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.11  2023-04-24 22:17:56+05:30  Cprogrammer
  * fixed error codes
  *
@@ -214,7 +217,7 @@ EBADF;
 void
 getversion_error_c()
 {
-	const char     *x = "$Id: error.c,v 1.11 2023-04-24 22:17:56+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: error.c,v 1.12 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

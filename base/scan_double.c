@@ -1,5 +1,8 @@
 /*
  * $Log: scan_double.c,v $
+ * Revision 1.5  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.4  2020-05-11 12:32:17+05:30  Cprogrammer
  * fixed shadowing of global variables by local variables
  *
@@ -90,7 +93,7 @@ done:
 void
 getversion_scan_double_c()
 {
-	const char     *x = "$Id: scan_double.c,v 1.4 2020-05-11 12:32:17+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_double.c,v 1.5 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

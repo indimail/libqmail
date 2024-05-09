@@ -1,5 +1,8 @@
 /*
  * $Log: commands.h,v $
+ * Revision 1.5  2024-05-09 23:46:54+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.4  2020-09-15 10:00:39+05:30  Cprogrammer
  * added ctl_maxcmdlen variable in commands.c
  *

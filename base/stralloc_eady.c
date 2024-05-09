@@ -1,5 +1,8 @@
 /*
  * $Log: stralloc_eady.c,v $
+ * Revision 1.8  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.7  2020-05-10 17:50:59+05:30  Cprogrammer
  * GEN_ALLOC refactoring (by Rolf Eike Beer) to fix memory overflow reported by Qualys Security Advisory
  *
@@ -36,7 +39,7 @@ GEN_ALLOC_ready(stralloc, char, s, len, a, 30, stralloc_ready)
 void
 getversion_stralloc_eady_c()
 {
-	const char     *x = "$Id: stralloc_eady.c,v 1.7 2020-05-10 17:50:59+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: stralloc_eady.c,v 1.8 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

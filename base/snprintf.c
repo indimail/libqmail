@@ -32,7 +32,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * $Id: snprintf.c,v 1.2 2023-01-21 17:00:38+05:30 Cprogrammer Exp mbhangui $
+ * $Id: snprintf.c,v 1.3 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -1225,13 +1225,16 @@ main(void)
 void
 getversion_snprintf_c()
 {
-	const char     *x = "$Id: snprintf.c,v 1.2 2023-01-21 17:00:38+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: snprintf.c,v 1.3 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }
 
 /*-
  * $Log: snprintf.c,v $
+ * Revision 1.3  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.2  2023-01-21 17:00:38+05:30  Cprogrammer
  * added qsprintf function
  *

@@ -1,5 +1,8 @@
 /*
  * $Log: qtime.c,v $
+ * Revision 1.2  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.1  2021-06-01 09:52:27+05:30  Cprogrammer
  * Initial revision
  *
@@ -47,7 +50,7 @@ qtime(datetime_sec t)
 void
 getversion_qtime_c()
 {
-	const char     *x = "$Id: qtime.c,v 1.1 2021-06-01 09:52:27+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: qtime.c,v 1.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

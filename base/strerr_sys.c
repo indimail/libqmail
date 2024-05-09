@@ -1,5 +1,8 @@
 /*
  * $Log: strerr_sys.c,v $
+ * Revision 1.6  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.5  2021-08-24 11:17:43+05:30  Cprogrammer
  * added additional members to struct strerr
  *
@@ -32,7 +35,7 @@ strerr_sysinit()
 void
 getversion_strerr_sys_c()
 {
-	const char     *x = "$Id: strerr_sys.c,v 1.5 2021-08-24 11:17:43+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: strerr_sys.c,v 1.6 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

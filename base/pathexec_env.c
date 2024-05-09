@@ -1,5 +1,8 @@
 /*
  * $Log: pathexec_env.c,v $
+ * Revision 1.7  2024-05-09 23:46:54+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.6  2021-07-14 09:38:47+05:30  Cprogrammer
  * added pathexec_clear() to clear new env variables added
  *
@@ -109,7 +112,7 @@ pathexec(char **argv)
 void
 getversion_pathexec_env_c()
 {
-	const char     *x = "$Id: pathexec_env.c,v 1.6 2021-07-14 09:38:47+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: pathexec_env.c,v 1.7 2024-05-09 23:46:54+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

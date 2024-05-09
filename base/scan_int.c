@@ -1,5 +1,5 @@
 /*
- * $Id: scan_int.c,v 1.5 2023-11-30 15:15:33+05:30 Cprogrammer Exp mbhangui $
+ * $Id: scan_int.c,v 1.6 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $
  */
 #include "scan.h"
 
@@ -48,13 +48,16 @@ scan_int(register const char *s, register int *i)
 void
 getversion_scan_int_c()
 {
-	const char     *x = "$Id: scan_int.c,v 1.5 2023-11-30 15:15:33+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_int.c,v 1.6 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }
 
 /*
  * $Log: scan_int.c,v $
+ * Revision 1.6  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.5  2023-11-30 15:15:33+05:30  Cprogrammer
  * incorrect conversion when string has non-numeric characters
  *

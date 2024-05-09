@@ -1,5 +1,8 @@
 /*
  * $Log: qgetpwgr.c,v $
+ * Revision 1.10  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.9  2023-02-20 20:38:12+05:30  Cprogrammer
  * allow alternate passwd, group, service for uid 0 using env variables
  *
@@ -963,7 +966,7 @@ qgetservent()
 void
 getversion_qgetpwgr_c()
 {
-	const char     *x = "$Id: qgetpwgr.c,v 1.9 2023-02-20 20:38:12+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: qgetpwgr.c,v 1.10 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

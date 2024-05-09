@@ -1,5 +1,5 @@
 /*
- * $Id: subfderr.c,v 1.5 2024-01-22 10:16:54+05:30 Cprogrammer Exp mbhangui $
+ * $Id: subfderr.c,v 1.6 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $
  */
 #include <unistd.h>
 #include "substdio.h"
@@ -12,13 +12,16 @@ substdio       *subfderr = &it;
 void
 getversion_subfderr_c()
 {
-	const char     *x = "$Id: subfderr.c,v 1.5 2024-01-22 10:16:54+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: subfderr.c,v 1.6 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }
 
 /*
  * $Log: subfderr.c,v $
+ * Revision 1.6  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.5  2024-01-22 10:16:54+05:30  Cprogrammer
  * use SUBSTDIO_SMALL definition from substdio.h
  *

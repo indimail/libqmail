@@ -1,5 +1,5 @@
 /*
- * $Id: tls.h,v 1.4 2023-08-22 00:57:26+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tls.h,v 1.5 2024-05-09 23:50:05+05:30 mbhangui Exp mbhangui $
  */
 #ifndef _TLS_H
 #define _TLS_H
@@ -52,6 +52,9 @@ EVP_PKEY       *get_dhkey(int, int, const char *);
 
 /*
  * $Log: tls.h,v $
+ * Revision 1.5  2024-05-09 23:50:05+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.4  2023-08-22 00:57:26+05:30  Cprogrammer
  * added sslvstr_to_method, sslmethod_to_version functions
  *

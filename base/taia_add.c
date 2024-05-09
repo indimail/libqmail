@@ -1,5 +1,8 @@
 /*
  * $Log: taia_add.c,v $
+ * Revision 1.3  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.2  2004-10-22 20:31:27+05:30  Cprogrammer
  * added RCS id
  *
@@ -37,7 +40,7 @@ taia_add(struct taia *t, const struct taia *u, const struct taia *v)
 void
 getversion_taia_add_c()
 {
-	const char     *x = "$Id: taia_add.c,v 1.2 2004-10-22 20:31:27+05:30 Cprogrammer Stab mbhangui $";
+	const char     *x = "$Id: taia_add.c,v 1.3 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

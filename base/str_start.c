@@ -1,5 +1,8 @@
 /*
  * $Log: str_start.c,v $
+ * Revision 1.5  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.4  2020-11-22 23:53:53+05:30  Cprogrammer
  * use const keyword
  *
@@ -44,7 +47,7 @@ str_start(register const char *s, register const char *t)
 void
 getversion_str_start_c()
 {
-	const char     *x = "$Id: str_start.c,v 1.4 2020-11-22 23:53:53+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: str_start.c,v 1.5 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

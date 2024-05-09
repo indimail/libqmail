@@ -1,5 +1,8 @@
 /*
  * $Log: strmsg.h,v $
+ * Revision 1.2  2024-05-09 23:46:54+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.1  2023-02-08 11:24:25+05:30  Cprogrammer
  * Initial revision
  *

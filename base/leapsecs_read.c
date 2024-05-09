@@ -1,5 +1,8 @@
 /*
  * $Log: leapsecs_read.c,v $
+ * Revision 1.6  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.5  2021-05-28 22:34:42+05:30  Cprogrammer
  * use config.h for SYSCONFIGDIR to read leapsecs.dat
  *
@@ -86,7 +89,7 @@ leapsecs_read()
 void
 getversion_leapsecs_read_c()
 {
-	const char     *x = "$Id: leapsecs_read.c,v 1.5 2021-05-28 22:34:42+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: leapsecs_read.c,v 1.6 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

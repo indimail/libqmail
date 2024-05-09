@@ -1,5 +1,8 @@
 /*
  * $Log: substdo.c,v $
+ * Revision 1.12  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.11  2022-01-30 19:36:45+05:30  Cprogrammer
  * fixed compiler warning
  *
@@ -174,7 +177,7 @@ substdio_putsflush(register substdio *s, register const char *buf)
 void
 getversion_substdo_c()
 {
-	const char     *x = "$Id: substdo.c,v 1.11 2022-01-30 19:36:45+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: substdo.c,v 1.12 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

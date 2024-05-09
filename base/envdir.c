@@ -1,5 +1,5 @@
 /*
- * $Id: envdir.c,v 1.15 2024-01-31 19:39:18+05:30 Cprogrammer Exp mbhangui $
+ * $Id: envdir.c,v 1.16 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $
  */
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -367,13 +367,16 @@ envdir(const char *fn, const char **e, int ignore_unreadable, int *unreadable)
 void
 getversion_envdir_c()
 {
-	const char     *x = "$Id: envdir.c,v 1.15 2024-01-31 19:39:18+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: envdir.c,v 1.16 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }
 
 /*
  * $Log: envdir.c,v $
+ * Revision 1.16  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.15  2024-01-31 19:39:18+05:30  Cprogrammer
  * handle symbolic links to .evndir and .envfile correctly
  *

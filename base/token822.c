@@ -1,5 +1,8 @@
 /*
  * $Log: token822.c,v $
+ * Revision 1.8  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.7  2022-10-18 20:00:50+05:30  Cprogrammer
  * converted proto to ansic
  *
@@ -706,7 +709,7 @@ if (!token822_append(taout,&comma)) return -1; }
 void
 getversion_token822_c()
 {
-	const char     *x = "$Id: token822.c,v 1.7 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: token822.c,v 1.8 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

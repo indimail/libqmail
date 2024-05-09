@@ -1,5 +1,8 @@
 /*
  * $Log: taia_now.c,v $
+ * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.3  2020-07-07 09:12:01+05:30  Cprogrammer
  * renamed variable now to tmval
  *
@@ -30,7 +33,7 @@ taia_now(struct taia *t)
 void
 getversion_taia_now_c()
 {
-	const char     *x = "$Id: taia_now.c,v 1.3 2020-07-07 09:12:01+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: taia_now.c,v 1.4 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

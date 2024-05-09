@@ -1,5 +1,8 @@
 /*
  * $Log: stralloc_num.c,v $
+ * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.3  2022-10-18 20:00:50+05:30  Cprogrammer
  * converted proto to ansic
  *
@@ -54,7 +57,7 @@ stralloc_catlong0(stralloc *sa, long l, unsigned int n)
 void
 getversion_stralloc_num_c()
 {
-	const char     *x = "$Id: stralloc_num.c,v 1.3 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: stralloc_num.c,v 1.4 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

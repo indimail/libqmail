@@ -1,5 +1,8 @@
 /*
  * $Log: tcpbind.c,v $
+ * Revision 1.4  2024-05-09 23:49:23+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.3  2024-02-08 10:32:24+05:30  Cprogrammer
  * remove unlink of unix domain socket
  *
@@ -12,7 +15,7 @@
  */
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tcpbind.c,v 1.3 2024-02-08 10:32:24+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: tcpbind.c,v 1.4 2024-05-09 23:49:23+05:30 mbhangui Exp mbhangui $";
 #endif
 
 #ifdef HAVE_CONFIG_H
@@ -181,7 +184,7 @@ tcpbind(char *hostname, char *servicename, int backlog)
 void
 getversion_tcpbind_c()
 {
-	const char     *x = "$Id: tcpbind.c,v 1.3 2024-02-08 10:32:24+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: tcpbind.c,v 1.4 2024-05-09 23:49:23+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

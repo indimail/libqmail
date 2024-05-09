@@ -1,5 +1,8 @@
 /*
  * $Log: hmac_ripemd.c,v $
+ * Revision 1.5  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.4  2022-10-18 20:00:50+05:30  Cprogrammer
  * converted proto to ansic
  *
@@ -78,6 +81,6 @@ void hmac_ripemd(u8 *text, /*- pointer to data stream */
 void
 getversion_hmac_ripemd_c()
 {
-	const char     *x = "$Id: hmac_ripemd.c,v 1.4 2022-10-18 20:00:50+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: hmac_ripemd.c,v 1.5 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: substdio_copy.c,v $
+ * Revision 1.5  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.4  2020-12-04 12:27:46+05:30  Cprogrammer
  * use ansi c function declaration
  *
@@ -35,7 +38,7 @@ substdio_copy(register substdio *ssout, register substdio *ssin)
 void
 getversion_substdio_copy_c()
 {
-	const char     *x = "$Id: substdio_copy.c,v 1.4 2020-12-04 12:27:46+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: substdio_copy.c,v 1.5 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

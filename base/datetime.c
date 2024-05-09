@@ -1,5 +1,8 @@
 /*
  * $Log: datetime.c,v $
+ * Revision 1.5  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.4  2020-11-24 13:33:09+05:30  Cprogrammer
  * fix leap second handling
  *
@@ -36,7 +39,7 @@ void datetime_tai(struct datetime *dt, datetime_sec dts)
 void
 getversion_datetime_c()
 {
-	const char     *x = "$Id: datetime.c,v 1.4 2020-11-24 13:33:09+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: datetime.c,v 1.5 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

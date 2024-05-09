@@ -1,5 +1,8 @@
 /*
  * $Log: mkpasswd.c,v $
+ * Revision 1.6  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.5  2023-07-15 08:39:39+05:30  Cprogrammer
  * allow storage space for salt to be dynamically allocated
  *
@@ -70,7 +73,7 @@ mkpasswd(char *newpasswd, stralloc *crypted, int encrypt_flag)
 void
 getversion_mkpasswd_c()
 {
-	const char     *x = "$Id: mkpasswd.c,v 1.5 2023-07-15 08:39:39+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: mkpasswd.c,v 1.6 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

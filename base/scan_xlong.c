@@ -1,5 +1,8 @@
 /*
  * $Log: scan_xlong.c,v $
+ * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.3  2020-11-22 23:52:28+05:30  Cprogrammer
  * use const keyword
  *
@@ -44,7 +47,7 @@ scan_xlong(const char *src, unsigned long *dest)
 void
 getversion_scan_xlong_c()
 {
-	const char     *x = "$Id: scan_xlong.c,v 1.3 2020-11-22 23:52:28+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_xlong.c,v 1.4 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

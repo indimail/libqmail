@@ -1,5 +1,8 @@
 /*
  * $Log: scan_8long.c,v $
+ * Revision 1.3  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.2  2020-11-22 23:51:58+05:30  Cprogrammer
  * use const keyword
  *
@@ -30,7 +33,7 @@ scan_8long(register const char *s, register unsigned long *u)
 void
 getversion_scan_8long_c()
 {
-	const char     *x = "$Id: scan_8long.c,v 1.2 2020-11-22 23:51:58+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: scan_8long.c,v 1.3 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

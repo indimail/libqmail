@@ -1,5 +1,8 @@
 /*
  * $Log: udpopen.c,v $
+ * Revision 1.2  2024-05-09 23:49:23+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
  * Revision 1.1  2022-05-10 19:50:48+05:30  Cprogrammer
  * Initial revision
  *
@@ -122,7 +125,7 @@ udpopen(char *rhost, char *servicename)
 void
 getversion_udpopen_c()
 {
-	const char     *x = "$Id: udpopen.c,v 1.1 2022-05-10 19:50:48+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: udpopen.c,v 1.2 2024-05-09 23:49:23+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }
