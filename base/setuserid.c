@@ -1,5 +1,5 @@
 /*
- * $Id: setuserid.c,v 1.9 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $
+ * $Id: setuserid.c,v 1.9 2024-05-12 20:50:36+05:30 Cprogrammer Exp mbhangui $
  */
 #include <errno.h>
 #ifdef HAVE_CONFIG_H
@@ -97,7 +97,7 @@ set_additional_groups(const char *groups, int set_primary_gid)
 		errno = e;
 		return -1;
 	}
-	str_copyb(groups_t, groups_t, e + 1);
+	str_copyb(groups_t, groups, e + 1);
 	for (ptr = cptr = groups_t; *ptr; ptr++) {
 		if (*ptr == ',') {
 			*ptr = 0;
@@ -261,15 +261,15 @@ setuser_privileges(uid_t uid, gid_t gid, const char *user)
 void
 getversion_setuserid_c()
 {
-	const char     *x = "$Id: setuserid.c,v 1.9 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: setuserid.c,v 1.9 2024-05-12 20:50:36+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
 
 /*
  * $Log: setuserid.c,v $
- * Revision 1.9  2024-05-09 23:46:19+05:30  mbhangui
- * fix discarded-qualifier compiler warnings
+ * Revision 1.9  2024-05-12 20:50:36+05:30  Cprogrammer
+ * fix function prototypes
  *
  * Revision 1.8  2023-02-21 01:02:56+05:30  Cprogrammer
  * re-allocate gidset to actual size

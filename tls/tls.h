@@ -1,5 +1,5 @@
 /*
- * $Id: tls.h,v 1.5 2024-05-09 23:50:05+05:30 mbhangui Exp mbhangui $
+ * $Id: tls.h,v 1.6 2024-05-12 00:10:54+05:30 mbhangui Exp mbhangui $
  */
 #ifndef _TLS_H
 #define _TLS_H
@@ -28,7 +28,7 @@ int             tls_accept(int, int, int, SSL *);
 void            ssl_free();
 int             translate(int, int, int, int, unsigned int);
 ssize_t         allwritessl(SSL *, char *, size_t);
-ssize_t         ssl_timeoutio(int (*fun) (), long, int, int, SSL *, char *, size_t);
+ssize_t         ssl_timeoutio(int (*fun1) (), int (*fun2)(), long, int, int, SSL *, char *, size_t);
 int             ssl_timeoutconn(long, int, int, SSL *);
 int             ssl_timeoutaccept(long, int, int, SSL *);
 ssize_t         ssl_timeoutread(long, int, int, SSL *, char *, size_t);
@@ -52,6 +52,9 @@ EVP_PKEY       *get_dhkey(int, int, const char *);
 
 /*
  * $Log: tls.h,v $
+ * Revision 1.6  2024-05-12 00:10:54+05:30  mbhangui
+ * fix function prototypes
+ *
  * Revision 1.5  2024-05-09 23:50:05+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *

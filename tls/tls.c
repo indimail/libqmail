@@ -1,5 +1,5 @@
 /*
- * $Id: tls.c,v 1.11 2024-05-09 23:50:05+05:30 mbhangui Exp mbhangui $
+ * $Id: tls.c,v 1.12 2024-05-12 00:10:54+05:30 mbhangui Exp mbhangui $
  *
  * ssl_timeoutio functions from Frederik Vermeulen's
  * tls patch for qmail
@@ -34,7 +34,7 @@
 #include "tls.h"
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tls.c,v 1.11 2024-05-09 23:50:05+05:30 mbhangui Exp mbhangui $";
+static char     sccsid[] = "$Id: tls.c,v 1.12 2024-05-12 00:10:54+05:30 mbhangui Exp mbhangui $";
 #endif
 
 #ifdef HAVE_SSL
@@ -1000,7 +1000,8 @@ tls_accept(int timeout, int rfd, int wfd, SSL *myssl)
 }
 
 ssize_t
-ssl_timeoutio(int (*fun) (), long t, int rfd, int wfd, SSL *myssl, char *buf, size_t len)
+ssl_timeoutio(int (*fun1) (SSL *, char *, size_t), int (*fun2)(SSL *),
+		long t, int rfd, int wfd, SSL *myssl, char *buf, size_t len)
 {
 	int             n = 0;
 	const long      end = t + time(NULL);
@@ -1009,7 +1010,7 @@ ssl_timeoutio(int (*fun) (), long t, int rfd, int wfd, SSL *myssl, char *buf, si
 	{
 		fd_set          fds;
 		struct timeval  tv;
-		const int       r = buf ? fun(myssl, buf, len) : fun(myssl);
+		const int       r = buf ? fun1(myssl, buf, len) : fun2(myssl);
 
 		if (r > 0)
 			return r;
@@ -1025,7 +1026,7 @@ ssl_timeoutio(int (*fun) (), long t, int rfd, int wfd, SSL *myssl, char *buf, si
 		default: /*- SSL_accept(), SSL_connect() will return here */
 			return r; /*- some other error. See man SSL_read(3ossl), SSL_write(3ossl), etc */
 		case SSL_ERROR_WANT_READ:
-			if (errno == EAGAIN && usessl == client && fun == SSL_read && efd != -1)
+			if (errno == EAGAIN && usessl == client && fun1 == (int (*)()) SSL_read && efd != -1)
 				FD_SET(efd, &fds);
 			FD_SET(rfd, &fds);
 			n = select(efd != -1 && efd > rfd ? efd + 1 : rfd + 1, &fds, NULL, NULL, &tv);
@@ -1038,7 +1039,7 @@ ssl_timeoutio(int (*fun) (), long t, int rfd, int wfd, SSL *myssl, char *buf, si
 			 * efd becomes available to be read for data that can
 			 * be written to SSL.
 			 */
-			if (usessl == client && fun == SSL_read && efd != -1) {
+			if (usessl == client && fun1 == (int (*)()) SSL_read && efd != -1) {
 				if (FD_ISSET(efd, &fds)) {
 					errno = EAGAIN;
 					return -1;
@@ -1069,7 +1070,7 @@ ssl_timeoutconn(long t, int rfd, int wfd, SSL *ssl)
 	/*- if connection is established, keep NDELAY */
 	if ((!rfd_ndelay && ndelay_on(rfd) == -1) || (!wfd_ndelay && ndelay_on(wfd) == -1))
 		return -1;
-	if ((r = ssl_timeoutio(SSL_connect, t, rfd, wfd, ssl, NULL, 0)) <= 0) {
+	if ((r = ssl_timeoutio(NULL, SSL_connect, t, rfd, wfd, ssl, NULL, 0)) <= 0) {
 		/*- restore status quo */
 		if (!rfd_ndelay)
 			ndelay_off(rfd);
@@ -1092,7 +1093,7 @@ ssl_timeoutaccept(long t, int rfd, int wfd, SSL *ssl)
 	/*- if connection is established, keep NDELAY */
 	if ((!rfd_ndelay && ndelay_on(rfd) == -1) || (!wfd_ndelay && ndelay_on(wfd) == -1))
 		return -1;
-	if ((r = ssl_timeoutio(SSL_accept, t, rfd, wfd, ssl, NULL, 0)) <= 0) {
+	if ((r = ssl_timeoutio(NULL, SSL_accept, t, rfd, wfd, ssl, NULL, 0)) <= 0) {
 		if (!rfd_ndelay)
 			ndelay_off(rfd);
 		if (!wfd_ndelay)
@@ -1131,7 +1132,7 @@ ssl_timeoutrehandshake(long t, int rfd, int wfd, SSL *ssl)
 	int             r;
 
 	SSL_renegotiate(ssl);
-	r = ssl_timeoutio(SSL_do_handshake, t, rfd, wfd, ssl, NULL, 0);
+	r = ssl_timeoutio(NULL, SSL_do_handshake, t, rfd, wfd, ssl, NULL, 0);
 #if OPENSSL_VERSION_NUMBER >= 0x10100000L /*- openssl 1.1.0 */
 	if (r <= 0 || SSL_get_state(ssl) == SSL_ST_CONNECT)
 #else
@@ -1144,7 +1145,7 @@ ssl_timeoutrehandshake(long t, int rfd, int wfd, SSL *ssl)
 #else
 	ssl->state = SSL_ST_ACCEPT;
 #endif
-	return ssl_timeoutio(SSL_do_handshake, t, rfd, wfd, ssl, NULL, 0);
+	return ssl_timeoutio(NULL, SSL_do_handshake, t, rfd, wfd, ssl, NULL, 0);
 }
 
 ssize_t
@@ -1156,7 +1157,7 @@ ssl_timeoutread(long t, int rfd, int wfd, SSL *myssl, char *buf, size_t len)
 		return 0;
 	if ((n = SSL_pending(myssl)))
 		return (SSL_read(myssl, buf, n <= len ? n : len));
-	return ssl_timeoutio(SSL_read, t, rfd, wfd, myssl, buf, len);
+	return ssl_timeoutio((int (*)())SSL_read, NULL, t, rfd, wfd, myssl, buf, len);
 }
 
 ssize_t
@@ -1164,7 +1165,7 @@ ssl_timeoutwrite(long t, int rfd, int wfd, SSL *myssl, char *buf, size_t len)
 {
 	if (!buf)
 		return 0;
-	return ssl_timeoutio((int (*)())allwritessl, t, rfd, wfd, myssl, buf, len);
+	return ssl_timeoutio((int (*)())allwritessl, NULL, t, rfd, wfd, myssl, buf, len);
 }
 #endif
 
@@ -1354,6 +1355,9 @@ getversion_tls_c()
 
 /*
  * $Log: tls.c,v $
+ * Revision 1.12  2024-05-12 00:10:54+05:30  mbhangui
+ * fix function prototypes
+ *
  * Revision 1.11  2024-05-09 23:50:05+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *

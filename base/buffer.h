@@ -1,5 +1,5 @@
 /*
- * $Id: buffer.h,v 1.1 2024-01-22 10:16:10+05:30 Cprogrammer Exp mbhangui $
+ * $Id: buffer.h,v 1.2 2024-05-12 00:10:20+05:30 mbhangui Exp mbhangui $
  */
 
 #ifndef BUFFER_H
@@ -53,7 +53,7 @@ extern void     buffer_seek(buffer *, size_t);
 
 extern int      buffer_copy(buffer *, buffer *);
 extern ssize_t  buffer_unixread(int, char *, size_t);
-extern ssize_t  buffer_unixwrite(int, char *, size_t);
+extern ssize_t  buffer_unixwrite(int, const char *, size_t);
 
 extern buffer  *buffer_0;
 extern buffer  *buffer_1;

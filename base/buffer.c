@@ -1,5 +1,5 @@
 /*
- * $Id: buffer.c,v 1.1 2024-01-22 10:15:46+05:30 Cprogrammer Exp mbhangui $
+ * $Id: buffer.c,v 1.2 2024-05-12 00:10:20+05:30 mbhangui Exp mbhangui $
  */
 #include <unistd.h>
 #include <errno.h>
@@ -59,7 +59,7 @@ buffer_unixread(int fd, char *buf, size_t len)
 }
 
 ssize_t
-buffer_unixwrite(int fd, char *buf, size_t len)
+buffer_unixwrite(int fd, const char *buf, size_t len)
 {
 	return write(fd, buf, len);
 }
@@ -83,7 +83,7 @@ buffer_copy(buffer *bout, buffer *bin)
 }
 
 static int
-oneread(ssize_t(*op) (), int fd, char *buf, size_t len)
+oneread(ssize_t(*op) (int, char *, size_t), int fd, char *buf, size_t len)
 {
 	int             r;
 
@@ -165,7 +165,7 @@ buffer_seek(buffer *s, size_t len)
 }
 
 static int
-allwrite(ssize_t(*op) (), int fd, const char *buf, size_t len)
+allwrite(ssize_t(*op) (int, const char *, size_t), int fd, const char *buf, size_t len)
 {
 	int             w;
 
@@ -275,6 +275,9 @@ buffer_putsflush(buffer *s, const char *buf)
 
 /*
  * $Log: buffer.c,v $
+ * Revision 1.2  2024-05-12 00:10:20+05:30  mbhangui
+ * fix function prototypes
+ *
  * Revision 1.1  2024-01-22 10:15:46+05:30  Cprogrammer
  * Initial revision
  *

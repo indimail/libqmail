@@ -1,5 +1,8 @@
 /*
  * $Log: substdo.c,v $
+ * Revision 1.13  2024-05-12 00:10:20+05:30  mbhangui
+ * fix function prototypes
+ *
  * Revision 1.12  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -41,7 +44,8 @@
 #include "error.h"
 
 static int
-allwrite(register ssize_t (*op)(), register int fd, register const char *buf, register size_t len)
+allwrite(register ssize_t (*op)(int, const char *, size_t),
+		register int fd, register const char *buf, register size_t len)
 {
 	register int    w;
 
@@ -177,7 +181,7 @@ substdio_putsflush(register substdio *s, register const char *buf)
 void
 getversion_substdo_c()
 {
-	const char     *x = "$Id: substdo.c,v 1.12 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: substdo.c,v 1.13 2024-05-12 00:10:20+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: token822.c,v $
+ * Revision 1.9  2024-05-12 00:10:20+05:30  mbhangui
+ * fix function prototypes
+ *
  * Revision 1.8  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -590,7 +593,7 @@ token822_parse(token822_alloc *ta, stralloc *sa, stralloc *buf)
 }
 
 static int
-gotaddr(token822_alloc *taout, token822_alloc *taaddr, int (*callback) ())
+gotaddr(token822_alloc *taout, token822_alloc *taaddr, int (*callback) (token822_alloc *))
 {
 	int             i;
 
@@ -709,7 +712,7 @@ if (!token822_append(taout,&comma)) return -1; }
 void
 getversion_token822_c()
 {
-	const char     *x = "$Id: token822.c,v 1.8 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: token822.c,v 1.9 2024-05-12 00:10:20+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

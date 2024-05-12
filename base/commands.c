@@ -1,5 +1,8 @@
 /*
  * $Log: commands.c,v $
+ * Revision 1.12  2024-05-12 00:10:20+05:30  mbhangui
+ * fix function prototypes
+ *
  * Revision 1.11  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -43,7 +46,7 @@ int
 commands(substdio *ss, struct commands *c)
 {
 	unsigned int    i;
-	char           *arg;
+	const char     *arg;
 
 	for (;;) {
 		if (!stralloc_copys(&cmd, ""))
@@ -89,7 +92,7 @@ commands(substdio *ss, struct commands *c)
 void
 getversion_commands_c()
 {
-	const char     *x = "$Id: commands.c,v 1.11 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: commands.c,v 1.12 2024-05-12 00:10:20+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

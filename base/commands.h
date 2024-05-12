@@ -1,5 +1,8 @@
 /*
  * $Log: commands.h,v $
+ * Revision 1.6  2024-05-12 00:10:20+05:30  mbhangui
+ * fix function prototypes
+ *
  * Revision 1.5  2024-05-09 23:46:54+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -20,7 +23,7 @@
 struct commands
 {
 	const char     *text;
-	void            (*fun) ();
+	void            (*fun) (const char *);
 	void            (*flush) ();
 };
 #ifndef COMMANDS_C

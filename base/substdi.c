@@ -1,5 +1,8 @@
 /*
  * $Log: substdi.c,v $
+ * Revision 1.7  2024-05-12 00:10:20+05:30  mbhangui
+ * fix function prototypes
+ *
  * Revision 1.6  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -21,8 +24,8 @@
 #include "error.h"
 
 static int
-oneread(register ssize_t (*op) (), register int fd, register char *buf,
-		register int len)
+oneread(register ssize_t (*op) (int, char *, size_t), register int fd,
+		register char *buf, register int len)
 {
 	register int    r;
 
@@ -120,7 +123,7 @@ substdio_seek(register substdio *s, register int len)
 void
 getversion_substdi_c()
 {
-	const char     *x = "$Id: substdi.c,v 1.6 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: substdi.c,v 1.7 2024-05-12 00:10:20+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

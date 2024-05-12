@@ -1,5 +1,8 @@
 /*
  * $Log: cdbmake_add.c,v $
+ * Revision 1.10  2024-05-12 00:10:20+05:30  mbhangui
+ * fix function prototypes
+ *
  * Revision 1.9  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -34,7 +37,7 @@ cdbmake_init(struct cdbmake *cdbm)
 }
 
 int
-cdbmake_add(struct cdbmake *cdbm, uint32 h, uint32 p, void *(*alloc)())
+cdbmake_add(struct cdbmake *cdbm, uint32 h, uint32 p, void *(*alloc)(unsigned int))
 {
 	struct cdbmake_hplist *head;
 
@@ -54,7 +57,7 @@ cdbmake_add(struct cdbmake *cdbm, uint32 h, uint32 p, void *(*alloc)())
 }
 
 int
-cdbmake_split(struct cdbmake *cdbm, void *(*alloc)())
+cdbmake_split(struct cdbmake *cdbm, void *(*alloc)(unsigned int))
 {
 	int             i;
 	uint32          u, memsize;
@@ -124,7 +127,7 @@ cdbmake_throw(struct cdbmake *cdbm, uint32 pos, int b)
 void
 getversion_cdbmake_add_c()
 {
-	const char     *x = "$Id: cdbmake_add.c,v 1.9 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: cdbmake_add.c,v 1.10 2024-05-12 00:10:20+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: env.c,v $
+ * Revision 1.11  2024-05-12 00:10:20+05:30  mbhangui
+ * fix function prototypes
+ *
  * Revision 1.10  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -49,8 +52,7 @@ static int      en;				/*- the first en of those are ALLOCATED. environ[en] is 0
 static char   **origenv;        /*- points to pristine original environment */
 
 static void
-env_goodbye(i)
-	int             i;
+env_goodbye(int i)
 {
 	alloc_free(environ[i]);
 	environ[i] = environ[--en];
@@ -231,7 +233,7 @@ restore_env()
 void
 getversion_env_c()
 {
-	const char     *x = "$Id: env.c,v 1.10 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: env.c,v 1.11 2024-05-12 00:10:20+05:30 mbhangui Exp mbhangui $";
 
 	x++;
 }
