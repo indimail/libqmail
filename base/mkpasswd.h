@@ -1,5 +1,8 @@
 /*
  * $Log: mkpasswd.h,v $
+ * Revision 1.3  2024-05-17 16:13:15+05:30  Cprogrammer
+ * fix discarded-qualifier-warnings
+ *
  * Revision 1.2  2020-10-04 16:36:36+05:30  Cprogrammer
  * included missing stralloc.h
  *
@@ -11,6 +14,6 @@
 #define MKPASSWD_H
 #include <stralloc.h>
 
-int             mkpasswd(char *, stralloc *, int);
+int             mkpasswd(const char *, stralloc *, int);
 
 #endif

@@ -1,5 +1,8 @@
 /*
  * $Log: qdirname.c,v $
+ * Revision 1.3  2024-05-17 16:13:00+05:30  Cprogrammer
+ * fix discarded-qualifier-warnings
+ *
  * Revision 1.2  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -18,7 +21,7 @@
 #include "str.h"
 
 #ifndef	lint
-const char      sccsid[] = "$Id: qdirname.c,v 1.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $"
+const char      sccsid[] = "$Id: qdirname.c,v 1.3 2024-05-17 16:13:00+05:30 Cprogrammer Exp mbhangui $"
 #endif
 
 static void
@@ -29,7 +32,7 @@ die_nomem()
 }
 
 char           *
-qdirname(char *path)
+qdirname(const char *path)
 {
 	static stralloc tmpbuf = {0};
 	int             i;
@@ -51,7 +54,7 @@ qdirname(char *path)
 void
 getversion_qdirname_c()
 {
-	const char     *x = "$Id: qdirname.c,v 1.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: qdirname.c,v 1.3 2024-05-17 16:13:00+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
