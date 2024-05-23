@@ -1,5 +1,8 @@
 #!/bin/sh
 # $Log: create_rpm,v $
+# Revision 1.15  2024-05-23 17:13:30+05:30  Cprogrammer
+# updated create_rpm
+#
 # Revision 1.14  2023-02-08 11:21:49+05:30  Cprogrammer
 # updated libqmail.spec before rpm generation
 #
@@ -31,7 +34,7 @@
 # rpm creation script for libqmail
 #
 #
-# $Id: create_rpm,v 1.14 2023-02-08 11:21:49+05:30 Cprogrammer Exp mbhangui $
+# $Id: create_rpm,v 1.15 2024-05-23 17:13:30+05:30 Cprogrammer Exp mbhangui $
 #
 curdir=`pwd`
 version=$(cat conf-version)

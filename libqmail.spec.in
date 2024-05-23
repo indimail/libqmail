@@ -226,6 +226,7 @@ done
 %attr(644,root,root)                    %{_prefix}/include/qmail/uint64.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/valid_password_chars.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/wait.h
+%attr(644,root,root)                    %{_prefix}/include/qmail/wildmat.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/array.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/entities.h
 %attr(644,root,root)                    %{_prefix}/include/qmail/textcode.h

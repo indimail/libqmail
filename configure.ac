@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.44  2024-05-23 17:13:15+05:30  Cprogrammer
+# removed -Wno-discarded-qualifiers
+#
 # Revision 1.43  2023-12-31 09:01:46+05:30  Cprogrammer
 # moved repository to indimail org
 #
@@ -130,7 +133,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.43 2023-12-31 09:01:46+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.44 2024-05-23 17:13:15+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/indimail/libqmail])
