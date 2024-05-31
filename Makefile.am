@@ -140,7 +140,7 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/allwrite.c base/arc4random.c \
 	base/scan_double.c base/scan_fromhex.c base/scan_int.c base/scan_long.c \
 	base/scan_plusminus.c base/scan_uint.c base/scan_ulong.c \
 	base/scan_ulonglong.c base/scan_ushort.c base/scan_xlong.c \
-	base/sconfig.c base/seek_cur.c base/seek_end.c \
+	base/scan_short.c base/sconfig.c base/seek_cur.c base/seek_end.c \
 	base/seek_set.c base/seek_trunc.c base/setuserid.c base/sgetopt.c \
 	base/sha256_crypt.c base/sha512_crypt.c base/sig.c base/sig_alarm.c \
 	base/sig_block.c base/sig_bug.c base/sig_catch.c base/sig_child.c \

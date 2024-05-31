@@ -1,5 +1,39 @@
 /*
+ * $Id: scan.h,v 1.11 2024-05-27 08:01:25+05:30 Cprogrammer Exp mbhangui $
+ */
+#ifndef SCAN_H
+#define SCAN_H
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#else
+#include "qmailconfig.h"
+#endif
+#ifdef HAVE_SYS_TYPES_H
+#include <sys/types.h>
+#endif
+
+unsigned int    scan_uint(const char *, unsigned int *);
+unsigned int    scan_ushort(const char *, unsigned short *);
+unsigned int    scan_ulong(const char *, unsigned long *);
+unsigned int    scan_ulonglong(const char *, unsigned long long *);
+unsigned int    scan_xlong(const char *, unsigned long *);
+unsigned int    scan_long(const char *, long *);
+unsigned int    scan_8long(const char *, unsigned long *);
+unsigned int    scan_int(const char *, int *);
+unsigned int    scan_short(const char *, short *);
+unsigned int    scan_plusminus(const char *, int *);
+int             scan_fromhex(unsigned char c);
+unsigned int    scan_double(const char *, double *);
+size_t          scan_hexdump(const char *, char *, size_t *);
+
+#endif
+
+/*
  * $Log: scan.h,v $
+ * Revision 1.11  2024-05-27 08:01:25+05:30  Cprogrammer
+ * added scan_short function
+ *
  * Revision 1.10  2023-02-08 11:23:04+05:30  Cprogrammer
  * include qmailconfig.h if HAVE_CONFIG_H is not defined
  *
@@ -22,29 +56,3 @@
  * added RCS log
  *
  */
-#ifndef SCAN_H
-#define SCAN_H
-
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#else
-#include "qmailconfig.h"
-#endif
-#ifdef HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
-
-unsigned int    scan_uint(const char *, unsigned int *);
-unsigned int    scan_ushort(const char *, unsigned short *);
-unsigned int    scan_ulong(const char *, unsigned long *);
-unsigned int    scan_ulonglong(const char *, unsigned long long *);
-unsigned int    scan_xlong(const char *, unsigned long *);
-unsigned int    scan_long(const char *, long *);
-unsigned int    scan_8long(const char *, unsigned long *);
-unsigned int    scan_int(const char *, int *);
-unsigned int    scan_plusminus(const char *, int *);
-int             scan_fromhex(unsigned char c);
-unsigned int    scan_double(const char *, double *);
-size_t          scan_hexdump(const char *, char *, size_t *);
-
-#endif

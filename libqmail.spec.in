@@ -40,13 +40,14 @@ BuildRequires: rpm gcc gcc-c++ make binutils coreutils grep
 BuildRequires: glibc glibc-devel openssl-devel sed
 BuildRequires: gzip autoconf automake libtool pkgconfig
 BuildRequires: xz
+%if 0%{?centos_version} > 700 || 0%{?rhel_version} > 700 || 0%{?scientific_version} > 700 || 0%{?centos_ver} > 7 || %{defined mgaversion} || %{defined fedora_version} || 0%{?is_opensuse} || 0%{?rocky_version} || 0%{?almalinux_version} || %{defined amzn} || 0%{?mageia}
+BuildRequires: libsodium-devel
+%endif
 %if %build_on_obs == 1
 %if 0%{?suse_version}
 BuildRequires: -post-build-checks  
 #!BuildIgnore: post-build-checks  
 %endif
-%else
-BuildRequires: libsodium-devel
 %endif
 
 AutoReqProv: Yes
