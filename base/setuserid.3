@@ -7,7 +7,7 @@ setuserid \- set user identity
 int \fBsetuserid\fP(char* \fIuser\fR, int \fIsupp\fR, char *\fIgroups\fR);
 .SH DESCRIPTION
 
-setuserid sets the effective user ID, effective group ID of user\fIuser\fR
+setuserid sets the effective user ID, effective group ID of user \fIuser\fR
 using user ID, group ID from the passwd(5) database. It uses setuid(2) to
 set the effective user ID, setgid(2) to set the effective gorup ID. If
 \fIsupp\fR is non zero, setgroups(2) is used to set supplementary groups
