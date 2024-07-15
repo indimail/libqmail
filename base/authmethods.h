@@ -32,6 +32,7 @@
 #define AUTH_SCRAM_SHA1_PLUS   14
 #define AUTH_SCRAM_SHA256_PLUS 15
 #define AUTH_SCRAM_SHA512_PLUS 16
+#define AUTH_XOAUTH2           17
 
 const char     *get_authmethod(int);
 
