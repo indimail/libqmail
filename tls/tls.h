@@ -1,5 +1,5 @@
 /*
- * $Id: tls.h,v 1.6 2024-05-12 00:10:54+05:30 mbhangui Exp mbhangui $
+ * $Id: tls.h,v 1.7 2024-09-05 18:08:20+05:30 Cprogrammer Exp mbhangui $
  */
 #ifndef _TLS_H
 #define _TLS_H
@@ -10,7 +10,7 @@
 #include <strerr.h>
 
 enum tlsmode  {none = 0, client = 1, server = 2, qsmtpd = 3, qremote = 4};
-enum starttls {smtp, pop3, unknown};
+enum starttls {smtp, pop3, imap, unknown};
 extern struct strerr strerr_tls;
 
 ssize_t         tlsread(int, char *, size_t, long);
@@ -52,6 +52,9 @@ EVP_PKEY       *get_dhkey(int, int, const char *);
 
 /*
  * $Log: tls.h,v $
+ * Revision 1.7  2024-09-05 18:08:20+05:30  Cprogrammer
+ * added imap to starttls enumeration
+ *
  * Revision 1.6  2024-05-12 00:10:54+05:30  mbhangui
  * fix function prototypes
  *

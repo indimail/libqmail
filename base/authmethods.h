@@ -1,5 +1,8 @@
 /*
  * $Log: authmethods.h,v $
+ * Revision 1.5  2024-09-05 18:07:51+05:30  Cprogrammer
+ * added AUTH_XOAUTH2 method
+ *
  * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *

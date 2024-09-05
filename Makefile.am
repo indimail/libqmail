@@ -110,7 +110,8 @@ COMMONSOURCES = base/alloc.c base/alloc_re.c base/allwrite.c base/arc4random.c \
 	base/caldate_mjd.c base/caldate_scan.c base/caltime_fmt.c \
 	base/caltime_tai.c base/caltime_utc.c base/case_diffb.c base/wildmat.c \
 	base/case_diffs.c base/case_lowerb.c base/case_lowers.c base/case_startb.c \
-	base/case_starts.c base/cdb.c base/cdb_hash.c base/cdb_make.c \
+	base/case_upperb.c base/case_uppers.c base/case_starts.c base/cdb.c \
+	base/cdb_hash.c base/cdb_make.c \
 	base/cdbmake_add.c base/cdbmake_hash.c base/cdbmss.c base/cdbmake_pack.c \
 	base/cdb_seek.c base/cdb_unpack.c base/check_domain.c base/coe.c \
 	base/commands.c base/constmap.c base/date822fmt.c base/datetime.c \
@@ -369,6 +370,8 @@ base/case_lowerb.lo: case.h
 base/case_lowers.lo: case.h
 base/case_startb.lo: case.h
 base/case_starts.lo: case.h
+base/case_upperb.lo: case.h
+base/case_uppers.lo: case.h
 base/datetime.lo: datetime.h
 base/datetime_un.lo: datetime.h
 base/now.lo: now.h datetime.h
