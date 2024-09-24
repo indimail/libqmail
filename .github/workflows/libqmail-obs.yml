@@ -24,7 +24,7 @@ jobs:
       run: |
         sudo apt-get update; sudo apt-get install libssl-dev libmysqlclient-dev
         ./prepare_obs libqmail
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: libqmail
         path: ~/stage
