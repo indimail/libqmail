@@ -1,5 +1,8 @@
 /*
  * $Log: pathexec.h,v $
+ * Revision 1.6  2024-11-12 15:51:18+05:30  Cprogrammer
+ * added pathexec_env_plus() to add env variables from plus variable
+ *
  * Revision 1.5  2024-05-09 23:46:54+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -23,5 +26,6 @@ void            pathexec_run(const char *, char **, char **);
 int             pathexec_env(const char *, const char *);
 void            pathexec_clear();
 char          **pathexec(char **);
+int             pathexec_env_plus(const char *, int);
 
 #endif

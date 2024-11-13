@@ -19,6 +19,9 @@ Release 1.4-1.1 Start 29/04/2024 End 06/08/2024
 09. tls.c: added imap to starttls enumeration
 10. case_uppers.c: added case_uppers() function
 11. case_upperb.c: added case_upperb() function
+- 12/11/2024
+12. pathexec_env.c: added pathexec_env_plus() to add env variables from plus
+    variable
 
 * Sun Mar 03 2024 15:44:18 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.3-1.1%{?dist}
 Release 1.3-1.1 Start 30/11/2023 End 03/02/2024
