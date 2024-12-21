@@ -1,5 +1,8 @@
 /*
  * $Log: commands.h,v $
+ * Revision 1.7  2024-12-21 10:12:37+05:30  Cprogrammer
+ * added cmd_name() function
+ *
  * Revision 1.6  2024-05-12 00:10:20+05:30  mbhangui
  * fix function prototypes
  *
@@ -24,12 +27,13 @@ struct commands
 {
 	const char     *text;
 	void            (*fun) (const char *);
-	void            (*flush) ();
+	void            (*flush) (void);
 };
 #ifndef COMMANDS_C
 extern int      ctl_maxcmdlen;
 #endif
 
 int             commands(substdio *, struct commands *);
+const char     *cmd_name(void);
 
 #endif

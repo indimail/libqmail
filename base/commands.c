@@ -1,5 +1,8 @@
 /*
  * $Log: commands.c,v $
+ * Revision 1.13  2024-12-21 10:12:29+05:30  Cprogrammer
+ * added cmd_name() function
+ *
  * Revision 1.12  2024-05-12 00:10:20+05:30  mbhangui
  * fix function prototypes
  *
@@ -89,10 +92,15 @@ commands(substdio *ss, struct commands *c)
 	}
 }
 
+const char     *cmd_name(void)
+{
+	return cmd.s;
+}
+
 void
 getversion_commands_c()
 {
-	const char     *x = "$Id: commands.c,v 1.12 2024-05-12 00:10:20+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: commands.c,v 1.13 2024-12-21 10:12:29+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
