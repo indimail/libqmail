@@ -1,4 +1,16 @@
-* Tue Aug 06 2024 12:33:26 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.4-11%{?dist}
+* Tue Dec 24 2024 16:15:35 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.5-1.1%{?dist}
+Release 1.5-1.1 Start 05/09/2024 End 24/12/2024
+- 05/09/2024
+01. tls.c: added imap to starttls enumeration
+02. case_uppers.c: added case_uppers() function
+03. case_upperb.c: added case_upperb() function
+- 12/11/2024
+04. pathexec_env.c: added pathexec_env_plus() to add env variables from plus
+    variable
+- 21/12/2024
+05. commands.c, commands.h: added cmd_name() function
+
+* Tue Aug 06 2024 12:33:26 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.4-1.1%{?dist}
 Release 1.4-1.1 Start 29/04/2024 End 06/08/2024
 01. envdir.c: handle symbolic links to .envdir and .envfile correctly
 - 29/04/2024
@@ -15,15 +27,6 @@ Release 1.4-1.1 Start 29/04/2024 End 06/08/2024
 07. scan_short.c: added scan_short function
 - 16/07/2024
 08. authmethods.c, authmethods.h: Added XOAUTH2 auth methods
-- 05/09/2024
-09. tls.c: added imap to starttls enumeration
-10. case_uppers.c: added case_uppers() function
-11. case_upperb.c: added case_upperb() function
-- 12/11/2024
-12. pathexec_env.c: added pathexec_env_plus() to add env variables from plus
-    variable
-- 21/12/2024
-12. commands.c, commands.h: added cmd_name() function
 
 * Sun Mar 03 2024 15:44:18 +0000 Manvendra Bhangui <libqmail@indimail.org> 1.3-1.1%{?dist}
 Release 1.3-1.1 Start 30/11/2023 End 03/02/2024
