@@ -62,7 +62,7 @@ if_visited(ino_t inum)
 			if (ino_ptr[i] == inum)
 				return 1;
 		}
-		if (!alloc_re(&ino_ptr, sizeof(ino_t) * ino_count, sizeof(ino_t) * (ino_count + 1)))
+		if (!alloc_re((void **) &ino_ptr, sizeof(ino_t) * ino_count, sizeof(ino_t) * (ino_count + 1)))
 			return -6; /*- out of memory */
 	} else {
 		if (!(ino_ptr = (ino_t *) alloc(sizeof(ino_t) * (ino_count + 1))))
@@ -302,7 +302,7 @@ envdir(const char *fn, const char **e, int ignore_unreadable, int *unreadable)
 		}
 		if (dt->d_name[0] == '.')
 			continue;
-		if (!alloc_re(&d, alen, len + str_len(dt->d_name) + 2)) {
+		if (!alloc_re((void **) &d, alen, len + str_len(dt->d_name) + 2)) {
 			if (e)
 				*e = error_str(errno);
 			exit_nicely(d, dir);

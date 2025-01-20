@@ -14,6 +14,6 @@
 #define TIMEOUTWRITE_H
 #include <sys/types.h>
 
-ssize_t         timeoutwrite(long, int, char *, size_t);
+ssize_t         timeoutwrite(long, int, const char *, size_t);
 
 #endif

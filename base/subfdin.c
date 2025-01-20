@@ -24,7 +24,7 @@
 #include "subfd.h"
 
 ssize_t
-subfd_read(int fd, char *buf, int len)
+subfd_read(int fd, char *buf, size_t len)
 {
 	if (substdio_flush(subfdout) == -1)
 		return -1;

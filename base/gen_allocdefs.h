@@ -37,7 +37,7 @@ static int ta_rplus ## _internal (ta *x, unsigned int n, unsigned int pluslen) \
       if (__builtin_mul_overflow(nnum, sizeof(type), &nlen)) { \
         errno = error_nomem; \
         return 0; } \
-      if (!alloc_re((char *) &x->field,x->a * sizeof(type),nlen)) { \
+      if (!alloc_re((void **) &x->field,x->a * sizeof(type),nlen)) { \
         errno = error_nomem; \
         return 0; } \
       x->a = nnum; \

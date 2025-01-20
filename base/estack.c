@@ -41,7 +41,7 @@ estack(int  fderr, const char *errorstr)
 	substdio       sserr;
 
 	if (fderr > -1)
-		substdio_fdbuf(&sserr, write, fderr, sserrbuf, sizeof(sserrbuf));
+		substdio_fdbuf(&sserr, (ssize_t (*)(int,  char *, size_t)) write, fderr, sserrbuf, sizeof(sserrbuf));
 	if (errorstr && *errorstr) {
 		len = str_len((char *) errorstr) + 1; /* string + 1 null byte */
 		if (!(error_store = realloc(error_store, mylen + len + 1))) {	/*- The man page is wierd on Mac OS */

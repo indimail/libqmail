@@ -31,7 +31,7 @@
 
 #ifdef IOPAUSE_POLL /*- taken from Erwin Hofman fehQlibs */
 ssize_t
-timeoutwrite(long t, int fd, char *buf, size_t len)
+timeoutwrite(long t, int fd, const char *buf, size_t len)
 {
 	struct taia     now;
 	struct taia     deadline;

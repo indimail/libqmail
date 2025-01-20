@@ -34,7 +34,7 @@ struct token822
 };
 
 int             token822_parse(token822_alloc *, stralloc *, stralloc *);
-int             token822_addrlist(token822_alloc *, token822_alloc *, token822_alloc *, int (*callback)());
+int             token822_addrlist(token822_alloc *, token822_alloc *, token822_alloc *, int (*callback)(token822_alloc *));
 int             token822_unquote(stralloc *, token822_alloc *);
 int             token822_unparse(stralloc *, token822_alloc *, unsigned int);
 void            token822_reverse(token822_alloc *);

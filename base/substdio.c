@@ -20,7 +20,7 @@
 #include <sys/types.h>
 
 void
-substdio_fdbuf(register substdio *s, register ssize_t (*op)(),
+substdio_fdbuf(register substdio *s, register ssize_t (*op)(int, char *, size_t),
 		register int fd, register char *buf, register size_t len)
 {
 	s->x = buf;

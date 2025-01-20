@@ -29,7 +29,7 @@ sig_childunblock()
 }
 
 void
-sig_childcatch(void (*f) ())
+sig_childcatch(void (*f) (int))
 {
 	sig_catch(SIGCHLD, f);
 }

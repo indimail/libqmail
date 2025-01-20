@@ -17,7 +17,7 @@
 #include "sig.h"
 
 void
-sig_bugcatch(void (*f) ())
+sig_bugcatch(void (*f) (int))
 {
 	sig_catch(SIGILL, f);
 	sig_catch(SIGABRT, f);

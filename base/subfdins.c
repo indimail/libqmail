@@ -6,7 +6,7 @@
 #include "subfd.h"
 
 ssize_t
-subfd_readsmall(int fd, char *buf, int len)
+subfd_readsmall(int fd, char *buf, size_t len)
 {
 	if (substdio_flush(subfdoutsmall) == -1)
 		return -1;

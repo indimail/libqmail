@@ -29,7 +29,7 @@ sig_alarmunblock()
 }
 
 void
-sig_alarmcatch(void (*f) ())
+sig_alarmcatch(void (*f) (int))
 {
 	sig_catch(SIGALRM, f);
 }

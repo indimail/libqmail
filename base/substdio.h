@@ -6,18 +6,17 @@
 #define SUBSTDIO_H
 #include <sys/types.h>
 
-typedef struct substdio
-{
+typedef struct substdio {
 	char           *x;
-	int             p;
-	int             n;
+	unsigned int    p;
+	size_t          n;
 	int             fd;
-	ssize_t         (*op) ();
+	ssize_t         (*op) (int, char *, size_t);
 } substdio;
 
 #define SUBSTDIO_FDBUF(op,fd,buf,len) { (buf), 0, (len), (fd), (op) }
 
-void            substdio_fdbuf(substdio *, ssize_t (*op) (), int, char *, size_t);
+void            substdio_fdbuf(substdio *, ssize_t (*op) (int, char *, size_t), int, char *, size_t);
 int             substdio_flush(substdio *);
 void            substdio_discard(substdio *);
 int             substdio_putalign(substdio *, const char *, size_t);

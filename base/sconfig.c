@@ -99,7 +99,7 @@ config_readline(config_str *c, const char *fn)
 			return 0;
 		return -1;
 	}
-	substdio_fdbuf(&ss, read, fd, inbuf, sizeof inbuf);
+	substdio_fdbuf(&ss, (ssize_t (*)(int,  char *, size_t)) read, fd, inbuf, sizeof inbuf);
 	if (getln(&ss, &line, &match, '\n') == -1) {
 		close(fd);
 		return -1;
@@ -127,7 +127,7 @@ config_readfile(config_str *c, const char *fn)
 			return 0;
 		return -1;
 	}
-	substdio_fdbuf(&ss, read, fd, inbuf, sizeof inbuf);
+	substdio_fdbuf(&ss, (ssize_t (*)(int,  char *, size_t)) read, fd, inbuf, sizeof inbuf);
 	for (;;) {
 		if (getln(&ss, &line, &match, '\n') == -1) {
 			close(fd);

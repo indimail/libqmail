@@ -29,7 +29,7 @@ sig_hangupunblock()
 }
 
 void
-sig_hangupcatch(void (*f) ())
+sig_hangupcatch(void (*f) (int))
 {
 	sig_catch(SIGHUP, f);
 }

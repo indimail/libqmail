@@ -29,7 +29,7 @@ sig_termunblock()
 }
 
 void
-sig_termcatch(void (*f) ())
+sig_termcatch(void (*f) (int))
 {
 	sig_catch(SIGTERM, f);
 }

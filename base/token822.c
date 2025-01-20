@@ -1,29 +1,5 @@
 /*
- * $Log: token822.c,v $
- * Revision 1.9  2024-05-12 00:10:20+05:30  mbhangui
- * fix function prototypes
- *
- * Revision 1.8  2024-05-09 23:46:19+05:30  mbhangui
- * fix discarded-qualifier compiler warnings
- *
- * Revision 1.7  2022-10-18 20:00:50+05:30  Cprogrammer
- * converted proto to ansic
- *
- * Revision 1.6  2020-11-22 23:12:20+05:30  Cprogrammer
- * removed supression of ANSI C proto
- *
- * Revision 1.5  2020-05-10 17:47:25+05:30  Cprogrammer
- * GEN_ALLOC refactoring (by Rolf Eike Beer) to fix memory overflow reported by Qualys Security Advisory
- *
- * Revision 1.4  2004-10-22 20:31:48+05:30  Cprogrammer
- * added RCS id
- *
- * Revision 1.3  2004-10-11 14:15:54+05:30  Cprogrammer
- * prevent inclusion of alloc.h with prototypes
- *
- * Revision 1.2  2004-07-17 21:24:56+05:30  Cprogrammer
- * added RCS log
- *
+ * $Id: $
  */
 #include "stralloc.h"
 #include "alloc.h"
@@ -41,8 +17,7 @@ token822_reverse(token822_alloc *ta)
 	struct token822 temp;
 
 	n = ta->len - 1;
-	for (i = 0; i + i < n; ++i)
-	{
+	for (i = 0; i + i < n; ++i) {
 		temp = ta->t[i];
 		ta->t[i] = ta->t[n - i];
 		ta->t[n - i] = temp;
@@ -608,7 +583,7 @@ gotaddr(token822_alloc *taout, token822_alloc *taaddr, int (*callback) (token822
 }
 
 int
-token822_addrlist(token822_alloc *taout, token822_alloc *taaddr, token822_alloc *ta, int (*callback) ())
+token822_addrlist(token822_alloc *taout, token822_alloc *taaddr, token822_alloc *ta, int (*callback) (token822_alloc *))
 {
 	struct token822 *t;
 	struct token822 *beginning;
@@ -716,3 +691,31 @@ getversion_token822_c()
 
 	x++;
 }
+
+/*
+ * $Log: token822.c,v $
+ * Revision 1.9  2024-05-12 00:10:20+05:30  mbhangui
+ * fix function prototypes
+ *
+ * Revision 1.8  2024-05-09 23:46:19+05:30  mbhangui
+ * fix discarded-qualifier compiler warnings
+ *
+ * Revision 1.7  2022-10-18 20:00:50+05:30  Cprogrammer
+ * converted proto to ansic
+ *
+ * Revision 1.6  2020-11-22 23:12:20+05:30  Cprogrammer
+ * removed supression of ANSI C proto
+ *
+ * Revision 1.5  2020-05-10 17:47:25+05:30  Cprogrammer
+ * GEN_ALLOC refactoring (by Rolf Eike Beer) to fix memory overflow reported by Qualys Security Advisory
+ *
+ * Revision 1.4  2004-10-22 20:31:48+05:30  Cprogrammer
+ * added RCS id
+ *
+ * Revision 1.3  2004-10-11 14:15:54+05:30  Cprogrammer
+ * prevent inclusion of alloc.h with prototypes
+ *
+ * Revision 1.2  2004-07-17 21:24:56+05:30  Cprogrammer
+ * added RCS log
+ *
+ */

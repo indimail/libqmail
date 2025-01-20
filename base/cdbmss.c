@@ -30,7 +30,7 @@ cdbmss_start(struct cdbmss *c, int fd)
 	cdbmake_init(&c->cdbm);
 	c->fd = fd;
 	c->pos = sizeof(c->cdbm.final);
-	substdio_fdbuf(&c->ss, write, fd, c->ssbuf, sizeof(c->ssbuf));
+	substdio_fdbuf(&c->ss, (ssize_t (*)(int,  char *, size_t)) write, fd, c->ssbuf, sizeof(c->ssbuf));
 	return seek_set(fd, (seek_pos) c->pos);
 }
 

@@ -29,8 +29,8 @@ int             sig_term = SIGTERM;
 int             sig_usr1 = SIGUSR1;
 int             sig_usr2 = SIGUSR2;
 
-void            (*sig_defaulthandler) () = SIG_DFL;
-void            (*sig_ignorehandler) () = SIG_IGN;
+void            (*sig_defaulthandler) (int) = SIG_DFL;
+void            (*sig_ignorehandler) (int) = SIG_IGN;
 
 void
 getversion_sig_c()

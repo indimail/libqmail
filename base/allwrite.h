@@ -8,5 +8,5 @@
 #define _ALLWRITE_H
 #include <sys/types.h>
 
-ssize_t         allwrite(int, char *, size_t);
+ssize_t         allwrite(int, const char *, size_t);
 #endif

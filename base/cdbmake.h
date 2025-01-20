@@ -45,8 +45,8 @@ struct cdbmake
 void            cdbmake_pack(unsigned char *, uint32);
 uint32          cdbmake_hashadd(uint32, unsigned int);
 void            cdbmake_init(struct cdbmake *);
-int             cdbmake_add(struct cdbmake *, uint32, uint32, void *(*alloc)());
-int             cdbmake_split(struct cdbmake *, void *(*alloc)());
+int             cdbmake_add(struct cdbmake *, uint32, uint32, void *(*alloc)(unsigned int));
+int             cdbmake_split(struct cdbmake *, void *(*alloc)(unsigned int));
 uint32          cdbmake_throw(struct cdbmake *, uint32, int);
 
 #endif

@@ -18,7 +18,7 @@
 #include "hassgact.h"
 
 void
-sig_catch(int sig, void (*f) ())
+sig_catch(int sig, void (*f) (int))
 {
 #ifdef HASSIGACTION
 	struct sigaction sa;

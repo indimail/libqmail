@@ -14,7 +14,7 @@ enum starttls {smtp, pop3, imap, unknown};
 extern struct strerr strerr_tls;
 
 ssize_t         tlsread(int, char *, size_t, long);
-ssize_t         tlswrite(int, char *, size_t, long);
+ssize_t         tlswrite(int, const char *, size_t, long);
 #if defined(HAVE_SSL) || defined(TLS)
 SSL_CTX        *tls_init(const char *, const char *, const char *, const char *, const char *, enum tlsmode);
 int             get_tls_method(const char *);
@@ -27,12 +27,12 @@ int             tls_connect(int, int, int, SSL *, const char *);
 int             tls_accept(int, int, int, SSL *);
 void            ssl_free();
 int             translate(int, int, int, int, unsigned int);
-ssize_t         allwritessl(SSL *, char *, size_t);
-ssize_t         ssl_timeoutio(int (*fun1) (), int (*fun2)(), long, int, int, SSL *, char *, size_t);
+ssize_t         allwritessl(SSL *, const char *, size_t);
+ssize_t         ssl_timeoutio(int (*fun1) (SSL *, char *, size_t), int (*fun2)(SSL *), long, int, int, SSL *, char *, size_t);
 int             ssl_timeoutconn(long, int, int, SSL *);
 int             ssl_timeoutaccept(long, int, int, SSL *);
 ssize_t         ssl_timeoutread(long, int, int, SSL *, char *, size_t);
-ssize_t         ssl_timeoutwrite(long, int, int, SSL *, char *, size_t);
+ssize_t         ssl_timeoutwrite(long, int, int, SSL *, const char *, size_t);
 int             ssl_timeoutrehandshake(long, int, int, SSL *);
 const char     *myssl_error_str();
 const char     *myssl_error();

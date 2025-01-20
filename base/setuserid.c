@@ -69,7 +69,7 @@ grpscan(const char *user, int *ngroups)
 		}
 	}
 	*ngroups = idx;
-	if (!alloc_re((char *) &gidset, maxgroups * sizeof(gid_t), idx * sizeof(gid_t))) {
+	if (!alloc_re((void **) &gidset, maxgroups * sizeof(gid_t), idx * sizeof(gid_t))) {
 		alloc_free((char *) gidset);
 		return ((gid_t *) 0);
 	}
@@ -175,7 +175,7 @@ setuserid(const char *user, int set_supp_id, const char *groups)
 				ngroups++;
 		}
 		ngroups++;
-		if (!alloc_re((char *) &gidset, old * sizeof(gid_t), ngroups * sizeof(gid_t)))
+		if (!alloc_re((void **) &gidset, old * sizeof(gid_t), ngroups * sizeof(gid_t)))
 			return -1;
 		if (!(groups_t = (char *) alloc((t = str_len(groups)) + 1))) {
 			t = errno;

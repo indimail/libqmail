@@ -27,7 +27,7 @@ cdb_make_start(struct cdb_make *c, int fd)
 	c->numentries = 0;
 	c->fd = fd;
 	c->pos = sizeof c->final;
-	substdio_fdbuf(&c->b, write, fd, c->bspace, sizeof c->bspace);
+	substdio_fdbuf(&c->b, (ssize_t (*)(int,  char *, size_t)) write, fd, c->bspace, sizeof c->bspace);
 	return seek_set(fd, c->pos);
 }
 

@@ -4,14 +4,14 @@
 
 #ifndef BUFFER_H
 #define BUFFER_H
-#include <sys/types.h>			/* need type: ssize_t */
+#include <sys/types.h> /* need type: ssize_t */
 
 typedef struct buffer {
 	char           *x;
 	unsigned int    p;
 	size_t          n;
 	int             fd;
-	                ssize_t(*op) ();
+	ssize_t         (*op) (int, char *, size_t);
 } buffer;
 
 #define BUFFER_INIT(op,fd,buf,len) { (buf), 0, (len), (fd), (op) }
@@ -19,7 +19,7 @@ typedef struct buffer {
 #define BUFFER_INSIZE 8192
 #define BUFFER_OUTSIZE 8192
 
-extern void     buffer_init(buffer *, ssize_t(*op) (), int, char *, size_t);
+extern void     buffer_init(buffer *, ssize_t(*op) (int, char *, size_t), int, char *, size_t);
 extern int      buffer_flush(buffer *);
 extern void     buffer_discard(buffer *);
 extern int      buffer_put(buffer *, const char *, size_t);

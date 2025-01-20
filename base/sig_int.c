@@ -27,7 +27,7 @@ sig_intunblock()
 }
 
 void
-sig_intcatch(void (*f) ())
+sig_intcatch(void (*f) (int))
 {
 	sig_catch(SIGINT, f);
 }

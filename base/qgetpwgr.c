@@ -120,7 +120,7 @@ qpwinit(int flag)
 	}
 	if (!flag)
 		return;
-	if (!alloc_re(&_pwbuf, sizeof(char) * _pwbuf_len, sizeof(char) * (_pwbuf_len + 512))) {
+	if (!alloc_re((void **) &_pwbuf, sizeof(char) * _pwbuf_len, sizeof(char) * (_pwbuf_len + 512))) {
 		errno = ENOMEM;
 		return;
 	}
@@ -148,7 +148,7 @@ qgetpwent_r(struct passwd *pwd, char *buf, size_t buflen, struct passwd **result
 		if ((pwfd = open_read(ptr)) == -1)
 			return errno;
 		_is_open = 1;
-		substdio_fdbuf(&pwss, read, pwfd, _pw_inbuf, sizeof (_pw_inbuf));
+		substdio_fdbuf(&pwss, (ssize_t (*)(int,  char *, size_t)) read, pwfd, _pw_inbuf, sizeof (_pw_inbuf));
 	}
 	if (set_pwent) {
 		if (pwss.p)
@@ -384,7 +384,7 @@ qgrinit(int flag)
 	}
 	if (!flag)
 		return;
-	if (!alloc_re(&_grbuf, sizeof(char) * _grbuf_len, sizeof(char) * (_grbuf_len + 512))) {
+	if (!alloc_re((void **) &_grbuf, sizeof(char) * _grbuf_len, sizeof(char) * (_grbuf_len + 512))) {
 		errno = ENOMEM;
 		return;
 	}
@@ -412,7 +412,7 @@ qgetgrent_r(struct group *grp, char *buf, size_t buflen, struct group **result)
 		if ((grfd = open_read(ptr)) == -1)
 			return errno;
 		_is_open = 1;
-		substdio_fdbuf(&grss, read, grfd, _gr_inbuf, sizeof (_gr_inbuf));
+		substdio_fdbuf(&grss, (ssize_t (*)(int,  char *, size_t)) read, grfd, _gr_inbuf, sizeof (_gr_inbuf));
 	}
 	if (set_grent) {
 		if (grss.p) {
@@ -478,7 +478,7 @@ qgetgrent_r(struct group *grp, char *buf, size_t buflen, struct group **result)
 					if (*x == ',')
 						g++;
 				}
-				if (!alloc_re(&gr_mem_ptr, sizeof(char *) * gr_mem_len, sizeof(char *) * (g + 1)))
+				if (!alloc_re((void **) &gr_mem_ptr, sizeof(char *) * gr_mem_len, sizeof(char *) * (g + 1)))
 					return errno;
 				gr_mem_len = g + 1;
 				for (x = y = cptr, i = 0; *x; x++) {
@@ -496,7 +496,7 @@ qgetgrent_r(struct group *grp, char *buf, size_t buflen, struct group **result)
 					gr_mem_ptr[i++] = y;
 				gr_mem_ptr[i] = NULL;
 			} else {
-				if (!alloc_re(&gr_mem_ptr, sizeof(char *) * gr_mem_len, sizeof(char *)))
+				if (!alloc_re((void **) &gr_mem_ptr, sizeof(char *) * gr_mem_len, sizeof(char *)))
 					return errno;
 				gr_mem_len = 1;
 				gr_mem_ptr[0] = NULL;
@@ -664,7 +664,7 @@ qsvinit(int flag)
 	}
 	if (!flag)
 		return;
-	if (!alloc_re(&_svbuf, sizeof(char) * _svbuf_len, sizeof(char) * (_svbuf_len + 512))) {
+	if (!alloc_re((void **) &_svbuf, sizeof(char) * _svbuf_len, sizeof(char) * (_svbuf_len + 512))) {
 		errno = ENOMEM;
 		return;
 	}
@@ -692,7 +692,7 @@ qgetservent_r(struct servent *svc, char *buf, size_t buflen, struct servent **re
 		if ((svfd = open_read(ptr)) == -1)
 			return errno;
 		_is_open = 1;
-		substdio_fdbuf(&svss, read, svfd, _sv_inbuf, sizeof (_sv_inbuf));
+		substdio_fdbuf(&svss, (ssize_t (*)(int,  char *, size_t)) read, svfd, _sv_inbuf, sizeof (_sv_inbuf));
 	}
 	if (set_svent) {
 		if (svss.p)
@@ -794,7 +794,7 @@ qgetservent_r(struct servent *svc, char *buf, size_t buflen, struct servent **re
 							x++;
 					}
 				}
-				if (!alloc_re(&sv_alias_ptr, sizeof(char *) * sv_alias_len, sizeof(char *) * (s + 1)))
+				if (!alloc_re((void **) &sv_alias_ptr, sizeof(char *) * sv_alias_len, sizeof(char *) * (s + 1)))
 					return errno;
 				sv_alias_len = s + 1;
 				for (x = y = cptr, i = 0; *x; x++) {

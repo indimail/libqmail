@@ -21,7 +21,7 @@ extern substdio *subfdout;
 extern substdio *subfdoutsmall;
 extern substdio *subfderr;
 
-ssize_t         subfd_read(int, char *, int);
-ssize_t         subfd_readsmall(int, char *, int);
+ssize_t         subfd_read(int, char *, size_t);
+ssize_t         subfd_readsmall(int, char *, size_t);
 
 #endif

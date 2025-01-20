@@ -6,7 +6,7 @@
 #include "error.h"
 
 ssize_t
-allwrite(int fd, char *buf, size_t len)
+allwrite(int fd, const char *buf, size_t len)
 {
 	ssize_t         w;
 	size_t          total = 0;

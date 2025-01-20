@@ -78,7 +78,7 @@ substdio_flush(register substdio *s)
 	if (!(p = s->p))
 		return 0;
 	s->p = 0;
-	return allwrite(s->op, s->fd, s->x, p);
+	return allwrite((ssize_t (*)(int,  const char *, size_t)) s->op, s->fd, s->x, p);
 }
 
 int
@@ -140,7 +140,7 @@ substdio_put(register substdio *s, register const char *buf, register size_t len
 		while (len > (unsigned int) s->n) {
 			if (n > len)
 				n = len;
-			if (allwrite(s->op, s->fd, buf, n) == -1)
+			if (allwrite((ssize_t (*)(int,  const char *, size_t)) s->op, s->fd, buf, n) == -1)
 				return -1;
 			buf += n;
 			len -= n;
@@ -157,7 +157,7 @@ substdio_putflush(register substdio *s, register const char *buf, register size_
 {
 	if (substdio_flush(s) == -1)
 		return -1;
-	return allwrite(s->op, s->fd, buf, len);
+	return allwrite((ssize_t (*)(int,  const char *, size_t)) s->op, s->fd, buf, len);
 }
 
 int

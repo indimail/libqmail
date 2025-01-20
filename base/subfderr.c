@@ -6,7 +6,7 @@
 #include "subfd.h"
 
 char            subfd_errbuf[SUBSTDIO_SMALL];
-static substdio it = SUBSTDIO_FDBUF(write, 2, subfd_errbuf, SUBSTDIO_SMALL);
+static substdio it = SUBSTDIO_FDBUF((ssize_t (*)(int,  char *, size_t)) write, 2, subfd_errbuf, SUBSTDIO_SMALL);
 substdio       *subfderr = &it;
 
 void

@@ -115,7 +115,7 @@ env_add(const char *s)
 		 * no overflow check for en +1 as it would have succeeded in an
 		 * earlier call to alloc()
 		 */
-		if (!alloc_re((char *) &environ, (en + 1) * sizeof(char *), i * sizeof(char *))) {
+		if (!alloc_re((void **) &environ, (en + 1) * sizeof(char *), i * sizeof(char *))) {
 			ea = en;
 			return 0;
 		}
