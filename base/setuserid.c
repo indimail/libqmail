@@ -1,5 +1,5 @@
 /*
- * $Id: setuserid.c,v 1.9 2024-05-12 20:50:36+05:30 Cprogrammer Exp mbhangui $
+ * $Id: setuserid.c,v 1.10 2025-01-21 22:19:45+05:30 Cprogrammer Exp mbhangui $
  */
 #include <errno.h>
 #ifdef HAVE_CONFIG_H
@@ -69,7 +69,7 @@ grpscan(const char *user, int *ngroups)
 		}
 	}
 	*ngroups = idx;
-	if (!alloc_re((char *) &gidset, maxgroups * sizeof(gid_t), idx * sizeof(gid_t))) {
+	if (!alloc_re((void **) &gidset, maxgroups * sizeof(gid_t), idx * sizeof(gid_t))) {
 		alloc_free((char *) gidset);
 		return ((gid_t *) 0);
 	}
@@ -175,7 +175,7 @@ setuserid(const char *user, int set_supp_id, const char *groups)
 				ngroups++;
 		}
 		ngroups++;
-		if (!alloc_re((char *) &gidset, old * sizeof(gid_t), ngroups * sizeof(gid_t)))
+		if (!alloc_re((void **) &gidset, old * sizeof(gid_t), ngroups * sizeof(gid_t)))
 			return -1;
 		if (!(groups_t = (char *) alloc((t = str_len(groups)) + 1))) {
 			t = errno;
@@ -261,13 +261,16 @@ setuser_privileges(uid_t uid, gid_t gid, const char *user)
 void
 getversion_setuserid_c()
 {
-	const char     *x = "$Id: setuserid.c,v 1.9 2024-05-12 20:50:36+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: setuserid.c,v 1.10 2025-01-21 22:19:45+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
 
 /*
  * $Log: setuserid.c,v $
+ * Revision 1.10  2025-01-21 22:19:45+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.9  2024-05-12 20:50:36+05:30  Cprogrammer
  * fix function prototypes
  *

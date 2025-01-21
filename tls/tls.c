@@ -1,5 +1,5 @@
 /*
- * $Id: tls.c,v 1.12 2024-05-12 00:10:54+05:30 mbhangui Exp mbhangui $
+ * $Id: tls.c,v 1.13 2025-01-21 22:23:58+05:30 Cprogrammer Exp mbhangui $
  *
  * ssl_timeoutio functions from Frederik Vermeulen's
  * tls patch for qmail
@@ -34,7 +34,7 @@
 #include "tls.h"
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tls.c,v 1.12 2024-05-12 00:10:54+05:30 mbhangui Exp mbhangui $";
+static char     sccsid[] = "$Id: tls.c,v 1.13 2025-01-21 22:23:58+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #ifdef HAVE_SSL
@@ -1026,7 +1026,7 @@ ssl_timeoutio(int (*fun1) (SSL *, char *, size_t), int (*fun2)(SSL *),
 		default: /*- SSL_accept(), SSL_connect() will return here */
 			return r; /*- some other error. See man SSL_read(3ossl), SSL_write(3ossl), etc */
 		case SSL_ERROR_WANT_READ:
-			if (errno == EAGAIN && usessl == client && fun1 == (int (*)()) SSL_read && efd != -1)
+			if (errno == EAGAIN && usessl == client && fun1 == (int (*)(SSL *, char *, size_t)) SSL_read && efd != -1)
 				FD_SET(efd, &fds);
 			FD_SET(rfd, &fds);
 			n = select(efd != -1 && efd > rfd ? efd + 1 : rfd + 1, &fds, NULL, NULL, &tv);
@@ -1039,7 +1039,7 @@ ssl_timeoutio(int (*fun1) (SSL *, char *, size_t), int (*fun2)(SSL *),
 			 * efd becomes available to be read for data that can
 			 * be written to SSL.
 			 */
-			if (usessl == client && fun1 == (int (*)()) SSL_read && efd != -1) {
+			if (usessl == client && fun1 == (int (*)(SSL *, char *, size_t)) SSL_read && efd != -1) {
 				if (FD_ISSET(efd, &fds)) {
 					errno = EAGAIN;
 					return -1;
@@ -1106,7 +1106,7 @@ ssl_timeoutaccept(long t, int rfd, int wfd, SSL *ssl)
 }
 
 ssize_t
-allwritessl(SSL *myssl, char *buf, size_t len)
+allwritessl(SSL *myssl, const char *buf, size_t len)
 {
 	int             w;
 	size_t          total = 0;
@@ -1157,15 +1157,15 @@ ssl_timeoutread(long t, int rfd, int wfd, SSL *myssl, char *buf, size_t len)
 		return 0;
 	if ((n = SSL_pending(myssl)))
 		return (SSL_read(myssl, buf, n <= len ? n : len));
-	return ssl_timeoutio((int (*)())SSL_read, NULL, t, rfd, wfd, myssl, buf, len);
+	return ssl_timeoutio((int (*)(SSL *, char *, size_t))SSL_read, NULL, t, rfd, wfd, myssl, buf, len);
 }
 
 ssize_t
-ssl_timeoutwrite(long t, int rfd, int wfd, SSL *myssl, char *buf, size_t len)
+ssl_timeoutwrite(long t, int rfd, int wfd, SSL *myssl, const char *buf, size_t len)
 {
 	if (!buf)
 		return 0;
-	return ssl_timeoutio((int (*)())allwritessl, NULL, t, rfd, wfd, myssl, buf, len);
+	return ssl_timeoutio((int (*)(SSL *, char *, size_t))allwritessl, NULL, t, rfd, wfd, myssl, (char *) buf, len);
 }
 #endif
 
@@ -1315,7 +1315,7 @@ tlsread(int fd, char *buf, size_t len, long timeout)
 }
 
 ssize_t
-tlswrite(int fd, char *buf, size_t len, long timeout)
+tlswrite(int fd, const char *buf, size_t len, long timeout)
 {
 	ssize_t         r;
 
@@ -1355,6 +1355,9 @@ getversion_tls_c()
 
 /*
  * $Log: tls.c,v $
+ * Revision 1.13  2025-01-21 22:23:58+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.12  2024-05-12 00:10:54+05:30  mbhangui
  * fix function prototypes
  *

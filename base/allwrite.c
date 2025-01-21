@@ -1,12 +1,12 @@
 /*
- * $Id: allwrite.c,v 1.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $
+ * $Id: allwrite.c,v 1.3 2025-01-21 22:18:44+05:30 Cprogrammer Exp mbhangui $
  */
 #include <unistd.h>
 #include <sys/types.h>
 #include "error.h"
 
 ssize_t
-allwrite(int fd, char *buf, size_t len)
+allwrite(int fd, const char *buf, size_t len)
 {
 	ssize_t         w;
 	size_t          total = 0;
@@ -29,13 +29,16 @@ allwrite(int fd, char *buf, size_t len)
 void
 getversion_allwrite_c()
 {
-	const char     *x = "$Id: allwrite.c,v 1.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: allwrite.c,v 1.3 2025-01-21 22:18:44+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
 
 /*
  * $Log: allwrite.c,v $
+ * Revision 1.3  2025-01-21 22:18:44+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.2  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *

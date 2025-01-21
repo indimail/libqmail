@@ -1,5 +1,8 @@
 /*
  * $Log: substdo.c,v $
+ * Revision 1.14  2025-01-21 22:21:45+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.13  2024-05-12 00:10:20+05:30  mbhangui
  * fix function prototypes
  *
@@ -78,7 +81,7 @@ substdio_flush(register substdio *s)
 	if (!(p = s->p))
 		return 0;
 	s->p = 0;
-	return allwrite(s->op, s->fd, s->x, p);
+	return allwrite((ssize_t (*)(int,  const char *, size_t)) s->op, s->fd, s->x, p);
 }
 
 int
@@ -140,7 +143,7 @@ substdio_put(register substdio *s, register const char *buf, register size_t len
 		while (len > (unsigned int) s->n) {
 			if (n > len)
 				n = len;
-			if (allwrite(s->op, s->fd, buf, n) == -1)
+			if (allwrite((ssize_t (*)(int,  const char *, size_t)) s->op, s->fd, buf, n) == -1)
 				return -1;
 			buf += n;
 			len -= n;
@@ -157,7 +160,7 @@ substdio_putflush(register substdio *s, register const char *buf, register size_
 {
 	if (substdio_flush(s) == -1)
 		return -1;
-	return allwrite(s->op, s->fd, buf, len);
+	return allwrite((ssize_t (*)(int,  const char *, size_t)) s->op, s->fd, buf, len);
 }
 
 int
@@ -181,7 +184,7 @@ substdio_putsflush(register substdio *s, register const char *buf)
 void
 getversion_substdo_c()
 {
-	const char     *x = "$Id: substdo.c,v 1.13 2024-05-12 00:10:20+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: substdo.c,v 1.14 2025-01-21 22:21:45+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

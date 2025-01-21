@@ -1,5 +1,8 @@
 /*
  * $Log: estack.c,v $
+ * Revision 1.3  2025-01-21 22:19:24+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.2  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -41,7 +44,7 @@ estack(int  fderr, const char *errorstr)
 	substdio       sserr;
 
 	if (fderr > -1)
-		substdio_fdbuf(&sserr, write, fderr, sserrbuf, sizeof(sserrbuf));
+		substdio_fdbuf(&sserr, (ssize_t (*)(int,  char *, size_t)) write, fderr, sserrbuf, sizeof(sserrbuf));
 	if (errorstr && *errorstr) {
 		len = str_len((char *) errorstr) + 1; /* string + 1 null byte */
 		if (!(error_store = realloc(error_store, mylen + len + 1))) {	/*- The man page is wierd on Mac OS */
@@ -94,6 +97,6 @@ estack(int  fderr, const char *errorstr)
 void
 getversion_estack_qc()
 {
-	const char     *x = "$Id: estack.c,v 1.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: estack.c,v 1.3 2025-01-21 22:19:24+05:30 Cprogrammer Exp mbhangui $";
 	x++; /*- No dollar for OSS/FS */
 }

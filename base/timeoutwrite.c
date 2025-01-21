@@ -1,5 +1,8 @@
 /*
  * $Log: timeoutwrite.c,v $
+ * Revision 1.9  2025-01-21 22:21:49+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.8  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -31,7 +34,7 @@
 
 #ifdef IOPAUSE_POLL /*- taken from Erwin Hofman fehQlibs */
 ssize_t
-timeoutwrite(long t, int fd, char *buf, size_t len)
+timeoutwrite(long t, int fd, const char *buf, size_t len)
 {
 	struct taia     now;
 	struct taia     deadline;
@@ -83,7 +86,7 @@ timeoutwrite(long t, int fd, char *buf, size_t len)
 void
 getversion_timeoutwrite_c()
 {
-	const char     *x = "$Id: timeoutwrite.c,v 1.8 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: timeoutwrite.c,v 1.9 2025-01-21 22:21:49+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

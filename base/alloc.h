@@ -1,5 +1,8 @@
 /*
  * $Log: alloc.h,v $
+ * Revision 1.6  2025-01-21 22:18:20+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.5  2024-05-12 00:10:20+05:30  mbhangui
  * fix function prototypes
  *
@@ -19,14 +22,6 @@
 /* @null@ *//* @out@ */
 void           *alloc(unsigned int);
 void            alloc_free(char *);
-#ifdef _ALLOC_
-#ifdef __APPLE__
 int             alloc_re(void **, unsigned int, unsigned int);
-#else
-int             alloc_re();
-#endif
-#else
-int             alloc_re(void *, unsigned int, unsigned int);
-#endif
 
 #endif

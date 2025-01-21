@@ -1,5 +1,8 @@
 /*
  * $Log: cdbmss.c,v $
+ * Revision 1.8  2025-01-21 22:19:11+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.7  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -30,7 +33,7 @@ cdbmss_start(struct cdbmss *c, int fd)
 	cdbmake_init(&c->cdbm);
 	c->fd = fd;
 	c->pos = sizeof(c->cdbm.final);
-	substdio_fdbuf(&c->ss, write, fd, c->ssbuf, sizeof(c->ssbuf));
+	substdio_fdbuf(&c->ss, (ssize_t (*)(int,  char *, size_t)) write, fd, c->ssbuf, sizeof(c->ssbuf));
 	return seek_set(fd, (seek_pos) c->pos);
 }
 
@@ -85,7 +88,7 @@ cdbmss_finish(struct cdbmss *c)
 void
 getversion_cdbmss_c()
 {
-	const char     *x = "$Id: cdbmss.c,v 1.7 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: cdbmss.c,v 1.8 2025-01-21 22:19:11+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

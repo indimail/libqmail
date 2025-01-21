@@ -1,5 +1,8 @@
 /*
  * $Log: subfdout.c,v $
+ * Revision 1.6  2025-01-21 22:20:39+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.5  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -18,13 +21,13 @@
 #include "subfd.h"
 
 char            subfd_outbuf[SUBSTDIO_OUTSIZE];
-static substdio it = SUBSTDIO_FDBUF(write, 1, subfd_outbuf, SUBSTDIO_OUTSIZE);
+static substdio it = SUBSTDIO_FDBUF((ssize_t (*)(int,  char *, size_t)) write, 1, subfd_outbuf, SUBSTDIO_OUTSIZE);
 substdio       *subfdout = &it;
 
 void
 getversion_subfdout_c()
 {
-	const char     *x = "$Id: subfdout.c,v 1.5 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: subfdout.c,v 1.6 2025-01-21 22:20:39+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,5 @@
 /*
- * $Id: buffer.c,v 1.2 2024-05-12 00:10:20+05:30 mbhangui Exp mbhangui $
+ * $Id: buffer.c,v 1.3 2025-01-21 22:18:54+05:30 Cprogrammer Exp mbhangui $
  */
 #include <unistd.h>
 #include <errno.h>
@@ -12,7 +12,7 @@
  */
 
 void
-buffer_init(buffer *s, ssize_t(*op) (), int fd, char *buf, size_t len)
+buffer_init(buffer *s, ssize_t(*op) (int, char *, size_t), int fd, char *buf, size_t len)
 {
 	s->x = buf;
 	s->fd = fd;
@@ -33,8 +33,8 @@ char            buffer_0_space[BUFFER_INSIZE];
 char            buffer_1_space[BUFFER_OUTSIZE];
 char            buffer_2_space[BUFFER_OUTSIZE];
 static buffer   it0 = BUFFER_INIT(buffer_0_read, 0, buffer_0_space, sizeof (buffer_0_space));
-static buffer   it1 = BUFFER_INIT(write, 1, buffer_1_space, sizeof (buffer_1_space));
-static buffer   it2 = BUFFER_INIT(write, 2, buffer_2_space, sizeof (buffer_2_space));
+static buffer   it1 = BUFFER_INIT((ssize_t (*)(int,  char *, size_t)) write, 1, buffer_1_space, sizeof (buffer_1_space));
+static buffer   it2 = BUFFER_INIT((ssize_t (*)(int,  char *, size_t)) write, 2, buffer_2_space, sizeof (buffer_2_space));
 
 buffer         *buffer_0 = &it0;
 buffer         *buffer_1 = &it1;
@@ -45,8 +45,8 @@ char            buffer_1_small[BUFFER_SMALL];
 char            buffer_2_small[BUFFER_SMALL];
 
 static buffer   is0 = BUFFER_INIT(buffer_0_read, 0, buffer_0_small, sizeof (buffer_0_small));
-static buffer   is1 = BUFFER_INIT(write, 1, buffer_1_small, sizeof (buffer_1_small));
-static buffer   is2 = BUFFER_INIT(write, 2, buffer_2_small, sizeof (buffer_2_small));
+static buffer   is1 = BUFFER_INIT((ssize_t (*)(int,  char *, size_t)) write, 1, buffer_1_small, sizeof (buffer_1_small));
+static buffer   is2 = BUFFER_INIT((ssize_t (*)(int,  char *, size_t)) write, 2, buffer_2_small, sizeof (buffer_2_small));
 
 buffer         *buffer_0small = &is0;
 buffer         *buffer_1small = &is1;
@@ -198,7 +198,7 @@ buffer_flush(buffer *s)
 	if (!(p = s->p))
 		return 0;
 	s->p = 0;
-	return allwrite(s->op, s->fd, s->x, p);
+	return allwrite((ssize_t (*)(int,  const char *, size_t)) s->op, s->fd, s->x, p);
 }
 
 int
@@ -235,7 +235,7 @@ buffer_put(buffer *s, const char *buf, size_t len)
 		while (len > s->n) {
 			if (n > len)
 				n = len;
-			if (allwrite(s->op, s->fd, buf, n) == -1)
+			if (allwrite((ssize_t (*)(int,  const char *, size_t)) s->op, s->fd, buf, n) == -1)
 				return -1;
 			buf += n;
 			len -= n;
@@ -252,7 +252,7 @@ buffer_putflush(buffer *s, const char *buf, size_t len)
 {
 	if (buffer_flush(s) == -1)
 		return -1;
-	return allwrite(s->op, s->fd, buf, len);
+	return allwrite((ssize_t (*)(int,  const char *, size_t)) s->op, s->fd, buf, len);
 }
 
 int
@@ -275,6 +275,9 @@ buffer_putsflush(buffer *s, const char *buf)
 
 /*
  * $Log: buffer.c,v $
+ * Revision 1.3  2025-01-21 22:18:54+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.2  2024-05-12 00:10:20+05:30  mbhangui
  * fix function prototypes
  *

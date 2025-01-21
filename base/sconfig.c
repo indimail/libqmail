@@ -1,5 +1,8 @@
 /*
  * $Log: sconfig.c,v $
+ * Revision 1.7  2025-01-21 22:19:42+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.6  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -99,7 +102,7 @@ config_readline(config_str *c, const char *fn)
 			return 0;
 		return -1;
 	}
-	substdio_fdbuf(&ss, read, fd, inbuf, sizeof inbuf);
+	substdio_fdbuf(&ss, (ssize_t (*)(int,  char *, size_t)) read, fd, inbuf, sizeof inbuf);
 	if (getln(&ss, &line, &match, '\n') == -1) {
 		close(fd);
 		return -1;
@@ -127,7 +130,7 @@ config_readfile(config_str *c, const char *fn)
 			return 0;
 		return -1;
 	}
-	substdio_fdbuf(&ss, read, fd, inbuf, sizeof inbuf);
+	substdio_fdbuf(&ss, (ssize_t (*)(int,  char *, size_t)) read, fd, inbuf, sizeof inbuf);
 	for (;;) {
 		if (getln(&ss, &line, &match, '\n') == -1) {
 			close(fd);
@@ -153,7 +156,7 @@ config_readfile(config_str *c, const char *fn)
 void
 getversion_sconfig_c()
 {
-	const char     *x = "$Id: sconfig.c,v 1.6 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: sconfig.c,v 1.7 2025-01-21 22:19:42+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

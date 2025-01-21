@@ -1,23 +1,22 @@
 /*
- * $Id: substdio.h,v 1.11 2024-01-22 10:19:03+05:30 Cprogrammer Exp mbhangui $
+ * $Id: substdio.h,v 1.12 2025-01-21 22:21:42+05:30 Cprogrammer Exp mbhangui $
  */
 
 #ifndef SUBSTDIO_H
 #define SUBSTDIO_H
 #include <sys/types.h>
 
-typedef struct substdio
-{
+typedef struct substdio {
 	char           *x;
-	int             p;
-	int             n;
+	unsigned int    p;
+	size_t          n;
 	int             fd;
-	ssize_t         (*op) ();
+	ssize_t         (*op) (int, char *, size_t);
 } substdio;
 
 #define SUBSTDIO_FDBUF(op,fd,buf,len) { (buf), 0, (len), (fd), (op) }
 
-void            substdio_fdbuf(substdio *, ssize_t (*op) (), int, char *, size_t);
+void            substdio_fdbuf(substdio *, ssize_t (*op) (int, char *, size_t), int, char *, size_t);
 int             substdio_flush(substdio *);
 void            substdio_discard(substdio *);
 int             substdio_putalign(substdio *, const char *, size_t);
@@ -50,6 +49,9 @@ int             substdio_copy(substdio *, substdio *);
 
 /*
  * $Log: substdio.h,v $
+ * Revision 1.12  2025-01-21 22:21:42+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.11  2024-01-22 10:19:03+05:30  Cprogrammer
  * added definition SUBSTDIO_SMALL
  *

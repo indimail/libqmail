@@ -1,5 +1,8 @@
 /*
  * $Log: token822.h,v $
+ * Revision 1.5  2025-01-21 22:22:01+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.4  2009-06-04 12:09:14+05:30  Cprogrammer
  * added function prototypes
  *
@@ -34,7 +37,7 @@ struct token822
 };
 
 int             token822_parse(token822_alloc *, stralloc *, stralloc *);
-int             token822_addrlist(token822_alloc *, token822_alloc *, token822_alloc *, int (*callback)());
+int             token822_addrlist(token822_alloc *, token822_alloc *, token822_alloc *, int (*callback)(token822_alloc *));
 int             token822_unquote(stralloc *, token822_alloc *);
 int             token822_unparse(stralloc *, token822_alloc *, unsigned int);
 void            token822_reverse(token822_alloc *);

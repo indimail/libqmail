@@ -1,5 +1,8 @@
 /*
  * $Log: substdio.c,v $
+ * Revision 1.7  2025-01-21 22:21:37+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.6  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -20,7 +23,7 @@
 #include <sys/types.h>
 
 void
-substdio_fdbuf(register substdio *s, register ssize_t (*op)(),
+substdio_fdbuf(register substdio *s, register ssize_t (*op)(int, char *, size_t),
 		register int fd, register char *buf, register size_t len)
 {
 	s->x = buf;
@@ -33,7 +36,7 @@ substdio_fdbuf(register substdio *s, register ssize_t (*op)(),
 void
 getversion_substdio_c()
 {
-	const char     *x = "$Id: substdio.c,v 1.6 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: substdio.c,v 1.7 2025-01-21 22:21:37+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
