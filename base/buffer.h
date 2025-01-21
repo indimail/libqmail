@@ -1,5 +1,5 @@
 /*
- * $Id: buffer.h,v 1.2 2024-05-12 00:10:20+05:30 mbhangui Exp mbhangui $
+ * $Id: buffer.h,v 1.3 2025-01-21 22:18:59+05:30 Cprogrammer Exp mbhangui $
  */
 
 #ifndef BUFFER_H

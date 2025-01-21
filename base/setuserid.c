@@ -1,5 +1,5 @@
 /*
- * $Id: setuserid.c,v 1.9 2024-05-12 20:50:36+05:30 Cprogrammer Exp mbhangui $
+ * $Id: setuserid.c,v 1.10 2025-01-21 22:19:45+05:30 Cprogrammer Exp mbhangui $
  */
 #include <errno.h>
 #ifdef HAVE_CONFIG_H
@@ -261,13 +261,16 @@ setuser_privileges(uid_t uid, gid_t gid, const char *user)
 void
 getversion_setuserid_c()
 {
-	const char     *x = "$Id: setuserid.c,v 1.9 2024-05-12 20:50:36+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: setuserid.c,v 1.10 2025-01-21 22:19:45+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
 
 /*
  * $Log: setuserid.c,v $
+ * Revision 1.10  2025-01-21 22:19:45+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.9  2024-05-12 20:50:36+05:30  Cprogrammer
  * fix function prototypes
  *

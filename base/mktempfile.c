@@ -1,5 +1,8 @@
 /*
  * $Log: mktempfile.c,v $
+ * Revision 1.3  2025-01-21 22:19:31+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.2  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -73,7 +76,7 @@ mktempfile(int seekfd)
 void
 getversion_mktempfile_c()
 {
-	const char     *x = "$Id: mktempfile.c,v 1.2 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: mktempfile.c,v 1.3 2025-01-21 22:19:31+05:30 Cprogrammer Exp mbhangui $";
 
 	x = sccsidmktempfileh;
 	x++;

@@ -1,5 +1,5 @@
 /*
- * $Id: subfdouts.c,v 1.6 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $
+ * $Id: subfdouts.c,v 1.7 2025-01-21 22:21:33+05:30 Cprogrammer Exp mbhangui $
  */
 
 #include <unistd.h>
@@ -13,13 +13,16 @@ substdio       *subfdoutsmall = &it;
 void
 getversion_subfdouts_c()
 {
-	const char     *x = "$Id: subfdouts.c,v 1.6 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: subfdouts.c,v 1.7 2025-01-21 22:21:33+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
 
 /*
  * $Log: subfdouts.c,v $
+ * Revision 1.7  2025-01-21 22:21:33+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.6  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *

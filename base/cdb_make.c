@@ -1,5 +1,8 @@
 /*
  * $Log: cdb_make.c,v $
+ * Revision 1.4  2025-01-21 22:19:04+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.3  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -197,7 +200,7 @@ cdb_make_finish(struct cdb_make *c)
 void
 getversion_cdb_make_c()
 {
-	const char     *x = "$Id: cdb_make.c,v 1.3 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: cdb_make.c,v 1.4 2025-01-21 22:19:04+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

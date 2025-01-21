@@ -1,5 +1,5 @@
 /*
- * $Id: envdir.c,v 1.16 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $
+ * $Id: envdir.c,v 1.17 2025-01-21 22:19:20+05:30 Cprogrammer Exp mbhangui $
  */
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -367,13 +367,16 @@ envdir(const char *fn, const char **e, int ignore_unreadable, int *unreadable)
 void
 getversion_envdir_c()
 {
-	const char     *x = "$Id: envdir.c,v 1.16 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: envdir.c,v 1.17 2025-01-21 22:19:20+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
 
 /*
  * $Log: envdir.c,v $
+ * Revision 1.17  2025-01-21 22:19:20+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.16  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *

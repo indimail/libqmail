@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id: token822.c,v 1.10 2025-01-21 22:21:57+05:30 Cprogrammer Exp mbhangui $
  */
 #include "stralloc.h"
 #include "alloc.h"
@@ -687,13 +687,16 @@ if (!token822_append(taout,&comma)) return -1; }
 void
 getversion_token822_c()
 {
-	const char     *x = "$Id: token822.c,v 1.9 2024-05-12 00:10:20+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: token822.c,v 1.10 2025-01-21 22:21:57+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
 
 /*
  * $Log: token822.c,v $
+ * Revision 1.10  2025-01-21 22:21:57+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.9  2024-05-12 00:10:20+05:30  mbhangui
  * fix function prototypes
  *

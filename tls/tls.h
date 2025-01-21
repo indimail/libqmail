@@ -1,5 +1,5 @@
 /*
- * $Id: tls.h,v 1.7 2024-09-05 18:08:20+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tls.h,v 1.8 2025-01-21 22:24:02+05:30 Cprogrammer Exp mbhangui $
  */
 #ifndef _TLS_H
 #define _TLS_H
@@ -52,6 +52,9 @@ EVP_PKEY       *get_dhkey(int, int, const char *);
 
 /*
  * $Log: tls.h,v $
+ * Revision 1.8  2025-01-21 22:24:02+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.7  2024-09-05 18:08:20+05:30  Cprogrammer
  * added imap to starttls enumeration
  *

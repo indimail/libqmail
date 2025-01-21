@@ -1,5 +1,8 @@
 /*
  * $Log: substdo.c,v $
+ * Revision 1.14  2025-01-21 22:21:45+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.13  2024-05-12 00:10:20+05:30  mbhangui
  * fix function prototypes
  *
@@ -181,7 +184,7 @@ substdio_putsflush(register substdio *s, register const char *buf)
 void
 getversion_substdo_c()
 {
-	const char     *x = "$Id: substdo.c,v 1.13 2024-05-12 00:10:20+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: substdo.c,v 1.14 2025-01-21 22:21:45+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

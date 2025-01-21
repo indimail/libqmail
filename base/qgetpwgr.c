@@ -1,5 +1,8 @@
 /*
  * $Log: qgetpwgr.c,v $
+ * Revision 1.11  2025-01-21 22:19:37+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.10  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -966,7 +969,7 @@ qgetservent()
 void
 getversion_qgetpwgr_c()
 {
-	const char     *x = "$Id: qgetpwgr.c,v 1.10 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: qgetpwgr.c,v 1.11 2025-01-21 22:19:37+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

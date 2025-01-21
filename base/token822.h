@@ -1,5 +1,8 @@
 /*
  * $Log: token822.h,v $
+ * Revision 1.5  2025-01-21 22:22:01+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.4  2009-06-04 12:09:14+05:30  Cprogrammer
  * added function prototypes
  *

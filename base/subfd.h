@@ -1,5 +1,8 @@
 /*
  * $Log: subfd.h,v $
+ * Revision 1.5  2025-01-21 22:20:26+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.4  2008-07-14 20:58:52+05:30  Cprogrammer
  * fixed compilation warning on 64 bit os
  *

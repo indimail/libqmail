@@ -1,5 +1,8 @@
 /*
  * $Log: env.c,v $
+ * Revision 1.12  2025-01-21 22:19:14+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.11  2024-05-12 00:10:20+05:30  mbhangui
  * fix function prototypes
  *
@@ -233,7 +236,7 @@ restore_env()
 void
 getversion_env_c()
 {
-	const char     *x = "$Id: env.c,v 1.11 2024-05-12 00:10:20+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: env.c,v 1.12 2025-01-21 22:19:14+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

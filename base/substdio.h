@@ -1,5 +1,5 @@
 /*
- * $Id: substdio.h,v 1.11 2024-01-22 10:19:03+05:30 Cprogrammer Exp mbhangui $
+ * $Id: substdio.h,v 1.12 2025-01-21 22:21:42+05:30 Cprogrammer Exp mbhangui $
  */
 
 #ifndef SUBSTDIO_H
@@ -49,6 +49,9 @@ int             substdio_copy(substdio *, substdio *);
 
 /*
  * $Log: substdio.h,v $
+ * Revision 1.12  2025-01-21 22:21:42+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.11  2024-01-22 10:19:03+05:30  Cprogrammer
  * added definition SUBSTDIO_SMALL
  *

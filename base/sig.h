@@ -1,5 +1,8 @@
 /*
  * $Log: sig.h,v $
+ * Revision 1.9  2025-01-21 22:20:07+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.8  2020-08-03 18:10:35+05:30  Cprogrammer
  * added sig_usr1, sig_usr2
  *

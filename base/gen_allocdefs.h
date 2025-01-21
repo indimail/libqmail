@@ -1,5 +1,8 @@
 /*
  * $Log: gen_allocdefs.h,v $
+ * Revision 1.7  2025-01-21 22:19:27+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.6  2020-11-23 17:53:14+05:30  Cprogrammer
  * fixed compiler warning
  *

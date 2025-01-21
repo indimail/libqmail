@@ -1,5 +1,5 @@
 /*
- * $Id: buffer.c,v 1.2 2024-05-12 00:10:20+05:30 mbhangui Exp mbhangui $
+ * $Id: buffer.c,v 1.3 2025-01-21 22:18:54+05:30 Cprogrammer Exp mbhangui $
  */
 #include <unistd.h>
 #include <errno.h>
@@ -275,6 +275,9 @@ buffer_putsflush(buffer *s, const char *buf)
 
 /*
  * $Log: buffer.c,v $
+ * Revision 1.3  2025-01-21 22:18:54+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.2  2024-05-12 00:10:20+05:30  mbhangui
  * fix function prototypes
  *

@@ -1,5 +1,8 @@
 /*
  * $Log: cdbmake.h,v $
+ * Revision 1.5  2025-01-21 22:19:08+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.4  2020-12-02 14:51:07+05:30  Cprogrammer
  * changed return type of alloc() to void *
  *

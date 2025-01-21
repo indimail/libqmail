@@ -1,5 +1,8 @@
 /*
  * $Log: allwrite.h,v $
+ * Revision 1.2  2025-01-21 22:18:48+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.1  2023-01-02 19:47:23+05:30  Cprogrammer
  * Initial revision
  *

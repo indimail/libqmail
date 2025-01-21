@@ -1,5 +1,5 @@
 /*
- * $Id: tls.c,v 1.12 2024-05-12 00:10:54+05:30 mbhangui Exp mbhangui $
+ * $Id: tls.c,v 1.13 2025-01-21 22:23:58+05:30 Cprogrammer Exp mbhangui $
  *
  * ssl_timeoutio functions from Frederik Vermeulen's
  * tls patch for qmail
@@ -34,7 +34,7 @@
 #include "tls.h"
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tls.c,v 1.12 2024-05-12 00:10:54+05:30 mbhangui Exp mbhangui $";
+static char     sccsid[] = "$Id: tls.c,v 1.13 2025-01-21 22:23:58+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #ifdef HAVE_SSL
@@ -1355,6 +1355,9 @@ getversion_tls_c()
 
 /*
  * $Log: tls.c,v $
+ * Revision 1.13  2025-01-21 22:23:58+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.12  2024-05-12 00:10:54+05:30  mbhangui
  * fix function prototypes
  *

@@ -1,5 +1,8 @@
 /*
  * $Log: sig_child.c,v $
+ * Revision 1.6  2025-01-21 22:19:57+05:30  Cprogrammer
+ * fixes for gcc14
+ *
  * Revision 1.5  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -43,7 +46,7 @@ sig_childdefault()
 void
 getversion_sig_child_c()
 {
-	const char     *x = "$Id: sig_child.c,v 1.5 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: sig_child.c,v 1.6 2025-01-21 22:19:57+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
