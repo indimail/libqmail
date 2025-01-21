@@ -22,9 +22,7 @@
  * added RCS log
  *
  */
-#define _ALLOC_
 #include "alloc.h"
-#undef _ALLOC_
 #include "byte.h"
 
 int

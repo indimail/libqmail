@@ -20,16 +20,5 @@
 void           *alloc(unsigned int);
 void            alloc_free(char *);
 int             alloc_re(void **, unsigned int, unsigned int);
-/*
-#ifdef _ALLOC_
-#ifdef __APPLE__
-int             alloc_re(void **, unsigned int, unsigned int);
-#else
-int             alloc_re();
-#endif
-#else
-int             alloc_re(void *, unsigned int, unsigned int);
-#endif
-*/
 
 #endif
