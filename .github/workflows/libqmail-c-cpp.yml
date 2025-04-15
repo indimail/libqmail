@@ -37,6 +37,6 @@ jobs:
         OS: ${{ matrix.host }}
 
     - name: configure
-      run: env CPPFLAGS="-I/opt/homebrew/Cellar/openssl@3/3.4.0/include" LDFLAGS="-L/opt/homebrew/Cellar/openssl@3/3.4.0/lib" ./default.configure
+      run: env CPPFLAGS="-I/opt/homebrew/Cellar/openssl@3/3.4.1/include" LDFLAGS="-L/opt/homebrew/Cellar/openssl@3/3.4.1/lib" ./default.configure
     - name: make
-      run: env CPPFLAGS="-I/opt/homebrew/Cellar/openssl@3/3.4.0/include" LDFLAGS="-L/opt/homebrew/Cellar/openssl@3/3.4.0/lib" make
+      run: env CPPFLAGS="-I/opt/homebrew/Cellar/openssl@3/3.4.1/include" LDFLAGS="-L/opt/homebrew/Cellar/openssl@3/3.4.1/lib" make
