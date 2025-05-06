@@ -1,5 +1,8 @@
 /*
  * $Log: error.h,v $
+ * Revision 1.14  2025-05-06 22:19:24+05:30  Cprogrammer
+ * added error_invalid for EINVAL
+ *
  * Revision 1.13  2024-05-09 23:46:54+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -62,6 +65,7 @@ extern int      error_srch;
 extern int      error_restart;
 extern int      error_child;
 extern int      error_ebadf;
+extern int      error_invalid;
 
 const char     *error_str(int);
 char           *estack(int, const char *);

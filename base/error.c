@@ -1,5 +1,8 @@
 /*
  * $Log: error.c,v $
+ * Revision 1.13  2025-05-06 22:19:14+05:30  Cprogrammer
+ * added error_invalid for EINVAL
+ *
  * Revision 1.12  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -214,10 +217,17 @@ EBADF;
 -26;
 #endif
 
+int error_invalid =
+#ifdef EINVAL
+EINVAL;
+#else
+-27;
+#endif
+
 void
 getversion_error_c()
 {
-	const char     *x = "$Id: error.c,v 1.12 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: error.c,v 1.13 2025-05-06 22:19:14+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
