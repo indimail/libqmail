@@ -1,5 +1,8 @@
 /*
  * $Log: now.c,v $
+ * Revision 1.5  2025-10-03 16:02:35+05:30  Cprogrammer
+ * fixed datatype
+ *
  * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -17,13 +20,13 @@
 datetime_sec
 now()
 {
-	return time((long *) 0);
+	return time((time_t *) NULL);
 }
 
 void
 getversion_now_c()
 {
-	const char     *x = "$Id: now.c,v 1.4 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: now.c,v 1.5 2025-10-03 16:02:35+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

@@ -1,5 +1,8 @@
 /*
  * $Log: tai_now.c,v $
+ * Revision 1.5  2025-10-03 16:14:20+05:30  Cprogrammer
+ * Fixed datatype for argument passed to time()
+ *
  * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -19,13 +22,13 @@
 void
 tai_now(struct tai *t)
 {
-	t->x = 4611686018427387914ULL + (uint64) time((long *) 0);
+	t->x = 4611686018427387914ULL + (uint64) time((time_t *) NULL);
 }
 
 void
 getversion_tai_now_c()
 {
-	const char     *x = "$Id: tai_now.c,v 1.4 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: tai_now.c,v 1.5 2025-10-03 16:14:20+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
