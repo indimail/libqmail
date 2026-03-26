@@ -1,5 +1,8 @@
 /*
  * $Log: sha512_crypt.c,v $
+ * Revision 1.5  2026-03-26 21:39:37+05:30  Cprogrammer
+ * fix for solaris
+ *
  * Revision 1.4  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -38,11 +41,21 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#ifdef HAVE_ALLOCA_H
+#include <alloca.h>
+#endif
 #include <sys/param.h>
 #include <sys/types.h>
 
 #if defined(FREEBSD) || defined(DARWIN)
 void           *mempcpy(void *, const void *, size_t);
+#endif
+
+#ifndef MIN
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#endif
+#ifndef MAX
+#define MAX(a,b) (((a)>(b))?(a):(b))
 #endif
 
 /*
@@ -874,7 +887,7 @@ main(void)
 void
 getversion_sha512_crypt_c()
 {
-	const char     *x = "$Id: sha512_crypt.c,v 1.4 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: sha512_crypt.c,v 1.5 2026-03-26 21:39:37+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }
