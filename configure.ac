@@ -1,5 +1,8 @@
 #
 # $Log: configure.ac,v $
+# Revision 1.45  2026-03-26 21:41:40+05:30  Cprogrammer
+# fix for solaris
+#
 # Revision 1.44  2024-05-23 17:13:15+05:30  Cprogrammer
 # removed -Wno-discarded-qualifiers
 #
@@ -133,7 +136,7 @@
 # Revision 1.1  2014-09-02 22:13:49+05:30  Cprogrammer
 # Initial revision
 #
-# $Id: configure.ac,v 1.44 2024-05-23 17:13:15+05:30 Cprogrammer Exp mbhangui $
+# $Id: configure.ac,v 1.45 2026-03-26 21:41:40+05:30 Cprogrammer Exp mbhangui $
 #
 AC_PREREQ([2.64])
 AC_INIT([libqmail],m4_normalize(m4_include([conf-version])),m4_normalize(m4_include([conf-email])),libqmail, [https://github.com/indimail/libqmail])
@@ -157,10 +160,10 @@ PKG_INSTALLDIR
 
 case "$host" in
 *-*-sunos4.1.1*)
-	CPPFLAGS="$CPPFLAGS -DSUNOS4"
+	CPPFLAGS="$CPPFLAGS -Dlint -DSUNOS4"
 	;;
 *-*-solaris*)
-	CPPFLAGS="$CPPFLAGS -DSOLARIS"
+	CPPFLAGS="$CPPFLAGS -Dlint -DSOLARIS"
 	;;
 *-*-linux*)
 	CPPFLAGS="$CPPFLAGS -Dlint -DLINUX -Wall"
@@ -184,7 +187,7 @@ esac
 
 dnl Checks for header files.
 AC_CHECK_HEADERS(ctype.h errno.h stdarg.h time.h unistd.h limits.h pwd.h grp.h fcntl.h)
-AC_CHECK_HEADERS(crypt.h signal.h stdint.h stddef.h endian.h netdb.h sodium.h)
+AC_CHECK_HEADERS(crypt.h alloca.h signal.h stdint.h stddef.h endian.h netdb.h sodium.h)
 AC_CHECK_HEADERS(varargs.h regex.h sys/types.h sys/stat.h sys/wait.h sys/file.h)
 AC_CHECK_HEADERS(sys/time.h sys/endian.h netinet/in.h arpa/inet.h sys/socket.h sys/un.h)
 

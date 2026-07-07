@@ -1,5 +1,8 @@
 /*
  * $Log: hmac_md5.c,v $
+ * Revision 1.6  2026-03-26 21:39:19+05:30  Cprogrammer
+ * include strings.h for solaris
+ *
  * Revision 1.5  2024-05-09 23:46:19+05:30  mbhangui
  * fix discarded-qualifier compiler warnings
  *
@@ -18,6 +21,9 @@
  */
 #include "global.h"
 #include "md5.h"
+#ifdef SOLARIS
+#include <strings.h>
+#endif
 
 /*
  * Function: hmac_md5
@@ -85,7 +91,7 @@ hmac_md5(unsigned char *text, /*- pointer to data stream */
 void
 getversion_hmac_md5_c()
 {
-	const char     *x = "$Id: hmac_md5.c,v 1.5 2024-05-09 23:46:19+05:30 mbhangui Exp mbhangui $";
+	const char     *x = "$Id: hmac_md5.c,v 1.6 2026-03-26 21:39:19+05:30 Cprogrammer Exp mbhangui $";
 #ifndef lint
 	x=sccsidmd5h;
 	x=sccsidglobalh;
