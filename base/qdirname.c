@@ -1,5 +1,8 @@
 /*
  * $Log: qdirname.c,v $
+ * Revision 1.4  2026-10-26 01:29:19+05:30  Cprogrammer
+ * fixed syntax error
+ *
  * Revision 1.3  2024-05-17 16:13:00+05:30  Cprogrammer
  * fix discarded-qualifier-warnings
  *
@@ -21,7 +24,7 @@
 #include "str.h"
 
 #ifndef	lint
-const char      sccsid[] = "$Id: qdirname.c,v 1.3 2024-05-17 16:13:00+05:30 Cprogrammer Exp mbhangui $"
+const char      sccsid[] = "$Id: qdirname.c,v 1.4 2026-10-26 01:29:19+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 static void
@@ -54,7 +57,7 @@ qdirname(const char *path)
 void
 getversion_qdirname_c()
 {
-	const char     *x = "$Id: qdirname.c,v 1.3 2024-05-17 16:13:00+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: qdirname.c,v 1.4 2026-10-26 01:29:19+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

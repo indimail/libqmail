@@ -1,5 +1,8 @@
 /*
  * $Log: sha256_crypt.c,v $
+ * Revision 1.6  2026-10-26 01:29:25+05:30  Cprogrammer
+ * fix for cygwin
+ *
  * Revision 1.5  2026-03-26 21:39:30+05:30  Cprogrammer
  * fix for solaris
  *
@@ -46,7 +49,7 @@
 #include <sys/param.h>
 #include <sys/types.h>
 
-#if defined(FREEBSD) || defined(DARWIN)
+#if defined(FREEBSD) || defined(DARWIN) || defined(__CYGWIN__)
 void           *mempcpy(void *, const void *, size_t);
 #endif
 
@@ -811,7 +814,7 @@ main(void)
 void
 getversion_sha256_crypt_c()
 {
-	const char     *x = "$Id: sha256_crypt.c,v 1.5 2026-03-26 21:39:30+05:30 Cprogrammer Exp mbhangui $";
+	const char     *x = "$Id: sha256_crypt.c,v 1.6 2026-10-26 01:29:25+05:30 Cprogrammer Exp mbhangui $";
 
 	x++;
 }

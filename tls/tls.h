@@ -1,5 +1,5 @@
 /*
- * $Id: tls.h,v 1.8 2025-01-21 22:24:02+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tls.h,v 1.9 2026-10-27 21:11:08+05:30 Cprogrammer Exp mbhangui $
  */
 #ifndef _TLS_H
 #define _TLS_H
@@ -15,6 +15,7 @@ extern struct strerr strerr_tls;
 
 ssize_t         tlsread(int, char *, size_t, long);
 ssize_t         tlswrite(int, const char *, size_t, long);
+int             translate(int, int, int, int, unsigned int);
 #if defined(HAVE_SSL) || defined(TLS)
 SSL_CTX        *tls_init(const char *, const char *, const char *, const char *, const char *, enum tlsmode);
 int             get_tls_method(const char *);
@@ -26,7 +27,6 @@ SSL            *tls_session(SSL_CTX *, int);
 int             tls_connect(int, int, int, SSL *, const char *);
 int             tls_accept(int, int, int, SSL *);
 void            ssl_free();
-int             translate(int, int, int, int, unsigned int);
 ssize_t         allwritessl(SSL *, const char *, size_t);
 ssize_t         ssl_timeoutio(int (*fun1) (SSL *, char *, size_t), int (*fun2)(SSL *), long, int, int, SSL *, char *, size_t);
 int             ssl_timeoutconn(long, int, int, SSL *);
@@ -52,6 +52,9 @@ EVP_PKEY       *get_dhkey(int, int, const char *);
 
 /*
  * $Log: tls.h,v $
+ * Revision 1.9  2026-10-27 21:11:08+05:30  Cprogrammer
+ * make translate() available regardless of #ifdef TLS
+ *
  * Revision 1.8  2025-01-21 22:24:02+05:30  Cprogrammer
  * fixes for gcc14
  *

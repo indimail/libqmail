@@ -1,5 +1,5 @@
 /*
- * $Id: tls.c,v 1.13 2025-01-21 22:23:58+05:30 Cprogrammer Exp mbhangui $
+ * $Id: tls.c,v 1.14 2026-10-27 21:15:35+05:30 Cprogrammer Exp mbhangui $
  *
  * ssl_timeoutio functions from Frederik Vermeulen's
  * tls patch for qmail
@@ -34,7 +34,7 @@
 #include "tls.h"
 
 #ifndef	lint
-static char     sccsid[] = "$Id: tls.c,v 1.13 2025-01-21 22:23:58+05:30 Cprogrammer Exp mbhangui $";
+static char     sccsid[] = "$Id: tls.c,v 1.14 2026-10-27 21:15:35+05:30 Cprogrammer Exp mbhangui $";
 #endif
 
 #ifdef HAVE_SSL
@@ -1174,7 +1174,10 @@ translate(int rfd, int wfd, int clearout, int clearin, unsigned int iotimeout)
 {
 	struct taia     now, deadline;
 	iopause_fd      iop[2];
-	int             flagexitasap, iopl, counter, t;
+#ifdef TLS
+	int             counter;
+#endif
+	int             flagexitasap, iopl, t;
 	ssize_t         n, r;
 	char            tbuf_clear[1024], tbuf_ssl[4096];
 
@@ -1205,7 +1208,11 @@ translate(int rfd, int wfd, int clearout, int clearin, unsigned int iotimeout)
 			 *    write n bytes to SSL it is possible that the decrypted data is
 			 *    larger than n.
 			 */
+#ifdef TLS
 			for (counter = 0;!flagexitasap;counter++) {
+#else
+			for (;!flagexitasap;) {
+#endif
 				t = 0;
 				if ((n = tlsread(rfd, tbuf_ssl, sizeof(tbuf_ssl), iotimeout)) < 0) {
 					/*
@@ -1355,6 +1362,9 @@ getversion_tls_c()
 
 /*
  * $Log: tls.c,v $
+ * Revision 1.14  2026-10-27 21:15:35+05:30  Cprogrammer
+ * fix compiler warning
+ *
  * Revision 1.13  2025-01-21 22:23:58+05:30  Cprogrammer
  * fixes for gcc14
  *

@@ -1,12 +1,12 @@
 COFLAGS=-z+05:30
 ACLOCAL_AMFLAGS=-I m4
 
-DEFS=@DEFS@ -I. -Ibase -Iarray -Itextcode -Isocket -Itls
+DEFS=@DEFS@ -Dlint -I. -Ibase -Iarray -Itextcode -Isocket -Itls
 
 libqmail_LTLIBRARIES = libqmail.la
 libqmail_la_SOURCES = $(COMMONSOURCES)
 libqmail_la_LIBADD = @LIB_CRYPT@ @LIB_SSL@ @LIB_CRYPTO@ @LIB_SODIUM@ -lm
-libqmail_la_LDFLAGS = -version-info @LIBVER@:0:0
+libqmail_la_LDFLAGS = -version-info @LIBVER@:0:0 -no-undefined
 libqmail_la_CFLAGS = -fPIC
 libqmaildir=@libdir@
 
